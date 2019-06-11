@@ -1,0 +1,8 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CNIOAtomics" "${PODS_CONFIGURATION_BUILD_DIR}/CNIODarwin" "${PODS_CONFIGURATION_BUILD_DIR}/CNIOLinux" "${PODS_CONFIGURATION_BUILD_DIR}/CNIOSHA1" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIO" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOConcurrencyHelpers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOFoundationCompat" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOTLS" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOTransportServices"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CNIOAtomics/CNIOAtomics.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/CNIODarwin/CNIODarwin.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/CNIOLinux/CNIOLinux.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/CNIOSHA1/CNIOSHA1.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIO/NIO.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOConcurrencyHelpers/NIOConcurrencyHelpers.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOFoundationCompat/NIOFoundationCompat.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOTLS/NIOTLS.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftNIOTransportServices/NIOTransportServices.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "CNIOAtomics" -framework "CNIODarwin" -framework "CNIOLinux" -framework "CNIOSHA1" -framework "NIO" -framework "NIOConcurrencyHelpers" -framework "NIOFoundationCompat" -framework "NIOTLS" -framework "NIOTransportServices"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods

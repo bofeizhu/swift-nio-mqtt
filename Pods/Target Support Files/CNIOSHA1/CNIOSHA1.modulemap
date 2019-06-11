@@ -1,0 +1,6 @@
+framework module CNIOSHA1 {
+  umbrella header "CNIOSHA1-umbrella.h"
+
+  export *
+  module * { export * }
+}
