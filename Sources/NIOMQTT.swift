@@ -6,6 +6,9 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+import NIO
+import NIOTransportServices
+
 class NIOMQTT {
     
 }
