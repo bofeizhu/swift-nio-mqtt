@@ -11,7 +11,8 @@
 /// The Variable Byte Integer is encoded using an encoding scheme which uses a single byte for values up to 127.
 /// Larger values are handled as follows. The least significant seven bits of each byte encode the data,
 /// and the most significant bit is used to indicate whether there are bytes following in the representation.
-/// Thus, each byte encodes 128 values and a "continuation bit". The maximum number of bytes in the Variable Byte Integer field is four.
+/// Thus, each byte encodes 128 values and a "continuation bit".
+/// The maximum number of bytes in the Variable Byte Integer field is four.
 /// The encoded value MUST use the minimum number of bytes necessary to represent the value.
 struct VInt {
     let value: UInt

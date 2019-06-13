@@ -90,7 +90,7 @@
 				057539D022B02AB000DE3B9D /* Info.plist */,
 				057539E622B02B4400DE3B9D /* NIOMQTT.swift */,
 				05DD149922B2CF5C001D33A3 /* ControlPackets */,
-				05DD149C22B2ED97001D33A3 /* DataRepresentation */,
+				05DD149C22B2ED97001D33A3 /* DataTypes */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -112,12 +112,12 @@
 			path = ControlPackets;
 			sourceTree = "<group>";
 		};
-		05DD149C22B2ED97001D33A3 /* DataRepresentation */ = {
+		05DD149C22B2ED97001D33A3 /* DataTypes */ = {
 			isa = PBXGroup;
 			children = (
 				05DD149D22B2EDCF001D33A3 /* VInt.swift */,
 			);
-			path = DataRepresentation;
+			path = DataTypes;
 			sourceTree = "<group>";
 		};
 		42428F38786FBEF5A79EFA9E /* Frameworks */ = {
