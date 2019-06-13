@@ -19,47 +19,47 @@ enum ControlPacketType: UInt8 {
     case reserved = 0
     
     /// Connection request
-    case connect = 1
+    case connect
     
     /// Connect acknowledgment
-    case connAck = 2
+    case connAck
     
     /// Publish message
-    case publish = 3
+    case publish
     
     /// Publish acknowledgment (QoS 1)
-    case pubAck = 4
+    case pubAck
     
     /// Publish received (QoS 2 delivery part 1)
-    case pubRec = 5
+    case pubRec
     
     /// Publish release (QoS 2 delivery part 2)
-    case pubRel = 6
+    case pubRel
     
     /// Publish complete (QoS 2 delivery part 3)
-    case pubComp = 7
+    case pubComp
     
     /// Subscribe request
-    case subscribe = 8
+    case subscribe
     
     /// Subscribe acknowledgment
-    case subAck = 9
+    case subAck
     
     /// Unsubscribe request
-    case unsubscribe = 10
+    case unsubscribe
     
     /// Unsubscribe acknowledgment
-    case unsubAck = 11
+    case unsubAck
     
     /// PING request
-    case pingReq = 12
+    case pingReq
     
     /// PING response
-    case pingResp = 13
+    case pingResp
     
     /// Disconnect notification
-    case disconnect = 14
+    case disconnect
     
     /// Authentication exchange
-    case auth = 15
+    case auth
 }
