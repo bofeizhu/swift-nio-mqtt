@@ -40,7 +40,7 @@ extension ByteBuffer {
         return byteWritten
     }
     
-    // MARK: VInt APIs
+    // MARK: Variable Byte Integer APIs
     
     /// Read a variable byte integer off this `ByteBuffer`,
     /// move the reader index forward by the integer's byte size and return the result.
