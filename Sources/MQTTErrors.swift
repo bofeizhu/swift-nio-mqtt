@@ -8,4 +8,5 @@
 
 enum MQTTEncodingError: Error {
     case utf8StringTooLong
+    case binaryDataTooLong
 }
