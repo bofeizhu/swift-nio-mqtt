@@ -1,5 +1,5 @@
 //
-//  ByteBuffer+MQTTDataTypes.swift
+//  ByteBuffer+DataTypes.swift
 //  SwiftNIOMQTT
 //
 //  Created by Bofei Zhu on 6/17/19.
