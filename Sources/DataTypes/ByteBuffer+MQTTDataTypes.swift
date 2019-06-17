@@ -35,9 +35,7 @@ extension ByteBuffer {
         guard length <= UInt16.max else {
             throw MQTTEncodingError.utf8StringTooLong
         }
-        var byteWritten = writeInteger(UInt16(length))
-        byteWritten += writeString(string)
-        return byteWritten
+        return writeInteger(UInt16(length)) + writeString(string)
     }
     
     // MARK: Variable Byte Integer APIs
