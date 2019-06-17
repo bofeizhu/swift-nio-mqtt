@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		056A221022B832C2000500C1 /* ByteBuffer+MQTTDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A220F22B832C2000500C1 /* ByteBuffer+MQTTDataTypes.swift */; };
+		056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221122B841D5000500C1 /* MQTTErrors.swift */; };
 		057539D622B02AB000DE3B9D /* SwiftNIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057539CC22B02AB000DE3B9D /* SwiftNIOMQTT.framework */; };
 		057539DB22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539DA22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift */; };
 		057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539E622B02B4400DE3B9D /* NIOMQTT.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		056A220F22B832C2000500C1 /* ByteBuffer+MQTTDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+MQTTDataTypes.swift"; sourceTree = "<group>"; };
+		056A221122B841D5000500C1 /* MQTTErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTErrors.swift; sourceTree = "<group>"; };
 		057539CC22B02AB000DE3B9D /* SwiftNIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftNIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057539D022B02AB000DE3B9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057539D522B02AB000DE3B9D /* SwiftNIOMQTTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftNIOMQTTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				057539D022B02AB000DE3B9D /* Info.plist */,
+				056A221122B841D5000500C1 /* MQTTErrors.swift */,
 				057539E622B02B4400DE3B9D /* NIOMQTT.swift */,
 				05DD149922B2CF5C001D33A3 /* ControlPackets */,
 				05DD149C22B2ED97001D33A3 /* DataTypes */,
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				056A221022B832C2000500C1 /* ByteBuffer+MQTTDataTypes.swift in Sources */,
+				056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */,
 				05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */,
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
 				05DD149B22B2D170001D33A3 /* ControlPacketType.swift in Sources */,
