@@ -6,7 +6,8 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-enum MQTTEncodingError: Error {
+enum MQTTCodingError: Error {
+    case malformedPacket
     case utf8StringTooLong
     case binaryDataTooLong
 }

@@ -33,7 +33,7 @@ extension ByteBuffer {
     mutating func writeMQTTString(_ string: String) throws -> Int {
         let length = string.utf8.count
         guard length <= UInt16.max else {
-            throw MQTTEncodingError.utf8StringTooLong
+            throw MQTTCodingError.utf8StringTooLong
         }
         return writeInteger(UInt16(length)) + writeString(string)
     }
@@ -90,7 +90,7 @@ extension ByteBuffer {
     @discardableResult
     mutating func writeMQTTBinaryData(_ data: Data) throws -> Int {
         guard data.count <= UInt16.max else {
-            throw MQTTEncodingError.binaryDataTooLong
+            throw MQTTCodingError.binaryDataTooLong
         }
         return writeInteger(UInt16(data.count)) + writeBytes(data)
     }
