@@ -128,8 +128,8 @@
 				0533EBDE22B9743500500255 /* ConnectPacket.swift */,
 				05DD149A22B2D170001D33A3 /* ControlPacket.swift */,
 				0533EBD822B8658E00500255 /* FixedHeader.swift */,
-				0533EBDC22B9707000500255 /* PublishPacket.swift */,
 				0533EBE222B987C900500255 /* Property.swift */,
+				0533EBDC22B9707000500255 /* PublishPacket.swift */,
 			);
 			path = ControlPackets;
 			sourceTree = "<group>";
