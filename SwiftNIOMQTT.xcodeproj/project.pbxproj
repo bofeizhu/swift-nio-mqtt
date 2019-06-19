@@ -8,15 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBD822B8658E00500255 /* FixedHeader.swift */; };
-		0533EBDB22B95CF700500255 /* ByteBuffer+ControlPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDA22B95CF700500255 /* ByteBuffer+ControlPackets.swift */; };
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
 		0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDE22B9743500500255 /* ConnectPacket.swift */; };
 		0533EBE322B987C900500255 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBE222B987C900500255 /* Property.swift */; };
 		056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */; };
 		056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221122B841D5000500C1 /* MQTTErrors.swift */; };
 		056A221422B85226000500C1 /* StringPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221322B85226000500C1 /* StringPair.swift */; };
-		057539D622B02AB000DE3B9D /* SwiftNIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057539CC22B02AB000DE3B9D /* SwiftNIOMQTT.framework */; };
-		057539DB22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539DA22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift */; };
+		057539D622B02AB000DE3B9D /* NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057539CC22B02AB000DE3B9D /* NIOMQTT.framework */; };
+		057539DB22B02AB000DE3B9D /* NIOMQTTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539DA22B02AB000DE3B9D /* NIOMQTTTests.swift */; };
 		057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539E622B02B4400DE3B9D /* NIOMQTT.swift */; };
 		05DD149B22B2D170001D33A3 /* ControlPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149A22B2D170001D33A3 /* ControlPacket.swift */; };
 		05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149D22B2EDCF001D33A3 /* VInt.swift */; };
@@ -36,17 +35,16 @@
 
 /* Begin PBXFileReference section */
 		0533EBD822B8658E00500255 /* FixedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeader.swift; sourceTree = "<group>"; };
-		0533EBDA22B95CF700500255 /* ByteBuffer+ControlPackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+ControlPackets.swift"; sourceTree = "<group>"; };
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
 		0533EBDE22B9743500500255 /* ConnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectPacket.swift; sourceTree = "<group>"; };
 		0533EBE222B987C900500255 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+DataTypes.swift"; sourceTree = "<group>"; };
 		056A221122B841D5000500C1 /* MQTTErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTErrors.swift; sourceTree = "<group>"; };
 		056A221322B85226000500C1 /* StringPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringPair.swift; sourceTree = "<group>"; };
-		057539CC22B02AB000DE3B9D /* SwiftNIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftNIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		057539CC22B02AB000DE3B9D /* NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057539D022B02AB000DE3B9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		057539D522B02AB000DE3B9D /* SwiftNIOMQTTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftNIOMQTTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		057539DA22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNIOMQTTTests.swift; sourceTree = "<group>"; };
+		057539D522B02AB000DE3B9D /* NIOMQTTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIOMQTTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		057539DA22B02AB000DE3B9D /* NIOMQTTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOMQTTTests.swift; sourceTree = "<group>"; };
 		057539DC22B02AB000DE3B9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057539E622B02B4400DE3B9D /* NIOMQTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOMQTT.swift; sourceTree = "<group>"; };
 		05DD149A22B2D170001D33A3 /* ControlPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacket.swift; sourceTree = "<group>"; };
@@ -72,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				057539D622B02AB000DE3B9D /* SwiftNIOMQTT.framework in Frameworks */,
+				057539D622B02AB000DE3B9D /* NIOMQTT.framework in Frameworks */,
 				9AA2273310EF62DFB5724262 /* Pods_SwiftNIOMQTTTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,8 +92,8 @@
 		057539CD22B02AB000DE3B9D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				057539CC22B02AB000DE3B9D /* SwiftNIOMQTT.framework */,
-				057539D522B02AB000DE3B9D /* SwiftNIOMQTTTests.xctest */,
+				057539CC22B02AB000DE3B9D /* NIOMQTT.framework */,
+				057539D522B02AB000DE3B9D /* NIOMQTTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,7 +113,7 @@
 		057539D922B02AB000DE3B9D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				057539DA22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift */,
+				057539DA22B02AB000DE3B9D /* NIOMQTTTests.swift */,
 				057539DC22B02AB000DE3B9D /* Info.plist */,
 			);
 			path = Tests;
@@ -124,7 +122,6 @@
 		05DD149922B2CF5C001D33A3 /* ControlPackets */ = {
 			isa = PBXGroup;
 			children = (
-				0533EBDA22B95CF700500255 /* ByteBuffer+ControlPackets.swift */,
 				0533EBDE22B9743500500255 /* ConnectPacket.swift */,
 				05DD149A22B2D170001D33A3 /* ControlPacket.swift */,
 				0533EBD822B8658E00500255 /* FixedHeader.swift */,
@@ -177,9 +174,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		057539CB22B02AB000DE3B9D /* SwiftNIOMQTT */ = {
+		057539CB22B02AB000DE3B9D /* NIOMQTT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 057539E022B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "SwiftNIOMQTT" */;
+			buildConfigurationList = 057539E022B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "NIOMQTT" */;
 			buildPhases = (
 				7F66AD5D994D49A0628F19EA /* [CP] Check Pods Manifest.lock */,
 				057539C722B02AB000DE3B9D /* Headers */,
@@ -191,14 +188,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftNIOMQTT;
+			name = NIOMQTT;
 			productName = SwiftNIOMQTT;
-			productReference = 057539CC22B02AB000DE3B9D /* SwiftNIOMQTT.framework */;
+			productReference = 057539CC22B02AB000DE3B9D /* NIOMQTT.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		057539D422B02AB000DE3B9D /* SwiftNIOMQTTTests */ = {
+		057539D422B02AB000DE3B9D /* NIOMQTTTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 057539E322B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "SwiftNIOMQTTTests" */;
+			buildConfigurationList = 057539E322B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "NIOMQTTTests" */;
 			buildPhases = (
 				10F0F8D9931BDB363ED24772 /* [CP] Check Pods Manifest.lock */,
 				057539D122B02AB000DE3B9D /* Sources */,
@@ -211,9 +208,9 @@
 			dependencies = (
 				057539D822B02AB000DE3B9D /* PBXTargetDependency */,
 			);
-			name = SwiftNIOMQTTTests;
+			name = NIOMQTTTests;
 			productName = SwiftNIOMQTTTests;
-			productReference = 057539D522B02AB000DE3B9D /* SwiftNIOMQTTTests.xctest */;
+			productReference = 057539D522B02AB000DE3B9D /* NIOMQTTTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -247,8 +244,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				057539CB22B02AB000DE3B9D /* SwiftNIOMQTT */,
-				057539D422B02AB000DE3B9D /* SwiftNIOMQTTTests */,
+				057539CB22B02AB000DE3B9D /* NIOMQTT */,
+				057539D422B02AB000DE3B9D /* NIOMQTTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -349,7 +346,6 @@
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
 				05DD149B22B2D170001D33A3 /* ControlPacket.swift in Sources */,
-				0533EBDB22B95CF700500255 /* ByteBuffer+ControlPackets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				057539DB22B02AB000DE3B9D /* SwiftNIOMQTTTests.swift in Sources */,
+				057539DB22B02AB000DE3B9D /* NIOMQTTTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +362,7 @@
 /* Begin PBXTargetDependency section */
 		057539D822B02AB000DE3B9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 057539CB22B02AB000DE3B9D /* SwiftNIOMQTT */;
+			target = 057539CB22B02AB000DE3B9D /* NIOMQTT */;
 			targetProxy = 057539D722B02AB000DE3B9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -424,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -482,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -605,7 +601,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		057539E022B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "SwiftNIOMQTT" */ = {
+		057539E022B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "NIOMQTT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				057539E122B02AB000DE3B9D /* Debug */,
@@ -614,7 +610,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		057539E322B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "SwiftNIOMQTTTests" */ = {
+		057539E322B02AB000DE3B9D /* Build configuration list for PBXNativeTarget "NIOMQTTTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				057539E422B02AB000DE3B9D /* Debug */,

@@ -1,5 +1,5 @@
 //
-//  SwiftNIOMQTTTests.swift
+//  NIOMQTTTests.swift
 //  SwiftNIOMQTTTests
 //
 //  Created by Bofei Zhu on 6/11/19.
@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import SwiftNIOMQTT
+@testable import NIOMQTT
 
-class SwiftNIOMQTTTests: XCTestCase {
+class NIOMQTTTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

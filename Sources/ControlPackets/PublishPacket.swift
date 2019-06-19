@@ -6,12 +6,6 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-/// Duplicate delivery of a PUBLISH packet
-public typealias Duplicate = Bool
-
-/// PUBLISH retained message flag
-public typealias Retain = Bool
-
 /// Quality of service. Level of assurance for delivery of an Application Message.
 public enum QoS: UInt8 {
     
