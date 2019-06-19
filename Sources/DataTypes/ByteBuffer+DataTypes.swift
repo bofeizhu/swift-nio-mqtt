@@ -28,7 +28,7 @@ extension ByteBuffer {
     ///
     /// - Parameter string: The string to serialize.
     /// - Returns: The number of bytes written.
-    /// - Throws: A MQTT encoding error when string is too long (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
+    /// - Throws: A MQTT coding error when string is too long (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
     @discardableResult
     mutating func writeMQTTString(_ string: String) throws -> Int {
         let length = string.utf8.count
@@ -86,7 +86,7 @@ extension ByteBuffer {
     ///
     /// - Parameter data: The binary data to write.
     /// - Returns: The number of bytes written.
-    /// - Throws: A MQTT encoding error when binary data is too large (the maximum size of binary data in MQTT is 65,535 bytes).
+    /// - Throws: A MQTT coding error when binary data is too large (the maximum size of binary data in MQTT is 65,535 bytes).
     @discardableResult
     mutating func writeMQTTBinaryData(_ data: Data) throws -> Int {
         guard data.count <= UInt16.max else {
@@ -112,9 +112,9 @@ extension ByteBuffer {
     ///
     /// - Parameter stringPair: The string pair to serialize.
     /// - Returns: The number of bytes written.
-    /// - Throws: A MQTT encoding error when strings are too long (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
+    /// - Throws: A MQTT coding error when strings are too long (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
     @discardableResult
-    mutating func writeStringPair(_ stringPair: StringPair) throws -> Int {
+    mutating func write(_ stringPair: StringPair) throws -> Int {
         let nameLength = try writeMQTTString(stringPair.name)
         let valueLength = try writeMQTTString(stringPair.value)
         return nameLength + valueLength
@@ -127,9 +127,14 @@ extension ByteBuffer {
     ///
     /// - Returns:  A `UInt8` value containing 1 byte or `nil` if there aren't any byte readable.
     mutating func readByte() -> UInt8? {
-        guard let bytes = readBytes(length: 1) else {
-            return nil
-        }
-        return bytes[0]
+        return readInteger()
+    }
+    
+    /// Write 1 byte into this `ByteBuffer`, moving the writer index forward appropriately.
+    ///
+    /// - Parameter byte: The byte to write.
+    /// - Returns: The number of bytes written (always 1).
+    mutating func writeByte(_ byte: UInt8) -> Int {
+        return writeInteger(byte)
     }
 }

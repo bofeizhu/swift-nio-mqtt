@@ -19,7 +19,9 @@ struct ConnectPacket: VariableHeaderPacket, PayloadPacket {
     typealias VariableHeader = ConnectVariableHeader
     typealias Payload = ConnectPayload
     
+    static let flags: FixedHeaderFlags = 0
     let fixedHeader: FixedHeader
+    
     var variableHeader: ConnectVariableHeader
     var payload: ConnectPayload
 }

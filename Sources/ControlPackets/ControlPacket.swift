@@ -36,11 +36,6 @@ protocol PayloadPacket: ControlPacket {
     var payload: Payload { get }
 }
 
-/// A Reason Code is a one byte unsigned value that indicates the result of an operation.
-/// Reason Codes less than 0x80 indicate successful completion of an operation.
-/// The normal Reason Code for success is 0. Reason Code values of 0x80 or greater indicate failure.
-typealias ReasonCode = UInt8
-
 /// MQTT Control Packet Type
 ///
 /// **Position:** byte 1, bits 7-4.
@@ -96,4 +91,19 @@ enum ControlPacketType: UInt8 {
     
     /// Authentication exchange
     case auth
+    
+    func validate(_ flags: FixedHeaderFlags) -> Bool {
+        switch self {
+        case .connect:
+            return flags == ConnectPacket.flags
+        default:
+            // TODO: Fill the missing cases
+            return false
+        }
+    }
 }
+
+/// A Reason Code is a one byte unsigned value that indicates the result of an operation.
+/// Reason Codes less than 0x80 indicate successful completion of an operation.
+/// The normal Reason Code for success is 0. Reason Code values of 0x80 or greater indicate failure.
+typealias ReasonCode = UInt8
