@@ -28,6 +28,8 @@ struct FixedHeader {
     let remainingLength: VInt
 }
 
+// MARK: - ByteBuffer Extension
+
 extension ByteBuffer {
     
     /// Read a fixed header off this `ByteBuffer`,

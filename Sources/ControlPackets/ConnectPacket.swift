@@ -26,11 +26,32 @@ struct ConnectPacket: VariableHeaderPacket, PayloadPacket {
     var payload: ConnectPayload
 }
 
-/// The Variable Header for the CONNECT Packet
-struct ConnectVariableHeader {
+/// The Variable Header for CONNECT Packet
+struct ConnectVariableHeader: PropertyProtocol {
+
+    // MARK: MQTT Procotol
+    
     let protocolName = "MQTT"
     let protocolVersion: UInt8 = 5
+    
+    // MARK: Connect Flags
+    
+    /// This bit specifies whether the Connection starts a new Session or is a continuation of an existing Session.
+    let cleanStart: Bool
+    let willFlag: Bool
+    let willQoS: QoS
+    let willRetain: Bool
+    let userNameFlag: Bool
+    
+    // MARK: Keep Alive
+    let keepAlive: UInt16
+    
+    // MARK: Properties
+    
+    // Properties
+    let properties: [Property]
 }
 
 
+/// The Payload for the CONNECT Packet
 struct ConnectPayload {}

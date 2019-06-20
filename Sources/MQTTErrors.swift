@@ -6,6 +6,8 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+// MARK: - Coding Errors
+
 enum MQTTCodingError: Error {
     case malformedPacket
     case utf8StringTooLong

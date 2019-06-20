@@ -11,6 +11,7 @@
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
 		0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDE22B9743500500255 /* ConnectPacket.swift */; };
 		0533EBE322B987C900500255 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBE222B987C900500255 /* Property.swift */; };
+		0533EBE522BC18E400500255 /* PingReqPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBE422BC18E400500255 /* PingReqPacket.swift */; };
 		056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */; };
 		056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221122B841D5000500C1 /* MQTTErrors.swift */; };
 		056A221422B85226000500C1 /* StringPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221322B85226000500C1 /* StringPair.swift */; };
@@ -38,6 +39,7 @@
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
 		0533EBDE22B9743500500255 /* ConnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectPacket.swift; sourceTree = "<group>"; };
 		0533EBE222B987C900500255 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		0533EBE422BC18E400500255 /* PingReqPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingReqPacket.swift; sourceTree = "<group>"; };
 		056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+DataTypes.swift"; sourceTree = "<group>"; };
 		056A221122B841D5000500C1 /* MQTTErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTErrors.swift; sourceTree = "<group>"; };
 		056A221322B85226000500C1 /* StringPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringPair.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				0533EBDE22B9743500500255 /* ConnectPacket.swift */,
 				05DD149A22B2D170001D33A3 /* ControlPacket.swift */,
 				0533EBD822B8658E00500255 /* FixedHeader.swift */,
+				0533EBE422BC18E400500255 /* PingReqPacket.swift */,
 				0533EBE222B987C900500255 /* Property.swift */,
 				0533EBDC22B9707000500255 /* PublishPacket.swift */,
 			);
@@ -341,6 +344,7 @@
 				0533EBE322B987C900500255 /* Property.swift in Sources */,
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
 				056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */,
+				0533EBE522BC18E400500255 /* PingReqPacket.swift in Sources */,
 				0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */,
 				05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */,
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,

@@ -8,6 +8,16 @@
 
 import Foundation
 
+// MARK: - Property Protocol
+
+protocol PropertyProtocol {
+    
+    /// A sequence of properties
+    var properties: [Property] { get }
+}
+
+// MARK: - Property
+
 /// The last field in the Variable Header of the CONNECT, CONNACK, PUBLISH, PUBACK, PUBREC,
 /// PUBREL, PUBCOMP, SUBSCRIBE, SUBACK, UNSUBSCRIBE, UNSUBACK, DISCONNECT, and AUTH packet is a set of Properties.
 /// In the CONNECT packet there is also an optional set of Properties in the Will Properties field with the Payload.
@@ -96,6 +106,8 @@ enum Property {
     /// Shared Subscription Available
     case sharedSubscriptionAvailable(UInt8)
 }
+
+// MARK: - Property Identifier
 
 /// A Property consists of an Identifier which defines its usage and data type, followed by a value.
 /// The Identifier is encoded as a Variable Byte Integer. A Control Packet which contains an Identifier

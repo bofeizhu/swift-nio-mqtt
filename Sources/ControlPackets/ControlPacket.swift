@@ -6,6 +6,8 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+// MARK: - MQTT Control Packet Procotols
+
 /// MQTT Control Packet
 ///
 /// The MQTT protocol operates by exchanging a series of MQTT Control Packets in a defined way.
@@ -35,6 +37,8 @@ protocol PayloadPacket: ControlPacket {
     /// Payload
     var payload: Payload { get }
 }
+
+// MARK: - MQTT Control Packet Type
 
 /// MQTT Control Packet Type
 ///
@@ -102,6 +106,8 @@ enum ControlPacketType: UInt8 {
         }
     }
 }
+
+// MARK: - MQTT Control Packet Typealias
 
 /// A Reason Code is a one byte unsigned value that indicates the result of an operation.
 /// Reason Codes less than 0x80 indicate successful completion of an operation.
