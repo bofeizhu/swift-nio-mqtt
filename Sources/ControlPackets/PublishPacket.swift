@@ -19,4 +19,6 @@ public enum QoS: UInt8 {
     case exactlyOnce
 }
 
-struct PublishPacket {}
+struct PublishPacket {
+    
+}

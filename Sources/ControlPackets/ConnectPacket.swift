@@ -54,4 +54,7 @@ struct ConnectVariableHeader: PropertyProtocol {
 
 
 /// The Payload for the CONNECT Packet
-struct ConnectPayload {}
+struct ConnectPayload {
+    
+    // MARK: 
+}
