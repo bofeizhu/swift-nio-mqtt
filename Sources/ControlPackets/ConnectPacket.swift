@@ -15,13 +15,13 @@
 ///     The Server MUST process a second CONNECT packet sent from a Client as a Protocol Error
 ///     and close the Network Connection
 struct ConnectPacket: VariableHeaderPacket, PayloadPacket {
-    
     typealias VariableHeader = ConnectVariableHeader
     typealias Payload = ConnectPayload
     
+    /// Reserved fixed header flags for CONNECT packet
     static let flags: FixedHeaderFlags = 0
-    let fixedHeader: FixedHeader
     
+    let fixedHeader: FixedHeader
     var variableHeader: ConnectVariableHeader
     var payload: ConnectPayload
 }
