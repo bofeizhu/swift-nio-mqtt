@@ -1,3 +1,5 @@
+disabled_rules: # rule identifiers to exclude from running
+  - todo
 opt_in_rules: # some rules are only opt-in
   - empty_count
 included: # paths to include during linting. `--path` is ignored if present.

@@ -44,7 +44,7 @@ protocol PayloadPacket: ControlPacket {
 /// **Position:** byte 1, bits 7-4.
 ///
 /// Represented as a 4-bit unsigned value, the values are listed in
-/// [Table 2‑1 MQTT Control Packet types](http://docs.oasis-open.org/mqtt/mqtt/v5.0/csprd01/mqtt-v5.0-csprd01.html#_Toc489530053)
+/// [MQTT Control Packet types](http://docs.oasis-open.org/mqtt/mqtt/v5.0/csprd01/mqtt-v5.0-csprd01.html#_Toc489530053)
 enum ControlPacketType: UInt8 {
 
     /// Reserved

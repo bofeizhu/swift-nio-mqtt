@@ -113,8 +113,9 @@ enum Property {
 /// The Identifier is encoded as a Variable Byte Integer. A Control Packet which contains an Identifier
 /// which is not valid for its packet type, or contains a value not of the specified data type, is a Malformed Packet.
 ///
-/// - Important: Although the Property Identifier is defined as a Variable Byte Integer, in this version of the specification
-///     all of the Property Identifiers are one byte long. So we are treating them as `UInt8`.
+/// - Important: Although the Property Identifier is defined as a Variable Byte Integer,
+///     in this version of the specification all of the Property Identifiers are one byte long.
+///     So we are treating them as `UInt8`.
 enum PropertyIdentifier: UInt8 {
 
     /// Payload Format Indicator

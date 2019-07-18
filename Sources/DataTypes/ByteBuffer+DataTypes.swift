@@ -24,11 +24,13 @@ extension ByteBuffer {
         return readString(length: Int(length))
     }
 
-    /// Write UTF-8 encoded string into this `ByteBuffer` prefixed with its UInt16 `length`, moving the writer index forward appropriately.
+    /// Write UTF-8 encoded string into this `ByteBuffer` prefixed with its UInt16 `length`,
+    /// moving the writer index forward appropriately.
     ///
     /// - Parameter string: The string to serialize.
     /// - Returns: The number of bytes written.
-    /// - Throws: A MQTT coding error when string is too long (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
+    /// - Throws: A MQTT coding error when string is too long
+    ///     (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
     @discardableResult
     mutating func writeMQTTString(_ string: String) throws -> Int {
         let length = string.utf8.count
@@ -43,7 +45,8 @@ extension ByteBuffer {
     /// Read a variable byte integer off this `ByteBuffer`,
     /// move the reader index forward by the integer's byte size and return the result.
     ///
-    /// - Returns: A variable byte integer value deserialized from this `ByteBuffer` or `nil` if there aren't enough bytes readable.
+    /// - Returns: A variable byte integer value deserialized from this `ByteBuffer` or `nil`
+    ///     if there aren't enough bytes readable.
     mutating func readVariableByteInteger() -> VInt? {
         guard let firstByte = readByte() else {
             return nil
@@ -81,11 +84,13 @@ extension ByteBuffer {
         return Data(bytes)
     }
 
-    /// Write the binary data into this `ByteBuffer` prefixed with its UInt16 `length`, moving the writer index forward appropriately.
+    /// Write the binary data into this `ByteBuffer` prefixed with its UInt16 `length`,
+    /// moving the writer index forward appropriately.
     ///
     /// - Parameter data: The binary data to write.
     /// - Returns: The number of bytes written.
-    /// - Throws: A MQTT coding error when binary data is too large (the maximum size of binary data in MQTT is 65,535 bytes).
+    /// - Throws: A MQTT coding error when binary data is too large
+    ///     (the maximum size of binary data in MQTT is 65,535 bytes).
     @discardableResult
     mutating func writeMQTTBinaryData(_ data: Data) throws -> Int {
         guard data.count <= UInt16.max else {
@@ -107,11 +112,13 @@ extension ByteBuffer {
         return StringPair(name: name, value: value)
     }
 
-    /// Write UTF-8 String into this `ByteBuffer` prefixed with its UInt16 `length`, moving the writer index forward appropriately.
+    /// Write UTF-8 String into this `ByteBuffer` prefixed with its UInt16 `length`,
+    /// moving the writer index forward appropriately.
     ///
     /// - Parameter stringPair: The string pair to serialize.
     /// - Returns: The number of bytes written.
-    /// - Throws: A MQTT coding error when strings are too long (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
+    /// - Throws: A MQTT coding error when strings are too long
+    ///     (the maximum size of an UTF-8 Encoded String in MQTT is 65,535 bytes).
     @discardableResult
     mutating func write(_ stringPair: StringPair) throws -> Int {
         let nameLength = try writeMQTTString(stringPair.name)
