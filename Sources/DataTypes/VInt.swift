@@ -18,9 +18,9 @@ struct VInt {
     let value: UInt
     let bytes: [UInt8]
     let hasFollowing: Bool
-    
+
     private let multiplier: UInt
-    
+
     /// Init with one byte
     ///
     /// - Parameter firstByte: The first byte of the variable byte integer
@@ -30,7 +30,7 @@ struct VInt {
         hasFollowing = firstByte & 128 != 0
         multiplier = 1
     }
-    
+
     /// Init with leading bytes and next byte
     ///
     /// - Parameters:
@@ -39,7 +39,7 @@ struct VInt {
     init(leading: VInt, nextByte: UInt8) {
         assert(leading.hasFollowing, "The leading variable byte integer doesn't have following byte.")
         assert(leading.bytes.count < 4, "Value too large. The maximum number of bytes in the VInt field is four.")
-        
+
         guard leading.hasFollowing else {
             self = leading
             return
@@ -49,13 +49,13 @@ struct VInt {
         hasFollowing = nextByte & 128 != 0
         multiplier = leading.multiplier * 128
     }
-    
+
     /// Init with integer value
     ///
     /// - Parameter value: The integer value of the variable byte integer
     init(value: UInt) {
         assert(value <= 268435455, "Value too large. The maximum number of bytes in the VInt field is four.")
-        
+
         self.value = value
         var remainingValue = value
         var bytes: [UInt8] = []
@@ -67,9 +67,9 @@ struct VInt {
             }
             bytes.append(byte)
         } while remainingValue > 0
-        
+
         self.bytes = bytes
-        
+
         // No use
         hasFollowing = false
         multiplier = 0

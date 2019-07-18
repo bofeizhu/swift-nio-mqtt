@@ -9,9 +9,9 @@
 import NIO
 
 extension ByteBuffer {
-    
+
     // MARK: MQTT UTF-8 Encoded String APIs
-    
+
     /// Read the UInt16 `length` field that gives the number of bytes in the UTF-8 encoded string itself.
     /// Then, read `length` bytes off this `ByteBuffer`, decoding it as `String` using the UTF-8 encoding.
     /// Move the reader index forward by `length`.
@@ -23,7 +23,7 @@ extension ByteBuffer {
         }
         return readString(length: Int(length))
     }
-    
+
     /// Write UTF-8 encoded string into this `ByteBuffer` prefixed with its UInt16 `length`, moving the writer index forward appropriately.
     ///
     /// - Parameter string: The string to serialize.
@@ -37,9 +37,9 @@ extension ByteBuffer {
         }
         return writeInteger(UInt16(length)) + writeString(string)
     }
-    
+
     // MARK: Variable Byte Integer APIs
-    
+
     /// Read a variable byte integer off this `ByteBuffer`,
     /// move the reader index forward by the integer's byte size and return the result.
     ///
@@ -57,7 +57,7 @@ extension ByteBuffer {
         }
         return integer
     }
-    
+
     /// Write the variable byte integer into this `ByteBuffer`, moving the writer index forward appropriately.
     ///
     /// - Parameter integer: The integer to serialize.
@@ -66,9 +66,9 @@ extension ByteBuffer {
     mutating func writeVariableByteInteger(_ integer: VInt) -> Int {
         return writeBytes(integer.bytes)
     }
-    
+
     // MARK: Binary Data APIs
-    
+
     /// Read the UInt16 `length` field that gives the number of bytes in the binary data itself.
     /// Then, read `length` bytes off this `ByteBuffer`. Move the reader index forward by `length`.
     ///
@@ -80,8 +80,7 @@ extension ByteBuffer {
         else { return nil }
         return Data(bytes)
     }
-    
-    
+
     /// Write the binary data into this `ByteBuffer` prefixed with its UInt16 `length`, moving the writer index forward appropriately.
     ///
     /// - Parameter data: The binary data to write.
@@ -94,9 +93,9 @@ extension ByteBuffer {
         }
         return writeInteger(UInt16(data.count)) + writeBytes(data)
     }
-    
+
     // MARK: UTF-8 String Pair
-    
+
     /// Read a string pair off this `ByteBuffer`, move the reader index forward and return the result.
     ///
     /// - Returns: A string pair value deserialized from this `ByteBuffer` or `nil` if it's malformed.
@@ -107,7 +106,7 @@ extension ByteBuffer {
         else { return nil }
         return StringPair(name: name, value: value)
     }
-    
+
     /// Write UTF-8 String into this `ByteBuffer` prefixed with its UInt16 `length`, moving the writer index forward appropriately.
     ///
     /// - Parameter stringPair: The string pair to serialize.
@@ -119,17 +118,16 @@ extension ByteBuffer {
         let valueLength = try writeMQTTString(stringPair.value)
         return nameLength + valueLength
     }
-    
-    
+
     // MARK: Helpers
-    
+
     /// Read 1 byte off this `ByteBuffer`, move the reader index forward by 1 byte and return the result
     ///
     /// - Returns:  A `UInt8` value containing 1 byte or `nil` if there aren't any byte readable.
     mutating func readByte() -> UInt8? {
         return readInteger()
     }
-    
+
     /// Write 1 byte into this `ByteBuffer`, moving the writer index forward appropriately.
     ///
     /// - Parameter byte: The byte to write.

@@ -22,8 +22,7 @@ protocol ControlPacket {
 /// The content of the Variable Header varies depending on the packet type.
 protocol VariableHeaderPacket: ControlPacket {
     associatedtype VariableHeader
-    
-    
+
     /// Variable Header
     var variableHeader: VariableHeader { get }
 }
@@ -33,7 +32,7 @@ protocol VariableHeaderPacket: ControlPacket {
 /// Some MQTT Control Packets contain a Payload as the final part of the packet.
 protocol PayloadPacket: ControlPacket {
     associatedtype Payload
-    
+
     /// Payload
     var payload: Payload { get }
 }
@@ -47,55 +46,55 @@ protocol PayloadPacket: ControlPacket {
 /// Represented as a 4-bit unsigned value, the values are listed in
 /// [Table 2‑1 MQTT Control Packet types](http://docs.oasis-open.org/mqtt/mqtt/v5.0/csprd01/mqtt-v5.0-csprd01.html#_Toc489530053)
 enum ControlPacketType: UInt8 {
-    
+
     /// Reserved
     case reserved = 0
-    
+
     /// Connection request
     case connect
-    
+
     /// Connect acknowledgment
     case connAck
-    
+
     /// Publish message
     case publish
-    
+
     /// Publish acknowledgment (QoS 1)
     case pubAck
-    
+
     /// Publish received (QoS 2 delivery part 1)
     case pubRec
-    
+
     /// Publish release (QoS 2 delivery part 2)
     case pubRel
-    
+
     /// Publish complete (QoS 2 delivery part 3)
     case pubComp
-    
+
     /// Subscribe request
     case subscribe
-    
+
     /// Subscribe acknowledgment
     case subAck
-    
+
     /// Unsubscribe request
     case unsubscribe
-    
+
     /// Unsubscribe acknowledgment
     case unsubAck
-    
+
     /// PING request
     case pingReq
-    
+
     /// PING response
     case pingResp
-    
+
     /// Disconnect notification
     case disconnect
-    
+
     /// Authentication exchange
     case auth
-    
+
     func validate(_ flags: FixedHeaderFlags) -> Bool {
         switch self {
         case .connect:

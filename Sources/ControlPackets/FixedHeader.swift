@@ -13,13 +13,13 @@ typealias FixedHeaderFlags = UInt8
 
 /// MQTT Control Packet Fixed Header
 struct FixedHeader {
-    
+
     /// MQTT Control Packet type
     let type: ControlPacketType
-    
+
     /// MQTT Control Packet Flags
     let flags: FixedHeaderFlags
-    
+
     /// The Remaining Length is a Variable Byte Integer that represents the number of bytes remaining within
     /// the current Control Packet, including data in the Variable Header and the Payload.
     /// The Remaining Length does not include the bytes used to encode the Remaining Length.
@@ -31,7 +31,7 @@ struct FixedHeader {
 // MARK: - ByteBuffer Extension
 
 extension ByteBuffer {
-    
+
     /// Read a fixed header off this `ByteBuffer`,
     /// move the reader index forward by the fixed header's byte size and return the result.
     ///
@@ -45,16 +45,16 @@ extension ByteBuffer {
         else {
             throw MQTTCodingError.malformedPacket
         }
-        
+
         let flags = byte & 0xF
-        
+
         if type.validate(flags) {
             return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
         } else {
             throw MQTTCodingError.malformedPacket
         }
     }
-    
+
     /// Write a fixed header into this `ByteBuffer`, moving the writer index forward appropriately.
     ///
     /// - Parameter fixedHeader: The fixed header to write.
