@@ -39,18 +39,35 @@ class ByteBufferTest: XCTestCase {
         var integer = VInt(value: 0)
         var written = buffer.writeVariableByteInteger(integer)
         XCTAssertEqual(written, 1)
-        if let data = buffer.readByte() {
-            XCTAssertEqual(data, 0)
-        }
+        var data = buffer.readBytes(length: 1)!
+        XCTAssertEqual(data, [0])
 
         // Test 127
         integer = VInt(value: 127)
         written = buffer.writeVariableByteInteger(integer)
         XCTAssertEqual(written, 1)
-        if let data = buffer.readByte() {
-            XCTAssertEqual(data, 127)
-        }
+        data = buffer.readBytes(length: 1)!
+        XCTAssertEqual(data, [127])
 
         // Test 128
+        integer = VInt(value: 128)
+        written = buffer.writeVariableByteInteger(integer)
+        XCTAssertEqual(written, 2)
+        data = buffer.readBytes(length: 2)!
+        XCTAssertEqual(data, [UInt8(0x80), UInt8(0x01)])
+
+        // Test 16,383
+        integer = VInt(value: 16383)
+        written = buffer.writeVariableByteInteger(integer)
+        XCTAssertEqual(written, 2)
+        data = buffer.readBytes(length: 2)!
+        XCTAssertEqual(data, [UInt8(0xFF), UInt8(0x7F)])
+
+        // Test 2,097,152
+        integer = VInt(value: 2097152)
+        written = buffer.writeVariableByteInteger(integer)
+        XCTAssertEqual(written, 4)
+        data = buffer.readBytes(length: 4)!
+        XCTAssertEqual(data, [UInt8(0x80), UInt8(0x80), UInt8(0x80), UInt8(0x01)])
     }
 }
