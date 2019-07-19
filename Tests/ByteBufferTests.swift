@@ -69,5 +69,12 @@ class ByteBufferTest: XCTestCase {
         XCTAssertEqual(written, 4)
         data = buffer.readBytes(length: 4)!
         XCTAssertEqual(data, [UInt8(0x80), UInt8(0x80), UInt8(0x80), UInt8(0x01)])
+
+        // Test 268,435,455
+        integer = VInt(value: 268435455)
+        written = buffer.writeVariableByteInteger(integer)
+        XCTAssertEqual(written, 4)
+        data = buffer.readBytes(length: 4)!
+        XCTAssertEqual(data, [UInt8(0xFF), UInt8(0xFF), UInt8(0xFF), UInt8(0x7F)])
     }
 }
