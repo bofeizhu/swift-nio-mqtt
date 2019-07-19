@@ -51,8 +51,6 @@ class ByteBufferTest: XCTestCase {
             XCTAssertEqual(data, 127)
         }
 
-
         // Test 128
-
     }
 }
