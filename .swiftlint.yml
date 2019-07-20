@@ -42,4 +42,6 @@ identifier_name:
   excluded: # excluded via string array
     - id
     - URL
+    - lhs
+    - rhs
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)

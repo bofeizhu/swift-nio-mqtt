@@ -40,36 +40,6 @@ extension ByteBuffer {
         return writeInteger(UInt16(length)) + writeString(string)
     }
 
-    // MARK: Variable Byte Integer APIs
-
-    /// Read a variable byte integer off this `ByteBuffer`,
-    /// move the reader index forward by the integer's byte size and return the result.
-    ///
-    /// - Returns: A variable byte integer value deserialized from this `ByteBuffer` or `nil`
-    ///     if there aren't enough bytes readable.
-    mutating func readVariableByteInteger() -> VInt? {
-        guard let firstByte = readByte() else {
-            return nil
-        }
-        var integer = VInt(firstByte: firstByte)
-        while integer.hasFollowing {
-            guard let nextByte = readByte() else {
-                return nil
-            }
-            integer = VInt(leading: integer, nextByte: nextByte)
-        }
-        return integer
-    }
-
-    /// Write the variable byte integer into this `ByteBuffer`, moving the writer index forward appropriately.
-    ///
-    /// - Parameter integer: The integer to serialize.
-    /// - Returns: The number of bytes written.
-    @discardableResult
-    mutating func writeVariableByteInteger(_ integer: VInt) -> Int {
-        return writeBytes(integer.bytes)
-    }
-
     // MARK: Binary Data APIs
 
     /// Read the UInt16 `length` field that gives the number of bytes in the binary data itself.
@@ -139,6 +109,7 @@ extension ByteBuffer {
     ///
     /// - Parameter byte: The byte to write.
     /// - Returns: The number of bytes written (always 1).
+    @discardableResult
     mutating func writeByte(_ byte: UInt8) -> Int {
         return writeInteger(byte)
     }
