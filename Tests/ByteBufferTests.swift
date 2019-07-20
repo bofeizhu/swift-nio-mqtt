@@ -12,6 +12,8 @@ import NIO
 
 @testable import NIOMQTT
 
+// swiftlint:disable force_try
+
 class ByteBufferTest: XCTestCase {
     private let allocator = ByteBufferAllocator()
     private var buffer: ByteBuffer! = nil
@@ -29,6 +31,28 @@ class ByteBufferTest: XCTestCase {
         buffer = nil
 
         super.tearDown()
+    }
+
+    // MARK: UTF-8 Encoded String
+
+    func testMQTTStringWrite() {
+        let string = "test"
+        let written = try! buffer.writeMQTTString(string)
+        XCTAssertEqual(written, string.count + 2)
+        let count: UInt16 = buffer.readInteger()!
+        XCTAssertEqual(Int(count), string.count)
+        let readString = buffer.readString(length: Int(count))
+        XCTAssertEqual(string, readString)
+    }
+
+    func testMQTTStringRead() {
+        let string = "test"
+        let count = UInt16(string.count)
+        buffer.writeInteger(count)
+        buffer.writeString(string)
+        let mqttString = buffer.readMQTTString()
+        XCTAssertEqual(string, mqttString)
+        XCTAssertEqual(buffer.readableBytes, 0)
     }
 
     // MARK: - VInt
