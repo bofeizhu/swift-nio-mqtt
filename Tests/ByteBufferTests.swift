@@ -164,4 +164,29 @@ class ByteBufferTest: XCTestCase {
         let bytesWritten = buffer.readBytes(length: Int(count))
         XCTAssertEqual(bytes, bytesWritten)
     }
+
+    // MARK: String Pair
+
+    func testStringPairRead() {
+        let name = "name"
+        let value = "value"
+        try! buffer.writeMQTTString(name)
+        try! buffer.writeMQTTString(value)
+        let pair = buffer.readStringPair()
+        XCTAssertEqual(name, pair?.name)
+        XCTAssertEqual(value, pair?.value)
+        XCTAssertEqual(buffer.readableBytes, 0)
+    }
+
+    func testStringPairWrite() {
+        let name = "name"
+        let value = "value"
+        let pair = StringPair(name: name, value: value)
+        let written = try! buffer.write(pair)
+        XCTAssertEqual(written, name.count + value.count + 4)
+        let nameWritten = buffer.readMQTTString()
+        let valueWritten = buffer.readMQTTString()
+        XCTAssertEqual(name, nameWritten)
+        XCTAssertEqual(value, valueWritten)
+    }
 }
