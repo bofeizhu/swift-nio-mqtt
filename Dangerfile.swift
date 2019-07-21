@@ -8,6 +8,6 @@ if violations.isEmpty {
 } else {
     let violationString = violations.count > 1 ? "violations" : "violation"
     warn(
-        "Found \(violations.count) \(violationString)!" +
+        "Found \(violations.count) \(violationString)! " +
         "You can run `swiftlint autocorrect` in terminal to fix minor violations.")
 }

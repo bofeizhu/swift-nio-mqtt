@@ -10,6 +10,10 @@ let package = Package(
         // This is just an arbitrary Swift file in our app, that has
         // no dependencies outside of Foundation, the dependencies section
         // ensures that the library for Danger gets build also.
-        .target(name: "NIOMQTT", dependencies: ["Danger"], path: "Danger", sources: ["Foundation.swift"])
+        .target(
+            name: "NIOMQTT",
+            dependencies: ["Danger"],
+            path: "Danger",
+            sources: ["Foundation.swift"])
     ]
 )
