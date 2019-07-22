@@ -133,7 +133,6 @@ extension ConnackPacket: VariableHeaderPacket {
         /// The Server does not support retained messages, and Will Retain was set to 1.
         case retainNotSupported = 0x9A
 
-
         /// QoS Not Supported
         ///
         /// The Server does not support the QoS set in Will QoS.
