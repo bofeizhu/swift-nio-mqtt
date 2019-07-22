@@ -38,7 +38,7 @@ extension ConnackPacket: VariableHeaderPacket {
     }
 
     /// Connect Reason Code
-    enum ConnectReasonCode: UInt8 {
+    enum ConnectReasonCode: ReasonCode {
 
         /// Success
         ///
