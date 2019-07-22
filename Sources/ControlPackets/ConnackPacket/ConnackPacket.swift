@@ -19,7 +19,4 @@ struct ConnackPacket {
 
     /// Variable Header
     let variableHeader: VariableHeader
-
-    /// Payload
-    let payload: Payload
 }
