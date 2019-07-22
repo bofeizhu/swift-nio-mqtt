@@ -6,6 +6,8 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+/// PINGRESP Packet – PING response
+///
 /// A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet.
 /// It indicates that the Server is alive.
 struct PingRespPacket: ControlPacket {
@@ -14,5 +16,5 @@ struct PingRespPacket: ControlPacket {
     static let flags: FixedHeaderFlags = 0
 
     /// The fixed header for PINGRESP packet
-    var fixedHeader: FixedHeader
+    let fixedHeader: FixedHeader
 }

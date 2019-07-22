@@ -6,6 +6,8 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+/// PINGREQ Packet – PING request
+///
 /// The PINGREQ packet is sent from a Client to the Server in Keep Alive processing.
 ///
 /// - Note:
@@ -20,5 +22,5 @@ struct PingReqPacket: ControlPacket {
     static let flags: FixedHeaderFlags = 0
 
     /// The fixed header for PINGREQ packet
-    var fixedHeader: FixedHeader
+    let fixedHeader: FixedHeader
 }

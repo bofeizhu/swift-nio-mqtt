@@ -6,7 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-/// CONNECT Packet – Connection Request
+/// CONNECT Packet – Connection request
 ///
 /// - Note:
 ///     After a Network Connection is established by a Client to a Server,

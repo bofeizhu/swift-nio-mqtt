@@ -26,6 +26,8 @@ extension ConnectPacket: PayloadPacket {
         let password: String?
     }
 
+    /// Will Message in CONNECT Packet's payload
+    ///
     /// The Will Message consists of the Will Properties, Will Topic,
     /// and Will Payload fields in the CONNECT Payload.
     /// The Will Message MUST be published after the Network Connection is subsequently closed
@@ -36,12 +38,12 @@ extension ConnectPacket: PayloadPacket {
     struct WillMessage {
 
         /// Properties
-        var properties: [Property]
+        let properties: [Property]
 
         /// Topic
-        var topic: String
+        let topic: String
 
         /// Payload
-        var payload: Data
+        let payload: DataPayload
     }
 }
