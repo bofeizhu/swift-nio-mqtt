@@ -14,12 +14,6 @@ struct PublishPacket: ControlPacket, PayloadPacket {
     /// Fixed Header
     let fixedHeader: FixedHeader
 
-    /// Variable Header
-    let variableHeader: VariableHeader
-
-    /// Payload
-    let payload: DataPayload
-
     /// DUP Flag
     var dup: Bool {
         return ((fixedHeader.flags & 0b1000) >> 3) == 1
@@ -39,4 +33,10 @@ struct PublishPacket: ControlPacket, PayloadPacket {
     var retain: Bool {
         return (fixedHeader.flags & 1) == 1
     }
+
+    /// Variable Header
+    let variableHeader: VariableHeader
+
+    /// Payload
+    let payload: DataPayload
 }
