@@ -25,6 +25,9 @@
 		822A21A622E5221C00FC348C /* HasProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A522E5221C00FC348C /* HasProperties.swift */; };
 		822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A922E5230400FC348C /* PropertyIdentifier.swift */; };
 		822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */; };
+		822A21B322E5819000FC348C /* ConnackPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B122E57CEB00FC348C /* ConnackPacket.swift */; };
+		822A21B422E5819000FC348C /* ConnackPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B022E57CEB00FC348C /* ConnackPacket+Payload.swift */; };
+		822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTests.swift */; };
 		9AA2273310EF62DFB5724262 /* Pods_SwiftNIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +66,9 @@
 		822A21A522E5221C00FC348C /* HasProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasProperties.swift; sourceTree = "<group>"; };
 		822A21A922E5230400FC348C /* PropertyIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyIdentifier.swift; sourceTree = "<group>"; };
 		822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+Payload.swift"; sourceTree = "<group>"; };
+		822A21B022E57CEB00FC348C /* ConnackPacket+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+Payload.swift"; sourceTree = "<group>"; };
+		822A21B122E57CEB00FC348C /* ConnackPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnackPacket.swift; sourceTree = "<group>"; };
+		822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		8275557722E0F3620056D3B9 /* ByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTests.swift; sourceTree = "<group>"; };
 		B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A5B0041487FD3F3B86ABD5 /* Pods_SwiftNIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +145,7 @@
 				0533EBE422BC18E400500255 /* PingReqPacket.swift */,
 				0533EBE622BC3E8B00500255 /* PingRespPacket.swift */,
 				0533EBDC22B9707000500255 /* PublishPacket.swift */,
+				822A21AF22E57CCA00FC348C /* ConnackPacket */,
 				822A219D22E51C2100FC348C /* ConnectPacket */,
 				822A21A222E51F9000FC348C /* Properties */,
 			);
@@ -182,6 +189,16 @@
 				822A21A922E5230400FC348C /* PropertyIdentifier.swift */,
 			);
 			path = Properties;
+			sourceTree = "<group>";
+		};
+		822A21AF22E57CCA00FC348C /* ConnackPacket */ = {
+			isa = PBXGroup;
+			children = (
+				822A21B122E57CEB00FC348C /* ConnackPacket.swift */,
+				822A21B022E57CEB00FC348C /* ConnackPacket+Payload.swift */,
+				822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */,
+			);
+			path = ConnackPacket;
 			sourceTree = "<group>";
 		};
 		FBC83BDC411A9E0EB0B3B4E8 /* Pods */ = {
@@ -393,6 +410,7 @@
 				056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */,
 				0533EBE322B987C900500255 /* Property.swift in Sources */,
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
+				822A21B422E5819000FC348C /* ConnackPacket+Payload.swift in Sources */,
 				056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */,
 				0533EBE522BC18E400500255 /* PingReqPacket.swift in Sources */,
 				0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */,
@@ -401,6 +419,8 @@
 				822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */,
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
+				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
+				822A21B322E5819000FC348C /* ConnackPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */,
 				05DD149B22B2D170001D33A3 /* ControlPacket.swift in Sources */,
