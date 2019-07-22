@@ -22,5 +22,5 @@ struct PingReqPacket: ControlPacket {
     static let flags: FixedHeaderFlags = 0
 
     /// The fixed header for PINGREQ packet
-    var fixedHeader: FixedHeader
+    let fixedHeader: FixedHeader
 }

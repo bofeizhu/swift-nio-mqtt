@@ -38,12 +38,12 @@ extension ConnectPacket: PayloadPacket {
     struct WillMessage {
 
         /// Properties
-        var properties: [Property]
+        let properties: [Property]
 
         /// Topic
-        var topic: String
+        let topic: String
 
         /// Payload
-        var payload: Data
+        let payload: DataPayload
     }
 }
