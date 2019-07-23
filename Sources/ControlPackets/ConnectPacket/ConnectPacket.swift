@@ -14,7 +14,7 @@
 ///     A Client can only send the CONNECT packet once over a Network Connection.
 ///     The Server MUST process a second CONNECT packet sent from a Client as a Protocol Error
 ///     and close the Network Connection
-struct ConnectPacket {
+struct ConnectPacket: ControlPacketProtocol {
 
     /// Reserved fixed header flags for CONNECT packet
     static let flags: FixedHeaderFlags = 0

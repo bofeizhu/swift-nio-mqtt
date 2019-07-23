@@ -7,7 +7,7 @@
 //
 
 /// PUBACK Packet – Publish acknowledgement
-struct PubAckPacket: ControlPacket {
+struct PubAckPacket: ControlPacketProtocol {
 
     /// Reserved fixed header flags for PUBACK packet
     static let flags: FixedHeaderFlags = 0

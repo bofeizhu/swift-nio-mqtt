@@ -2,39 +2,56 @@
 //  ControlPacket.swift
 //  NIOMQTT
 //
-//  Created by Bofei Zhu on 6/13/19.
+//  Created by Bofei Zhu on 7/22/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-// MARK: - MQTT Control Packet Procotols
+enum ControlPacket {
 
-/// MQTT Control Packet
-///
-/// The MQTT protocol operates by exchanging a series of MQTT Control Packets in a defined way.
-protocol ControlPacket {
-    var fixedHeader: FixedHeader { get }
-}
+    /// Connection request
+    case connect(packet: ConnectPacket)
 
-/// MQTT Control Packet with Variable Header
-///
-/// Some types of MQTT Control Packet contain a Variable Header component.
-/// It resides between the Fixed Header and the Payload.
-/// The content of the Variable Header varies depending on the packet type.
-protocol VariableHeaderPacket: ControlPacket {
-    associatedtype VariableHeader
+    /// Connect acknowledgment
+    case connAck(packet: ConnAckPacket)
 
-    /// Variable Header
-    var variableHeader: VariableHeader { get }
-}
+    /// Publish message
+    case publish(packet: PublishPacket)
 
-/// MQTT Control Packet with Payload
-///
-/// Some MQTT Control Packets contain a Payload as the final part of the packet.
-protocol PayloadPacket: ControlPacket {
-    associatedtype Payload
+    /// Publish acknowledgment (QoS 1)
+    case pubAck(packet: PubAckPacket)
 
-    /// Payload
-    var payload: Payload { get }
+    /// Publish received (QoS 2 delivery part 1)
+    case pubRec
+
+    /// Publish release (QoS 2 delivery part 2)
+    case pubRel
+
+    /// Publish complete (QoS 2 delivery part 3)
+    case pubComp
+
+    /// Subscribe request
+    case subscribe
+
+    /// Subscribe acknowledgment
+    case subAck
+
+    /// Unsubscribe request
+    case unsubscribe
+
+    /// Unsubscribe acknowledgment
+    case unsubAck
+
+    /// PING request
+    case pingReq(packet: PingReqPacket)
+
+    /// PING response
+    case pingResp(packet: PingRespPacket)
+
+    /// Disconnect notification
+    case disconnect
+
+    /// Authentication exchange
+    case auth
 }
 
 // MARK: - MQTT Control Packet Typealias
