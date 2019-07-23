@@ -39,9 +39,9 @@ protocol PayloadPacket: ControlPacket {
 
 // MARK: - MQTT Control Packet Typealias
 
-/// Reason Code
+/// Reason Code Value
 ///
 /// A Reason Code is a one byte unsigned value that indicates the result of an operation.
 /// Reason Codes less than 0x80 indicate successful completion of an operation.
 /// The normal Reason Code for success is 0. Reason Code values of 0x80 or greater indicate failure.
-typealias ReasonCode = UInt8
+typealias ReasonCodeValue = UInt8

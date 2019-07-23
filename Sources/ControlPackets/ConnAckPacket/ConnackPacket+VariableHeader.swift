@@ -29,7 +29,7 @@ extension ConnAckPacket: VariableHeaderPacket {
         // MARK: Connect Reason Code
 
         /// Connect Reason Code
-        let connectReasonCode: ConnectReasonCode
+        let connectReasonCode: ConnectPacket.ReasonCode
 
         // MARK: Properties
 

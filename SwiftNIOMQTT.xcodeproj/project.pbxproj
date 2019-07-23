@@ -23,7 +23,7 @@
 		05F1981022E63463006E3E37 /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1980F22E63463006E3E37 /* QoS.swift */; };
 		05F1981422E634D7006E3E37 /* ControlPacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981322E634D7006E3E37 /* ControlPacketType.swift */; };
 		05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981522E640C7006E3E37 /* PublishPacket+VariableHeader.swift */; };
-		05F1981822E645C1006E3E37 /* ConnackPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981722E645C1006E3E37 /* ConnackPacket+ReasonCode.swift */; };
+		05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981722E645C1006E3E37 /* ConnectPacket+ReasonCode.swift */; };
 		05F1981C22E653D7006E3E37 /* DataPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981B22E653D7006E3E37 /* DataPayload.swift */; };
 		05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981E22E6603E006E3E37 /* ConnAckPacket.swift */; };
 		05F1982122E66415006E3E37 /* PubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1982022E66415006E3E37 /* PubAckPacket.swift */; };
@@ -67,7 +67,7 @@
 		05F1980F22E63463006E3E37 /* QoS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
 		05F1981322E634D7006E3E37 /* ControlPacketType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacketType.swift; sourceTree = "<group>"; };
 		05F1981522E640C7006E3E37 /* PublishPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublishPacket+VariableHeader.swift"; sourceTree = "<group>"; };
-		05F1981722E645C1006E3E37 /* ConnackPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+ReasonCode.swift"; sourceTree = "<group>"; };
+		05F1981722E645C1006E3E37 /* ConnectPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+ReasonCode.swift"; sourceTree = "<group>"; };
 		05F1981B22E653D7006E3E37 /* DataPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPayload.swift; sourceTree = "<group>"; };
 		05F1981E22E6603E006E3E37 /* ConnAckPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnAckPacket.swift; sourceTree = "<group>"; };
 		05F1982022E66415006E3E37 /* PubAckPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubAckPacket.swift; sourceTree = "<group>"; };
@@ -232,6 +232,7 @@
 				0533EBDE22B9743500500255 /* ConnectPacket.swift */,
 				822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */,
 				822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */,
+				05F1981722E645C1006E3E37 /* ConnectPacket+ReasonCode.swift */,
 			);
 			path = ConnectPacket;
 			sourceTree = "<group>";
@@ -251,7 +252,6 @@
 			children = (
 				05F1981E22E6603E006E3E37 /* ConnAckPacket.swift */,
 				822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */,
-				05F1981722E645C1006E3E37 /* ConnackPacket+ReasonCode.swift */,
 			);
 			path = ConnAckPacket;
 			sourceTree = "<group>";
@@ -480,7 +480,7 @@
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
-				05F1981822E645C1006E3E37 /* ConnackPacket+ReasonCode.swift in Sources */,
+				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,
 				822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */,
 				05DD149B22B2D170001D33A3 /* ControlPacket.swift in Sources */,
 				0533EBE722BC3E8B00500255 /* PingRespPacket.swift in Sources */,
