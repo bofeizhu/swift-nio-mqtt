@@ -1,12 +1,12 @@
 //
-//  ConnackPacket+ReasonCode.swift
+//  ConnAckPacket+ReasonCode.swift
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 7/22/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension ConnackPacket {
+extension ConnAckPacket {
 
     /// Connect Reason Code
     enum ConnectReasonCode: ReasonCode {

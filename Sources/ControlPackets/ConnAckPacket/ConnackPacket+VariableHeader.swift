@@ -1,12 +1,12 @@
 //
-//  ConnackPacket+VariableHeader.swift
+//  ConnAckPacket+VariableHeader.swift
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 7/21/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension ConnackPacket: VariableHeaderPacket {
+extension ConnAckPacket: VariableHeaderPacket {
 
     /// The Variable Header for CONNACK Packet
     struct VariableHeader: HasProperties {

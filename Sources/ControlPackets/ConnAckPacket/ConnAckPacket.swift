@@ -1,5 +1,5 @@
 //
-//  ConnackPacket.swift
+//  ConnAckPacket.swift
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 7/21/19.
@@ -9,7 +9,7 @@
 /// CONNACK Packet – Connect acknowledgement
 ///
 /// The CONNACK packet is the packet sent by the Server in response to a CONNECT packet received from a Client.
-struct ConnackPacket {
+struct ConnAckPacket {
 
     /// Reserved fixed header flags for CONNACK packet
     static let flags: FixedHeaderFlags = 0
