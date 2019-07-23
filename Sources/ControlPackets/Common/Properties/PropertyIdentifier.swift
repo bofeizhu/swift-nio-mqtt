@@ -15,83 +15,83 @@
 enum PropertyIdentifier: UInt8 {
 
     /// Payload Format Indicator
-    case payloadFormatIndicator = 0x01
+    case payloadFormatIndicator = 1
 
     /// Message Expiry Interval
-    case messageExpiryInterval = 0x02
+    case messageExpiryInterval = 2
 
     /// Content Type
-    case contentType = 0x03
+    case contentType = 3
 
     /// Response Topic
-    case responseTopic = 0x08
+    case responseTopic = 8
 
     /// Correlation Data
-    case correlationData = 0x09
+    case correlationData = 9
 
     /// Subscription Identifier
-    case subscriptionIdentifier = 0x0B
+    case subscriptionIdentifier = 11
 
     /// Session Expiry Interval
-    case sessionExpiryInterval = 0x11
+    case sessionExpiryInterval = 17
 
     /// Assigned Client Identifier
-    case assignedClientIdentifier = 0x12
+    case assignedClientIdentifier = 18
 
     /// Server Keep Alive
-    case serverKeepAlive = 0x13
+    case serverKeepAlive = 19
 
     /// Authentication Method
-    case authenticationMethod = 0x15
+    case authenticationMethod = 21
 
     /// Authentication Data
-    case authenticationData = 0x16
+    case authenticationData = 22
 
     /// Request Problem Information
-    case requestProblemInformation = 0x17
+    case requestProblemInformation = 23
 
     /// Will Delay Interval
-    case willDelayInterval = 0x18
+    case willDelayInterval = 24
 
     /// Request Response Information
-    case requestResponseInformation = 0x19
+    case requestResponseInformation = 25
 
     /// Response Information
-    case responseInformation = 0x1A
+    case responseInformation = 26
 
     /// Server Reference
-    case serverReference = 0x1C
+    case serverReference = 28
 
     /// Reason String
-    case reasonString = 0x1F
+    case reasonString = 31
 
     /// Receive Maximum
-    case receiveMaximum = 0x21
+    case receiveMaximum = 33
 
     /// Topic Alias Maximum
-    case topicAliasMaximum = 0x22
+    case topicAliasMaximum = 34
 
     /// Topic Alias
-    case topicAlias = 0x23
+    case topicAlias = 35
 
     /// Maximum QoS
-    case maximumQoS = 0x24
+    case maximumQoS = 36
 
     /// Retain Available
-    case retainAvailable = 0x25
+    case retainAvailable = 37
 
     /// User Property
-    case userProperty = 0x26
+    case userProperty = 38
 
     /// Maximum Packet Size
-    case maximumPacketSize = 0x27
+    case maximumPacketSize = 39
 
     /// Wildcard Subscription Available
-    case wildcardSubscriptionAvailable = 0x28
+    case wildcardSubscriptionAvailable = 40
 
     /// Subscription Identifier Available
-    case subscriptionIdentifierAvailable = 0x29
+    case subscriptionIdentifierAvailable = 41
 
     /// Shared Subscription Available
-    case sharedSubscriptionAvailable = 0x2A
+    case sharedSubscriptionAvailable = 42
 }

@@ -20,6 +20,8 @@ struct FixedHeader {
     /// MQTT Control Packet Flags
     let flags: FixedHeaderFlags
 
+    /// Remaining Length
+    ///
     /// The Remaining Length is a Variable Byte Integer that represents the number of bytes remaining within
     /// the current Control Packet, including data in the Variable Header and the Payload.
     /// The Remaining Length does not include the bytes used to encode the Remaining Length.
