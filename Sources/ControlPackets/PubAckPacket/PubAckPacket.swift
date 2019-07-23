@@ -6,13 +6,15 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-///
+/// PUBACK Packet – Publish acknowledgement
 struct PubAckPacket: ControlPacket {
 
     /// Reserved fixed header flags for PUBACK packet
     static let flags: FixedHeaderFlags = 0
 
     /// Fixed Header
-    var fixedHeader: FixedHeader
+    let fixedHeader: FixedHeader
 
+    /// Variable Header
+    let variableHeader: VariableHeader
 }
