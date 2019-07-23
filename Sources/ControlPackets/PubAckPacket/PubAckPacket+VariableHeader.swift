@@ -10,7 +10,13 @@ extension PubAckPacket: VariableHeaderPacket {
 
     struct VariableHeader: HasProperties {
 
+        /// Packet Identifier
+        let packetIdentifier: UInt16
+
+        /// PUBACK Reason Code
+        let reasonCode: ReasonCode
+
         /// Properties
-        var properties: [Property]
+        let properties: [Property]
     }
 }
