@@ -27,16 +27,16 @@ struct VInt {
     ///
     /// - Parameter value: The integer value of the variable byte integer
     init(value: UInt) {
-        assert(value <= 268435455, "Value too large. The maximum number of bytes in the VInt field is four.")
+        assert(value <= VInt.max, "Value too large. The maximum number of bytes in the VInt field is four.")
 
         self.value = value
         var remainingValue = value
         var bytes: [UInt8] = []
         repeat {
-            var byte = UInt8(remainingValue % 128)
-            remainingValue /= 128
+            var byte = UInt8(remainingValue % VInt.multiplier)
+            remainingValue /= VInt.multiplier
             if remainingValue > 0 {
-                byte |= 128
+                byte |= UInt8(VInt.multiplier)
             }
             bytes.append(byte)
         } while remainingValue > 0
@@ -52,10 +52,10 @@ struct VInt {
     ///
     /// - Parameter firstByte: The first byte of the variable byte integer
     fileprivate init(firstByte: UInt8) {
-        value = UInt(firstByte & 127)
+        value = UInt(firstByte & VInt.dataMask)
         bytes = [firstByte]
-        hasFollowing = firstByte & 128 != 0
-        multiplier = 128
+        hasFollowing = firstByte & VInt.followingMask != 0
+        multiplier = VInt.multiplier
     }
 
     /// Init with leading bytes and next byte
@@ -65,24 +65,50 @@ struct VInt {
     ///   - nextByte: The next byte of varible byte integer
     fileprivate init(leading: VInt, nextByte: UInt8) {
         assert(leading.hasFollowing, "The leading variable byte integer doesn't have following byte.")
-        assert(leading.bytes.count < 4, "Value too large. The maximum number of bytes in the VInt field is four.")
+        assert(
+            leading.bytes.count < VInt.maxByteCount,
+            "Value too large. The maximum number of bytes in the VInt field is four.")
 
         guard leading.hasFollowing else {
             self = leading
             return
         }
-        value = leading.value + UInt(nextByte & 127) * leading.multiplier
+        value = leading.value + UInt(nextByte & VInt.dataMask) * leading.multiplier
         bytes = leading.bytes + [nextByte]
-        hasFollowing = nextByte & 128 != 0
-        multiplier = leading.multiplier * 128
+        hasFollowing = nextByte & VInt.followingMask != 0
+        multiplier = leading.multiplier * VInt.multiplier
     }
 }
+
+// MARK: Equatable
 
 extension VInt: Equatable {
     static func == (lhs: VInt, rhs: VInt) -> Bool {
         return lhs.value == rhs.value && lhs.bytes == rhs.bytes
     }
 }
+
+// MARK: Constants
+
+extension VInt {
+
+    /// The maximum representable integer in VInt.
+    static let max = 268435455
+
+    /// The maximum number of bytes in VInt.
+    static let maxByteCount = 4
+
+    /// The bitmask for the least significant seven bits of a byte which encode the data.
+    static fileprivate let dataMask: UInt8 = 127
+
+    /// The bitmask for the most significant bit which is used to indicate whether there are bytes following.
+    static fileprivate let followingMask: UInt8 = 128
+
+    /// The multiplier for 1 byte.
+    static fileprivate let multiplier: UInt = 128
+}
+
+// MARK: ByteBuffer extensions
 
 extension ByteBuffer {
 

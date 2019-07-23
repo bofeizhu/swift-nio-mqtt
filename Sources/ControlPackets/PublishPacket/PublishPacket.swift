@@ -9,7 +9,7 @@
 /// PUBLISH packet – Publish message
 ///
 /// A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
-struct PublishPacket: ControlPacket, PayloadPacket {
+struct PublishPacket: PayloadPacket {
 
     /// Fixed Header
     let fixedHeader: FixedHeader
