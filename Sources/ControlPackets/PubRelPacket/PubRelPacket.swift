@@ -6,4 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+struct PubRelPacket: ControlPacketProtocol {
 
+    var fixedHeader: FixedHeader
+}
