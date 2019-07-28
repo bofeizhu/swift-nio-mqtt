@@ -36,6 +36,7 @@
 		822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A922E5230400FC348C /* PropertyIdentifier.swift */; };
 		822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */; };
 		822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */; };
+		8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTests.swift */; };
 		9AA2273310EF62DFB5724262 /* Pods_SwiftNIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+Payload.swift"; sourceTree = "<group>"; };
 		822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		8275557722E0F3620056D3B9 /* ByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTests.swift; sourceTree = "<group>"; };
+		8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRecPacket.swift; sourceTree = "<group>"; };
 		B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A5B0041487FD3F3B86ABD5 /* Pods_SwiftNIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBDDB21A4BF5BA254B8D8E84 /* Pods-SwiftNIOMQTTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTTTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				05F1981222E634A5006E3E37 /* PingRespPacket */,
 				05F1981D22E65F69006E3E37 /* PubAckPacket */,
 				05F1980D22E63377006E3E37 /* PublishPacket */,
+				8284EF9722ED7B050063A72C /* PubRecPacket */,
 			);
 			path = ControlPackets;
 			sourceTree = "<group>";
@@ -263,6 +266,14 @@
 				822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */,
 			);
 			path = ConnAckPacket;
+			sourceTree = "<group>";
+		};
+		8284EF9722ED7B050063A72C /* PubRecPacket */ = {
+			isa = PBXGroup;
+			children = (
+				8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */,
+			);
+			path = PubRecPacket;
 			sourceTree = "<group>";
 		};
 		FBC83BDC411A9E0EB0B3B4E8 /* Pods */ = {
@@ -488,6 +499,7 @@
 				822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */,
 				05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */,
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
+				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
 				05F1982322E690FF006E3E37 /* PubAckPacket+VariableHeader.swift in Sources */,
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
