@@ -8,7 +8,7 @@
 
 extension ConnectPacket: VariableHeaderPacket {
 
-    /// The Variable Header for CONNECT Packet
+    /// CONNECT Variable Header
     struct VariableHeader: HasProperties {
 
         // MARK: MQTT Procotol

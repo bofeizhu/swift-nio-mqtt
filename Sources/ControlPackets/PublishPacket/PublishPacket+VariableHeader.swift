@@ -8,7 +8,7 @@
 
 extension PublishPacket: VariableHeaderPacket {
 
-    /// The Variable Header for PUBLISH Packet
+    /// PUBLISH Variable Header
     struct VariableHeader: HasProperties {
 
         /// Topic Name
