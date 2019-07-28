@@ -13,7 +13,7 @@ extension PubRelPacket {
 
         /// Success
         ///
-        /// The message is accepted. Publication of the QoS 2 message proceeds.
+        /// Message released.
         case success = 0
 
         /// Packet Identifier Not Found

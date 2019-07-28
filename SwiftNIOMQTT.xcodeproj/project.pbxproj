@@ -39,6 +39,7 @@
 		822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */; };
 		822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */; };
 		822FDADE22EE604200631F39 /* PubRelPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */; };
+		822FDAE222EE63DA00631F39 /* PubCompPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDAE122EE639100631F39 /* PubCompPacket.swift */; };
 		8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */; };
 		8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */; };
 		8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */; };
@@ -95,6 +96,7 @@
 		822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubRelPacket+ReasonCode.swift"; sourceTree = "<group>"; };
 		822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubRelPacket+VariableHeader.swift"; sourceTree = "<group>"; };
+		822FDAE122EE639100631F39 /* PubCompPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubCompPacket.swift; sourceTree = "<group>"; };
 		8275557722E0F3620056D3B9 /* ByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTests.swift; sourceTree = "<group>"; };
 		8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRecPacket.swift; sourceTree = "<group>"; };
 		8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+VariableHeader.swift"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				05F1981122E63498006E3E37 /* PingReqPacket */,
 				05F1981222E634A5006E3E37 /* PingRespPacket */,
 				05F1981D22E65F69006E3E37 /* PubAckPacket */,
+				822FDAE022EE637400631F39 /* PubCompPacket */,
 				05F1980D22E63377006E3E37 /* PublishPacket */,
 				8284EF9722ED7B050063A72C /* PubRecPacket */,
 				82ADF74422EE504600FB3D92 /* PubRelPacket */,
@@ -281,6 +284,14 @@
 				822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */,
 			);
 			path = ConnAckPacket;
+			sourceTree = "<group>";
+		};
+		822FDAE022EE637400631F39 /* PubCompPacket */ = {
+			isa = PBXGroup;
+			children = (
+				822FDAE122EE639100631F39 /* PubCompPacket.swift */,
+			);
+			path = PubCompPacket;
 			sourceTree = "<group>";
 		};
 		8284EF9722ED7B050063A72C /* PubRecPacket */ = {
@@ -536,6 +547,7 @@
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
 				8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */,
+				822FDAE222EE63DA00631F39 /* PubCompPacket.swift in Sources */,
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
