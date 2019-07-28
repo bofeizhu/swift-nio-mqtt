@@ -1,4 +1,4 @@
-${PODS_ROOT}/Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests-frameworks.sh
+${PODS_ROOT}/Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CNIOAtomics/CNIOAtomics.framework
 ${BUILT_PRODUCTS_DIR}/CNIODarwin/CNIODarwin.framework
 ${BUILT_PRODUCTS_DIR}/CNIOLinux/CNIOLinux.framework

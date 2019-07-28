@@ -30,7 +30,8 @@
 		05F1982522E69182006E3E37 /* PubAckPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1982422E69182006E3E37 /* PubAckPacket+ReasonCode.swift */; };
 		05F1982722E6CE29006E3E37 /* ControlPacketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1982622E6CE29006E3E37 /* ControlPacketProtocol.swift */; };
 		05F1982922E6CEFE006E3E37 /* ControlPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1982822E6CEFE006E3E37 /* ControlPacket.swift */; };
-		3901C00DDA39FBAAAE8EFC24 /* Pods_SwiftNIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A5B0041487FD3F3B86ABD5 /* Pods_SwiftNIOMQTT.framework */; };
+		6BD6D9D699B613EC95C77BD7 /* Pods_NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */; };
+		77C0490D2D3B768A09454CA9 /* Pods_NIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */; };
 		822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */; };
 		822A21A622E5221C00FC348C /* HasProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A522E5221C00FC348C /* HasProperties.swift */; };
 		822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A922E5230400FC348C /* PropertyIdentifier.swift */; };
@@ -39,8 +40,8 @@
 		8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */; };
 		8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */; };
 		8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */; };
+		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTests.swift */; };
-		9AA2273310EF62DFB5724262 /* Pods_SwiftNIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +82,10 @@
 		05F1982622E6CE29006E3E37 /* ControlPacketProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPacketProtocol.swift; sourceTree = "<group>"; };
 		05F1982822E6CEFE006E3E37 /* ControlPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacket.swift; sourceTree = "<group>"; };
 		0BD3180A009A1BE7C5BE02B3 /* Pods-SwiftNIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
+		1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		276633216507771EE9D29816 /* Pods-SwiftNIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
 		63A789DCAF03F7B3EF69CE0C /* Pods-SwiftNIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
+		732F5CB566770EA0A313DE9E /* Pods-NIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
 		822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		822A21A522E5221C00FC348C /* HasProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasProperties.swift; sourceTree = "<group>"; };
 		822A21A922E5230400FC348C /* PropertyIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyIdentifier.swift; sourceTree = "<group>"; };
@@ -92,8 +95,11 @@
 		8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRecPacket.swift; sourceTree = "<group>"; };
 		8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+ReasonCode.swift"; sourceTree = "<group>"; };
-		B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1A5B0041487FD3F3B86ABD5 /* Pods_SwiftNIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftNIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82ADF74722EE519200FB3D92 /* PubRelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRelPacket.swift; sourceTree = "<group>"; };
+		88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
+		A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8B76751CF124B5E5C69608E /* Pods-NIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
+		EB1F0597360D71B7E2533801 /* Pods-NIOMQTTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EBDDB21A4BF5BA254B8D8E84 /* Pods-SwiftNIOMQTTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTTTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3901C00DDA39FBAAAE8EFC24 /* Pods_SwiftNIOMQTT.framework in Frameworks */,
+				6BD6D9D699B613EC95C77BD7 /* Pods_NIOMQTT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				057539D622B02AB000DE3B9D /* NIOMQTT.framework in Frameworks */,
-				9AA2273310EF62DFB5724262 /* Pods_SwiftNIOMQTTTests.framework in Frameworks */,
+				77C0490D2D3B768A09454CA9 /* Pods_NIOMQTTTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +179,7 @@
 				05F1981D22E65F69006E3E37 /* PubAckPacket */,
 				05F1980D22E63377006E3E37 /* PublishPacket */,
 				8284EF9722ED7B050063A72C /* PubRecPacket */,
+				82ADF74422EE504600FB3D92 /* PubRelPacket */,
 			);
 			path = ControlPackets;
 			sourceTree = "<group>";
@@ -236,8 +243,8 @@
 		42428F38786FBEF5A79EFA9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1A5B0041487FD3F3B86ABD5 /* Pods_SwiftNIOMQTT.framework */,
-				B7347CFE68FE2798D8CB4221 /* Pods_SwiftNIOMQTTTests.framework */,
+				A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */,
+				1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -282,6 +289,14 @@
 			path = PubRecPacket;
 			sourceTree = "<group>";
 		};
+		82ADF74422EE504600FB3D92 /* PubRelPacket */ = {
+			isa = PBXGroup;
+			children = (
+				82ADF74722EE519200FB3D92 /* PubRelPacket.swift */,
+			);
+			path = PubRelPacket;
+			sourceTree = "<group>";
+		};
 		FBC83BDC411A9E0EB0B3B4E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +304,10 @@
 				63A789DCAF03F7B3EF69CE0C /* Pods-SwiftNIOMQTT.release.xcconfig */,
 				EBDDB21A4BF5BA254B8D8E84 /* Pods-SwiftNIOMQTTTests.debug.xcconfig */,
 				0BD3180A009A1BE7C5BE02B3 /* Pods-SwiftNIOMQTTTests.release.xcconfig */,
+				732F5CB566770EA0A313DE9E /* Pods-NIOMQTT.debug.xcconfig */,
+				A8B76751CF124B5E5C69608E /* Pods-NIOMQTT.release.xcconfig */,
+				EB1F0597360D71B7E2533801 /* Pods-NIOMQTTTests.debug.xcconfig */,
+				88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -416,7 +435,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftNIOMQTTTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NIOMQTTTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -429,15 +448,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7F66AD5D994D49A0628F19EA /* [CP] Check Pods Manifest.lock */ = {
@@ -455,7 +474,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftNIOMQTT-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NIOMQTT-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -511,6 +530,7 @@
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
 				8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */,
+				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,
@@ -663,7 +683,7 @@
 		};
 		057539E122B02AB000DE3B9D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 276633216507771EE9D29816 /* Pods-SwiftNIOMQTT.debug.xcconfig */;
+			baseConfigurationReference = 732F5CB566770EA0A313DE9E /* Pods-NIOMQTT.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -691,7 +711,7 @@
 		};
 		057539E222B02AB000DE3B9D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63A789DCAF03F7B3EF69CE0C /* Pods-SwiftNIOMQTT.release.xcconfig */;
+			baseConfigurationReference = A8B76751CF124B5E5C69608E /* Pods-NIOMQTT.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -718,7 +738,7 @@
 		};
 		057539E422B02AB000DE3B9D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBDDB21A4BF5BA254B8D8E84 /* Pods-SwiftNIOMQTTTests.debug.xcconfig */;
+			baseConfigurationReference = EB1F0597360D71B7E2533801 /* Pods-NIOMQTTTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -740,7 +760,7 @@
 		};
 		057539E522B02AB000DE3B9D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BD3180A009A1BE7C5BE02B3 /* Pods-SwiftNIOMQTTTests.release.xcconfig */;
+			baseConfigurationReference = 88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
