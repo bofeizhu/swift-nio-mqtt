@@ -1,19 +1,19 @@
 //
-//  PubRelPacket+ReasonCode.swift
+//  PubCompPacket+ReasonCode.swift
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 7/28/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension PubRelPacket {
+extension PubCompPacket {
 
-    /// PUBREL Reason Code
+    /// PUBCOMP Reason Code
     enum ReasonCode: ReasonCodeValue {
 
         /// Success
         ///
-        /// Message released.
+        /// Packet Identifier released. Publication of QoS 2 message is complete.
         case success = 0
 
         /// Packet Identifier Not Found
