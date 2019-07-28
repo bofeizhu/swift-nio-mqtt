@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_SwiftNIOMQTTTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_SwiftNIOMQTTTestsVersionString[];
+FOUNDATION_EXPORT double Pods_NIOMQTTVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_NIOMQTTVersionString[];
 
