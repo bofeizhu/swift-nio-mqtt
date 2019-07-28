@@ -37,6 +37,8 @@
 		822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A922E5230400FC348C /* PropertyIdentifier.swift */; };
 		822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */; };
 		822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */; };
+		822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */; };
+		822FDADE22EE604200631F39 /* PubRelPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */; };
 		8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */; };
 		8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */; };
 		8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */; };
@@ -91,6 +93,8 @@
 		822A21A922E5230400FC348C /* PropertyIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyIdentifier.swift; sourceTree = "<group>"; };
 		822A21AD22E524A800FC348C /* ConnectPacket+Payload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+Payload.swift"; sourceTree = "<group>"; };
 		822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+VariableHeader.swift"; sourceTree = "<group>"; };
+		822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubRelPacket+ReasonCode.swift"; sourceTree = "<group>"; };
+		822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubRelPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		8275557722E0F3620056D3B9 /* ByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTests.swift; sourceTree = "<group>"; };
 		8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRecPacket.swift; sourceTree = "<group>"; };
 		8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+VariableHeader.swift"; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				82ADF74722EE519200FB3D92 /* PubRelPacket.swift */,
+				822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */,
+				822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */,
 			);
 			path = PubRelPacket;
 			sourceTree = "<group>";
@@ -535,8 +541,10 @@
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,
 				822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */,
+				822FDADE22EE604200631F39 /* PubRelPacket+VariableHeader.swift in Sources */,
 				0533EBE722BC3E8B00500255 /* PingRespPacket.swift in Sources */,
 				05F1981022E63463006E3E37 /* QoS.swift in Sources */,
+				822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
