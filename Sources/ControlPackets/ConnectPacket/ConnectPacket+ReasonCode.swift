@@ -8,7 +8,7 @@
 
 extension ConnectPacket {
 
-    /// Connect Reason Code
+    /// CONNECT Reason Code
     enum ReasonCode: ReasonCodeValue {
 
         /// Success

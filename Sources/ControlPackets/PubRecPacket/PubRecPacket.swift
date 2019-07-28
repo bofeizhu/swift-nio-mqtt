@@ -14,4 +14,7 @@ struct PubRecPacket: ControlPacketProtocol {
 
     /// Fixed Header
     let fixedHeader: FixedHeader
+
+    /// Variable Header
+    let variableHeader: VariableHeader
 }

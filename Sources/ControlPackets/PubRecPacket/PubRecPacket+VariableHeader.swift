@@ -1,20 +1,20 @@
 //
-//  PubAckPacket+VariableHeader.swift
+//  PubRecPacket+VariableHeader.swift
 //  NIOMQTT
 //
-//  Created by Bofei Zhu on 7/22/19.
+//  Created by Bofei Zhu on 7/28/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension PubAckPacket: VariableHeaderPacket {
+extension PubRecPacket: VariableHeaderPacket {
 
-    /// PUBACK Variable Header
+    /// PUBREC Variable Header
     struct VariableHeader: HasProperties {
 
         /// Packet Identifier
         let packetIdentifier: UInt16
 
-        /// PUBACK Reason Code
+        /// Reason Code
         let reasonCode: ReasonCode
 
         /// Properties

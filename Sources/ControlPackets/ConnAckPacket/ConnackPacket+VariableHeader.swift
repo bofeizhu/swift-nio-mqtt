@@ -8,7 +8,7 @@
 
 extension ConnAckPacket: VariableHeaderPacket {
 
-    /// The Variable Header for CONNACK Packet
+    /// CONNACK Variable Header
     struct VariableHeader: HasProperties {
 
         // MARK: Connect Acknowledge Flags

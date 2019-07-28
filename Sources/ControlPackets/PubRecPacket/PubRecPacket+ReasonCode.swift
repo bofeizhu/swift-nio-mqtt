@@ -1,19 +1,19 @@
 //
-//  PubAckPacket+ReasonCode.swift
+//  PubRecPacket+ReasonCode.swift
 //  NIOMQTT
 //
-//  Created by Bofei Zhu on 7/22/19.
+//  Created by Bofei Zhu on 7/28/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension PubAckPacket {
+extension PubRecPacket {
 
-    /// PUBACK Reason Code
+    /// PUBREC Reason Code
     enum ReasonCode: ReasonCodeValue {
 
         /// Success
         ///
-        /// The message is accepted. Publication of the QoS 1 message proceeds.
+        /// The message is accepted. Publication of the QoS 2 message proceeds.
         case success = 0
 
         /// No Matching Subscribers
