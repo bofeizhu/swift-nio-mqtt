@@ -7,6 +7,8 @@
 //
 
 /// PUBACK Packet – Publish acknowledgement
+///
+/// A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 struct PubAckPacket: ControlPacketProtocol {
 
     /// Reserved fixed header flags for PUBACK packet

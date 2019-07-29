@@ -7,6 +7,9 @@
 //
 
 /// PUBREC Packet – Publish received (QoS 2 delivery part 1)
+///
+/// A PUBREC packet is the response to a PUBLISH packet with QoS 2.
+/// It is the second packet of the QoS 2 protocol exchange.
 struct PubRecPacket: ControlPacketProtocol {
 
     // Reserved fixed header flags for PUBREC packet

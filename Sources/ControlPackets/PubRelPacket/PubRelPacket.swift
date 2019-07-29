@@ -7,6 +7,8 @@
 //
 
 /// PUBREL Packet – Publish release (QoS 2 delivery part 2)
+///
+/// A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 struct PubRelPacket: ControlPacketProtocol {
 
     // Reserved fixed header flags for PUBREL packet
