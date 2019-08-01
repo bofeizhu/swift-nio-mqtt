@@ -17,7 +17,7 @@
 struct SubscribePacket: ControlPacketProtocol {
 
     // Reserved fixed header flags for SUBSCRIBE packet
-    static let flags: FixedHeaderFlags = 2
+    static let reservedFlags: FixedHeaderFlags = 2
 
     /// Fixed Header
     let fixedHeader: FixedHeader

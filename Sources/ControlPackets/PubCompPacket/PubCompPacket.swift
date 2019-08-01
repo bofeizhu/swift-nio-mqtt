@@ -13,7 +13,7 @@
 struct PubCompPacket: ControlPacketProtocol {
 
     // Reserved fixed header flags for PUBCOMP packet
-    static let flags: FixedHeaderFlags = 0
+    static let reservedFlags: FixedHeaderFlags = 0
 
     /// Fixed Header
     let fixedHeader: FixedHeader

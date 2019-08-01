@@ -19,7 +19,7 @@
 struct PingReqPacket: ControlPacketProtocol {
 
     /// Reserved fixed header flags for PINGREQ packet
-    static let flags: FixedHeaderFlags = 0
+    static let reservedFlags: FixedHeaderFlags = 0
 
     /// The fixed header for PINGREQ packet
     let fixedHeader: FixedHeader

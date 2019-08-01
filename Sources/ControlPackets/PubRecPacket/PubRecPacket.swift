@@ -13,7 +13,7 @@
 struct PubRecPacket: ControlPacketProtocol {
 
     // Reserved fixed header flags for PUBREC packet
-    static let flags: FixedHeaderFlags = 0
+    static let reservedFlags: FixedHeaderFlags = 0
 
     /// Fixed Header
     let fixedHeader: FixedHeader
