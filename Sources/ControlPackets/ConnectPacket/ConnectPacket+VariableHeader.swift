@@ -44,15 +44,36 @@ extension ConnectPacket: VariableHeaderPacket {
 
         let willRetain: Bool
 
+        let passwordFlag: Bool
+
         let userNameFlag: Bool
 
         init?(rawValue: UInt8) {
 
-            guard rawValue & 1 == 0 else {
+            let qosValue = (rawValue >> 3) & 0b11
+
+            // The Server MUST validate that the reserved flag in the CONNECT packet is set to 0
+            guard
+                rawValue & 1 == 0,
+                let qos = QoS(rawValue: qosValue),
+                qos != .malformed
+            else {
                 return nil
             }
 
-            
+            cleanStart = ((rawValue >> 1) & 1) == 1
+
+            willFlag = ((rawValue >> 2) & 1) == 1
+
+            willQoS = qos
+
+            willRetain = ((rawValue >> 5) & 1) == 1
+
+            passwordFlag = ((rawValue >> 6) & 1) == 1
+
+            userNameFlag = ((rawValue >> 7) & 1) == 1
+
+            self.rawValue = rawValue
         }
     }
 }

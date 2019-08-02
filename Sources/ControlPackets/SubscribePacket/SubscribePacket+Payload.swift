@@ -13,7 +13,6 @@ extension SubscribePacket: PayloadPacket {
     /// SUBSCRIBE Packet Payload
     struct Payload {
 
-
     }
 
     /// Topic Filter
