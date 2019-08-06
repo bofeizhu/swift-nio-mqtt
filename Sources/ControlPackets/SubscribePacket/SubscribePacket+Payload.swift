@@ -29,7 +29,5 @@ extension SubscribePacket: PayloadPacket {
         let options: Options
     }
 
-    struct Options {
-
-    }
+    struct Options {}
 }
