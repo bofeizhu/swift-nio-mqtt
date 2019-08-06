@@ -10,7 +10,7 @@ import struct Foundation.Data
 
 extension ConnectPacket: PayloadPacket {
 
-    /// The Payload for the CONNECT Packet
+    /// CONNECT Packet Payload
     struct Payload {
 
         /// Client Identifier (ClientID)

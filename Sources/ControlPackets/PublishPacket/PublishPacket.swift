@@ -16,12 +16,12 @@ struct PublishPacket: PayloadPacket {
 
     /// DUP Flag
     var dup: Bool {
-        return ((fixedHeader.flags & 0b1000) >> 3) == 1
+        return ((fixedHeader.flags >> 3) & 1) == 1
     }
 
     /// QoS Flag
     var qos: QoS {
-        let rawValue = (fixedHeader.flags & 0b110) >> 1
+        let rawValue = (fixedHeader.flags >> 1) & 0b11
         guard let qos = QoS(rawValue: rawValue)
         else {
             return .malformed

@@ -45,6 +45,9 @@
 		829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82B422EE68D00026F421 /* PubCompPacket.swift */; };
 		829C82B722EE68DA0026F421 /* PubCompPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82B522EE68D00026F421 /* PubCompPacket+ReasonCode.swift */; };
 		829C82B822EE68DD0026F421 /* PubCompPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82B322EE68D00026F421 /* PubCompPacket+VariableHeader.swift */; };
+		829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BA22EE6F480026F421 /* SubscribePacket.swift */; };
+		829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */; };
+		829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */; };
 		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTests.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +108,9 @@
 		829C82B322EE68D00026F421 /* PubCompPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubCompPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		829C82B422EE68D00026F421 /* PubCompPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubCompPacket.swift; sourceTree = "<group>"; };
 		829C82B522EE68D00026F421 /* PubCompPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubCompPacket+ReasonCode.swift"; sourceTree = "<group>"; };
+		829C82BA22EE6F480026F421 /* SubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribePacket.swift; sourceTree = "<group>"; };
+		829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+VariableHeader.swift"; sourceTree = "<group>"; };
+		829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+Payload.swift"; sourceTree = "<group>"; };
 		82ADF74722EE519200FB3D92 /* PubRelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRelPacket.swift; sourceTree = "<group>"; };
 		88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +197,7 @@
 				05F1980D22E63377006E3E37 /* PublishPacket */,
 				8284EF9722ED7B050063A72C /* PubRecPacket */,
 				82ADF74422EE504600FB3D92 /* PubRelPacket */,
+				829C82B922EE6F2F0026F421 /* SubscribePacket */,
 			);
 			path = ControlPackets;
 			sourceTree = "<group>";
@@ -308,6 +315,16 @@
 				829C82B322EE68D00026F421 /* PubCompPacket+VariableHeader.swift */,
 			);
 			path = PubCompPacket;
+			sourceTree = "<group>";
+		};
+		829C82B922EE6F2F0026F421 /* SubscribePacket */ = {
+			isa = PBXGroup;
+			children = (
+				829C82BA22EE6F480026F421 /* SubscribePacket.swift */,
+				829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */,
+				829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */,
+			);
+			path = SubscribePacket;
 			sourceTree = "<group>";
 		};
 		82ADF74422EE504600FB3D92 /* PubRelPacket */ = {
@@ -533,6 +550,7 @@
 				8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */,
 				05F1981422E634D7006E3E37 /* ControlPacketType.swift in Sources */,
 				056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */,
+				829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */,
 				05F1982122E66415006E3E37 /* PubAckPacket.swift in Sources */,
 				829C82B822EE68DD0026F421 /* PubCompPacket+VariableHeader.swift in Sources */,
 				05F1982522E69182006E3E37 /* PubAckPacket+ReasonCode.swift in Sources */,
@@ -556,6 +574,7 @@
 				829C82B722EE68DA0026F421 /* PubCompPacket+ReasonCode.swift in Sources */,
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
 				8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */,
+				829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */,
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
@@ -564,6 +583,7 @@
 				822FDADE22EE604200631F39 /* PubRelPacket+VariableHeader.swift in Sources */,
 				0533EBE722BC3E8B00500255 /* PingRespPacket.swift in Sources */,
 				05F1981022E63463006E3E37 /* QoS.swift in Sources */,
+				829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */,
 				822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,10 +7,13 @@
 //
 
 /// PUBCOMP Packet – Publish complete (QoS 2 delivery part 3)
+///
+/// The PUBCOMP packet is the response to a PUBREL packet.
+/// It is the fourth and final packet of the QoS 2 protocol exchange.
 struct PubCompPacket: ControlPacketProtocol {
 
     // Reserved fixed header flags for PUBCOMP packet
-    static let flags: FixedHeaderFlags = 0
+    static let reservedFlags: FixedHeaderFlags = 0
 
     /// Fixed Header
     let fixedHeader: FixedHeader

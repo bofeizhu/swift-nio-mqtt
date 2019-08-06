@@ -12,7 +12,7 @@
 struct ConnAckPacket: ControlPacketProtocol {
 
     /// Reserved fixed header flags for CONNACK packet
-    static let flags: FixedHeaderFlags = 0
+    static let reservedFlags: FixedHeaderFlags = 0
 
     /// Fixed Header
     let fixedHeader: FixedHeader
