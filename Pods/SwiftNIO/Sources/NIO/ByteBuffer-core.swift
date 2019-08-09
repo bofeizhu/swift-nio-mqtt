@@ -124,8 +124,8 @@ public struct ByteBufferAllocator {
 /// ### Random Access
 /// For every supported type `ByteBuffer` usually contains two methods for random access:
 ///
-///  1. `get<type>(at: Int, length: Int)` where `<type>` is for example `String`, `Data`, `Bytes` (for `[UInt8]`)
-///  2. `set(<type>: Type, at: Int)`
+///  1. `get<Type>(at: Int, length: Int)` where `<type>` is for example `String`, `Data`, `Bytes` (for `[UInt8]`)
+///  2. `set<Type>(at: Int)`
 ///
 /// Example:
 ///
@@ -466,7 +466,7 @@ public struct ByteBuffer {
     ///
     /// - parameters:
     ///     - body: The closure that will accept the yielded bytes.
-    /// - returns: The value returned by `fn`.
+    /// - returns: The value returned by `body`.
     @inlinable
     public mutating func withUnsafeMutableReadableBytes<T>(_ body: (UnsafeMutableRawBufferPointer) throws -> T) rethrows -> T {
         self._copyStorageAndRebaseIfNeeded()
@@ -523,7 +523,7 @@ public struct ByteBuffer {
     ///
     /// - parameters:
     ///     - body: The closure that will accept the yielded bytes.
-    /// - returns: The value returned by `fn`.
+    /// - returns: The value returned by `body`.
     @inlinable
     public func withUnsafeReadableBytes<T>(_ body: (UnsafeRawBufferPointer) throws -> T) rethrows -> T {
         let readerIndex = self.readerIndex
@@ -540,7 +540,7 @@ public struct ByteBuffer {
     ///
     /// - parameters:
     ///     - body: The closure that will accept the yielded bytes and the `storageManagement`.
-    /// - returns: The value returned by `fn`.
+    /// - returns: The value returned by `body`.
     @inlinable
     public func withUnsafeReadableBytesWithStorageManagement<T>(_ body: (UnsafeRawBufferPointer, Unmanaged<AnyObject>) throws -> T) rethrows -> T {
         let storageReference: Unmanaged<AnyObject> = Unmanaged.passUnretained(self._storage)

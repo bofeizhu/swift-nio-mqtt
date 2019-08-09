@@ -216,7 +216,7 @@ extension ByteBuffer {
     // MARK: Other APIs
 
     /// Yields an immutable buffer pointer containing this `ByteBuffer`'s readable bytes. Will move the reader index
-    /// by the number of bytes returned by `fn`.
+    /// by the number of bytes returned by `body`.
     ///
     /// - warning: Do not escape the pointer from the closure for later use.
     ///
@@ -232,13 +232,13 @@ extension ByteBuffer {
     }
 
     /// Yields an immutable buffer pointer containing this `ByteBuffer`'s readable bytes. Will move the reader index
-    /// by the number of bytes `fn` returns in the first tuple component.
+    /// by the number of bytes `body` returns in the first tuple component.
     ///
     /// - warning: Do not escape the pointer from the closure for later use.
     ///
     /// - parameters:
     ///     - body: The closure that will accept the yielded bytes and returns the number of bytes it processed along with some other value.
-    /// - returns: The value `fn` returned in the second tuple component.
+    /// - returns: The value `body` returned in the second tuple component.
     @inlinable
     public mutating func readWithUnsafeReadableBytes<T>(_ body: (UnsafeRawBufferPointer) throws -> (Int, T)) rethrows -> T {
         let (bytesRead, ret) = try self.withUnsafeReadableBytes(body)
@@ -247,7 +247,7 @@ extension ByteBuffer {
     }
 
     /// Yields a mutable buffer pointer containing this `ByteBuffer`'s readable bytes. You may modify the yielded bytes.
-    /// Will move the reader index by the number of bytes returned by `fn` but leave writer index as it was.
+    /// Will move the reader index by the number of bytes returned by `body` but leave writer index as it was.
     ///
     /// - warning: Do not escape the pointer from the closure for later use.
     ///
@@ -263,13 +263,13 @@ extension ByteBuffer {
     }
 
     /// Yields a mutable buffer pointer containing this `ByteBuffer`'s readable bytes. You may modify the yielded bytes.
-    /// Will move the reader index by the number of bytes `fn` returns in the first tuple component but leave writer index as it was.
+    /// Will move the reader index by the number of bytes `body` returns in the first tuple component but leave writer index as it was.
     ///
     /// - warning: Do not escape the pointer from the closure for later use.
     ///
     /// - parameters:
     ///     - body: The closure that will accept the yielded bytes and returns the number of bytes it processed along with some other value.
-    /// - returns: The value `fn` returned in the second tuple component.
+    /// - returns: The value `body` returned in the second tuple component.
     @inlinable
     public mutating func readWithUnsafeMutableReadableBytes<T>(_ body: (UnsafeMutableRawBufferPointer) throws -> (Int, T)) rethrows -> T {
         let (bytesRead, ret) = try self.withUnsafeMutableReadableBytes(body)
@@ -284,7 +284,19 @@ extension ByteBuffer {
     ///     - index: The index for the first byte.
     /// - returns: The number of bytes written.
     @discardableResult
+    @available(*, deprecated, renamed: "setBuffer(_:at:)")
     public mutating func set(buffer: ByteBuffer, at index: Int) -> Int {
+        return self.setBuffer(buffer, at: index)
+    }
+
+    /// Copy `buffer`'s readable bytes into this `ByteBuffer` starting at `index`. Does not move any of the reader or writer indices.
+    ///
+    /// - parameters:
+    ///     - buffer: The `ByteBuffer` to copy.
+    ///     - index: The index for the first byte.
+    /// - returns: The number of bytes written.
+    @discardableResult
+    public mutating func setBuffer(_ buffer: ByteBuffer, at index: Int) -> Int {
         return buffer.withUnsafeReadableBytes{ p in
             self.setBytes(p, at: index)
         }
@@ -298,7 +310,7 @@ extension ByteBuffer {
     /// - returns: The number of bytes written to this `ByteBuffer` which is equal to the number of bytes read from `buffer`.
     @discardableResult
     public mutating func writeBuffer(_ buffer: inout ByteBuffer) -> Int {
-        let written = set(buffer: buffer, at: writerIndex)
+        let written = self.setBuffer(buffer, at: writerIndex)
         self._moveWriterIndex(forwardBy: written)
         buffer._moveReaderIndex(forwardBy: written)
         return written

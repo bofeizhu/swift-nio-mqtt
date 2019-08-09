@@ -183,6 +183,19 @@ public struct EventLoopPromise<Value> {
     public func fail(_ error: Error) {
         self._resolve(value: .failure(error))
     }
+    
+    /// Complete the promise with the passed in `EventLoopFuture<Value>`.
+    ///
+    /// This method is equivalent to invoking `future.cascade(to: promise)`,
+    /// but sometimes may read better than its cascade counterpart.
+    /// 
+    /// - parameters:
+    ///     - future: The future whose value will be used to succeed or fail this promise.
+    /// - seealso: `EventLoopFuture.cascade(to:)`
+    @inlinable
+    public func completeWith(_ future: EventLoopFuture<Value>) {
+        future.cascade(to: self)
+    }
 
     /// Fire the associated `EventLoopFuture` on the appropriate event loop.
     ///
@@ -525,7 +538,10 @@ extension EventLoopFuture {
     ///
     /// Operations performed in `map` should not block, or they will block the entire event
     /// loop. `map` is intended for use when you have a data-driven function that performs
-    /// a simple data transformation that can potentially error.
+    /// a simple data transformation that cannot error.
+    ///
+    /// If you have a data-driven function that can throw, you should use `flatMapThrowing`
+    /// instead.
     ///
     /// ```
     /// let future1 = eventually()
@@ -791,6 +807,7 @@ extension EventLoopFuture {
     /// ```
     ///
     /// - Parameter to: The `EventLoopPromise` to fulfill with the results of this future.
+    /// - SeeAlso: `EventLoopPromise.completeWith(_:)`
     @inlinable
     public func cascade(to promise: EventLoopPromise<Value>?) {
         guard let promise = promise else { return }
@@ -902,16 +919,28 @@ extension EventLoopFuture {
     @inlinable
     public func fold<OtherValue>(_ futures: [EventLoopFuture<OtherValue>],
                                  with combiningFunction: @escaping (Value, OtherValue) -> EventLoopFuture<Value>) -> EventLoopFuture<Value> {
-        let body = futures.reduce(self) { (f1: EventLoopFuture<Value>, f2: EventLoopFuture<OtherValue>) -> EventLoopFuture<Value> in
-            let newFuture = f1.and(f2).flatMap { (args: (Value, OtherValue)) -> EventLoopFuture<Value> in
-                let (f1Value, f2Value) = args
-                self.eventLoop.assertInEventLoop()
-                return combiningFunction(f1Value, f2Value)
+        func fold0() -> EventLoopFuture<Value> {
+            let body = futures.reduce(self) { (f1: EventLoopFuture<Value>, f2: EventLoopFuture<OtherValue>) -> EventLoopFuture<Value> in
+                let newFuture = f1.and(f2).flatMap { (args: (Value, OtherValue)) -> EventLoopFuture<Value> in
+                    let (f1Value, f2Value) = args
+                    self.eventLoop.assertInEventLoop()
+                    return combiningFunction(f1Value, f2Value)
+                }
+                assert(newFuture.eventLoop === self.eventLoop)
+                return newFuture
             }
-            assert(newFuture.eventLoop === self.eventLoop)
-            return newFuture
+            return body
         }
-        return body
+
+        if self.eventLoop.inEventLoop {
+            return fold0()
+        } else {
+            let promise = self.eventLoop.makePromise(of: Value.self)
+            self.eventLoop.execute {
+                fold0().cascade(to: promise)
+            }
+            return promise.futureResult
+        }
     }
 }
 
@@ -1032,7 +1061,17 @@ extension EventLoopFuture {
     ///     - on: The `EventLoop` on which the new `EventLoopFuture` callbacks will execute on.
     /// - Returns: A new `EventLoopFuture` that waits for the other futures to succeed.
     public static func andAllSucceed(_ futures: [EventLoopFuture<Value>], on eventLoop: EventLoop) -> EventLoopFuture<Void> {
-        return .reduce((), futures, on: eventLoop) { (_: (), _: Value) in }
+        let promise = eventLoop.makePromise(of: Void.self)
+
+        if eventLoop.inEventLoop {
+            self._reduceSuccesses0(promise, futures, eventLoop, onValue: { _, _ in })
+        } else {
+            eventLoop.execute {
+                self._reduceSuccesses0(promise, futures, eventLoop, onValue: { _, _ in })
+            }
+        }
+
+        return promise.futureResult
     }
 
     /// Returns a new `EventLoopFuture` that succeeds only if all of the provided futures succeed.
@@ -1044,7 +1083,76 @@ extension EventLoopFuture {
     ///     - on: The `EventLoop` on which the new `EventLoopFuture` callbacks will fire.
     /// - Returns: A new `EventLoopFuture` with all of the values fulfilled by the provided futures.
     public static func whenAllSucceed(_ futures: [EventLoopFuture<Value>], on eventLoop: EventLoop) -> EventLoopFuture<[Value]> {
-        return .reduce(into: [], futures, on: eventLoop) { (results, value) in results.append(value) }
+        let promise = eventLoop.makePromise(of: Void.self)
+
+        var results: [Value?] = .init(repeating: nil, count: futures.count)
+        let callback = { (index: Int, result: Value) in
+            results[index] = result
+        }
+
+        if eventLoop.inEventLoop {
+            self._reduceSuccesses0(promise, futures, eventLoop, onValue: callback)
+        } else {
+            eventLoop.execute {
+                self._reduceSuccesses0(promise, futures, eventLoop, onValue: callback)
+            }
+        }
+
+        return promise.futureResult.map {
+            // verify that all operations have been completed
+            assert(!results.contains(where: { $0 == nil }))
+            return results.map { $0! }
+        }
+    }
+
+    /// Loops through the futures array and attaches callbacks to execute `onValue` on the provided `EventLoop` when
+    /// they succeed. The `onValue` will receive the index of the future that fulfilled the provided `Result`.
+    ///
+    /// Once all the futures have succeed, the provided promise will succeed.
+    /// Once any future fails, the provided promise will fail.
+    private static func _reduceSuccesses0<InputValue>(_ promise: EventLoopPromise<Void>,
+                                                      _ futures: [EventLoopFuture<InputValue>],
+                                                      _ eventLoop: EventLoop,
+                                                      onValue: @escaping (Int, InputValue) -> Void) {
+        eventLoop.assertInEventLoop()
+
+        var remainingCount = futures.count
+
+        if remainingCount == 0 {
+            promise.succeed(())
+            return
+        }
+
+        // Sends the result to `onValue` in case of success and succeeds/fails the input promise, if appropriate.
+        func processResult(_ index: Int, _ result: Result<InputValue, Error>) {
+            switch result {
+            case .success(let result):
+                onValue(index, result)
+                remainingCount -= 1
+
+                if remainingCount == 0 {
+                    promise.succeed(())
+                }
+            case .failure(let error):
+                promise.fail(error)
+            }
+        }
+        // loop through the futures to chain callbacks to execute on the initiating event loop and grab their index
+        // in the "futures" to pass their result to the caller
+        for (index, future) in futures.enumerated() {
+            if future.eventLoop.inEventLoop,
+                let result = future._value {
+                // Fast-track already-fulfilled results without the overhead of calling `whenComplete`. This can yield a
+                // ~20% performance improvement in the case of large arrays where all elements are already fulfilled.
+                processResult(index, result)
+                if case .failure = result {
+                    return  // Once the promise is failed, future results do not need to be processed.
+                }
+            } else {
+                future.hop(to: eventLoop)
+                    .whenComplete { result in processResult(index, result) }
+            }
+        }
     }
 }
 
@@ -1130,18 +1238,27 @@ extension EventLoopFuture {
             return
         }
 
+        // Sends the result to `onResult` in case of success and succeeds the input promise, if appropriate.
+        func processResult(_ index: Int, _ result: Result<InputValue, Error>) {
+            onResult(index, result)
+            remainingCount -= 1
+
+            if remainingCount == 0 {
+                promise.succeed(())
+            }
+        }
         // loop through the futures to chain callbacks to execute on the initiating event loop and grab their index
         // in the "futures" to pass their result to the caller
         for (index, future) in futures.enumerated() {
-            future.hop(to: eventLoop)
-                .whenComplete { result in
-                    onResult(index, result)
-                    remainingCount -= 1
-
-                    guard remainingCount == 0 else { return }
-
-                    promise.succeed(())
-                }
+            if future.eventLoop.inEventLoop,
+                let result = future._value {
+                // Fast-track already-fulfilled results without the overhead of calling `whenComplete`. This can yield a
+                // ~30% performance improvement in the case of large arrays where all elements are already fulfilled.
+                processResult(index, result)
+            } else {
+                future.hop(to: eventLoop)
+                    .whenComplete { result in processResult(index, result) }
+            }
         }
     }
 }
@@ -1177,5 +1294,19 @@ func executeAndComplete<Value>(_ promise: EventLoopPromise<Value>?, _ body: () t
         promise?.succeed(result)
     } catch let e {
         promise?.fail(e)
+    }
+}
+
+
+extension EventLoopFuture {
+    /// Adds an observer callback to this `EventLoopFuture` that is called when the
+    /// `EventLoopFuture` has any result.
+    ///
+    /// - parameters:
+    ///     - callback: the callback that is called when the `EventLoopFuture` is fulfilled.   
+    /// - returns: the current `EventLoopFuture`
+    public func always(_ callback: @escaping (Result<Value, Error>) -> Void) -> EventLoopFuture<Value> {
+        self.whenComplete { result in callback(result) }
+        return self
     }
 }

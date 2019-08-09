@@ -5,8 +5,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'NIOMQTT' do
-  pod 'SwiftNIO', '~> 2.0.0'
-  pod 'SwiftNIOTransportServices', '~> 1.0.0'
+  pod 'SwiftNIOTransportServices', '~> 1.0'
 end
 
 target 'NIOMQTTTests' do

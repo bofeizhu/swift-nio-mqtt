@@ -394,7 +394,7 @@ extension NIODeadline: CustomStringConvertible {
 
 extension NIODeadline {
     public static func - (lhs: NIODeadline, rhs: NIODeadline) -> TimeAmount {
-        return .nanoseconds(TimeAmount.Value(lhs.uptimeNanoseconds - rhs.uptimeNanoseconds))
+        return .nanoseconds(TimeAmount.Value(lhs.uptimeNanoseconds) - TimeAmount.Value(rhs.uptimeNanoseconds))
     }
 
     public static func + (lhs: NIODeadline, rhs: TimeAmount) -> NIODeadline {
@@ -415,6 +415,14 @@ extension NIODeadline {
 }
 
 extension EventLoop {
+    /// Submit `task` to be run on this `EventLoop`.
+    ///
+    /// The returned `EventLoopFuture` will be completed when `task` has finished running. It will be succeeded with
+    /// `task`'s return value or failed if the execution of `task` threw an error.
+    ///
+    /// - parameters:
+    ///     - task: The synchronous task to run. As everything that runs on the `EventLoop`, it must not block.
+    /// - returns: An `EventLoopFuture` containing the result of `task`'s execution.
     public func submit<T>(_ task: @escaping () throws -> T) -> EventLoopFuture<T> {
         let promise: EventLoopPromise<T> = makePromise(file: #file, line: #line)
 
@@ -452,10 +460,14 @@ extension EventLoop {
         return EventLoopFuture<Success>(eventLoop: self, value: value, file: file, line: line)
     }
 
+    /// An `EventLoop` forms a singular `EventLoopGroup`, returning itself as the 'next' `EventLoop`.
+    ///
+    /// - returns: Itself, because an `EventLoop` forms a singular `EventLoopGroup`.
     public func next() -> EventLoop {
         return self
     }
 
+    /// Close this `EventLoop`.
     public func close() throws {
         // Do nothing
     }
@@ -525,6 +537,7 @@ extension EventLoop {
         }
     }
 
+    /// Checks the necessary condition of currently running on the called `EventLoop` for making forward progress.
     public func preconditionInEventLoop(file: StaticString = #file, line: UInt = #line) {
         precondition(self.inEventLoop, file: file, line: line)
     }
@@ -689,10 +702,12 @@ internal final class SelectableEventLoop: EventLoop {
         try selector.reregister(selectable: channel.selectable, interested: channel.interestedEvent)
     }
 
+    /// - see: `EventLoop.inEventLoop`
     public var inEventLoop: Bool {
         return thread.isCurrent
     }
 
+    /// - see: `EventLoop.scheduleTask(deadline:_:)`
     public func scheduleTask<T>(deadline: NIODeadline, _ task: @escaping () throws -> T) -> Scheduled<T> {
         let promise: EventLoopPromise<T> = makePromise()
         let task = ScheduledTask({
@@ -716,10 +731,12 @@ internal final class SelectableEventLoop: EventLoop {
         return scheduled
     }
 
+    /// - see: `EventLoop.scheduleTask(in:_:)`
     public func scheduleTask<T>(in: TimeAmount, _ task: @escaping () throws -> T) -> Scheduled<T> {
         return scheduleTask(deadline: .now() + `in`, task)
     }
 
+    // - see: `EventLoop.execute`
     public func execute(_ task: @escaping () -> Void) {
         schedule0(ScheduledTask(task, { error in
             // do nothing
@@ -897,22 +914,10 @@ internal final class SelectableEventLoop: EventLoop {
 
     @usableFromInline
     func shutdownGracefully(queue: DispatchQueue, _ callback: @escaping (Error?) -> Void) {
-        self.closeGently().map {
-            do {
-                try self.close0()
-                queue.async {
-                    callback(nil)
-                }
-            } catch {
-                queue.async {
-                    callback(error)
-                }
-            }
-        }.whenFailure { error in
-            _ = try? self.close0()
-            queue.async {
-                callback(error)
-            }
+        // This function is never called legally because the only possibly owner of an `SelectableEventLoop` is
+        // `MultiThreadedEventLoopGroup` which calls `closeGently`.
+        queue.async {
+            callback(EventLoopError.unsupportedOperation)
         }
     }
 }
@@ -930,6 +935,9 @@ extension SelectableEventLoop: CustomStringConvertible {
 /// Provides an endless stream of `EventLoop`s to use.
 public protocol EventLoopGroup: class {
     /// Returns the next `EventLoop` to use.
+    ///
+    /// The algorithm that is used to select the next `EventLoop` is specific to each `EventLoopGroup`. A common choice
+    /// is _round robin_.
     func next() -> EventLoop
 
     /// Shuts down the eventloop gracefully. This function is clearly an outlier in that it uses a completion
@@ -1067,6 +1075,11 @@ public final class MultiThreadedEventLoopGroup: EventLoopGroup {
         return EventLoopIterator(self.eventLoops)
     }
 
+    /// Returns the next `EventLoop` from this `MultiThreadedEventLoopGroup`.
+    ///
+    /// `MultiThreadedEventLoopGroup` uses _round robin_ across all its `EventLoop`s to select the next one.
+    ///
+    /// - returns: The next `EventLoop` to use.
     public func next() -> EventLoop {
         return eventLoops[abs(index.add(1) % eventLoops.count)]
     }

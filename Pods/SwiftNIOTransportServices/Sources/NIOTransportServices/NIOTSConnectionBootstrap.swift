@@ -19,9 +19,9 @@ import NIO
 import Dispatch
 import Network
 
-@available(OSX 10.14, iOS 12.0, tvOS 12.0, *)
+@available(OSX 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
 public final class NIOTSConnectionBootstrap {
-    private let group: NIOTSEventLoopGroup
+    private let group: EventLoopGroup
     private var channelInitializer: ((Channel) -> EventLoopFuture<Void>)?
     private var connectTimeout: TimeAmount = TimeAmount.seconds(10)
     private var channelOptions = ChannelOptionsStorage()
@@ -29,12 +29,30 @@ public final class NIOTSConnectionBootstrap {
     private var tcpOptions: NWProtocolTCP.Options = .init()
     private var tlsOptions: NWProtocolTLS.Options?
 
+    /// Create a `NIOTSConnectionBootstrap` on the `EventLoopGroup` `group`.
+    ///
+    /// This initializer only exists to be more in-line with the NIO core bootstraps, in that they
+    /// may be constructed with an `EventLoopGroup` and by extenstion an `EventLoop`. As such an
+    /// existing `NIOTSEventLoop` may be used to initialize this bootstrap. Where possible the
+    /// initializers accepting `NIOTSEventLoopGroup` should be used instead to avoid the wrong
+    /// type being used.
+    ///
+    /// Note that the "real" solution is described in https://github.com/apple/swift-nio/issues/674.
+    ///
+    /// - parameters:
+    ///     - group: The `EventLoopGroup` to use.
+    public init(group: EventLoopGroup) {
+        self.group = group
+
+        self.channelOptions.append(key: ChannelOptions.socket(IPPROTO_TCP, TCP_NODELAY), value: 1)
+    }
+
     /// Create a `NIOTSConnectionBootstrap` on the `NIOTSEventLoopGroup` `group`.
     ///
     /// - parameters:
     ///     - group: The `NIOTSEventLoopGroup` to use.
-    public init(group: NIOTSEventLoopGroup) {
-        self.group = group
+    public convenience init(group: NIOTSEventLoopGroup) {
+      self.init(group: group as EventLoopGroup)
     }
 
     /// Initialize the connected `NIOTSConnectionChannel` with `initializer`. The most common task in initializer is to add
@@ -178,7 +196,7 @@ public final class NIOTSConnectionBootstrap {
 
 // This is a backport of ChannelOptions.Storage from SwiftNIO because the initializer wasn't public, so we couldn't actually build it.
 // When https://github.com/apple/swift-nio/pull/988 is in a shipped release, we can remove this and simply bump our lowest supported version of SwiftNIO.
-@available(OSX 10.14, iOS 12.0, tvOS 12.0, *)
+@available(OSX 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
 internal struct ChannelOptionsStorage {
     internal var _storage: [(Any, (Any, (Channel) -> (Any, Any) -> EventLoopFuture<Void>))] = []
 

@@ -137,7 +137,7 @@ extension KQueueEventFilterSet {
         self = kqueueFilterSet
     }
 
-    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
     /// Calculate the kqueue filter changes that are necessary to transition from `previousKQueueFilterSet` to `self`.
     /// The `body` closure is then called with the changes necessary expressed as a number of `kevent`.
     ///
@@ -339,7 +339,7 @@ final class Selector<R: Registration> {
     }
 
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
     private func toKQueueTimeSpec(strategy: SelectorStrategy) -> timespec? {
         switch strategy {
         case .block:
@@ -469,7 +469,7 @@ final class Selector<R: Registration> {
         }
     }
 
-    /// Apply the given `SelectorStrategy` and execute `fn` once it's complete (which may produce `SelectorEvent`s to handle).
+    /// Apply the given `SelectorStrategy` and execute `body` once it's complete (which may produce `SelectorEvent`s to handle).
     ///
     /// - parameters:
     ///     - strategy: The `SelectorStrategy` to apply
@@ -712,7 +712,7 @@ enum SelectorStrategy {
     case now
 }
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
 extension kevent {
     /// Update a kevent for a given filter, file descriptor, and set of flags.
     mutating func setEvent(fileDescriptor fd: CInt, filter: CInt, flags: UInt16) {

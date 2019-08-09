@@ -80,9 +80,8 @@ public struct CircularBuffer<Element>: CustomStringConvertible {
                 // if we can, we store the check for the backing here
                 self._backingCheck = backingCount < Int(_UInt24.max) ? _UInt24(UInt32(backingCount)) : .max
             }
-            assert(MemoryLayout.size(ofValue: self) == MemoryLayout<Int>.size)
         }
-        
+
         @inlinable
         public static func < (lhs: Index, rhs: Index) -> Bool {
             if lhs.isIndexGEQHeadIndex && rhs.isIndexGEQHeadIndex {
@@ -378,6 +377,27 @@ extension CircularBuffer {
         self.headBackingIndex = 0
         self.tailBackingIndex = 0
         assert(self.verifyInvariants())
+    }
+
+
+    /// Modify the element at `index`.
+    ///
+    /// This function exists to provide a method of modifying the element in its underlying backing storage, instead
+    /// of copying it out, modifying it, and copying it back in. This emulates the behaviour of the `_modify` accessor
+    /// that is part of the generalized accessors work. That accessor is currently underscored and not safe to use, so
+    /// this is the next best thing.
+    ///
+    /// Note that this function is not guaranteed to be fast. In particular, as it is both generic and accepts a closure
+    /// it is possible that it will be slower than using the get/modify/set path that occurs with the subscript. If you
+    /// are interested in using this function for performance you *must* test and verify that the optimisation applies
+    /// correctly in your situation.
+    ///
+    /// - parameters:
+    ///     - index: The index of the object that should be modified. If this index is invalid this function will trap.
+    ///     - modifyFunc: The function to apply to the modified object.
+    @inlinable
+    public mutating func modify<Result>(_ index: Index, _ modifyFunc: (inout Element) throws -> Result) rethrows -> Result {
+        return try modifyFunc(&self._buffer[index.backingIndex]!)
     }
     
     // MARK: CustomStringConvertible implementation
