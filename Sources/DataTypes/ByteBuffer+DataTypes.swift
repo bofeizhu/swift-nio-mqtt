@@ -98,6 +98,15 @@ extension ByteBuffer {
 
     // MARK: Helpers
 
+    /// Get 1 byte at `index` from this `ByteBuffer`. Does not move the reader index.
+    /// The selected bytes must be readable or else `nil` will be returned.
+    ///
+    /// - Parameter index: The index of the byte in the `ByteBuffer`.
+    /// - Returns: A `UInt8` value containing 1 byte or `nil` if there aren't any byte readable.
+    func getByte(at index: Int) -> UInt8? {
+        return getInteger(at: index)
+    }
+
     /// Read 1 byte off this `ByteBuffer`, move the reader index forward by 1 byte and return the result
     ///
     /// - Returns:  A `UInt8` value containing 1 byte or `nil` if there aren't any byte readable.

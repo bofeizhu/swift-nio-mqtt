@@ -9,6 +9,7 @@
 // MARK: - Coding Errors
 
 enum MQTTCodingError: Error {
+    case malformedVariableByteInteger
     case malformedPacket
     case utf8StringTooLong
     case binaryDataTooLong

@@ -112,24 +112,39 @@ extension VInt {
 
 extension ByteBuffer {
 
-    // MARK: Variable Byte Integer APIs
+    func getVariableByteInteger(at index: Int) throws -> VInt? {
+        guard let firstByte = getByte(at: index) else {
+            return nil
+        }
+
+        var integer = VInt(firstByte: firstByte)
+
+        while integer.hasFollowing {
+            guard integer.bytes.count < 4 else {
+                throw MQTTCodingError.malformedVariableByteInteger
+            }
+
+            guard let nextByte = getByte(at: index + integer.bytes.count) else {
+                // Need more bytes
+                return nil
+            }
+
+            integer = VInt(leading: integer, nextByte: nextByte)
+        }
+
+        return integer
+    }
 
     /// Read a variable byte integer off this `ByteBuffer`,
     /// move the reader index forward by the integer's byte size and return the result.
     ///
     /// - Returns: A variable byte integer value deserialized from this `ByteBuffer` or `nil`
     ///     if there aren't enough bytes readable.
-    mutating func readVariableByteInteger() -> VInt? {
-        guard let firstByte = readByte() else {
+    mutating func readVariableByteInteger() throws -> VInt? {
+        guard let integer = try getVariableByteInteger(at: readerIndex) else {
             return nil
         }
-        var integer = VInt(firstByte: firstByte)
-        while integer.hasFollowing {
-            guard let nextByte = readByte() else {
-                return nil
-            }
-            integer = VInt(leading: integer, nextByte: nextByte)
-        }
+        moveReaderIndex(forwardBy: integer.bytes.count)
         return integer
     }
 

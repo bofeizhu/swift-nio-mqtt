@@ -39,10 +39,10 @@ extension ByteBuffer {
     ///
     /// - Returns: A fixed header.
     /// - Throws: A MQTT coding error when fixed header is malformed.
-    mutating func readFixedHeader() throws -> FixedHeader {
+    mutating func readFixedHeader() throws -> FixedHeader? {
         guard
             let byte = readByte(),
-            let remainingLength = readVariableByteInteger(),
+            let remainingLength = try readVariableByteInteger(),
             let type = ControlPacketType(rawValue: byte >> 4)
         else {
             throw MQTTCodingError.malformedPacket

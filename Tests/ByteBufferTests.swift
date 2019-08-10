@@ -62,37 +62,37 @@ class ByteBufferTest: XCTestCase {
 
         // Test 0
         buffer.writeByte(0)
-        var integer = buffer.readVariableByteInteger()
+        var integer = try! buffer.readVariableByteInteger()
         XCTAssertEqual(integer, VInt(value: 0))
         XCTAssertEqual(buffer.readableBytes, 0)
 
         // Test 127
         buffer.writeByte(127)
-        integer = buffer.readVariableByteInteger()
+        integer = try! buffer.readVariableByteInteger()
         XCTAssertEqual(integer, VInt(value: 127))
         XCTAssertEqual(buffer.readableBytes, 0)
 
         // Test 128
         buffer.writeBytes([UInt8(0x80), UInt8(0x01)])
-        integer = buffer.readVariableByteInteger()
+        integer = try! buffer.readVariableByteInteger()
         XCTAssertEqual(integer, VInt(value: 128))
         XCTAssertEqual(buffer.readableBytes, 0)
 
         // Test 16,383
         buffer.writeBytes([UInt8(0xFF), UInt8(0x7F)])
-        integer = buffer.readVariableByteInteger()
+        integer = try! buffer.readVariableByteInteger()
         XCTAssertEqual(integer, VInt(value: 16383))
         XCTAssertEqual(buffer.readableBytes, 0)
 
         // Test 2,097,152
         buffer.writeBytes([UInt8(0x80), UInt8(0x80), UInt8(0x80), UInt8(0x01)])
-        integer = buffer.readVariableByteInteger()
+        integer = try! buffer.readVariableByteInteger()
         XCTAssertEqual(integer, VInt(value: 2097152))
         XCTAssertEqual(buffer.readableBytes, 0)
 
         // Test 268,435,455
         buffer.writeBytes([UInt8(0xFF), UInt8(0xFF), UInt8(0xFF), UInt8(0x7F)])
-        integer = buffer.readVariableByteInteger()
+        integer = try! buffer.readVariableByteInteger()
         XCTAssertEqual(integer, VInt(value: 268435455))
         XCTAssertEqual(buffer.readableBytes, 0)
     }

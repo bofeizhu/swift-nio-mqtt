@@ -9,6 +9,6 @@
 import NIO
 import NIOTransportServices
 
-class NIOMQTT {
+public class NIOMQTT {
 
 }
