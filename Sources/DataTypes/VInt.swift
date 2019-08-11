@@ -118,7 +118,7 @@ extension ByteBuffer {
     /// Get variable byte integer at `index` from this `ByteBuffer`. Does not move the reader index.
     /// The selected bytes must be readable or else `nil` will be returned.
     ///
-    /// - Parameter index: The index of the byte in the `ByteBuffer`.
+    /// - Parameter index: The starting index of the bytes for the integer into the `ByteBuffer`.
     /// - Returns: A variable byte integer or `nil` if there aren't enough bytes readable.
     /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
     func getVariableByteInteger(at index: Int) throws -> VInt? {
