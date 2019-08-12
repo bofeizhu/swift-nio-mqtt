@@ -26,8 +26,11 @@ struct VInt {
     /// Init with integer value
     ///
     /// - Parameter value: The integer value of the variable byte integer
-    init(value: UInt) {
-        assert(value <= VInt.max, "Value too large. The maximum number of bytes in the VInt field is four.")
+    /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
+    init(value: UInt) throws {
+        guard value <= VInt.max else {
+            throw MQTTCodingError.malformedVariableByteInteger
+        }
 
         self.value = value
         var remainingValue = value
@@ -112,24 +115,46 @@ extension VInt {
 
 extension ByteBuffer {
 
-    // MARK: Variable Byte Integer APIs
+    /// Get variable byte integer at `index` from this `ByteBuffer`. Does not move the reader index.
+    /// The selected bytes must be readable or else `nil` will be returned.
+    ///
+    /// - Parameter index: The starting index of the bytes for the integer into the `ByteBuffer`.
+    /// - Returns: A variable byte integer or `nil` if there aren't enough bytes readable.
+    /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
+    func getVariableByteInteger(at index: Int) throws -> VInt? {
+        guard let firstByte = getByte(at: index) else {
+            return nil
+        }
+
+        var integer = VInt(firstByte: firstByte)
+
+        while integer.hasFollowing {
+            guard integer.bytes.count < 4 else {
+                throw MQTTCodingError.malformedVariableByteInteger
+            }
+
+            guard let nextByte = getByte(at: index + integer.bytes.count) else {
+                // Need more bytes
+                return nil
+            }
+
+            integer = VInt(leading: integer, nextByte: nextByte)
+        }
+
+        return integer
+    }
 
     /// Read a variable byte integer off this `ByteBuffer`,
     /// move the reader index forward by the integer's byte size and return the result.
     ///
     /// - Returns: A variable byte integer value deserialized from this `ByteBuffer` or `nil`
     ///     if there aren't enough bytes readable.
-    mutating func readVariableByteInteger() -> VInt? {
-        guard let firstByte = readByte() else {
+    /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
+    mutating func readVariableByteInteger() throws -> VInt? {
+        guard let integer = try getVariableByteInteger(at: readerIndex) else {
             return nil
         }
-        var integer = VInt(firstByte: firstByte)
-        while integer.hasFollowing {
-            guard let nextByte = readByte() else {
-                return nil
-            }
-            integer = VInt(leading: integer, nextByte: nextByte)
-        }
+        moveReaderIndex(forwardBy: integer.bytes.count)
         return integer
     }
 

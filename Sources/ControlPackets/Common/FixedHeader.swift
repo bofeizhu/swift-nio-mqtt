@@ -34,27 +34,38 @@ struct FixedHeader {
 
 extension ByteBuffer {
 
-    /// Read a fixed header off this `ByteBuffer`,
-    /// move the reader index forward by the fixed header's byte size and return the result.
+    /// Get a fixed header off this `ByteBuffer`. Does not move the reader index.
     ///
-    /// - Returns: A fixed header.
+    /// - Parameter index: The starting index of the bytes for the integer into the `ByteBuffer`.
+    /// - Returns: A fixed header or `nil` if there aren't enough bytes readable.
     /// - Throws: A MQTT coding error when fixed header is malformed.
-    mutating func readFixedHeader() throws -> FixedHeader {
+    func getFixedHeader(at index: Int) throws -> FixedHeader? {
         guard
-            let byte = readByte(),
-            let remainingLength = readVariableByteInteger(),
-            let type = ControlPacketType(rawValue: byte >> 4)
-        else {
-            throw MQTTCodingError.malformedPacket
-        }
+            let headerByte = getByte(at: index),
+            let remainingLength = try getVariableByteInteger(at: index + 1)
+        else { return nil }
 
-        let flags = byte & 0xF
+        let flags = headerByte & 0xF
 
-        if type.validate(flags) {
+        if let type = ControlPacketType(rawValue: headerByte >> 4),
+           type.validate(flags) {
             return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
         } else {
             throw MQTTCodingError.malformedPacket
         }
+    }
+
+    /// Read a fixed header off this `ByteBuffer`,
+    /// move the reader index forward by the fixed header's byte size and return the result.
+    ///
+    /// - Returns: A fixed header or `nil` if there aren't enough bytes readable.
+    /// - Throws: A MQTT coding error when fixed header is malformed.
+    mutating func readFixedHeader() throws -> FixedHeader? {
+        guard let fixedHeader = try getFixedHeader(at: readerIndex) else {
+            return nil
+        }
+        moveReaderIndex(forwardBy: fixedHeader.remainingLength.bytes.count + 1)
+        return fixedHeader
     }
 
     /// Write a fixed header into this `ByteBuffer`, moving the writer index forward appropriately.
