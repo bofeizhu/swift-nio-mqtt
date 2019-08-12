@@ -39,13 +39,11 @@ extension ByteBuffer {
     /// - Parameter index: The starting index of the bytes for the integer into the `ByteBuffer`.
     /// - Returns: A fixed header or `nil` if there aren't enough bytes readable.
     /// - Throws: A MQTT coding error when fixed header is malformed.
-    mutating func getFixedHeader(at index: Int) throws -> FixedHeader? {
+    func getFixedHeader(at index: Int) throws -> FixedHeader? {
         guard
             let headerByte = getByte(at: index),
             let remainingLength = try getVariableByteInteger(at: index + 1)
-        else {
-            return nil
-        }
+        else { return nil }
 
         let flags = headerByte & 0xF
 
@@ -55,6 +53,19 @@ extension ByteBuffer {
         } else {
             throw MQTTCodingError.malformedPacket
         }
+    }
+
+    /// Read a fixed header off this `ByteBuffer`,
+    /// move the reader index forward by the fixed header's byte size and return the result.
+    ///
+    /// - Returns: A fixed header or `nil` if there aren't enough bytes readable.
+    /// - Throws: A MQTT coding error when fixed header is malformed.
+    mutating func readFixedHeader() throws -> FixedHeader? {
+        guard let fixedHeader = try getFixedHeader(at: readerIndex) else {
+            return nil
+        }
+        moveReaderIndex(forwardBy: fixedHeader.remainingLength.bytes.count + 1)
+        return fixedHeader
     }
 
     /// Write a fixed header into this `ByteBuffer`, moving the writer index forward appropriately.

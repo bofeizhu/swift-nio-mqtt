@@ -11,18 +11,38 @@ import NIO
 final class ControlPacketDecoder: ByteToMessageDecoder {
     typealias InboundOut = ControlPacket
 
+    private var fixedHeader: FixedHeader?
+
     func decode(context: ChannelHandlerContext, buffer: inout ByteBuffer) throws -> DecodingState {
 
-        // Read fix header
+        // Read fixed header
+        if fixedHeader == nil {
+            fixedHeader = try buffer.readFixedHeader()
+        }
+
+        // Remaining bytes
+        guard
+            let fixedHeader = fixedHeader,
+            buffer.readableBytes >= fixedHeader.remainingLength.value
+        else {
+            return .needMoreData
+        }
+
+        // Read by packet type
+        switch fixedHeader.type {
+        default:
+            break
+        }
+
+        // Reset fixed header
+        self.fixedHeader = nil
+
         return .continue
     }
 
-    func decodeLast(
-        context: ChannelHandlerContext,
-        buffer: inout ByteBuffer,
-        seenEOF: Bool
-    ) throws -> DecodingState {
-        return .continue
+    func decodeLast(context: ChannelHandlerContext, buffer: inout ByteBuffer, seenEOF: Bool) throws -> DecodingState {
+        // EOF is not semantic in MQTT, so ignore this.
+        return .needMoreData
     }
 
 }
