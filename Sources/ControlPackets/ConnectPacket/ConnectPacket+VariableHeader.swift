@@ -55,11 +55,8 @@ extension ConnectPacket: VariableHeaderPacket {
             // The Server MUST validate that the reserved flag in the CONNECT packet is set to 0
             guard
                 rawValue & 1 == 0,
-                let qos = QoS(rawValue: qosValue),
-                qos != .malformed
-            else {
-                return nil
-            }
+                let qos = QoS(rawValue: qosValue)
+            else { return nil }
 
             cleanStart = ((rawValue >> 1) & 1) == 1
 

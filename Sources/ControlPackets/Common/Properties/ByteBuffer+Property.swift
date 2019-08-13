@@ -148,7 +148,7 @@ extension ByteBuffer {
             // Two byte integer
             return (.topicAlias(alias), 2)
 
-        default:
+        @unknown default:
             throw MQTTCodingError.malformedPacket
         }
     }
