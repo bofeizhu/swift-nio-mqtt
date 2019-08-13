@@ -78,10 +78,10 @@ enum Property {
     case topicAlias(UInt16)
 
     /// Maximum QoS
-    case maximumQoS(UInt8)
+    case maximumQoS(QoS)
 
     /// Retain Available
-    case retainAvailable(UInt8)
+    case retainAvailable(Bool)
 
     /// User Property
     case userProperty(StringPair)
@@ -90,11 +90,11 @@ enum Property {
     case maximumPacketSize(UInt32)
 
     /// Wildcard Subscription Available
-    case wildcardSubscriptionAvailable(UInt8)
+    case wildcardSubscriptionAvailable(Bool)
 
     /// Subscription Identifier Available
-    case subscriptionIdentifierAvailable(UInt8)
+    case subscriptionIdentifierAvailable(Bool)
 
     /// Shared Subscription Available
-    case sharedSubscriptionAvailable(UInt8)
+    case sharedSubscriptionAvailable(Bool)
 }

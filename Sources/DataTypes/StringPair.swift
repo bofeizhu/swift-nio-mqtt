@@ -15,4 +15,9 @@ struct StringPair {
 
     /// The value of this string pair
     let value: String
+
+    /// Byte count for MQTT String Pair
+    var mqttByteCount: Int {
+        return name.mqttByteCount + value.mqttByteCount
+    }
 }

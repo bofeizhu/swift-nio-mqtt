@@ -80,6 +80,13 @@ extension ByteBuffer {
             }
             return (.subscriptionIdentifier(identifier), identifier.bytes.count)
 
+        case .sessionExpiryInterval:
+            guard let interval: UInt32 = readInteger() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            // Four byte integer
+            return (.sessionExpiryInterval(interval), 4)
+
         case .assignedClientIdentifier:
             guard let identifier = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
@@ -148,8 +155,51 @@ extension ByteBuffer {
             // Two byte integer
             return (.topicAlias(alias), 2)
 
-        @unknown default:
-            throw MQTTCodingError.malformedPacket
+        case .maximumQoS:
+            guard
+                let qosValue = readByte(),
+                let qos = QoS(rawValue: qosValue)
+            else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return (.maximumQoS(qos), 1)
+
+        case .retainAvailable:
+            guard let available = try readBool() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return (.retainAvailable(available), 1)
+
+        case .userProperty:
+            guard let property = readStringPair() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return (.userProperty(property), property.mqttByteCount)
+
+        case .maximumPacketSize:
+            guard let size: UInt32 = readInteger() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            // Four byte integer
+            return (.maximumPacketSize(size), 4)
+
+        case .wildcardSubscriptionAvailable:
+            guard let available = try readBool() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return (.wildcardSubscriptionAvailable(available), 1)
+
+        case .subscriptionIdentifierAvailable:
+            guard let available = try readBool() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return (.subscriptionIdentifierAvailable(available), 1)
+
+        case .sharedSubscriptionAvailable:
+            guard let available = try readBool() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return (.sharedSubscriptionAvailable(available), 1)
         }
     }
 }
