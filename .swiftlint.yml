@@ -45,4 +45,9 @@ identifier_name:
     - URL
     - lhs
     - rhs
+
+# ignores switch cases
+cyclomatic_complexity:
+  ignores_case_statements: true
+
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)
