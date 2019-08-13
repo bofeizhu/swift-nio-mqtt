@@ -8,6 +8,8 @@
 
 import struct Foundation.Data
 
+/// Control Packet Property
+///
 /// The last field in the Variable Header of the CONNECT, CONNACK, PUBLISH, PUBACK, PUBREC,
 /// PUBREL, PUBCOMP, SUBSCRIBE, SUBACK, UNSUBSCRIBE, UNSUBACK, DISCONNECT, and AUTH packet is a set of Properties.
 /// In the CONNECT packet there is also an optional set of Properties in the Will Properties field with the Payload.
@@ -15,8 +17,8 @@ import struct Foundation.Data
 /// The set of Properties is composed of a Property Length followed by the Properties.
 enum Property {
 
-    /// Payload Format Indicator, type: Byte
-    case payloadFormatIndicator(UInt8)
+    /// Payload Format Indicator
+    case payloadFormatIndicator(Bool)
 
     /// Message Expiry Interval
     case messageExpiryInterval(UInt32)
