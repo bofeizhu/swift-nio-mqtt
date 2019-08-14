@@ -8,7 +8,13 @@
 
 import NIO
 
+// swiftlint:disable cyclomatic_complexity
 extension ByteBuffer {
+
+    @discardableResult
+    mutating func write(_ properties: [Property]) throws -> Int {
+        return 0
+    }
 
     mutating func readProperties() throws -> [Property] {
 
@@ -33,84 +39,81 @@ extension ByteBuffer {
             }
             remainingLength -= 1
 
-            let (property, length) = try readProperty(of: identifier)
+            let property = try readProperty(of: identifier)
             properties.append(property)
-            remainingLength -= length
+            remainingLength -= property.byteCount
         }
         return properties
     }
 
-    // swiftlint:disable:next cyclomatic_complexity function_body_length
-    private mutating func readProperty(of identifier: PropertyIdentifier) throws -> (Property, Int) {
+    // swiftlint:disable:next function_body_length
+    private mutating func readProperty(of identifier: PropertyIdentifier) throws -> Property {
         switch identifier {
         case .payloadFormatIndicator:
             guard let isUTF8Encoded = try readBool() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.payloadFormatIndicator(isUTF8Encoded), 1)
+            return .payloadFormatIndicator(isUTF8Encoded)
 
         case .messageExpiryInterval:
             guard let interval: UInt32 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Four byte integer
-            return (.messageExpiryInterval(interval), 4)
+            return .messageExpiryInterval(interval)
 
         case .contentType:
             guard let contentType = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.contentType(contentType), contentType.mqttByteCount)
+            return .contentType(contentType)
 
         case .responseTopic:
             guard let topic = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.responseTopic(topic), topic.mqttByteCount)
+            return .responseTopic(topic)
 
         case .correlationData:
             guard let data = readMQTTBinaryData() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.correlationData(data), data.mqttByteCount)
+            return .correlationData(data)
 
         case .subscriptionIdentifier:
             guard let identifier = try readVariableByteInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.subscriptionIdentifier(identifier), identifier.bytes.count)
+            return .subscriptionIdentifier(identifier)
 
         case .sessionExpiryInterval:
             guard let interval: UInt32 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Four byte integer
-            return (.sessionExpiryInterval(interval), 4)
+            return .sessionExpiryInterval(interval)
 
         case .assignedClientIdentifier:
             guard let identifier = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.assignedClientIdentifier(identifier), identifier.mqttByteCount)
+            return .assignedClientIdentifier(identifier)
 
         case .serverKeepAlive:
             guard let keepAlive: UInt16 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Two byte integer
-            return (.serverKeepAlive(keepAlive), 2)
+            return .serverKeepAlive(keepAlive)
 
         case .authenticationMethod:
             guard let method = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.authenticationMethod(method), method.mqttByteCount)
+            return .authenticationMethod(method)
 
         case .authenticationData:
             guard let data = readMQTTBinaryData() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.authenticationData(data), data.mqttByteCount)
+            return .authenticationData(data)
 
         case .requestProblemInformation, .willDelayInterval, .requestResponseInformation:
             // Only client to server, no need to decode
@@ -120,40 +123,37 @@ extension ByteBuffer {
             guard let information = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.responseInformation(information), information.mqttByteCount)
+            return .responseInformation(information)
 
         case .serverReference:
             guard let reference = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.serverReference(reference), reference.mqttByteCount)
+            return .serverReference(reference)
 
         case .reasonString:
             guard let string = readMQTTString() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.reasonString(string), string.mqttByteCount)
+            return .reasonString(string)
 
         case .receiveMaximum:
             guard let max: UInt16 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Two byte integer
-            return (.receiveMaximum(max), 2)
+            return .receiveMaximum(max)
 
         case .topicAliasMaximum:
             guard let max: UInt16 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Two byte integer
-            return (.topicAliasMaximum(max), 2)
+            return .topicAliasMaximum(max)
 
         case .topicAlias:
             guard let alias: UInt16 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Two byte integer
-            return (.topicAlias(alias), 2)
+            return .topicAlias(alias)
 
         case .maximumQoS:
             guard
@@ -162,44 +162,43 @@ extension ByteBuffer {
             else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.maximumQoS(qos), 1)
+            return .maximumQoS(qos)
 
         case .retainAvailable:
             guard let available = try readBool() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.retainAvailable(available), 1)
+            return .retainAvailable(available)
 
         case .userProperty:
             guard let property = readStringPair() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.userProperty(property), property.mqttByteCount)
+            return .userProperty(property)
 
         case .maximumPacketSize:
             guard let size: UInt32 = readInteger() else {
                 throw MQTTCodingError.malformedPacket
             }
-            // Four byte integer
-            return (.maximumPacketSize(size), 4)
+            return .maximumPacketSize(size)
 
         case .wildcardSubscriptionAvailable:
             guard let available = try readBool() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.wildcardSubscriptionAvailable(available), 1)
+            return .wildcardSubscriptionAvailable(available)
 
         case .subscriptionIdentifierAvailable:
             guard let available = try readBool() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.subscriptionIdentifierAvailable(available), 1)
+            return .subscriptionIdentifierAvailable(available)
 
         case .sharedSubscriptionAvailable:
             guard let available = try readBool() else {
                 throw MQTTCodingError.malformedPacket
             }
-            return (.sharedSubscriptionAvailable(available), 1)
+            return .sharedSubscriptionAvailable(available)
         }
     }
 }
