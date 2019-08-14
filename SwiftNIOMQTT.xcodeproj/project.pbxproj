@@ -20,6 +20,7 @@
 		057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539E622B02B4400DE3B9D /* NIOMQTT.swift */; };
 		057C30B6230209820064E71D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30B5230209820064E71D /* String+Additions.swift */; };
 		057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30B723020B4A0064E71D /* Data+Additions.swift */; };
+		057C30BE2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30BD2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift */; };
 		05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A290242301416C0046E952 /* ByteBuffer+Property.swift */; };
 		05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149D22B2EDCF001D33A3 /* VInt.swift */; };
 		05F1981022E63463006E3E37 /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1980F22E63463006E3E37 /* QoS.swift */; };
@@ -83,6 +84,7 @@
 		057539E622B02B4400DE3B9D /* NIOMQTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOMQTT.swift; sourceTree = "<group>"; };
 		057C30B5230209820064E71D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		057C30B723020B4A0064E71D /* Data+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Additions.swift"; sourceTree = "<group>"; };
+		057C30BD2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+ConnAckPacket.swift"; sourceTree = "<group>"; };
 		05A290242301416C0046E952 /* ByteBuffer+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+Property.swift"; sourceTree = "<group>"; };
 		05DD149D22B2EDCF001D33A3 /* VInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VInt.swift; sourceTree = "<group>"; };
 		05F1980F22E63463006E3E37 /* QoS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		822A21AF22E57CCA00FC348C /* ConnAckPacket */ = {
 			isa = PBXGroup;
 			children = (
+				057C30BD2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift */,
 				05F1981E22E6603E006E3E37 /* ConnAckPacket.swift */,
 				822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */,
 			);
@@ -577,6 +580,7 @@
 				05F1982522E69182006E3E37 /* PubAckPacket+ReasonCode.swift in Sources */,
 				05F1982722E6CE29006E3E37 /* ControlPacketProtocol.swift in Sources */,
 				05F1982922E6CEFE006E3E37 /* ControlPacket.swift in Sources */,
+				057C30BE2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift in Sources */,
 				0533EBE322B987C900500255 /* Property.swift in Sources */,
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
 				82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */,
