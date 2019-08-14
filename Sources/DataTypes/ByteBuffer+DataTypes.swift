@@ -140,4 +140,18 @@ extension ByteBuffer {
 
         throw MQTTCodingError.malformedPacket
     }
+
+    /// Write a boolean byte into this `ByteBuffer`, moving the writer index forward 1 byte.
+    ///
+    /// - Parameter bool: The boolean to write.
+    /// - Returns: The number of bytes written (always 1).
+    @discardableResult
+    mutating func write(_ bool: Bool) -> Int {
+
+        if bool {
+            return writeByte(1)
+        } else {
+            return writeByte(0)
+        }
+    }
 }

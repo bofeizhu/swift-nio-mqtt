@@ -51,13 +51,13 @@ enum Property {
     case authenticationData(Data)
 
     /// Request Problem Information
-    case requestProblemInformation(UInt8)
+    case requestProblemInformation(Bool)
 
     /// Will Delay Interval
     case willDelayInterval(UInt32)
 
     /// Request Response Information
-    case requestResponseInformation(UInt8)
+    case requestResponseInformation(Bool)
 
     /// Response Information
     case responseInformation(String)

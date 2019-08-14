@@ -13,7 +13,84 @@ extension ByteBuffer {
 
     @discardableResult
     mutating func write(_ properties: [Property]) throws -> Int {
-        return 0
+        let byteCount = properties.reduce(0) { $0 + $1.byteCount }
+        let propertyLength = try VInt(value: UInt(byteCount))
+        let propertyLengthByteCount = writeVariableByteInteger(propertyLength)
+
+        for property in properties {
+            switch property {
+
+            case let .payloadFormatIndicator(indicator):
+                write(indicator)
+
+            case let .messageExpiryInterval(interval):
+                writeInteger(interval)
+
+            case let .contentType(type):
+                try writeMQTTString(type)
+
+            case let .responseTopic(topic):
+                try writeMQTTString(topic)
+
+            case let .correlationData(data):
+                try writeMQTTBinaryData(data)
+
+            case let .subscriptionIdentifier(identifier):
+                writeVariableByteInteger(identifier)
+
+            case let .sessionExpiryInterval(interval):
+                writeInteger(interval)
+
+            case let .authenticationMethod(method):
+                try writeMQTTString(method)
+
+            case let .authenticationData(data):
+                try writeMQTTBinaryData(data)
+
+            case let .requestProblemInformation(indicator):
+                write(indicator)
+
+            case let .willDelayInterval(interval):
+                writeInteger(interval)
+
+            case let .requestResponseInformation(indicator):
+                write(indicator)
+
+            case let .serverReference(reference):
+                try writeMQTTString(reference)
+
+            case let .reasonString(string):
+                try writeMQTTString(string)
+
+            case let .receiveMaximum(max):
+                writeInteger(max)
+
+            case let .topicAliasMaximum(max):
+                writeInteger(max)
+
+            case let .topicAlias(alias):
+                writeInteger(alias)
+
+            case let .userProperty(userProperty):
+                try write(userProperty)
+
+            case let .maximumPacketSize(size):
+                writeInteger(size)
+
+            case .assignedClientIdentifier,
+                 .serverKeepAlive,
+                 .responseInformation,
+                 .maximumQoS,
+                 .retainAvailable,
+                 .wildcardSubscriptionAvailable,
+                 .subscriptionIdentifierAvailable,
+                 .sharedSubscriptionAvailable:
+                // This properties are not supposed to be sent from client.
+                throw MQTTCodingError.malformedPacket
+            }
+        }
+
+        return propertyLengthByteCount + byteCount
     }
 
     mutating func readProperties() throws -> [Property] {
