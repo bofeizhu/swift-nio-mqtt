@@ -19,7 +19,4 @@ public enum QoS: UInt8 {
 
     /// Exactly once delivery
     case exactlyOnce
-
-    /// Malformed QoS
-    case malformed
 }

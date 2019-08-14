@@ -122,4 +122,36 @@ extension ByteBuffer {
     mutating func writeByte(_ byte: UInt8) -> Int {
         return writeInteger(byte)
     }
+
+    /// Read a boolean byte off this `ByteBuffer`, move the reader index forward by 1 byte and return the result
+    ///
+    /// - Returns: A boolean value or `nil` if there aren't any byte readable.
+    /// - Throws: A MQTT coding error when byte is neither 0 nor 1.
+    mutating func readBool() throws -> Bool? {
+        guard let byte = readByte() else {
+            return nil
+        }
+
+        if byte == 0 {
+            return false
+        } else if byte == 1 {
+            return true
+        }
+
+        throw MQTTCodingError.malformedPacket
+    }
+
+    /// Write a boolean byte into this `ByteBuffer`, moving the writer index forward 1 byte.
+    ///
+    /// - Parameter bool: The boolean to write.
+    /// - Returns: The number of bytes written (always 1).
+    @discardableResult
+    mutating func write(_ bool: Bool) -> Int {
+
+        if bool {
+            return writeByte(1)
+        } else {
+            return writeByte(0)
+        }
+    }
 }

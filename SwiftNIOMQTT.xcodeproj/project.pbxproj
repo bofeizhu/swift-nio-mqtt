@@ -18,6 +18,9 @@
 		056A221422B85226000500C1 /* StringPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221322B85226000500C1 /* StringPair.swift */; };
 		057539D622B02AB000DE3B9D /* NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057539CC22B02AB000DE3B9D /* NIOMQTT.framework */; };
 		057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057539E622B02B4400DE3B9D /* NIOMQTT.swift */; };
+		057C30B6230209820064E71D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30B5230209820064E71D /* String+Additions.swift */; };
+		057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30B723020B4A0064E71D /* Data+Additions.swift */; };
+		05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A290242301416C0046E952 /* ByteBuffer+Property.swift */; };
 		05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149D22B2EDCF001D33A3 /* VInt.swift */; };
 		05F1981022E63463006E3E37 /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1980F22E63463006E3E37 /* QoS.swift */; };
 		05F1981422E634D7006E3E37 /* ControlPacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1981322E634D7006E3E37 /* ControlPacketType.swift */; };
@@ -78,6 +81,9 @@
 		057539D522B02AB000DE3B9D /* NIOMQTTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIOMQTTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		057539DC22B02AB000DE3B9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057539E622B02B4400DE3B9D /* NIOMQTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOMQTT.swift; sourceTree = "<group>"; };
+		057C30B5230209820064E71D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		057C30B723020B4A0064E71D /* Data+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Additions.swift"; sourceTree = "<group>"; };
+		05A290242301416C0046E952 /* ByteBuffer+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+Property.swift"; sourceTree = "<group>"; };
 		05DD149D22B2EDCF001D33A3 /* VInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VInt.swift; sourceTree = "<group>"; };
 		05F1980F22E63463006E3E37 /* QoS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
 		05F1981322E634D7006E3E37 /* ControlPacketType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacketType.swift; sourceTree = "<group>"; };
@@ -209,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */,
+				057C30B723020B4A0064E71D /* Data+Additions.swift */,
+				057C30B5230209820064E71D /* String+Additions.swift */,
 				056A221322B85226000500C1 /* StringPair.swift */,
 				05DD149D22B2EDCF001D33A3 /* VInt.swift */,
 			);
@@ -284,6 +292,7 @@
 		822A21A222E51F9000FC348C /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				05A290242301416C0046E952 /* ByteBuffer+Property.swift */,
 				822A21A522E5221C00FC348C /* HasProperties.swift */,
 				0533EBE222B987C900500255 /* Property.swift */,
 				822A21A922E5230400FC348C /* PropertyIdentifier.swift */,
@@ -382,10 +391,10 @@
 			buildPhases = (
 				7F66AD5D994D49A0628F19EA /* [CP] Check Pods Manifest.lock */,
 				057539C722B02AB000DE3B9D /* Headers */,
+				828E488C22E00C2B00E7AD60 /* SwiftLint */,
 				057539C822B02AB000DE3B9D /* Sources */,
 				057539C922B02AB000DE3B9D /* Frameworks */,
 				057539CA22B02AB000DE3B9D /* Resources */,
-				828E488C22E00C2B00E7AD60 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -558,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */,
+				057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */,
 				8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */,
 				05F1981422E634D7006E3E37 /* ControlPacketType.swift in Sources */,
 				056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */,
@@ -571,11 +581,13 @@
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
 				82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */,
 				056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */,
+				057C30B6230209820064E71D /* String+Additions.swift in Sources */,
 				0533EBE522BC18E400500255 /* PingReqPacket.swift in Sources */,
 				05F1981C22E653D7006E3E37 /* DataPayload.swift in Sources */,
 				0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */,
 				822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */,
 				05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */,
+				05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */,
 				822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */,
 				05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */,
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,

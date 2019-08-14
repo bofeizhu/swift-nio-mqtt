@@ -8,35 +8,40 @@
 
 /// PUBLISH packet – Publish message
 ///
-/// A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
+/// A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to
+/// transport an Application Message.
 struct PublishPacket: PayloadPacket {
 
     /// Fixed Header
     let fixedHeader: FixedHeader
 
     /// DUP Flag
-    var dup: Bool {
-        return ((fixedHeader.flags >> 3) & 1) == 1
-    }
+    let dup: Bool
 
     /// QoS Flag
-    var qos: QoS {
-        let rawValue = (fixedHeader.flags >> 1) & 0b11
-        guard let qos = QoS(rawValue: rawValue)
-        else {
-            return .malformed
-        }
-        return qos
-    }
+    let qos: QoS
 
     /// RETAIN Flag
-    var retain: Bool {
-        return (fixedHeader.flags & 1) == 1
-    }
+    let retain: Bool
 
     /// Variable Header
     let variableHeader: VariableHeader
 
     /// Payload
     let payload: DataPayload
+
+    init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: DataPayload) {
+
+        let qosValue = (fixedHeader.flags >> 1) & 0b11
+        guard let qos = QoS(rawValue: qosValue) else {
+            return nil
+        }
+        self.qos = qos
+        dup = ((fixedHeader.flags >> 3) & 1) == 1
+        retain = (fixedHeader.flags & 1) == 1
+
+        self.fixedHeader = fixedHeader
+        self.variableHeader = variableHeader
+        self.payload = payload
+    }
 }
