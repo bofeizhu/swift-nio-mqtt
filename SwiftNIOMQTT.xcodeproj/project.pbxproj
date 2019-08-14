@@ -21,6 +21,11 @@
 		057C30B6230209820064E71D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30B5230209820064E71D /* String+Additions.swift */; };
 		057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30B723020B4A0064E71D /* Data+Additions.swift */; };
 		057C30BE2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30BD2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift */; };
+		057C30C02304D3090064E71D /* ByteBuffer+PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30BF2304D3090064E71D /* ByteBuffer+PublishPacket.swift */; };
+		057C30C22304D3240064E71D /* ByteBuffer+PubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C12304D3240064E71D /* ByteBuffer+PubAckPacket.swift */; };
+		057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C32304D3660064E71D /* ByteBuffer+PubRecPacket.swift */; };
+		057C30C62304D37D0064E71D /* ByteBuffer+PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C52304D37D0064E71D /* ByteBuffer+PubRelPacket.swift */; };
+		057C30C82304D3910064E71D /* ByteBuffer+PubCompPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C72304D3910064E71D /* ByteBuffer+PubCompPacket.swift */; };
 		05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A290242301416C0046E952 /* ByteBuffer+Property.swift */; };
 		05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149D22B2EDCF001D33A3 /* VInt.swift */; };
 		05F1981022E63463006E3E37 /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1980F22E63463006E3E37 /* QoS.swift */; };
@@ -85,6 +90,11 @@
 		057C30B5230209820064E71D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		057C30B723020B4A0064E71D /* Data+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Additions.swift"; sourceTree = "<group>"; };
 		057C30BD2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+ConnAckPacket.swift"; sourceTree = "<group>"; };
+		057C30BF2304D3090064E71D /* ByteBuffer+PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PublishPacket.swift"; sourceTree = "<group>"; };
+		057C30C12304D3240064E71D /* ByteBuffer+PubAckPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubAckPacket.swift"; sourceTree = "<group>"; };
+		057C30C32304D3660064E71D /* ByteBuffer+PubRecPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubRecPacket.swift"; sourceTree = "<group>"; };
+		057C30C52304D37D0064E71D /* ByteBuffer+PubRelPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubRelPacket.swift"; sourceTree = "<group>"; };
+		057C30C72304D3910064E71D /* ByteBuffer+PubCompPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubCompPacket.swift"; sourceTree = "<group>"; };
 		05A290242301416C0046E952 /* ByteBuffer+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+Property.swift"; sourceTree = "<group>"; };
 		05DD149D22B2EDCF001D33A3 /* VInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VInt.swift; sourceTree = "<group>"; };
 		05F1980F22E63463006E3E37 /* QoS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
@@ -228,6 +238,7 @@
 		05F1980D22E63377006E3E37 /* PublishPacket */ = {
 			isa = PBXGroup;
 			children = (
+				057C30BF2304D3090064E71D /* ByteBuffer+PublishPacket.swift */,
 				0533EBDC22B9707000500255 /* PublishPacket.swift */,
 				05F1981522E640C7006E3E37 /* PublishPacket+VariableHeader.swift */,
 			);
@@ -264,6 +275,7 @@
 		05F1981D22E65F69006E3E37 /* PubAckPacket */ = {
 			isa = PBXGroup;
 			children = (
+				057C30C12304D3240064E71D /* ByteBuffer+PubAckPacket.swift */,
 				05F1982022E66415006E3E37 /* PubAckPacket.swift */,
 				05F1982422E69182006E3E37 /* PubAckPacket+ReasonCode.swift */,
 				05F1982222E690FF006E3E37 /* PubAckPacket+VariableHeader.swift */,
@@ -315,6 +327,7 @@
 		8284EF9722ED7B050063A72C /* PubRecPacket */ = {
 			isa = PBXGroup;
 			children = (
+				057C30C32304D3660064E71D /* ByteBuffer+PubRecPacket.swift */,
 				8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */,
 				8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */,
 				8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */,
@@ -325,6 +338,7 @@
 		829C82B222EE68BB0026F421 /* PubCompPacket */ = {
 			isa = PBXGroup;
 			children = (
+				057C30C72304D3910064E71D /* ByteBuffer+PubCompPacket.swift */,
 				829C82B422EE68D00026F421 /* PubCompPacket.swift */,
 				829C82B522EE68D00026F421 /* PubCompPacket+ReasonCode.swift */,
 				829C82B322EE68D00026F421 /* PubCompPacket+VariableHeader.swift */,
@@ -345,6 +359,7 @@
 		82ADF74422EE504600FB3D92 /* PubRelPacket */ = {
 			isa = PBXGroup;
 			children = (
+				057C30C52304D37D0064E71D /* ByteBuffer+PubRelPacket.swift */,
 				82ADF74722EE519200FB3D92 /* PubRelPacket.swift */,
 				822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */,
 				822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */,
@@ -575,11 +590,14 @@
 				05F1981422E634D7006E3E37 /* ControlPacketType.swift in Sources */,
 				056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */,
 				829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */,
+				057C30C82304D3910064E71D /* ByteBuffer+PubCompPacket.swift in Sources */,
 				05F1982122E66415006E3E37 /* PubAckPacket.swift in Sources */,
 				829C82B822EE68DD0026F421 /* PubCompPacket+VariableHeader.swift in Sources */,
 				05F1982522E69182006E3E37 /* PubAckPacket+ReasonCode.swift in Sources */,
 				05F1982722E6CE29006E3E37 /* ControlPacketProtocol.swift in Sources */,
+				057C30C62304D37D0064E71D /* ByteBuffer+PubRelPacket.swift in Sources */,
 				05F1982922E6CEFE006E3E37 /* ControlPacket.swift in Sources */,
+				057C30C02304D3090064E71D /* ByteBuffer+PublishPacket.swift in Sources */,
 				057C30BE2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift in Sources */,
 				0533EBE322B987C900500255 /* Property.swift in Sources */,
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
@@ -604,6 +622,7 @@
 				8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */,
 				829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */,
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
+				057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,
@@ -611,6 +630,7 @@
 				822FDADE22EE604200631F39 /* PubRelPacket+VariableHeader.swift in Sources */,
 				0533EBE722BC3E8B00500255 /* PingRespPacket.swift in Sources */,
 				05F1981022E63463006E3E37 /* QoS.swift in Sources */,
+				057C30C22304D3240064E71D /* ByteBuffer+PubAckPacket.swift in Sources */,
 				829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */,
 				822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */,
 			);
