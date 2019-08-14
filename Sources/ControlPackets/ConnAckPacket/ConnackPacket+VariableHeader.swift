@@ -11,22 +11,15 @@ extension ConnAckPacket: VariableHeaderPacket {
     /// CONNACK Variable Header
     struct VariableHeader: HasProperties {
 
-        // MARK: Connect Acknowledge Flags
-
-        /// Connect Acknowledge Flags
+        /// Session Present Flag
         ///
-        /// Byte 1 is the "Connect Acknowledge Flags". Bits 7-1 are reserved and MUST be set to 0
-        /// Bit 0 is the Session Present Flag.
-        let connectAcknowledgeFlags: UInt8
-
-        /// Session Present
-        ///
-        /// Position: bit 0 of the Connect Acknowledge Flags.
-        var sessionPresent: Bool {
-            return (connectAcknowledgeFlags & 1) == 1
-        }
-
-        // MARK: Connect Reason Code
+        /// The Session Present flag informs the Client whether the Server is using Session State
+        /// from a previous connection for this ClientID.
+        /// This allows the Client and Server to have a consistent view of the Session State.
+        /// - Note:
+        ///     Byte 1 of ConnAck Packet is the "Connect Acknowledge Flags".
+        ///     Bit 0 is the Session Present Flag. Bits 7-1 are reserved and MUST be set to 0.
+        let sessionPresentFlag: Bool
 
         /// Connect Reason Code
         let connectReasonCode: ConnectPacket.ReasonCode

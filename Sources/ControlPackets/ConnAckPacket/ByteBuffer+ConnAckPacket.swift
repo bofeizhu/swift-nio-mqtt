@@ -10,4 +10,7 @@ import NIO
 
 extension ByteBuffer {
 
+    mutating func readConnAckPacket(with fixedHeader: FixedHeader) throws -> ConnAckPacket? {
+        return nil
+    }
 }
