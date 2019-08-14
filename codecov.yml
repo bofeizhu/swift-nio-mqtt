@@ -1,3 +1,2 @@
 ignore:
   - "Pods"  # ignore Pods
-  - "Tests" # ignore Tests 
