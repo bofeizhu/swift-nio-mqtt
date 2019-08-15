@@ -10,7 +10,23 @@ import NIO
 
 extension ByteBuffer {
 
-    mutating func readConnAckPacket(with fixedHeader: FixedHeader) throws -> ConnAckPacket? {
-        return nil
+    mutating func readConnAckPacket(with fixedHeader: FixedHeader) throws -> ConnAckPacket {
+
+        guard
+            let sessionPresentFlag = try readBool(),
+            let reasonCodeValue: UInt8 = readInteger(),
+            let reasonCode = ConnectPacket.ReasonCode(rawValue: reasonCodeValue)
+        else {
+            throw MQTTCodingError.malformedPacket
+        }
+
+        let properties = try readProperties()
+
+        let variableHeader = ConnAckPacket.VariableHeader(
+            sessionPresentFlag: sessionPresentFlag,
+            connectReasonCode: reasonCode,
+            properties: properties)
+
+        return ConnAckPacket(fixedHeader: fixedHeader, variableHeader: variableHeader)
     }
 }
