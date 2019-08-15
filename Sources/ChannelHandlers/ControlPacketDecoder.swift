@@ -28,11 +28,9 @@ final class ControlPacketDecoder: ByteToMessageDecoder {
             return .needMoreData
         }
 
-        // Read by packet type
-        switch fixedHeader.type {
-        default:
-            break
-        }
+        // Read Control Packet
+        let controlPacket = try buffer.readControlPacket(with: fixedHeader)
+        context.fireChannelRead(wrapInboundOut(controlPacket))
 
         // Reset fixed header
         self.fixedHeader = nil
