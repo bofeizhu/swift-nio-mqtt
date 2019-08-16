@@ -6,4 +6,18 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-import Foundation
+import NIO
+
+extension ByteBuffer {
+
+    mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
+
+        // MARK: Read variable header
+
+        guard let topicName = readMQTTString() else {
+            throw MQTTCodingError.malformedPacket
+        }
+
+        
+    }
+}
