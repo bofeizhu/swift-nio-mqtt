@@ -26,7 +26,7 @@ struct VInt {
     /// Init with integer value
     ///
     /// - Parameter value: The integer value of the variable byte integer
-    /// - Note: *O(nlog(n))* runtime
+    /// - Complexity: O(*nlog(n)*).
     init(value: UInt) {
         assert(value <= VInt.max, "Value exceeds maximum integer value \(VInt.max)")
 
