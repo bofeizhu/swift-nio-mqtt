@@ -10,14 +10,14 @@ import NIO
 
 extension ByteBuffer {
 
-    mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
-
-        // MARK: Read variable header
-
-        guard let topicName = readMQTTString() else {
-            throw MQTTCodingError.malformedPacket
-        }
-
-        
-    }
+//    mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
+//
+//        // MARK: Read variable header
+//
+//        guard let topicName = readMQTTString() else {
+//            throw MQTTCodingError.malformedPacket
+//        }
+//
+//        
+//    }
 }

@@ -12,9 +12,6 @@
 /// It is the fourth and final packet of the QoS 2 protocol exchange.
 struct PubCompPacket: ControlPacketProtocol {
 
-    // Reserved fixed header flags for PUBCOMP packet
-    static let reservedFlags: FixedHeaderFlags = 0
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 

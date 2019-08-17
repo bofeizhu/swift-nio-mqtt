@@ -16,9 +16,6 @@
 /// which the Server can send Application Messages to the Client.
 struct SubscribePacket: ControlPacketProtocol {
 
-    // Reserved fixed header flags for SUBSCRIBE packet
-    static let reservedFlags: FixedHeaderFlags = 2
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 
