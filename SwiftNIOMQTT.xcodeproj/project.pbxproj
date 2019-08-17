@@ -424,8 +424,8 @@
 			buildPhases = (
 				7F66AD5D994D49A0628F19EA /* [CP] Check Pods Manifest.lock */,
 				057539C722B02AB000DE3B9D /* Headers */,
-				828E488C22E00C2B00E7AD60 /* SwiftLint */,
 				057539C822B02AB000DE3B9D /* Sources */,
+				828E488C22E00C2B00E7AD60 /* SwiftLint */,
 				057539C922B02AB000DE3B9D /* Frameworks */,
 				057539CA22B02AB000DE3B9D /* Resources */,
 			);
