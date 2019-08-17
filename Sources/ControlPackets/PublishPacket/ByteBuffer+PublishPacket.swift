@@ -10,14 +10,44 @@ import NIO
 
 extension ByteBuffer {
 
-//    mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
-//
-//        // MARK: Read variable header
-//
-//        guard let topicName = readMQTTString() else {
-//            throw MQTTCodingError.malformedPacket
-//        }
-//
-//        
-//    }
+    mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
+
+        // MARK: Read variable header
+
+        var variableHeaderLength = 0
+
+        guard let topicName = readMQTTString() else {
+            throw MQTTCodingError.malformedPacket
+        }
+
+        variableHeaderLength += topicName.mqttByteCount
+
+        var packetIdentifier: UInt16?
+
+        switch fixedHeader.flags {
+        case let .publish(_, qos, _):
+            if qos != .level0 {
+                guard let identifier: UInt16 = readInteger() else {
+                    throw MQTTCodingError.malformedPacket
+                }
+                packetIdentifier = identifier
+            }
+        default:
+            throw MQTTCodingError.malformedPacket
+        }
+
+        variableHeaderLength += (packetIdentifier == nil) ? 0 : 2
+
+        let properties = try readProperties()
+
+        variableHeaderLength += properties.mqttByteCount
+
+        let variableHeader = PublishPacket.VariableHeader(
+            topicName: topicName,
+            packetIdentifier: packetIdentifier,
+            properties: properties)
+
+        // MARK: Payload
+        let payloadLength = Int(fixedHeader.remainingLength.value) - variableHeaderLength
+    }
 }

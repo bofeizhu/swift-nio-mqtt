@@ -24,7 +24,7 @@ extension ConnectPacket: VariableHeaderPacket {
         let keepAlive: UInt16
 
         /// Properties
-        let properties: [Property]
+        let properties: PropertyCollection
     }
 
     /// Connect Flags

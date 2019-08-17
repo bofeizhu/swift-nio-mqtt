@@ -26,11 +26,9 @@ struct VInt {
     /// Init with integer value
     ///
     /// - Parameter value: The integer value of the variable byte integer
-    /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
-    init(value: UInt) throws {
-        guard value <= VInt.max else {
-            throw MQTTCodingError.malformedVariableByteInteger
-        }
+    /// - Note: *O(nlog(n))* runtime
+    init(value: UInt) {
+        assert(value <= VInt.max, "Value exceeds maximum integer value \(VInt.max)")
 
         self.value = value
         var remainingValue = value
@@ -83,15 +81,16 @@ struct VInt {
     }
 }
 
-// MARK: Equatable
+// MARK: - Equatable
 
 extension VInt: Equatable {
+
     static func == (lhs: VInt, rhs: VInt) -> Bool {
         return lhs.value == rhs.value && lhs.bytes == rhs.bytes
     }
 }
 
-// MARK: Constants
+// MARK: - Constants
 
 extension VInt {
 
@@ -111,7 +110,7 @@ extension VInt {
     static fileprivate let multiplier: UInt = 128
 }
 
-// MARK: ByteBuffer extensions
+// MARK: - ByteBuffer extensions
 
 extension ByteBuffer {
 
@@ -162,8 +161,12 @@ extension ByteBuffer {
     ///
     /// - Parameter integer: The integer to serialize.
     /// - Returns: The number of bytes written.
+    /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
     @discardableResult
-    mutating func writeVariableByteInteger(_ integer: VInt) -> Int {
+    mutating func writeVariableByteInteger(_ integer: VInt) throws -> Int {
+        guard integer.bytes.count <= 4 else {
+            throw MQTTCodingError.malformedVariableByteInteger
+        }
         return writeBytes(integer.bytes)
     }
 }

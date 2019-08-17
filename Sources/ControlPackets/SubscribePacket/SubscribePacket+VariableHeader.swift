@@ -15,6 +15,6 @@ extension SubscribePacket: VariableHeaderPacket {
         let packetIdentifier: UInt16
 
         /// Properties
-        let properties: [Property]
+        let properties: PropertyCollection
     }
 }

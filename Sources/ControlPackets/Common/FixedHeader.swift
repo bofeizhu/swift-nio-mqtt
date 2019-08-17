@@ -68,8 +68,11 @@ extension ByteBuffer {
     ///
     /// - Parameter fixedHeader: The fixed header to write.
     /// - Returns: The number of bytes written.
-    mutating func write(_ fixedHeader: FixedHeader) -> Int {
+    /// - Throws: A MQTT coding error when fixed header is malformed.
+    mutating func write(_ fixedHeader: FixedHeader) throws -> Int {
         let byte = (fixedHeader.type.rawValue << 4) & fixedHeader.flags.value
-        return writeByte(byte) + writeVariableByteInteger(fixedHeader.remainingLength)
+        var bytesWritten = writeByte(byte)
+        bytesWritten += try writeVariableByteInteger(fixedHeader.remainingLength)
+        return bytesWritten
     }
 }

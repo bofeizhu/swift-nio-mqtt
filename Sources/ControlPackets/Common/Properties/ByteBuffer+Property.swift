@@ -12,10 +12,9 @@ import NIO
 extension ByteBuffer {
 
     @discardableResult
-    mutating func write(_ properties: [Property]) throws -> Int {
-        let byteCount = properties.reduce(0) { $0 + $1.byteCount }
-        let propertyLength = try VInt(value: UInt(byteCount))
-        let propertyLengthByteCount = writeVariableByteInteger(propertyLength)
+    mutating func write(_ properties: PropertyCollection) throws -> Int {
+
+        try writeVariableByteInteger(properties.propertyLength)
 
         for property in properties {
             switch property {
@@ -36,7 +35,7 @@ extension ByteBuffer {
                 try writeMQTTBinaryData(data)
 
             case let .subscriptionIdentifier(identifier):
-                writeVariableByteInteger(identifier)
+                try writeVariableByteInteger(identifier)
 
             case let .sessionExpiryInterval(interval):
                 writeInteger(interval)
@@ -90,10 +89,10 @@ extension ByteBuffer {
             }
         }
 
-        return propertyLengthByteCount + byteCount
+        return properties.mqttByteCount
     }
 
-    mutating func readProperties() throws -> [Property] {
+    mutating func readProperties() throws -> PropertyCollection {
 
         // Get property length in bytes
 
@@ -102,7 +101,7 @@ extension ByteBuffer {
         }
 
         var remainingLength = Int(length.value)
-        var properties: [Property] = []
+        var properties = PropertyCollection()
 
         while remainingLength > 0 {
 
@@ -120,6 +119,7 @@ extension ByteBuffer {
             properties.append(property)
             remainingLength -= property.byteCount
         }
+
         return properties
     }
 

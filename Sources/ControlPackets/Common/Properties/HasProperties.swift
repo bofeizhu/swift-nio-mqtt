@@ -9,7 +9,7 @@
 protocol HasProperties {
 
     /// A sequence of properties
-    var properties: [Property] { get }
+    var properties: PropertyCollection { get }
 
     // TODO: Add valid properties set
 }

@@ -2,7 +2,7 @@
 //  FixedHeaderFlags.swift
 //  NIOMQTT
 //
-//  Created by Bofei Zhu on 7/22/19.
+//  Created by Bofei Zhu on 8/16/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 

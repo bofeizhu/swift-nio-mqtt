@@ -18,6 +18,6 @@ extension PubAckPacket: VariableHeaderPacket {
         let reasonCode: ReasonCode
 
         /// Properties
-        let properties: [Property]
+        let properties: PropertyCollection
     }
 }
