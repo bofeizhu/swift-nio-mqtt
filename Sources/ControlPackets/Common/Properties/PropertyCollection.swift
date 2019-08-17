@@ -68,7 +68,7 @@ extension PropertyCollection: Collection {
     var startIndex: Index { return properties.startIndex }
     var endIndex: Index { return properties.endIndex }
 
-    subscript(index: Index) -> Iterator.Element {
+    subscript(index: Index) -> Element {
         return properties[index]
     }
 
