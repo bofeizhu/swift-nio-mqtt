@@ -47,7 +47,17 @@ extension ByteBuffer {
             packetIdentifier: packetIdentifier,
             properties: properties)
 
-        // MARK: Payload
+        // MARK: Read payload
+
         let payloadLength = Int(fixedHeader.remainingLength.value) - variableHeaderLength
+        guard
+            let payload = readDataPayload(length: payloadLength, isUTF8Encoded: properties.isPayloadUTF8Encoded),
+            let publishPacket = PublishPacket(
+                fixedHeader: fixedHeader,
+                variableHeader: variableHeader,
+                payload: payload)
+        else { throw MQTTCodingError.malformedPacket }
+
+        return publishPacket
     }
 }
