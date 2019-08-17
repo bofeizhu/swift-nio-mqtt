@@ -1,5 +1,5 @@
 //
-//  ByteBufferTests.swift
+//  DataTypesTests.swift
 //  NIOMQTTTests
 //
 //  Created by Bofei Zhu on 7/18/19.
@@ -14,7 +14,7 @@ import NIO
 
 // swiftlint:disable force_try
 
-class ByteBufferTest: XCTestCase {
+class DataTypesTest: XCTestCase {
 
     private let allocator = ByteBufferAllocator()
     private var buffer: ByteBuffer! = nil

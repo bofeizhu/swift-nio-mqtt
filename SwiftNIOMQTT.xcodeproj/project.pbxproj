@@ -61,7 +61,7 @@
 		829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */; };
 		829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */; };
 		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
-		82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTests.swift */; };
+		82B600A122E133E400E1FF7B /* DataTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* DataTypesTests.swift */; };
 		82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,7 +126,7 @@
 		826C9D782305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+ControlPacket.swift"; sourceTree = "<group>"; };
 		826C9D7A2307772A00C7BAF9 /* FixedHeaderFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderFlags.swift; sourceTree = "<group>"; };
 		826C9D7C2307B1B000C7BAF9 /* PropertyCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCollection.swift; sourceTree = "<group>"; };
-		8275557722E0F3620056D3B9 /* ByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTests.swift; sourceTree = "<group>"; };
+		8275557722E0F3620056D3B9 /* DataTypesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypesTests.swift; sourceTree = "<group>"; };
 		8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRecPacket.swift; sourceTree = "<group>"; };
 		8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+ReasonCode.swift"; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				057539DC22B02AB000DE3B9D /* Info.plist */,
-				8275557722E0F3620056D3B9 /* ByteBufferTests.swift */,
+				8275557722E0F3620056D3B9 /* DataTypesTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -652,7 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */,
+				82B600A122E133E400E1FF7B /* DataTypesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
