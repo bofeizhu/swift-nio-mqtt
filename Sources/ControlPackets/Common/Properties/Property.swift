@@ -99,6 +99,8 @@ enum Property {
     case sharedSubscriptionAvailable(Bool)
 }
 
+// MARK: - Byte Count
+
 extension Property {
 
     /// Byte count
@@ -109,10 +111,10 @@ extension Property {
 
         switch self {
         case .payloadFormatIndicator:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case .messageExpiryInterval:
-            count += 4
+            count += Property.fourByteIntegerByteCount
 
         case let .contentType(type):
             count += type.mqttByteCount
@@ -127,13 +129,13 @@ extension Property {
             count += identifier.bytes.count
 
         case .sessionExpiryInterval:
-            count += 4
+            count += Property.fourByteIntegerByteCount
 
         case let .assignedClientIdentifier(identifier):
             count += identifier.mqttByteCount
 
         case .serverKeepAlive:
-            count += 2
+            count += Property.twoByteIntegerByteCount
 
         case let .authenticationMethod(method):
             count += method.mqttByteCount
@@ -142,13 +144,13 @@ extension Property {
             count += data.mqttByteCount
 
         case .requestProblemInformation:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case .willDelayInterval:
-            count += 4
+            count += Property.fourByteIntegerByteCount
 
         case .requestResponseInformation:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case let .responseInformation(information):
             count += information.mqttByteCount
@@ -160,35 +162,46 @@ extension Property {
             count += string.mqttByteCount
 
         case .receiveMaximum:
-            count += 2
+            count += Property.twoByteIntegerByteCount
 
         case .topicAliasMaximum:
-            count += 2
+            count += Property.twoByteIntegerByteCount
 
         case .topicAlias:
-            count += 2
+            count += Property.twoByteIntegerByteCount
 
         case .maximumQoS:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case .retainAvailable:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case let .userProperty(property):
             count += property.mqttByteCount
 
         case .maximumPacketSize:
-            count += 4
+            count += Property.fourByteIntegerByteCount
 
         case .wildcardSubscriptionAvailable:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case .subscriptionIdentifierAvailable:
-            count += 1
+            count += Property.byteTypeByteCount
 
         case .sharedSubscriptionAvailable:
-            count += 1
+            count += Property.byteTypeByteCount
         }
         return count
     }
+}
+
+// MARK: - Constants
+
+extension Property {
+
+    static let byteTypeByteCount = 1
+
+    static let twoByteIntegerByteCount = 2
+
+    static let fourByteIntegerByteCount = 4
 }
