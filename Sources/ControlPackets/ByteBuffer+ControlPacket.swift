@@ -12,9 +12,11 @@ extension ByteBuffer {
 
     mutating func readControlPacket(with fixedHeader: FixedHeader) throws -> ControlPacket {
         switch fixedHeader.type {
+
         case .connAck:
             let packet = try readConnAckPacket(with: fixedHeader)
             return .connAck(packet: packet)
+
         default:
             throw MQTTCodingError.malformedPacket
         }
