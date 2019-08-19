@@ -32,13 +32,14 @@ struct PublishPacket: PayloadPacket {
 
     init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: DataPayload) {
 
-        let qosValue = (fixedHeader.flags >> 1) & 0b11
-        guard let qos = QoS(rawValue: qosValue) else {
+        switch fixedHeader.flags {
+        case let .publish(dup, qos, retain):
+            self.dup = dup
+            self.qos = qos
+            self.retain = retain
+        default:
             return nil
         }
-        self.qos = qos
-        dup = ((fixedHeader.flags >> 3) & 1) == 1
-        retain = (fixedHeader.flags & 1) == 1
 
         self.fixedHeader = fixedHeader
         self.variableHeader = variableHeader

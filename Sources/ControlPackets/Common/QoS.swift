@@ -12,11 +12,11 @@
 public enum QoS: UInt8 {
 
     /// At most once delivery
-    case atMostOnce = 0
+    case level0 = 0
 
     /// At least once delivery
-    case atLeastOnce
+    case level1
 
     /// Exactly once delivery
-    case exactlyOnce
+    case level2
 }

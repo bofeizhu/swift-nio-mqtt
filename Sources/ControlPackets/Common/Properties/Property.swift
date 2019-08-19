@@ -99,6 +99,8 @@ enum Property {
     case sharedSubscriptionAvailable(Bool)
 }
 
+// MARK: - Byte Count
+
 extension Property {
 
     /// Byte count
@@ -106,61 +108,88 @@ extension Property {
     /// - Important: Byte count includes the identifier byte.
     var byteCount: Int {
         var count = 1
+
         switch self {
         case .payloadFormatIndicator:
-            count += 1
+            count += UInt8.byteCount
+
         case .messageExpiryInterval:
-            count += 4
+            count += UInt32.byteCount
+
         case let .contentType(type):
             count += type.mqttByteCount
+
         case let .responseTopic(topic):
             count += topic.mqttByteCount
+
         case let .correlationData(data):
             count += data.mqttByteCount
+
         case let .subscriptionIdentifier(identifier):
             count += identifier.bytes.count
+
         case .sessionExpiryInterval:
-            count += 4
+            count += UInt32.byteCount
+
         case let .assignedClientIdentifier(identifier):
             count += identifier.mqttByteCount
+
         case .serverKeepAlive:
-            count += 2
+            count += UInt16.byteCount
+
         case let .authenticationMethod(method):
             count += method.mqttByteCount
+
         case let .authenticationData(data):
             count += data.mqttByteCount
+
         case .requestProblemInformation:
-            count += 1
+            count += UInt8.byteCount
+
         case .willDelayInterval:
-            count += 4
+            count += UInt32.byteCount
+
         case .requestResponseInformation:
-            count += 1
+            count += UInt8.byteCount
+
         case let .responseInformation(information):
             count += information.mqttByteCount
+
         case let .serverReference(reference):
             count += reference.mqttByteCount
+
         case let .reasonString(string):
             count += string.mqttByteCount
+
         case .receiveMaximum:
-            count += 2
+            count += UInt16.byteCount
+
         case .topicAliasMaximum:
-            count += 2
+            count += UInt16.byteCount
+
         case .topicAlias:
-            count += 2
+            count += UInt16.byteCount
+
         case .maximumQoS:
-            count += 1
+            count += UInt8.byteCount
+
         case .retainAvailable:
-            count += 1
+            count += UInt8.byteCount
+
         case let .userProperty(property):
             count += property.mqttByteCount
+
         case .maximumPacketSize:
-            count += 4
+            count += UInt32.byteCount
+
         case .wildcardSubscriptionAvailable:
-            count += 1
+            count += UInt8.byteCount
+
         case .subscriptionIdentifierAvailable:
-            count += 1
+            count += UInt8.byteCount
+
         case .sharedSubscriptionAvailable:
-            count += 1
+            count += UInt8.byteCount
         }
         return count
     }

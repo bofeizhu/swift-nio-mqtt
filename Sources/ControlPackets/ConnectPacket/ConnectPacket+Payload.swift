@@ -38,7 +38,7 @@ extension ConnectPacket: PayloadPacket {
     struct WillMessage {
 
         /// Properties
-        let properties: [Property]
+        let properties: PropertyCollection
 
         /// Topic
         let topic: String

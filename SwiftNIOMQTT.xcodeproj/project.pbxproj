@@ -48,6 +48,11 @@
 		822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */; };
 		822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */; };
 		822FDADE22EE604200631F39 /* PubRelPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */; };
+		826C9D792305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C9D782305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift */; };
+		826C9D7B2307772A00C7BAF9 /* FixedHeaderFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C9D7A2307772A00C7BAF9 /* FixedHeaderFlags.swift */; };
+		826C9D7D2307B1B000C7BAF9 /* PropertyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C9D7C2307B1B000C7BAF9 /* PropertyCollection.swift */; };
+		826C9D7F2308AEAF00C7BAF9 /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C9D7E2308AEAE00C7BAF9 /* PropertyTests.swift */; };
+		826C9D812308AFBD00C7BAF9 /* DataTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C9D802308AFBD00C7BAF9 /* DataTypesTests.swift */; };
 		8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */; };
 		8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */; };
 		8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */; };
@@ -57,8 +62,9 @@
 		829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BA22EE6F480026F421 /* SubscribePacket.swift */; };
 		829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */; };
 		829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */; };
+		82A71E45230A6EE90084EDC6 /* UInt+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */; };
 		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
-		82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTests.swift */; };
+		82B600A122E133E400E1FF7B /* ByteBufferTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTestCase.swift */; };
 		82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +126,12 @@
 		822A21B222E57CEB00FC348C /* ConnackPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnackPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		822FDADB22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubRelPacket+ReasonCode.swift"; sourceTree = "<group>"; };
 		822FDADD22EE604200631F39 /* PubRelPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubRelPacket+VariableHeader.swift"; sourceTree = "<group>"; };
-		8275557722E0F3620056D3B9 /* ByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTests.swift; sourceTree = "<group>"; };
+		826C9D782305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+ControlPacket.swift"; sourceTree = "<group>"; };
+		826C9D7A2307772A00C7BAF9 /* FixedHeaderFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderFlags.swift; sourceTree = "<group>"; };
+		826C9D7C2307B1B000C7BAF9 /* PropertyCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCollection.swift; sourceTree = "<group>"; };
+		826C9D7E2308AEAE00C7BAF9 /* PropertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
+		826C9D802308AFBD00C7BAF9 /* DataTypesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypesTests.swift; sourceTree = "<group>"; };
+		8275557722E0F3620056D3B9 /* ByteBufferTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBufferTestCase.swift; sourceTree = "<group>"; };
 		8284EF9C22ED7BFB0063A72C /* PubRecPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRecPacket.swift; sourceTree = "<group>"; };
 		8284EFA222EE115A0063A72C /* PubRecPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		8284EFA622EE15460063A72C /* PubRecPacket+ReasonCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PubRecPacket+ReasonCode.swift"; sourceTree = "<group>"; };
@@ -130,6 +141,7 @@
 		829C82BA22EE6F480026F421 /* SubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribePacket.swift; sourceTree = "<group>"; };
 		829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+Payload.swift"; sourceTree = "<group>"; };
+		82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt+Additions.swift"; sourceTree = "<group>"; };
 		82ADF74722EE519200FB3D92 /* PubRelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRelPacket.swift; sourceTree = "<group>"; };
 		82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPacketDecoder.swift; sourceTree = "<group>"; };
 		88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,7 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				057539DC22B02AB000DE3B9D /* Info.plist */,
-				8275557722E0F3620056D3B9 /* ByteBufferTests.swift */,
+				8275557722E0F3620056D3B9 /* ByteBufferTestCase.swift */,
+				826C9D802308AFBD00C7BAF9 /* DataTypesTests.swift */,
+				826C9D7E2308AEAE00C7BAF9 /* PropertyTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -205,6 +219,7 @@
 		05DD149922B2CF5C001D33A3 /* ControlPackets */ = {
 			isa = PBXGroup;
 			children = (
+				826C9D782305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift */,
 				05F1982822E6CEFE006E3E37 /* ControlPacket.swift */,
 				05F1982622E6CE29006E3E37 /* ControlPacketProtocol.swift */,
 				05F1981322E634D7006E3E37 /* ControlPacketType.swift */,
@@ -229,6 +244,7 @@
 				056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */,
 				057C30B723020B4A0064E71D /* Data+Additions.swift */,
 				057C30B5230209820064E71D /* String+Additions.swift */,
+				82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */,
 				056A221322B85226000500C1 /* StringPair.swift */,
 				05DD149D22B2EDCF001D33A3 /* VInt.swift */,
 			);
@@ -250,6 +266,7 @@
 			children = (
 				05F1981B22E653D7006E3E37 /* DataPayload.swift */,
 				0533EBD822B8658E00500255 /* FixedHeader.swift */,
+				826C9D7A2307772A00C7BAF9 /* FixedHeaderFlags.swift */,
 				05F1980F22E63463006E3E37 /* QoS.swift */,
 				822A21A222E51F9000FC348C /* Properties */,
 			);
@@ -309,6 +326,7 @@
 				05A290242301416C0046E952 /* ByteBuffer+Property.swift */,
 				822A21A522E5221C00FC348C /* HasProperties.swift */,
 				0533EBE222B987C900500255 /* Property.swift */,
+				826C9D7C2307B1B000C7BAF9 /* PropertyCollection.swift */,
 				822A21A922E5230400FC348C /* PropertyIdentifier.swift */,
 			);
 			path = Properties;
@@ -468,6 +486,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 057539C222B02AB000DE3B9D;
 			productRefGroup = 057539CD22B02AB000DE3B9D /* Products */;
@@ -605,6 +624,7 @@
 				056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */,
 				057C30B6230209820064E71D /* String+Additions.swift in Sources */,
 				0533EBE522BC18E400500255 /* PingReqPacket.swift in Sources */,
+				826C9D7B2307772A00C7BAF9 /* FixedHeaderFlags.swift in Sources */,
 				05F1981C22E653D7006E3E37 /* DataPayload.swift in Sources */,
 				0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */,
 				822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */,
@@ -615,7 +635,10 @@
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
 				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
+				826C9D792305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift in Sources */,
 				05F1982322E690FF006E3E37 /* PubAckPacket+VariableHeader.swift in Sources */,
+				82A71E45230A6EE90084EDC6 /* UInt+Additions.swift in Sources */,
+				826C9D7D2307B1B000C7BAF9 /* PropertyCollection.swift in Sources */,
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
 				829C82B722EE68DA0026F421 /* PubCompPacket+ReasonCode.swift in Sources */,
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
@@ -640,7 +663,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82B600A122E133E400E1FF7B /* ByteBufferTests.swift in Sources */,
+				82B600A122E133E400E1FF7B /* ByteBufferTestCase.swift in Sources */,
+				826C9D7F2308AEAF00C7BAF9 /* PropertyTests.swift in Sources */,
+				826C9D812308AFBD00C7BAF9 /* DataTypesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,7 +808,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -798,6 +823,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthtap.SwiftNIOMQTT;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -811,7 +837,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -826,6 +852,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthtap.SwiftNIOMQTT;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -838,8 +865,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 768E3BS5GQ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -860,8 +887,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 768E3BS5GQ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

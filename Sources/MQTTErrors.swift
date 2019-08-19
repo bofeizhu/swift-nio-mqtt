@@ -18,4 +18,6 @@ enum MQTTCodingError: Error {
     case utf8StringTooLong
 
     case binaryDataTooLong
+
+    case payloadFormatInvaild
 }

@@ -18,6 +18,6 @@ extension PubRecPacket: VariableHeaderPacket {
         let reasonCode: ReasonCode
 
         /// Properties
-        let properties: [Property]
+        let properties: PropertyCollection
     }
 }

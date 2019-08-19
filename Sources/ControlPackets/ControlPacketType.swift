@@ -64,11 +64,14 @@ enum ControlPacketType: UInt8 {
 
     func validate(_ flags: FixedHeaderFlags) -> Bool {
         switch self {
-        case .connect:
-            return flags == ConnectPacket.reservedFlags
-        default:
-            // TODO: Fill the missing cases
+        case .publish:
+            return true
+
+        case .reserved:
             return false
+
+        default:
+            return FixedHeaderFlags.reservedFlagsValue(of: self) == flags.value
         }
     }
 }

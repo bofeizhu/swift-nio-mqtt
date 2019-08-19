@@ -27,6 +27,6 @@ extension ConnAckPacket: VariableHeaderPacket {
         // MARK: Properties
 
         /// Properties
-        let properties: [Property]
+        let properties: PropertyCollection
     }
 }

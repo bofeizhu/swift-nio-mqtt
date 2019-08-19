@@ -12,9 +12,6 @@
 /// It indicates that the Server is alive.
 struct PingRespPacket: ControlPacketProtocol {
 
-    /// Reserved fixed header flags for PINGRESP packet
-    static let reservedFlags: FixedHeaderFlags = 0
-
     /// The fixed header for PINGRESP packet
     let fixedHeader: FixedHeader
 }

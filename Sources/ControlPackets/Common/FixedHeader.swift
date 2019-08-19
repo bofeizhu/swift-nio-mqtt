@@ -8,9 +8,6 @@
 
 import NIO
 
-/// The last four bits in the Fixed Header contain flags specific to each MQTT Control Packet type.
-typealias FixedHeaderFlags = UInt8
-
 /// MQTT Control Packet Fixed Header
 struct FixedHeader {
 
@@ -45,9 +42,8 @@ extension ByteBuffer {
             let remainingLength = try getVariableByteInteger(at: index + 1)
         else { return nil }
 
-        let flags = headerByte & 0xF
-
         if let type = ControlPacketType(rawValue: headerByte >> 4),
+           let flags = FixedHeaderFlags(type: type, value: headerByte & 0xF),
            type.validate(flags) {
             return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
         } else {
@@ -72,8 +68,11 @@ extension ByteBuffer {
     ///
     /// - Parameter fixedHeader: The fixed header to write.
     /// - Returns: The number of bytes written.
-    mutating func write(_ fixedHeader: FixedHeader) -> Int {
-        let byte = (fixedHeader.type.rawValue << 4) & fixedHeader.flags
-        return writeByte(byte) + writeVariableByteInteger(fixedHeader.remainingLength)
+    /// - Throws: A MQTT coding error when fixed header is malformed.
+    mutating func write(_ fixedHeader: FixedHeader) throws -> Int {
+        let byte = (fixedHeader.type.rawValue << 4) & fixedHeader.flags.value
+        var bytesWritten = writeByte(byte)
+        bytesWritten += try writeVariableByteInteger(fixedHeader.remainingLength)
+        return bytesWritten
     }
 }

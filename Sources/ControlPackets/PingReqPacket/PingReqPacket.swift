@@ -18,9 +18,6 @@
 ///     * Exercise the network to indicate that the Network Connection is active.
 struct PingReqPacket: ControlPacketProtocol {
 
-    /// Reserved fixed header flags for PINGREQ packet
-    static let reservedFlags: FixedHeaderFlags = 0
-
     /// The fixed header for PINGREQ packet
     let fixedHeader: FixedHeader
 }
