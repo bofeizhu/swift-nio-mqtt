@@ -24,8 +24,6 @@ extension ConnAckPacket: VariableHeaderPacket {
         /// Connect Reason Code
         let connectReasonCode: ConnectPacket.ReasonCode
 
-        // MARK: Properties
-
         /// Properties
         let properties: PropertyCollection
     }
