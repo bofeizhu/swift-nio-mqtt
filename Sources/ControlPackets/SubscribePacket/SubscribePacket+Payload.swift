@@ -16,6 +16,8 @@ extension SubscribePacket: PayloadPacket {
         /// Topic Filter List
         ///
         /// A list of Topic Filters indicating the Topics to which the Client wants to subscribe
+        /// - Important: The Payload MUST contain at least one Topic Filter and Subscription Options pair.
+        ///     A SUBSCRIBE packet with no Payload is a Protocol Error. 
         let topicFilters: [TopicFilter]
     }
 

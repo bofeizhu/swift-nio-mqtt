@@ -43,6 +43,11 @@
 		05F52186230B5D97005CE1BF /* SubAckPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52185230B5D97005CE1BF /* SubAckPacket+Payload.swift */; };
 		05F52188230B5DA6005CE1BF /* SubAckPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52187230B5DA6005CE1BF /* SubAckPacket+VariableHeader.swift */; };
 		05F5218A230B60AA005CE1BF /* SubAckPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52189230B60AA005CE1BF /* SubAckPacket+ReasonCode.swift */; };
+		05F5218D230B6ACF005CE1BF /* UnsubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F5218C230B6ACF005CE1BF /* UnsubscribePacket.swift */; };
+		05F5218F230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F5218E230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift */; };
+		05F52191230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52190230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift */; };
+		05F52194230B6CB3005CE1BF /* SubscribePacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52192230B6CB3005CE1BF /* SubscribePacket+Payload.swift */; };
+		05F52195230B6CB3005CE1BF /* SubscribePacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52193230B6CB3005CE1BF /* SubscribePacket+VariableHeader.swift */; };
 		6BD6D9D699B613EC95C77BD7 /* Pods_NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */; };
 		77C0490D2D3B768A09454CA9 /* Pods_NIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */; };
 		822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */; };
@@ -64,8 +69,6 @@
 		829C82B722EE68DA0026F421 /* PubCompPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82B522EE68D00026F421 /* PubCompPacket+ReasonCode.swift */; };
 		829C82B822EE68DD0026F421 /* PubCompPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82B322EE68D00026F421 /* PubCompPacket+VariableHeader.swift */; };
 		829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BA22EE6F480026F421 /* SubscribePacket.swift */; };
-		829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */; };
-		829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */; };
 		82A71E45230A6EE90084EDC6 /* UInt+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */; };
 		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTestCase.swift */; };
@@ -122,6 +125,11 @@
 		05F52185230B5D97005CE1BF /* SubAckPacket+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubAckPacket+Payload.swift"; sourceTree = "<group>"; };
 		05F52187230B5DA6005CE1BF /* SubAckPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubAckPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		05F52189230B60AA005CE1BF /* SubAckPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubAckPacket+ReasonCode.swift"; sourceTree = "<group>"; };
+		05F5218C230B6ACF005CE1BF /* UnsubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubscribePacket.swift; sourceTree = "<group>"; };
+		05F5218E230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsubscribePacketPacket+Payload.swift"; sourceTree = "<group>"; };
+		05F52190230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsubscribePacketPacket+VariableHeader.swift"; sourceTree = "<group>"; };
+		05F52192230B6CB3005CE1BF /* SubscribePacket+Payload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+Payload.swift"; sourceTree = "<group>"; };
+		05F52193230B6CB3005CE1BF /* SubscribePacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		0BD3180A009A1BE7C5BE02B3 /* Pods-SwiftNIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
 		1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		276633216507771EE9D29816 /* Pods-SwiftNIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,8 +155,6 @@
 		829C82B422EE68D00026F421 /* PubCompPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubCompPacket.swift; sourceTree = "<group>"; };
 		829C82B522EE68D00026F421 /* PubCompPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PubCompPacket+ReasonCode.swift"; sourceTree = "<group>"; };
 		829C82BA22EE6F480026F421 /* SubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribePacket.swift; sourceTree = "<group>"; };
-		829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+VariableHeader.swift"; sourceTree = "<group>"; };
-		829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribePacket+Payload.swift"; sourceTree = "<group>"; };
 		82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt+Additions.swift"; sourceTree = "<group>"; };
 		82ADF74722EE519200FB3D92 /* PubRelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRelPacket.swift; sourceTree = "<group>"; };
 		82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPacketDecoder.swift; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 				82ADF74422EE504600FB3D92 /* PubRelPacket */,
 				05F52182230B5CC0005CE1BF /* SubAckPacket */,
 				829C82B922EE6F2F0026F421 /* SubscribePacket */,
+				05F5218B230B6A6D005CE1BF /* UnsubscribePacket */,
 			);
 			path = ControlPackets;
 			sourceTree = "<group>";
@@ -320,6 +327,16 @@
 			path = SubAckPacket;
 			sourceTree = "<group>";
 		};
+		05F5218B230B6A6D005CE1BF /* UnsubscribePacket */ = {
+			isa = PBXGroup;
+			children = (
+				05F5218C230B6ACF005CE1BF /* UnsubscribePacket.swift */,
+				05F5218E230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift */,
+				05F52190230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift */,
+			);
+			path = UnsubscribePacket;
+			sourceTree = "<group>";
+		};
 		42428F38786FBEF5A79EFA9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,8 +405,8 @@
 			isa = PBXGroup;
 			children = (
 				829C82BA22EE6F480026F421 /* SubscribePacket.swift */,
-				829C82BE22EECAFB0026F421 /* SubscribePacket+Payload.swift */,
-				829C82BC22EECA440026F421 /* SubscribePacket+VariableHeader.swift */,
+				05F52192230B6CB3005CE1BF /* SubscribePacket+Payload.swift */,
+				05F52193230B6CB3005CE1BF /* SubscribePacket+VariableHeader.swift */,
 			);
 			path = SubscribePacket;
 			sourceTree = "<group>";
@@ -625,10 +642,10 @@
 			files = (
 				0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */,
 				057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */,
+				05F52191230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift in Sources */,
 				8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */,
 				05F1981422E634D7006E3E37 /* ControlPacketType.swift in Sources */,
 				056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */,
-				829C82BD22EECA440026F421 /* SubscribePacket+VariableHeader.swift in Sources */,
 				057C30C82304D3910064E71D /* ByteBuffer+PubCompPacket.swift in Sources */,
 				05F1982122E66415006E3E37 /* PubAckPacket.swift in Sources */,
 				829C82B822EE68DD0026F421 /* PubCompPacket+VariableHeader.swift in Sources */,
@@ -648,6 +665,7 @@
 				826C9D7B2307772A00C7BAF9 /* FixedHeaderFlags.swift in Sources */,
 				05F1981C22E653D7006E3E37 /* DataPayload.swift in Sources */,
 				0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */,
+				05F52194230B6CB3005CE1BF /* SubscribePacket+Payload.swift in Sources */,
 				822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */,
 				05F52186230B5D97005CE1BF /* SubAckPacket+Payload.swift in Sources */,
 				05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */,
@@ -658,6 +676,7 @@
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
 				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
 				826C9D792305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift in Sources */,
+				05F5218F230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift in Sources */,
 				05F1982322E690FF006E3E37 /* PubAckPacket+VariableHeader.swift in Sources */,
 				82A71E45230A6EE90084EDC6 /* UInt+Additions.swift in Sources */,
 				05F52188230B5DA6005CE1BF /* SubAckPacket+VariableHeader.swift in Sources */,
@@ -668,6 +687,7 @@
 				8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */,
 				829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */,
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
+				05F5218D230B6ACF005CE1BF /* UnsubscribePacket.swift in Sources */,
 				057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
@@ -678,8 +698,8 @@
 				0533EBE722BC3E8B00500255 /* PingRespPacket.swift in Sources */,
 				05F1981022E63463006E3E37 /* QoS.swift in Sources */,
 				057C30C22304D3240064E71D /* ByteBuffer+PubAckPacket.swift in Sources */,
-				829C82BF22EECAFB0026F421 /* SubscribePacket+Payload.swift in Sources */,
 				822FDADC22EE5FA900631F39 /* PubRelPacket+ReasonCode.swift in Sources */,
+				05F52195230B6CB3005CE1BF /* SubscribePacket+VariableHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
