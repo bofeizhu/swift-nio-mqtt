@@ -21,25 +21,25 @@ enum ControlPacket {
     case pubAck(packet: PubAckPacket)
 
     /// Publish received (QoS 2 delivery part 1)
-    case pubRec
+    case pubRec(packet: PubRecPacket)
 
     /// Publish release (QoS 2 delivery part 2)
-    case pubRel
+    case pubRel(packet: PubRelPacket)
 
     /// Publish complete (QoS 2 delivery part 3)
-    case pubComp
+    case pubComp(packet: PubCompPacket)
 
     /// Subscribe request
-    case subscribe
+    case subscribe(packet: SubscribePacket)
 
     /// Subscribe acknowledgment
-    case subAck
+    case subAck(packet: SubAckPacket)
 
     /// Unsubscribe request
-    case unsubscribe
+    case unsubscribe(packet: UnsubscribePacket)
 
     /// Unsubscribe acknowledgment
-    case unsubAck
+    case unsubAck(packet: UnsubAckPacket)
 
     /// PING request
     case pingReq(packet: PingReqPacket)
@@ -48,10 +48,10 @@ enum ControlPacket {
     case pingResp(packet: PingRespPacket)
 
     /// Disconnect notification
-    case disconnect
+    case disconnect(packet: DisconnectPacket)
 
     /// Authentication exchange
-    case auth
+    case auth(packet: AuthPacket)
 }
 
 // MARK: - MQTT Control Packet Typealias
