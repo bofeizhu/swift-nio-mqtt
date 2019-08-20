@@ -11,37 +11,30 @@ extension UnsubAckPacket {
     /// SUBACK Reason Code
     enum ReasonCode: ReasonCodeValue {
 
-        /// Granted QoS 0
+        /// Success
         ///
-        /// The subscription is accepted and the maximum QoS sent will be QoS 0.
-        /// This might be a lower QoS than was requested.
-        case grantedQoS0 = 0
+        /// The subscription is deleted.
+        case success = 0
 
-        /// Granted QoS 1
+        /// No Subscription Existed
         ///
-        /// The subscription is accepted and the maximum QoS sent will be QoS 1.
-        /// This might be a lower QoS than was requested.
-        case grantedQoS1 = 1
-
-        /// Granted QoS 2
-        ///
-        /// The subscription is accepted and any received QoS will be sent to this subscription.
-        case grantedQoS2 = 2
+        /// No matching Topic Filter is being used by the Client.
+        case noSubscriptionExisted = 17
 
         /// Unspecified error
         ///
-        /// The subscription is not accepted and the Server either does not wish to reveal the reason
+        /// The unsubscribe could not be completed and the Server either does not wish to reveal the reason
         /// or none of the other Reason Codes apply.
         case unspecifiedError = 128
 
         /// Implementation Specific Error
         ///
-        /// The SUBSCRIBE is valid but the Server does not accept it.
+        /// The UNSUBSCRIBE is valid but the Server does not accept it.
         case implementationSpecificError = 131
 
         /// Not Authorized
         ///
-        /// The Client is not authorized to make this subscription.
+        /// The Client is not authorized to unsubscribe.
         case notAuthorized = 135
 
         /// Topic Filter Invalid
@@ -53,25 +46,5 @@ extension UnsubAckPacket {
         ///
         /// The specified Packet Identifier is already in use.
         case packetIdentifierInUse = 145
-
-        /// Quota Exceeded
-        ///
-        /// An implementation or administrative imposed limit has been exceeded.
-        case quotaExceeded = 151
-
-        /// Shared Subscriptions Not Supported
-        ///
-        /// The Server does not support Shared Subscriptions for this Client.
-        case sharedSubscriptionsNotSupported = 158
-
-        /// Subscription Identifiers Not Supported
-        ///
-        /// The Server does not support Subscription
-        case subscriptionIdentifiersNotSupported = 161
-
-        /// Wildcard Subscriptions Not Supported
-        ///
-        /// The Server does not support Wildcard Subscriptions; the subscription is not accepted.
-        case wildcardSubscriptionsNotSupported = 162
     }
 }

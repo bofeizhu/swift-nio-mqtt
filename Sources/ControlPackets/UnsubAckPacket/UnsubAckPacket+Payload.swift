@@ -10,5 +10,12 @@ extension UnsubAckPacket {
 
     struct Payload {
 
+        /// Reason Codes
+        ///
+        /// A list of Reason Codes. Each Reason Code corresponds to a Topic Filter in the UNSUBSCRIBE packet
+        /// being acknowledged.
+        /// - Important: The order of Reason Codes in the UNSUBACK packet **MUST** match
+        ///     the order of Topic Filters in the UNSUBSCRIBE packet
+        let reasonCodes: [ReasonCode]
     }
 }
