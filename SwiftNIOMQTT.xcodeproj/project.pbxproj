@@ -77,6 +77,9 @@
 		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTestCase.swift */; };
 		82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */; };
+		82E52B6B230C4C0F00D58DE2 /* DisconnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */; };
+		82E52B6D230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */; };
+		82E52B6F230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6E230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +169,9 @@
 		82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt+Additions.swift"; sourceTree = "<group>"; };
 		82ADF74722EE519200FB3D92 /* PubRelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRelPacket.swift; sourceTree = "<group>"; };
 		82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPacketDecoder.swift; sourceTree = "<group>"; };
+		82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectPacket.swift; sourceTree = "<group>"; };
+		82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisconnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
+		82E52B6E230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisconnectPacket+ReasonCode.swift"; sourceTree = "<group>"; };
 		88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B76751CF124B5E5C69608E /* Pods-NIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +254,7 @@
 				05F1980E22E63397006E3E37 /* Common */,
 				822A21AF22E57CCA00FC348C /* ConnAckPacket */,
 				822A219D22E51C2100FC348C /* ConnectPacket */,
+				82E52B69230C4BDF00D58DE2 /* DisconnectPacket */,
 				05F1981122E63498006E3E37 /* PingReqPacket */,
 				05F1981222E634A5006E3E37 /* PingRespPacket */,
 				05F1981D22E65F69006E3E37 /* PubAckPacket */,
@@ -448,6 +455,16 @@
 				82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */,
 			);
 			path = ChannelHandlers;
+			sourceTree = "<group>";
+		};
+		82E52B69230C4BDF00D58DE2 /* DisconnectPacket */ = {
+			isa = PBXGroup;
+			children = (
+				82E52B6E230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift */,
+				82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */,
+				82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */,
+			);
+			path = DisconnectPacket;
 			sourceTree = "<group>";
 		};
 		FBC83BDC411A9E0EB0B3B4E8 /* Pods */ = {
@@ -661,7 +678,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F52198230B757F005CE1BF /* UnsubAckPacket.swift in Sources */,
+				82E52B6F230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift in Sources */,
 				0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */,
+				82E52B6D230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift in Sources */,
 				057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */,
 				05F52191230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift in Sources */,
 				8284EFA322EE115A0063A72C /* PubRecPacket+VariableHeader.swift in Sources */,
@@ -678,6 +697,7 @@
 				05F1982922E6CEFE006E3E37 /* ControlPacket.swift in Sources */,
 				057C30C02304D3090064E71D /* ByteBuffer+PublishPacket.swift in Sources */,
 				057C30BE2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift in Sources */,
+				82E52B6B230C4C0F00D58DE2 /* DisconnectPacket.swift in Sources */,
 				0533EBE322B987C900500255 /* Property.swift in Sources */,
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
 				82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */,
