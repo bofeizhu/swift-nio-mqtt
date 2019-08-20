@@ -6,8 +6,6 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-import struct Foundation.Data
-
 extension UnsubscribePacket: PayloadPacket {
 
     /// UNSUBSCRIBE Packet Payload
