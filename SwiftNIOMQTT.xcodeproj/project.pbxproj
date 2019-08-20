@@ -80,6 +80,9 @@
 		82E52B6B230C4C0F00D58DE2 /* DisconnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */; };
 		82E52B6D230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */; };
 		82E52B6F230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6E230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift */; };
+		82E52B72230C797200D58DE2 /* AuthPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B71230C797200D58DE2 /* AuthPacket.swift */; };
+		82E52B74230C79B000D58DE2 /* AuthPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B73230C79B000D58DE2 /* AuthPacket+VariableHeader.swift */; };
+		82E52B76230C7A3D00D58DE2 /* AuthPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B75230C7A3D00D58DE2 /* AuthPacket+ReasonCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,9 @@
 		82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectPacket.swift; sourceTree = "<group>"; };
 		82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisconnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		82E52B6E230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisconnectPacket+ReasonCode.swift"; sourceTree = "<group>"; };
+		82E52B71230C797200D58DE2 /* AuthPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPacket.swift; sourceTree = "<group>"; };
+		82E52B73230C79B000D58DE2 /* AuthPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthPacket+VariableHeader.swift"; sourceTree = "<group>"; };
+		82E52B75230C7A3D00D58DE2 /* AuthPacket+ReasonCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthPacket+ReasonCode.swift"; sourceTree = "<group>"; };
 		88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B76751CF124B5E5C69608E /* Pods-NIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 				05F1982822E6CEFE006E3E37 /* ControlPacket.swift */,
 				05F1982622E6CE29006E3E37 /* ControlPacketProtocol.swift */,
 				05F1981322E634D7006E3E37 /* ControlPacketType.swift */,
+				82E52B70230C795400D58DE2 /* AuthPacket */,
 				05F1980E22E63397006E3E37 /* Common */,
 				822A21AF22E57CCA00FC348C /* ConnAckPacket */,
 				822A219D22E51C2100FC348C /* ConnectPacket */,
@@ -467,6 +474,16 @@
 			path = DisconnectPacket;
 			sourceTree = "<group>";
 		};
+		82E52B70230C795400D58DE2 /* AuthPacket */ = {
+			isa = PBXGroup;
+			children = (
+				82E52B75230C7A3D00D58DE2 /* AuthPacket+ReasonCode.swift */,
+				82E52B71230C797200D58DE2 /* AuthPacket.swift */,
+				82E52B73230C79B000D58DE2 /* AuthPacket+VariableHeader.swift */,
+			);
+			path = AuthPacket;
+			sourceTree = "<group>";
+		};
 		FBC83BDC411A9E0EB0B3B4E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +696,7 @@
 			files = (
 				05F52198230B757F005CE1BF /* UnsubAckPacket.swift in Sources */,
 				82E52B6F230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift in Sources */,
+				82E52B74230C79B000D58DE2 /* AuthPacket+VariableHeader.swift in Sources */,
 				0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */,
 				82E52B6D230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift in Sources */,
 				057C30B823020B4A0064E71D /* Data+Additions.swift in Sources */,
@@ -718,12 +736,14 @@
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,
 				057539E722B02B4400DE3B9D /* NIOMQTT.swift in Sources */,
 				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
+				82E52B72230C797200D58DE2 /* AuthPacket.swift in Sources */,
 				826C9D792305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift in Sources */,
 				05F5218F230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift in Sources */,
 				05F1982322E690FF006E3E37 /* PubAckPacket+VariableHeader.swift in Sources */,
 				82A71E45230A6EE90084EDC6 /* UInt+Additions.swift in Sources */,
 				05F52188230B5DA6005CE1BF /* SubAckPacket+VariableHeader.swift in Sources */,
 				826C9D7D2307B1B000C7BAF9 /* PropertyCollection.swift in Sources */,
+				82E52B76230C7A3D00D58DE2 /* AuthPacket+ReasonCode.swift in Sources */,
 				05F5219C230B76EA005CE1BF /* UnsubAckPacket+VariableHeader.swift in Sources */,
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
 				829C82B722EE68DA0026F421 /* PubCompPacket+ReasonCode.swift in Sources */,

@@ -6,7 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension UnsubAckPacket {
+extension UnsubAckPacket: VariableHeaderPacket {
 
     struct VariableHeader: HasProperties {
 

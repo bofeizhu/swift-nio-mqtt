@@ -1,15 +1,17 @@
 //
-//  SubAckPacket+VariableHeader.swift
+//  AuthPacket+VariableHeader.swift
 //  NIOMQTT
 //
-//  Created by Bofei Zhu on 8/19/19.
+//  Created by Bofei Zhu on 8/20/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension SubAckPacket: VariableHeaderPacket {
+extension AuthPacket: VariableHeaderPacket {
 
-    /// SUBACK Variable Header
     struct VariableHeader: HasProperties {
+
+        /// Reason Code
+        let reasonCode: ReasonCode
 
         /// Properties
         let properties: PropertyCollection

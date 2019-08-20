@@ -6,7 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension SubAckPacket {
+extension SubAckPacket: PayloadPacket {
 
     /// SUBACK Payload
     struct Payload {

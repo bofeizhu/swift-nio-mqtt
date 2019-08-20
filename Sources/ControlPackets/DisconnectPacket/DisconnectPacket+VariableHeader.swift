@@ -6,7 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension DisconnectPacket {
+extension DisconnectPacket: VariableHeaderPacket {
 
     struct VariableHeader: HasProperties {
 
