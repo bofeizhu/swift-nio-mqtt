@@ -87,6 +87,7 @@
 		82E52B7C230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B7B230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift */; };
 		82E52B7E230DC5DA00D58DE2 /* PacketComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B7D230DC5DA00D58DE2 /* PacketComponentsTests.swift */; };
 		82E52B80230DE03900D58DE2 /* ByteBuffer+UnsubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B7F230DE03900D58DE2 /* ByteBuffer+UnsubAckPacket.swift */; };
+		82E52B82230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B81230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +187,7 @@
 		82E52B7B230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PacketComponents.swift"; sourceTree = "<group>"; };
 		82E52B7D230DC5DA00D58DE2 /* PacketComponentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketComponentsTests.swift; sourceTree = "<group>"; };
 		82E52B7F230DE03900D58DE2 /* ByteBuffer+UnsubAckPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+UnsubAckPacket.swift"; sourceTree = "<group>"; };
+		82E52B81230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+DisconnectPacket.swift"; sourceTree = "<group>"; };
 		88219A7FD11656CB7D62006A /* Pods-NIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTTests/Pods-NIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B76751CF124B5E5C69608E /* Pods-NIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 		82E52B69230C4BDF00D58DE2 /* DisconnectPacket */ = {
 			isa = PBXGroup;
 			children = (
+				82E52B81230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift */,
 				82E52B6E230C4EAC00D58DE2 /* DisconnectPacket+ReasonCode.swift */,
 				82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */,
 				82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */,
@@ -768,6 +771,7 @@
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
 				05F5218D230B6ACF005CE1BF /* UnsubscribePacket.swift in Sources */,
 				057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */,
+				82E52B82230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,
