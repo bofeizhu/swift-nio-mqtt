@@ -13,7 +13,7 @@ import struct Foundation.Data
 ///
 /// - Important:
 ///     The format of payload should be indicated
-///     by Payload Format Indicator property
+///     by Payload Format Indicator property.
 enum DataPayload {
 
     /// Unspecified Bytes
