@@ -12,7 +12,7 @@ extension ByteBuffer {
 
     mutating func readSubAckPacket(with fixedHeader: FixedHeader) throws -> SubAckPacket {
 
-        // MARK: Read variable Header
+        // MARK: Read variable header
 
         let packetIdentifier = try readPacketIdentifier()
         var variableHeaderLength = UInt16.byteCount

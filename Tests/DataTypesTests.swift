@@ -18,7 +18,7 @@ class DataTypesTests: ByteBufferTestCase {
 
     // MARK: MQTT UTF-8 Encoded String
 
-    func testMQTTStringRead() {
+    func testReadMQTTString() {
         let string = "test"
         let count = UInt16(string.count)
         buffer.writeInteger(count)
@@ -28,7 +28,7 @@ class DataTypesTests: ByteBufferTestCase {
         XCTAssertEqual(buffer.readableBytes, 0)
     }
 
-    func testMQTTStringWrite() {
+    func testWriteMQTTString() {
         let string = "test"
         let written = try! buffer.writeMQTTString(string)
         XCTAssertEqual(written, string.count + 2)
@@ -40,7 +40,7 @@ class DataTypesTests: ByteBufferTestCase {
 
     // MARK: - VInt
 
-    func testVIntRead() {
+    func testReadVInt() {
 
         // Test 0
         buffer.writeByte(0)
@@ -79,7 +79,7 @@ class DataTypesTests: ByteBufferTestCase {
         XCTAssertEqual(buffer.readableBytes, 0)
     }
 
-    func testVIntWrite() {
+    func testWriteVInt() {
 
         // Test 0
         var integer = VInt(value: 0)
@@ -126,7 +126,7 @@ class DataTypesTests: ByteBufferTestCase {
 
     // MARK: MQTT Binary Data
 
-    func testBinaryDataRead() {
+    func testReadBinaryData() {
         let bytes: [UInt8] = [0x00, 0x01, 0x02, 0x03]
         let data = Data(bytes)
         buffer.writeInteger(UInt16(4))
@@ -136,7 +136,7 @@ class DataTypesTests: ByteBufferTestCase {
         XCTAssertEqual(buffer.readableBytes, 0)
     }
 
-    func testBinaryDataWrite() {
+    func testWriteBinaryData() {
         let bytes: [UInt8] = [0x00, 0x01, 0x02, 0x03]
         let data = Data(bytes)
         let written = try! buffer.writeMQTTBinaryData(data)
@@ -149,7 +149,7 @@ class DataTypesTests: ByteBufferTestCase {
 
     // MARK: String Pair
 
-    func testStringPairRead() {
+    func testReadStringPair() {
         let name = "name"
         let value = "value"
         try! buffer.writeMQTTString(name)
@@ -160,7 +160,7 @@ class DataTypesTests: ByteBufferTestCase {
         XCTAssertEqual(buffer.readableBytes, 0)
     }
 
-    func testStringPairWrite() {
+    func testWriteStringPair() {
         let name = "name"
         let value = "value"
         let pair = StringPair(name: name, value: value)
