@@ -2,7 +2,7 @@
 //  ByteBuffer+DisconnectPacket.swift
 //  NIOMQTT
 //
-//  Created by Bofei Zhu on 8/14/19.
+//  Created by Bofei Zhu on 8/21/19.
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
