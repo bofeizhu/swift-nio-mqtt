@@ -12,14 +12,8 @@ extension ByteBuffer {
 
     mutating func readPubCompPacket(with fixedHeader: FixedHeader) throws -> PubCompPacket {
 
-        guard
-            let packetIdentifier: UInt16 = readInteger(),
-            let reasonCodeValue = readByte(),
-            let reasonCode = PubCompPacket.ReasonCode(rawValue: reasonCodeValue)
-        else {
-            throw MQTTCodingError.malformedPacket
-        }
-
+        let packetIdentifier = try readPacketIdentifier()
+        let reasonCode: PubCompPacket.ReasonCode = try readReasonCode()
         let properties = try readProperties()
 
         let variableHeader = PubCompPacket.VariableHeader(

@@ -11,6 +11,9 @@ extension SubAckPacket: VariableHeaderPacket {
     /// SUBACK Variable Header
     struct VariableHeader: HasProperties {
 
+        /// Packet Identifier
+        let packetIdentifier: UInt16
+
         /// Properties
         let properties: PropertyCollection
     }

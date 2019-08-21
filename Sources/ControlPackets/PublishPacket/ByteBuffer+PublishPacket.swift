@@ -49,7 +49,8 @@ extension ByteBuffer {
 
         // MARK: Read payload
 
-        let payloadLength = Int(fixedHeader.remainingLength.value) - variableHeaderLength
+        let remainingLength = Int(fixedHeader.remainingLength.value)
+        let payloadLength = remainingLength - variableHeaderLength
         guard
             let payload = readDataPayload(length: payloadLength, isUTF8Encoded: properties.isPayloadUTF8Encoded),
             let publishPacket = PublishPacket(
