@@ -13,6 +13,9 @@ extension ByteBuffer {
     mutating func readPacketIdentifier() throws -> UInt16 {
 
         guard let packetIdentifier: UInt16 = readInteger() else {
+
+            // FIXME: Should throw an internal error.
+            //      Since we check remaining length before read packet variable header.
             throw MQTTCodingError.malformedPacket
         }
 
