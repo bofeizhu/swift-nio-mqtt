@@ -11,6 +11,7 @@ import NIO
 extension ByteBuffer {
 
     mutating func readControlPacket(with fixedHeader: FixedHeader) throws -> ControlPacket {
+
         switch fixedHeader.type {
 
         case .connAck:
@@ -61,4 +62,14 @@ extension ByteBuffer {
             throw MQTTCodingError.malformedPacket
         }
     }
+
+//    mutating func write(_ controlPacket: ControlPacket) throws -> Int {
+//
+//        switch controlPacket {
+//        case let .connAck(packet: packet):
+//
+//        default:
+//            
+//        }
+//    }
 }

@@ -60,7 +60,7 @@ extension ByteBuffer {
         guard let fixedHeader = try getFixedHeader(at: readerIndex) else {
             return nil
         }
-        moveReaderIndex(forwardBy: fixedHeader.remainingLength.bytes.count + 1)
+        moveReaderIndex(forwardBy: fixedHeader.remainingLength.mqttByteCount + 1)
         return fixedHeader
     }
 

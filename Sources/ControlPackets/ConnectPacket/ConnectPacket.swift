@@ -24,4 +24,8 @@ struct ConnectPacket: ControlPacketProtocol {
 
     /// Payload
     let payload: Payload
+
+//    init(variableHeader: VariableHeader, payload: Payload) {
+//
+//    }
 }

@@ -25,6 +25,14 @@ extension ConnectPacket: VariableHeaderPacket {
 
         /// Properties
         let properties: PropertyCollection
+
+        var byteCount: Int {
+            return protocolName.mqttByteCount +
+                UInt8.byteCount +
+                UInt8.byteCount +
+                UInt16.byteCount +
+                properties.mqttByteCount
+        }
     }
 
     /// Connect Flags

@@ -99,14 +99,14 @@ enum Property {
     case sharedSubscriptionAvailable(Bool)
 }
 
-// MARK: - Byte Count
+// MARK: - MQTTByteRepresentable
 
-extension Property {
+extension Property: MQTTByteRepresentable {
 
     /// Byte count
     ///
     /// - Important: Byte count includes the identifier byte.
-    var byteCount: Int {
+    var mqttByteCount: Int {
         var count = 1
 
         switch self {
@@ -126,7 +126,7 @@ extension Property {
             count += data.mqttByteCount
 
         case let .subscriptionIdentifier(identifier):
-            count += identifier.bytes.count
+            count += identifier.mqttByteCount
 
         case .sessionExpiryInterval:
             count += UInt32.byteCount

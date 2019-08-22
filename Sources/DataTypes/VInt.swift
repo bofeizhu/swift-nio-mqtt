@@ -67,7 +67,7 @@ struct VInt {
     fileprivate init(leading: VInt, nextByte: UInt8) {
         assert(leading.hasFollowing, "The leading variable byte integer doesn't have following byte.")
         assert(
-            leading.bytes.count < VInt.maxByteCount,
+            leading.mqttByteCount < VInt.maxByteCount,
             "Value too large. The maximum number of bytes in the VInt field is four.")
 
         guard leading.hasFollowing else {
@@ -78,6 +78,15 @@ struct VInt {
         bytes = leading.bytes + [nextByte]
         hasFollowing = nextByte & VInt.followingMask != 0
         multiplier = leading.multiplier * VInt.multiplier
+    }
+}
+
+// MARK: - ByteRepresentable
+
+extension VInt: MQTTByteRepresentable {
+
+    var mqttByteCount: Int {
+        return bytes.count
     }
 }
 
@@ -128,11 +137,11 @@ extension ByteBuffer {
         var integer = VInt(firstByte: firstByte)
 
         while integer.hasFollowing {
-            guard integer.bytes.count < 4 else {
+            guard integer.mqttByteCount < 4 else {
                 throw MQTTCodingError.malformedVariableByteInteger
             }
 
-            guard let nextByte = getByte(at: index + integer.bytes.count) else {
+            guard let nextByte = getByte(at: index + integer.mqttByteCount) else {
                 // Need more bytes
                 return nil
             }
@@ -153,7 +162,7 @@ extension ByteBuffer {
         guard let integer = try getVariableByteInteger(at: readerIndex) else {
             return nil
         }
-        moveReaderIndex(forwardBy: integer.bytes.count)
+        moveReaderIndex(forwardBy: integer.mqttByteCount)
         return integer
     }
 
@@ -164,7 +173,7 @@ extension ByteBuffer {
     /// - Throws: A `malformedVariableByteInteger` Error if variable byte integer has more than 4 bytes.
     @discardableResult
     mutating func writeVariableByteInteger(_ integer: VInt) throws -> Int {
-        guard integer.bytes.count <= 4 else {
+        guard integer.mqttByteCount <= 4 else {
             throw MQTTCodingError.malformedVariableByteInteger
         }
         return writeBytes(integer.bytes)

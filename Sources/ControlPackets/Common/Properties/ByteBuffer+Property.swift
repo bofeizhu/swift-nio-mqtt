@@ -117,7 +117,7 @@ extension ByteBuffer {
 
             let property = try readProperty(of: identifier)
             properties.append(property)
-            remainingLength -= property.byteCount
+            remainingLength -= property.mqttByteCount
         }
 
         return properties
