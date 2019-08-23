@@ -13,28 +13,42 @@ extension ByteBuffer {
     @discardableResult
     mutating func write(_ connectPacket: ConnectPacket) throws -> Int {
 
-        var bytesWritten = 0
+        var bytesWritten = try write(connectPacket.fixedHeader)
+        bytesWritten += try write(connectPacket.variableHeader)
+        bytesWritten += try write(connectPacket.payload)
 
-        // MARK: Fixed Header
+        return bytesWritten
+    }
 
-        bytesWritten += try write(connectPacket.fixedHeader)
+    private mutating func write(_ variableHeader: ConnectPacket.VariableHeader) throws -> Int {
 
-        // MARK: Variable Header
-
-        let variableHeader = connectPacket.variableHeader
-
-        bytesWritten += try writeMQTTString(variableHeader.protocolName)
+        var bytesWritten = try writeMQTTString(variableHeader.protocolName)
         bytesWritten += writeByte(variableHeader.protocolVersion)
         bytesWritten += writeByte(variableHeader.connectFlags.rawValue)
         bytesWritten += writeInteger(variableHeader.keepAlive)
         bytesWritten += try write(variableHeader.properties)
 
-        // MARK: Payload
-
-        let payload = connectPacket.payload
-
-        
-
         return bytesWritten
+    }
+
+    private mutating func write(_ payload: ConnectPacket.Payload) throws -> Int {
+
+        var bytesWritten = try writeMQTTString(payload.clientId)
+
+        if let willMessage = payload.willMessage {
+            bytesWritten += try write(willMessage.properties)
+            bytesWritten += try writeMQTTString(willMessage.topic)
+            bytesWritten += try writeMQTTBinaryData(willMessage.payload)
+        }
+
+        if let username = payload.username {
+            bytesWritten += try writeMQTTString(username)
+        }
+
+        if let password = payload.password {
+            bytesWritten += try writeMQTTBinaryData(password)
+        }
+
+        return payload.mqttByteCount
     }
 }

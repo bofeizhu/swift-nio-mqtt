@@ -6,7 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-extension String {
+extension String: MQTTByteRepresentable {
 
     /// Byte count for MQTT UTF-8 Encoded Strings, including the Two Byte Integer length field
     ///

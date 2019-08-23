@@ -10,7 +10,7 @@
 ///
 /// A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to
 /// transport an Application Message.
-struct PublishPacket: PayloadPacket {
+struct PublishPacket: ControlPacketProtocol {
 
     /// Fixed Header
     let fixedHeader: FixedHeader
@@ -28,9 +28,9 @@ struct PublishPacket: PayloadPacket {
     let variableHeader: VariableHeader
 
     /// Payload
-    let payload: DataPayload
+    let payload: Payload
 
-    init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: DataPayload) {
+    init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: Payload) {
 
         switch fixedHeader.flags {
         case let .publish(dup, qos, retain):

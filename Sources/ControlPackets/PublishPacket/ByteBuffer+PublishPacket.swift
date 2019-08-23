@@ -52,7 +52,7 @@ extension ByteBuffer {
         let remainingLength = Int(fixedHeader.remainingLength.value)
         let payloadLength = remainingLength - variableHeaderLength
         guard
-            let payload = readDataPayload(length: payloadLength, isUTF8Encoded: properties.isPayloadUTF8Encoded),
+            let payload = readPublishPayload(length: payloadLength, isUTF8Encoded: properties.isPayloadUTF8Encoded),
             let publishPacket = PublishPacket(
                 fixedHeader: fixedHeader,
                 variableHeader: variableHeader,
@@ -60,5 +60,34 @@ extension ByteBuffer {
         else { throw MQTTCodingError.malformedPacket }
 
         return publishPacket
+    }
+
+    private mutating func write(_ payload: PublishPacket.Payload) -> Int {
+
+        switch payload {
+        case let .binary(data):
+            return writeBytes(data)
+        case let .utf8(string):
+            return writeString(string)
+        case .empty:
+            return 0
+        }
+    }
+
+    private mutating func readPublishPayload(length: Int, isUTF8Encoded: Bool = false) -> PublishPacket.Payload? {
+
+        guard length > 0 else { return .empty }
+
+        if isUTF8Encoded {
+            guard let string = readString(length: length) else {
+                return nil
+            }
+            return .utf8(stirng: string)
+        } else {
+            guard let data = readBytes(length: length) else {
+                return nil
+            }
+            return .binary(data: Data(data))
+        }
     }
 }

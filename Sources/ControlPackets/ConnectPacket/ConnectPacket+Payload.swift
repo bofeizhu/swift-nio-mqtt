@@ -11,7 +11,7 @@ import struct Foundation.Data
 extension ConnectPacket: PayloadPacket {
 
     /// CONNECT Packet Payload
-    struct Payload {
+    struct Payload: MQTTByteRepresentable {
 
         /// Client Identifier (ClientID)
         let clientId: String
@@ -23,7 +23,17 @@ extension ConnectPacket: PayloadPacket {
         let username: String?
 
         /// Password
-        let password: String?
+        let password: Data?
+
+        var mqttByteCount: Int {
+
+            var count = clientId.mqttByteCount
+            count += willMessage?.mqttByteCount ?? 0
+            count += username?.mqttByteCount ?? 0
+            count += password?.mqttByteCount ?? 0
+
+            return count
+        }
     }
 
     /// Will Message in CONNECT Packet's payload
@@ -35,7 +45,7 @@ extension ConnectPacket: PayloadPacket {
     /// has been deleted by the Server on receipt of a DISCONNECT packet
     /// with Reason Code 0x00 (Normal disconnection) or a new Network Connection for
     /// the ClientID is opened before the Will Delay Interval has elapsed
-    struct WillMessage {
+    struct WillMessage: MQTTByteRepresentable {
 
         /// Properties
         let properties: PropertyCollection
@@ -44,6 +54,10 @@ extension ConnectPacket: PayloadPacket {
         let topic: String
 
         /// Payload
-        let payload: DataPayload
+        let payload: Data
+
+        var mqttByteCount: Int {
+            return properties.mqttByteCount + topic.mqttByteCount + payload.mqttByteCount
+        }
     }
 }

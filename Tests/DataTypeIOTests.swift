@@ -1,5 +1,5 @@
 //
-//  DataTypesTests.swift
+//  DataTypeIOTests.swift
 //  NIOMQTTTests
 //
 //  Created by Bofei Zhu on 7/18/19.
@@ -14,7 +14,7 @@ import NIO
 
 // swiftlint:disable force_try
 
-class DataTypesTests: ByteBufferTestCase {
+class DataTypeIOTests: ByteBufferTestCase {
 
     // MARK: MQTT UTF-8 Encoded String
 

@@ -25,6 +25,20 @@ struct FixedHeader {
     /// The packet size is the total number of bytes in an MQTT Control Packet, this is equal to the length of
     /// the Fixed Header plus the Remaining Length.
     let remainingLength: VInt
+
+    static func makeReservedFixHeader(
+        of type: ControlPacketType,
+        withRemainingLength remainingLength: Int
+    ) -> FixedHeader {
+
+        assert(type != .publish, "Publish Packet doesn't have reserved flags.")
+
+        let flagsValue = FixedHeaderFlags.reservedFlagsValue(of: type)
+        let flags = FixedHeaderFlags.reserved(value: flagsValue)
+        let remainingLength = VInt(value: UInt(remainingLength))
+
+        return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
+    }
 }
 
 // MARK: - ByteBuffer Extension
