@@ -21,3 +21,7 @@ struct StringPair {
         return name.mqttByteCount + value.mqttByteCount
     }
 }
+
+// MARK: - Equatable
+
+extension StringPair: Equatable {}

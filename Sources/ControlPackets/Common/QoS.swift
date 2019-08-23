@@ -20,3 +20,7 @@ public enum QoS: UInt8 {
     /// Exactly once delivery
     case level2
 }
+
+// MARK: - QoS
+
+extension QoS: Equatable {}

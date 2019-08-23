@@ -6,9 +6,7 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-import struct Foundation.Data
 import XCTest
-import NIO
 
 @testable import NIOMQTT
 

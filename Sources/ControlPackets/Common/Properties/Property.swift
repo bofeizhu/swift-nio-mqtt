@@ -99,6 +99,10 @@ enum Property {
     case sharedSubscriptionAvailable(Bool)
 }
 
+// MARK: - Equatable
+
+extension Property: Equatable {}
+
 // MARK: - MQTTByteRepresentable
 
 extension Property: MQTTByteRepresentable {
