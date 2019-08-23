@@ -20,10 +20,6 @@ class PropertyCollectionTests: XCTestCase {
         properties = PropertyCollection()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testAppend() {
 
         let property: Property = .maximumPacketSize(16)
