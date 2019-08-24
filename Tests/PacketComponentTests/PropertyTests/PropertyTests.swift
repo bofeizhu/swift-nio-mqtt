@@ -10,13 +10,9 @@ import XCTest
 
 @testable import NIOMQTT
 
-//swiftlint:disable function_body_length
-
 class PropertyTests: XCTestCase {
 
-    func testByteCount() {
-
-        // MARK: Boolean Type Properties (Byte Type)
+    func testBooleanTypePropertyByteCount() {
 
         let boolPropertyByteCount = 2
 
@@ -40,13 +36,14 @@ class PropertyTests: XCTestCase {
 
         property = .sharedSubscriptionAvailable(true)
         XCTAssertEqual(property.mqttByteCount, boolPropertyByteCount)
+    }
 
-        // MARK: Four Byte Integer Type Properties
+    func testFourByteIntegerTypePropertyByteCount() {
 
         let fourByteInteger: UInt32 = 42
         let fourByteIntegerPropertyByteCount = 5
 
-        property = .messageExpiryInterval(fourByteInteger)
+        var property: Property = .messageExpiryInterval(fourByteInteger)
         XCTAssertEqual(property.mqttByteCount, fourByteIntegerPropertyByteCount)
 
         property = .sessionExpiryInterval(fourByteInteger)
@@ -57,13 +54,14 @@ class PropertyTests: XCTestCase {
 
         property = .maximumPacketSize(fourByteInteger)
         XCTAssertEqual(property.mqttByteCount, fourByteIntegerPropertyByteCount)
+    }
 
-        // MARK: UTF-8 Encoded String Type Properties
+    func testUTF8EncodedStringTypePropertyByteCount() {
 
         let string = "abcde"
         let utf8EncodedStringPropertyByteCount = 8 // 1 + 2 + 5
 
-        property = .contentType(string)
+        var property: Property = .contentType(string)
         XCTAssertEqual(property.mqttByteCount, utf8EncodedStringPropertyByteCount)
 
         property = .responseTopic(string)
@@ -83,33 +81,36 @@ class PropertyTests: XCTestCase {
 
         property = .reasonString(string)
         XCTAssertEqual(property.mqttByteCount, utf8EncodedStringPropertyByteCount)
+    }
 
-        // MARK: Binary Data Type Properties
+    func testBinaryDataTypePropertyByteCount() {
 
         let bytes: [UInt8] = [1, 1, 1]
         let data = Data(bytes)
         let binaryDataTypePropertByteCount = 6 // 1 + 2 + 3
 
-        property = .correlationData(data)
+        var property: Property = .correlationData(data)
         XCTAssertEqual(property.mqttByteCount, binaryDataTypePropertByteCount)
 
         property = .authenticationData(data)
         XCTAssertEqual(property.mqttByteCount, binaryDataTypePropertByteCount)
+    }
 
-        // MARK: Variable Byte Integer Type Properties
+    func testVariableByteIntegerTypePropertyByteCount() {
 
         let variableByteInteger = VInt(value: 42424242)
         let variableByteIntegerPropertyByteCount = 1 + variableByteInteger.mqttByteCount
 
-        property = .subscriptionIdentifier(variableByteInteger)
+        let property: Property = .subscriptionIdentifier(variableByteInteger)
         XCTAssertEqual(property.mqttByteCount, variableByteIntegerPropertyByteCount)
+    }
 
-        // MARK: Two Byte Integer Type Properties
+    func testTwoByteIntegerTypePropertyByteCount() {
 
         let twoByteInteger: UInt16 = 42
         let twoByteIntegerPropertyByteCount = 3
 
-        property = .serverKeepAlive(twoByteInteger)
+        var property: Property = .serverKeepAlive(twoByteInteger)
         XCTAssertEqual(property.mqttByteCount, twoByteIntegerPropertyByteCount)
 
         property = .receiveMaximum(twoByteInteger)
@@ -120,20 +121,23 @@ class PropertyTests: XCTestCase {
 
         property = .topicAlias(twoByteInteger)
         XCTAssertEqual(property.mqttByteCount, twoByteIntegerPropertyByteCount)
+    }
 
-        // MARK: QoS Type Property (Byte Type)
+    func testQoSTypePropertyByteCount() {
 
         let qos = QoS.level2
         let qosPropertyByteCount = 2
 
-        property = .maximumQoS(qos)
+        let property: Property = .maximumQoS(qos)
         XCTAssertEqual(property.mqttByteCount, qosPropertyByteCount)
+    }
 
-        // MARK: String Pair Type Property
+    func testStringPairTypePropertyByteCount() {
+
         let pair = StringPair(name: "foo", value: "bar")
         let stringPairTypePropertyByteCount = 11
 
-        property = .userProperty(pair)
+        let property: Property = .userProperty(pair)
         XCTAssertEqual(property.mqttByteCount, stringPairTypePropertyByteCount)
     }
 }
