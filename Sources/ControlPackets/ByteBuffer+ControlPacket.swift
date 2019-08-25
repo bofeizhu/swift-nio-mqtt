@@ -63,13 +63,15 @@ extension ByteBuffer {
         }
     }
 
-//    mutating func write(_ controlPacket: ControlPacket) throws -> Int {
-//
-//        switch controlPacket {
-//        case let .connAck(packet: packet):
-//
-//        default:
-//            
-//        }
-//    }
+    mutating func write(_ controlPacket: ControlPacket) throws -> Int {
+
+        switch controlPacket {
+
+        case let .connect(packet: packet):
+            return try write(packet)
+
+        default:
+            throw MQTTCodingError.malformedPacket
+        }
+    }
 }
