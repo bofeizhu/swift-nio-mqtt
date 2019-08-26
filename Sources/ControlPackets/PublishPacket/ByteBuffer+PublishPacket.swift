@@ -62,18 +62,6 @@ extension ByteBuffer {
         return publishPacket
     }
 
-    private mutating func write(_ payload: PublishPacket.Payload) -> Int {
-
-        switch payload {
-        case let .binary(data):
-            return writeBytes(data)
-        case let .utf8(string):
-            return writeString(string)
-        case .empty:
-            return 0
-        }
-    }
-
     private mutating func readPublishPayload(length: Int, isUTF8Encoded: Bool = false) -> PublishPacket.Payload? {
 
         guard length > 0 else { return .empty }
@@ -88,6 +76,18 @@ extension ByteBuffer {
                 return nil
             }
             return .binary(data: Data(data))
+        }
+    }
+
+    private mutating func write(_ payload: PublishPacket.Payload) -> Int {
+
+        switch payload {
+        case let .binary(data):
+            return writeBytes(data)
+        case let .utf8(string):
+            return writeString(string)
+        case .empty:
+            return 0
         }
     }
 }
