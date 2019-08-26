@@ -14,8 +14,7 @@ extension PublishPacket: PayloadPacket {
     /// Binary Data Payload
     ///
     /// - Important:
-    ///     The format of payload should be indicated
-    ///     by Payload Format Indicator property.
+    ///     The format of payload should be indicated by Payload Format Indicator property.
     enum Payload {
 
         /// Unspecified Bytes
@@ -26,5 +25,20 @@ extension PublishPacket: PayloadPacket {
 
         /// Zero Length Payload
         case empty
+
+        var mqttByteCount: Int {
+
+           switch self {
+
+           case let .binary(data):
+               return data.count
+
+           case let .utf8(string):
+               return string.utf8.count
+
+           case .empty:
+               return 0
+           }
+        }
     }
 }

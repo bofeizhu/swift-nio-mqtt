@@ -10,6 +10,8 @@ import NIO
 
 extension ByteBuffer {
 
+    // MARK: - Read Publish Packet
+
     mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
 
         // MARK: Read variable header
@@ -61,6 +63,32 @@ extension ByteBuffer {
 
         return publishPacket
     }
+
+    // MARK: Write Publish Packet
+    
+    @discardableResult
+    mutating func write(_ packet: PublishPacket) throws -> Int {
+
+        var bytesWritten = try write(packet.fixedHeader)
+        bytesWritten += try write(packet.variableHeader)
+        bytesWritten += write(packet.payload)
+
+        return bytesWritten
+    }
+
+    // MARK: - Variable Header I/O
+
+    private mutating func write(_ variableHeader: PublishPacket.VariableHeader) throws -> Int {
+
+        var bytesWritten = try writeMQTTString(variableHeader.topicName)
+        if let packetIdentifier = variableHeader.packetIdentifier {
+            bytesWritten += writeInteger(packetIdentifier)
+        }
+        bytesWritten += try write(variableHeader.properties)
+        return bytesWritten
+    }
+
+    // MARK: - Payload I/O
 
     private mutating func readPublishPayload(length: Int, isUTF8Encoded: Bool = false) -> PublishPacket.Payload? {
 

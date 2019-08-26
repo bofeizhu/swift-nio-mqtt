@@ -11,11 +11,11 @@ import NIO
 extension ByteBuffer {
 
     @discardableResult
-    mutating func write(_ connectPacket: ConnectPacket) throws -> Int {
+    mutating func write(_ packet: ConnectPacket) throws -> Int {
 
-        var bytesWritten = try write(connectPacket.fixedHeader)
-        bytesWritten += try write(connectPacket.variableHeader)
-        bytesWritten += try write(connectPacket.payload)
+        var bytesWritten = try write(packet.fixedHeader)
+        bytesWritten += try write(packet.variableHeader)
+        bytesWritten += try write(packet.payload)
 
         return bytesWritten
     }
