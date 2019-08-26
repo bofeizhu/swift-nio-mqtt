@@ -978,6 +978,8 @@ extension EventLoopGroup {
     }
 }
 
+private let nextEventLoopGroupID = Atomic(value: 0)
+
 /// Called per `NIOThread` that is created for an EventLoop to do custom initialization of the `NIOThread` before the actual `EventLoop` is run on it.
 typealias ThreadInitializer = (NIOThread) -> Void
 
@@ -996,10 +998,18 @@ typealias ThreadInitializer = (NIOThread) -> Void
 ///            subclass, a good place to shut it down is the `tearDown` method.
 public final class MultiThreadedEventLoopGroup: EventLoopGroup {
 
+    private enum RunState {
+        case running
+        case closing([(DispatchQueue, (Error?) -> Void)])
+        case closed(Error?)
+    }
+
     private static let threadSpecificEventLoop = ThreadSpecificVariable<SelectableEventLoop>()
 
     private let index = Atomic<Int>(value: 0)
     private let eventLoops: [SelectableEventLoop]
+    private let shutdownLock: Lock = Lock()
+    private var runState: RunState = .running
 
     private static func setupThreadAndEventLoop(name: String, initializer: @escaping ThreadInitializer)  -> SelectableEventLoop {
         let lock = Lock()
@@ -1052,10 +1062,12 @@ public final class MultiThreadedEventLoopGroup: EventLoopGroup {
     /// - arguments:
     ///     - threadInitializers: The `ThreadInitializer`s to use.
     internal init(threadInitializers: [ThreadInitializer]) {
+        let myGroupID = nextEventLoopGroupID.add(1)
         var idx = 0
         self.eventLoops = threadInitializers.map { initializer in
             // Maximum name length on linux is 16 by default.
-            let ev = MultiThreadedEventLoopGroup.setupThreadAndEventLoop(name: "NIO-ELT-#\(idx)", initializer: initializer)
+            let ev = MultiThreadedEventLoopGroup.setupThreadAndEventLoop(name: "NIO-ELT-\(myGroupID)-#\(idx)",
+                                                                         initializer: initializer)
             idx += 1
             return ev
         }
@@ -1094,6 +1106,9 @@ public final class MultiThreadedEventLoopGroup: EventLoopGroup {
     /// Shut this `MultiThreadedEventLoopGroup` down which causes the `EventLoop`s and their associated threads to be
     /// shut down and release their resources.
     ///
+    /// Even though calling `shutdownGracefully` more than once should be avoided, it is safe to do so and execution
+    /// of the `handler` is guaranteed.
+    ///
     /// - parameters:
     ///    - queue: The `DispatchQueue` to run `handler` on when the shutdown operation completes.
     ///    - handler: The handler which is called after the shutdown operation completes. The parameter will be `nil`
@@ -1104,6 +1119,36 @@ public final class MultiThreadedEventLoopGroup: EventLoopGroup {
         // our shutdown signaling, and then do our cleanup once the DispatchQueue is empty.
         let g = DispatchGroup()
         let q = DispatchQueue(label: "nio.shutdownGracefullyQueue", target: queue)
+        let wasRunning: Bool = self.shutdownLock.withLock {
+            // We need to check the current `runState` and react accordingly.
+            switch self.runState {
+            case .running:
+                // If we are still running, we set the `runState` to `closing`,
+                // so that potential future invocations know, that the shutdown
+                // has already been initiaited.
+                self.runState = .closing([])
+                return true
+            case .closing(var callbacks):
+                // If we are currently closing, we need to register the `handler`
+                // for invocation after the shutdown is completed.
+                callbacks.append((q, handler))
+                self.runState = .closing(callbacks)
+                return false
+            case .closed(let error):
+                // If we are already closed, we can directly dispatch the `handler`
+                q.async {
+                    handler(error)
+                }
+                return false
+            }
+        }
+
+        // If the `runState` was not `running` when `shutdownGracefully` was called,
+        // the shutdown has already been initiated and we have to return here.
+        guard wasRunning else {
+            return
+        }
+
         var error: Error? = nil
 
         for loop in self.eventLoops {
@@ -1125,6 +1170,22 @@ public final class MultiThreadedEventLoopGroup: EventLoopGroup {
             }
 
             handler(error)
+
+            let callbacks: [(DispatchQueue, (Error?) -> Void)] = self.shutdownLock.withLock {
+                guard case .closing(let callbacks) = self.runState else {
+                    fatalError("runState was \(self.runState), expected .closing")
+                }
+
+                self.runState = .closed(error)
+
+                return callbacks
+            }
+
+            for (q, handler) in callbacks {
+                q.async {
+                    handler(error)
+                }
+            }
         }
     }
 }

@@ -692,3 +692,23 @@ extension CircularBuffer {
         return self.verifyInvariants() && self.unreachableAreNil()
     }
 }
+
+extension CircularBuffer: Equatable where Element: Equatable {
+    public static func ==(lhs: CircularBuffer, rhs: CircularBuffer) -> Bool {
+        return lhs.count == rhs.count && zip(lhs, rhs).allSatisfy(==)
+    }
+}
+
+extension CircularBuffer: Hashable where Element: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        for element in self {
+            hasher.combine(element)
+        }
+    }
+}
+
+extension CircularBuffer: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: Element...) {
+        self.init(elements)
+    }
+}
