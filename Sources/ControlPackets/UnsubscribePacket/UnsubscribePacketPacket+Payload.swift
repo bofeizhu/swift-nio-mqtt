@@ -9,7 +9,7 @@
 extension UnsubscribePacket: PayloadPacket {
 
     /// UNSUBSCRIBE Packet Payload
-    struct Payload {
+    struct Payload: MQTTByteRepresentable {
 
         /// Topic Filter List
         ///
@@ -17,5 +17,12 @@ extension UnsubscribePacket: PayloadPacket {
         /// - Important: The Payload of an UNSUBSCRIBE packet MUST contain at least one Topic Filter.
         ///     An UNSUBSCRIBE packet with no Payload is a Protocol Error.
         let topicFilters: [String]
+
+        /// MQTT Byte Count
+        ///
+        /// - Complexity: O(*n*)
+        var mqttByteCount: Int {
+            topicFilters.reduce(0) { $0 + $1.mqttByteCount }
+        }
     }
 }

@@ -9,12 +9,16 @@
 extension SubscribePacket: VariableHeaderPacket {
 
     /// SUBSCRIBE Variable Header
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         /// Packet Identifier
         let packetIdentifier: UInt16
 
         /// Properties
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            UInt16.byteCount + properties.mqttByteCount
+        }
     }
 }

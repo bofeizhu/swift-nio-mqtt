@@ -9,7 +9,7 @@
 extension SubAckPacket: PayloadPacket {
 
     /// SUBACK Payload
-    struct Payload {
+    struct Payload: MQTTByteRepresentable {
 
         /// Reason Codes
         ///
@@ -18,5 +18,9 @@ extension SubAckPacket: PayloadPacket {
         /// - Important: The order of Reason Codes in the SUBACK packet **MUST** match
         ///     the order of Topic Filters in the SUBSCRIBE packet
         let reasonCodes: [ReasonCode]
+
+        var mqttByteCount: Int {
+            reasonCodes.count
+        }
     }
 }

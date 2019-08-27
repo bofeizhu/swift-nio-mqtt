@@ -15,7 +15,7 @@ extension PublishPacket: PayloadPacket {
     ///
     /// - Important:
     ///     The format of payload should be indicated by Payload Format Indicator property.
-    enum Payload {
+    enum Payload: MQTTByteRepresentable {
 
         /// Unspecified Bytes
         case binary(data: Data)

@@ -26,7 +26,7 @@ struct VInt {
     /// Init with integer value
     ///
     /// - Parameter value: The integer value of the variable byte integer
-    /// - Complexity: O(*nlog(n)*).
+    /// - Complexity: O(*log(n)*)
     init(value: UInt) {
         assert(value <= VInt.max, "Value exceeds maximum integer value \(VInt.max)")
 
@@ -86,7 +86,7 @@ struct VInt {
 extension VInt: MQTTByteRepresentable {
 
     var mqttByteCount: Int {
-        return bytes.count
+        bytes.count
     }
 }
 

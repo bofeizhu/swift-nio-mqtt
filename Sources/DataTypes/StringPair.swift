@@ -18,7 +18,7 @@ struct StringPair {
 
     /// Byte count for MQTT String Pair
     var mqttByteCount: Int {
-        return name.mqttByteCount + value.mqttByteCount
+        name.mqttByteCount + value.mqttByteCount
     }
 }
 

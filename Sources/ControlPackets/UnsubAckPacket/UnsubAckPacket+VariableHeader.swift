@@ -8,10 +8,14 @@
 
 extension UnsubAckPacket: VariableHeaderPacket {
 
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         let packetIdentifier: UInt16
 
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            UInt16.byteCount + properties.mqttByteCount
+        }
     }
 }

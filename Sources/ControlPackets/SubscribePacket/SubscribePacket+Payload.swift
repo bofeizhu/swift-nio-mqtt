@@ -11,7 +11,7 @@ import struct Foundation.Data
 extension SubscribePacket: PayloadPacket {
 
     /// SUBSCRIBE Packet Payload
-    struct Payload {
+    struct Payload: MQTTByteRepresentable {
 
         /// Topic Filter List
         ///
@@ -19,6 +19,13 @@ extension SubscribePacket: PayloadPacket {
         /// - Important: The Payload MUST contain at least one Topic Filter and Subscription Options pair.
         ///     A SUBSCRIBE packet with no Payload is a Protocol Error. 
         let topicFilters: [TopicFilter]
+
+        /// MQTT Byte Count
+        ///
+        /// - Complexity: O(*n*)
+        var mqttByteCount: Int {
+            topicFilters.reduce(0) { $0 + $1.mqttByteCount }
+        }
     }
 
     /// Topic Filter
@@ -26,13 +33,17 @@ extension SubscribePacket: PayloadPacket {
     /// Topic Filters indicating the Topics to which the Client wants to subscribe.
     /// The Topic Filters MUST be a UTF-8 Encoded String.
     /// Each Topic Filter is followed by a Subscription Options byte.
-    struct TopicFilter {
+    struct TopicFilter: MQTTByteRepresentable {
 
         /// Topic
         let topic: String
 
         /// Options
         let options: Options
+
+        var mqttByteCount: Int {
+            topic.mqttByteCount + UInt8.byteCount
+        }
     }
 
     /// Subscription Options

@@ -57,7 +57,7 @@ extension ConnectPacket: PayloadPacket {
         let payload: Data
 
         var mqttByteCount: Int {
-            return properties.mqttByteCount + topic.mqttByteCount + payload.mqttByteCount
+            properties.mqttByteCount + topic.mqttByteCount + payload.mqttByteCount
         }
     }
 }

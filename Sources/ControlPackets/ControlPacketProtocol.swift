@@ -19,7 +19,7 @@ protocol ControlPacketProtocol {
 /// It resides between the Fixed Header and the Payload.
 /// The content of the Variable Header varies depending on the packet type.
 protocol VariableHeaderPacket: ControlPacketProtocol {
-    associatedtype VariableHeader
+    associatedtype VariableHeader: MQTTByteRepresentable
 
     /// Variable Header
     var variableHeader: VariableHeader { get }
@@ -29,7 +29,7 @@ protocol VariableHeaderPacket: ControlPacketProtocol {
 ///
 /// Some MQTT Control Packets contain a Payload as the final part of the packet.
 protocol PayloadPacket: ControlPacketProtocol {
-    associatedtype Payload
+    associatedtype Payload: MQTTByteRepresentable
 
     /// Payload
     var payload: Payload { get }
