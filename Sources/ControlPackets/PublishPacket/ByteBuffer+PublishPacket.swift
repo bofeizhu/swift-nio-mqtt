@@ -65,7 +65,7 @@ extension ByteBuffer {
     }
 
     // MARK: Write Publish Packet
-    
+
     @discardableResult
     mutating func write(_ packet: PublishPacket) throws -> Int {
 
