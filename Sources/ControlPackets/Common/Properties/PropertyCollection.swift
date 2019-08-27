@@ -56,8 +56,8 @@ extension PropertyCollection: Collection {
     typealias Index = ArrayType.Index
     typealias Element = Property
 
-    var startIndex: Index { properties.startIndex }
-    var endIndex: Index { properties.endIndex }
+    var startIndex: Index { return properties.startIndex }
+    var endIndex: Index { return properties.endIndex }
 
     subscript(index: Index) -> Element {
         return properties[index]
