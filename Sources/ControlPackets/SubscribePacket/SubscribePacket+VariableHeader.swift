@@ -18,7 +18,7 @@ extension SubscribePacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            UInt16.byteCount + properties.mqttByteCount
+            return UInt16.byteCount + properties.mqttByteCount
         }
     }
 }

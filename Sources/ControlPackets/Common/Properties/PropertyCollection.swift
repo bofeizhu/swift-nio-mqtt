@@ -78,6 +78,6 @@ extension PropertyCollection: MQTTByteRepresentable {
     /// including the byte count of property length.
     /// - Complexity: O(*log(n)*)
     var mqttByteCount: Int {
-        propertyLength.mqttByteCount + byteCount
+        return propertyLength.mqttByteCount + byteCount
     }
 }

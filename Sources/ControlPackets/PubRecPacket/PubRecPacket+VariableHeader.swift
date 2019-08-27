@@ -21,7 +21,7 @@ extension PubRecPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            UInt16.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
+            return UInt16.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
         }
     }
 }

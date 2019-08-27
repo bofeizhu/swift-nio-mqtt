@@ -86,7 +86,7 @@ struct VInt {
 extension VInt: MQTTByteRepresentable {
 
     var mqttByteCount: Int {
-        bytes.count
+        return bytes.count
     }
 }
 

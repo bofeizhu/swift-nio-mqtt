@@ -20,7 +20,7 @@ extension SubAckPacket: PayloadPacket {
         let reasonCodes: [ReasonCode]
 
         var mqttByteCount: Int {
-            reasonCodes.count
+            return reasonCodes.count
         }
     }
 }

@@ -17,7 +17,7 @@ extension DisconnectPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            ReasonCodeValue.byteCount + properties.mqttByteCount
+            return ReasonCodeValue.byteCount + properties.mqttByteCount
         }
     }
 }
