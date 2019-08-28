@@ -21,4 +21,15 @@ extension ByteBuffer {
 
         return AuthPacket(fixedHeader: fixedHeader, variableHeader: variableHeader)
     }
+
+    mutating func write(_ packet: AuthPacket) throws -> Int {
+
+        var byteWritten = try write(packet.fixedHeader)
+
+        let variableHeader = packet.variableHeader
+        byteWritten += writeInteger(variableHeader.reasonCode)
+        byteWritten += write(variableHeader.properties)
+
+        return byteWritten
+    }
 }

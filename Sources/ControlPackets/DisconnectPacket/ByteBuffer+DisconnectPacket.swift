@@ -21,4 +21,15 @@ extension ByteBuffer {
 
         return DisconnectPacket(fixedHeader: fixedHeader, variableHeader: variableHeader)
     }
+
+    mutating func write(_ packet: DisconnectPacket) throws -> Int {
+
+        var byteWritten = try write(packet.fixedHeader)
+
+        let variableHeader = packet.variableHeader
+        byteWritten += writeInteger(variableHeader.reasonCode.rawValue)
+        byteWritten += try write(variableHeader.properties)
+
+        return byteWritten
+    }
 }
