@@ -27,8 +27,8 @@ extension ByteBuffer {
         var byteWritten = try write(packet.fixedHeader)
 
         let variableHeader = packet.variableHeader
-        byteWritten += writeInteger(variableHeader.reasonCode)
-        byteWritten += write(variableHeader.properties)
+        byteWritten += writeInteger(variableHeader.reasonCode.rawValue)
+        byteWritten += try write(variableHeader.properties)
 
         return byteWritten
     }
