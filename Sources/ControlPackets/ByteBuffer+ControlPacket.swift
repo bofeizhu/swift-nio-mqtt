@@ -67,9 +67,12 @@ extension ByteBuffer {
 
         switch controlPacket {
 
-        case let .connect(packet: packet):
+        case let .connect(packet):
             return try write(packet)
 
+        case let .publish(packet):
+            return try write(packet)
+            
         default:
             throw MQTTCodingError.malformedPacket
         }
