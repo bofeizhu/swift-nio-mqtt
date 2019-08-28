@@ -72,7 +72,19 @@ extension ByteBuffer {
 
         case let .publish(packet):
             return try write(packet)
-            
+
+        case let .pubAck(packet):
+            return try write(packet)
+
+        case let .pubRec(packet):
+            return try write(packet)
+
+        case let .pubRel(packet):
+            return try write(packet)
+
+        case let .pubComp(packet):
+            return try write(packet)
+
         default:
             throw MQTTCodingError.malformedPacket
         }
