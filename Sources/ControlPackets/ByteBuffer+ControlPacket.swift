@@ -63,6 +63,7 @@ extension ByteBuffer {
         }
     }
 
+    @discardableResult
     mutating func write(_ controlPacket: ControlPacket) throws -> Int {
 
         switch controlPacket {

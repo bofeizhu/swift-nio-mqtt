@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0505CF1F231732DE00577414 /* ByteBuffer+SubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */; };
 		0505CF212317517C00577414 /* ByteBuffer+UnsubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */; };
+		0505CF2323184C9600577414 /* ControlPacketEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF2223184C9600577414 /* ControlPacketEncoder.swift */; };
 		0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBD822B8658E00500255 /* FixedHeader.swift */; };
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
 		0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDE22B9743500500255 /* ConnectPacket.swift */; };
@@ -111,6 +112,7 @@
 /* Begin PBXFileReference section */
 		0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+SubscribePacket.swift"; sourceTree = "<group>"; };
 		0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+UnsubscribePacket.swift"; sourceTree = "<group>"; };
+		0505CF2223184C9600577414 /* ControlPacketEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacketEncoder.swift; sourceTree = "<group>"; };
 		0533EBD822B8658E00500255 /* FixedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeader.swift; sourceTree = "<group>"; };
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
 		0533EBDE22B9743500500255 /* ConnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectPacket.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */,
+				0505CF2223184C9600577414 /* ControlPacketEncoder.swift */,
 			);
 			path = ChannelHandlers;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				829C82B722EE68DA0026F421 /* PubCompPacket+ReasonCode.swift in Sources */,
 				822A21B522E5819000FC348C /* ConnackPacket+VariableHeader.swift in Sources */,
 				8284EFA722EE15460063A72C /* PubRecPacket+ReasonCode.swift in Sources */,
+				0505CF2323184C9600577414 /* ControlPacketEncoder.swift in Sources */,
 				829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */,
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
 				05F5218D230B6ACF005CE1BF /* UnsubscribePacket.swift in Sources */,
