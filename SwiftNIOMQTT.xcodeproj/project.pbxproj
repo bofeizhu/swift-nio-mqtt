@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0505CF1F231732DE00577414 /* ByteBuffer+SubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */; };
+		0505CF212317517C00577414 /* ByteBuffer+UnsubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */; };
 		0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBD822B8658E00500255 /* FixedHeader.swift */; };
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
 		0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDE22B9743500500255 /* ConnectPacket.swift */; };
@@ -109,6 +110,7 @@
 
 /* Begin PBXFileReference section */
 		0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+SubscribePacket.swift"; sourceTree = "<group>"; };
+		0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+UnsubscribePacket.swift"; sourceTree = "<group>"; };
 		0533EBD822B8658E00500255 /* FixedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeader.swift; sourceTree = "<group>"; };
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
 		0533EBDE22B9743500500255 /* ConnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectPacket.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 		05F5218B230B6A6D005CE1BF /* UnsubscribePacket */ = {
 			isa = PBXGroup;
 			children = (
+				0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */,
 				05F5218C230B6ACF005CE1BF /* UnsubscribePacket.swift */,
 				05F5218E230B6C7F005CE1BF /* UnsubscribePacketPacket+Payload.swift */,
 				05F52190230B6C81005CE1BF /* UnsubscribePacketPacket+VariableHeader.swift */,
@@ -830,6 +833,7 @@
 				057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */,
 				82E52B82230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
+				0505CF212317517C00577414 /* ByteBuffer+UnsubscribePacket.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,
 				822A21AE22E524A800FC348C /* ConnectPacket+Payload.swift in Sources */,

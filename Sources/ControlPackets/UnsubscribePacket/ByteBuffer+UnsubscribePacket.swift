@@ -1,5 +1,5 @@
 //
-//  ByteBuffer+SubscribePacket.swift
+//  ByteBuffer+UnsubscribePacket.swift
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 8/28/19.
@@ -10,27 +10,23 @@ import NIO
 
 extension ByteBuffer {
 
-    mutating func write(_ packet: SubscribePacket) throws -> Int {
+    mutating func write(_ packet: UnsubscribePacket) throws -> Int {
 
         var byteWritten = try write(packet.fixedHeader)
+
+        // MARK: Write Variable Header
 
         let variableHeader = packet.variableHeader
         byteWritten += writeInteger(variableHeader.packetIdentifier)
         byteWritten += try write(variableHeader.properties)
 
+        // MARK: Write Payload
+
         let topicFilters = packet.payload.topicFilters
         for topicFilter in topicFilters {
-            byteWritten += try write(topicFilter)
+            byteWritten += try writeMQTTString(topicFilter)
         }
 
         return byteWritten
-    }
-
-    private mutating func write(_ topicFilter: SubscribePacket.TopicFilter) throws -> Int {
-
-        var byteWritten = try writeMQTTString(topicFilter.topic)
-        byteWritten += writeInteger(topicFilter.options.rawValue)
-
-        return  byteWritten
     }
 }
