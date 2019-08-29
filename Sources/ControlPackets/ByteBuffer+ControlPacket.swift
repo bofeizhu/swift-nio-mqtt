@@ -85,6 +85,18 @@ extension ByteBuffer {
         case let .pubComp(packet):
             return try write(packet)
 
+        case let .subscribe(packet):
+            return try write(packet)
+
+        case let .unsubscribe(packet):
+            return try write(packet)
+
+        case let .disconnect(packet):
+            return try write(packet)
+
+        case let .auth(packet):
+            return try write(packet)
+
         default:
             throw MQTTCodingError.malformedPacket
         }
