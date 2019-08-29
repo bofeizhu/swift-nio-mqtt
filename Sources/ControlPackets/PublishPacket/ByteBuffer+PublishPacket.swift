@@ -10,6 +10,8 @@ import NIO
 
 extension ByteBuffer {
 
+    // MARK: - Read Publish Packet
+
     mutating func readPublishPacket(with fixedHeader: FixedHeader) throws -> PublishPacket {
 
         // MARK: Read variable header
@@ -52,7 +54,7 @@ extension ByteBuffer {
         let remainingLength = Int(fixedHeader.remainingLength.value)
         let payloadLength = remainingLength - variableHeaderLength
         guard
-            let payload = readDataPayload(length: payloadLength, isUTF8Encoded: properties.isPayloadUTF8Encoded),
+            let payload = readPublishPayload(length: payloadLength, isUTF8Encoded: properties.isPayloadUTF8Encoded),
             let publishPacket = PublishPacket(
                 fixedHeader: fixedHeader,
                 variableHeader: variableHeader,
@@ -60,5 +62,60 @@ extension ByteBuffer {
         else { throw MQTTCodingError.malformedPacket }
 
         return publishPacket
+    }
+
+    // MARK: Write Publish Packet
+
+    @discardableResult
+    mutating func write(_ packet: PublishPacket) throws -> Int {
+
+        var bytesWritten = try write(packet.fixedHeader)
+        bytesWritten += try write(packet.variableHeader)
+        bytesWritten += write(packet.payload)
+
+        return bytesWritten
+    }
+
+    // MARK: - Variable Header I/O
+
+    private mutating func write(_ variableHeader: PublishPacket.VariableHeader) throws -> Int {
+
+        var bytesWritten = try writeMQTTString(variableHeader.topicName)
+        if let packetIdentifier = variableHeader.packetIdentifier {
+            bytesWritten += writeInteger(packetIdentifier)
+        }
+        bytesWritten += try write(variableHeader.properties)
+        return bytesWritten
+    }
+
+    // MARK: - Payload I/O
+
+    private mutating func readPublishPayload(length: Int, isUTF8Encoded: Bool = false) -> PublishPacket.Payload? {
+
+        guard length > 0 else { return .empty }
+
+        if isUTF8Encoded {
+            guard let string = readString(length: length) else {
+                return nil
+            }
+            return .utf8(stirng: string)
+        } else {
+            guard let data = readBytes(length: length) else {
+                return nil
+            }
+            return .binary(data: Data(data))
+        }
+    }
+
+    private mutating func write(_ payload: PublishPacket.Payload) -> Int {
+
+        switch payload {
+        case let .binary(data):
+            return writeBytes(data)
+        case let .utf8(string):
+            return writeString(string)
+        case .empty:
+            return 0
+        }
     }
 }

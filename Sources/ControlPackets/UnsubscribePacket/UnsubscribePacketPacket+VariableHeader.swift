@@ -9,12 +9,16 @@
 extension UnsubscribePacket: VariableHeaderPacket {
 
     /// UNSUBSCRIBE Variable Header
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         /// Packet Identifier
         let packetIdentifier: UInt16
 
         /// Properties
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            return UInt16.byteCount + properties.mqttByteCount
+        }
     }
 }

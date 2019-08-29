@@ -18,18 +18,9 @@ struct PropertyCollection {
     ///     The Property Length does not include the bytes used to encode itself,
     ///     but includes the length of the Properties. If there are no properties,
     ///     this MUST be indicated by including a Property Length of zero.
-    /// - Complexity: O(*nlog(n)*).
+    /// - Complexity: O(*log(n)*)
     var propertyLength: VInt {
         return VInt(value: UInt(byteCount))
-    }
-
-    /// MQTT Byte Count
-    ///
-    /// Total number of bytes used to store the property collection in MQTT,
-    /// including the byte count of property length.
-    /// - Complexity: O(*nlog(n)*).
-    var mqttByteCount: Int {
-        return propertyLength.bytes.count + byteCount
     }
 
     // MARK: MQTT Attributes
@@ -47,7 +38,7 @@ struct PropertyCollection {
     /// - Parameter newProperty: The property to append to the collection.
     mutating func append(_ newProperty: Property) {
         properties.append(newProperty)
-        byteCount += newProperty.byteCount
+        byteCount += newProperty.mqttByteCount
 
         switch newProperty {
         case let .payloadFormatIndicator(isPayloadUTF8Encoded):
@@ -74,5 +65,19 @@ extension PropertyCollection: Collection {
 
     func index(after i: Index) -> Index {
         return properties.index(after: i)
+    }
+}
+
+// MARK: - MQTTByteRepresentable
+
+extension PropertyCollection: MQTTByteRepresentable {
+
+    /// MQTT Byte Count
+    ///
+    /// Total number of bytes used to store the property collection in MQTT,
+    /// including the byte count of property length.
+    /// - Complexity: O(*log(n)*)
+    var mqttByteCount: Int {
+        return propertyLength.mqttByteCount + byteCount
     }
 }

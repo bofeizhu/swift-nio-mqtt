@@ -8,12 +8,16 @@
 
 extension AuthPacket: VariableHeaderPacket {
 
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         /// Reason Code
         let reasonCode: ReasonCode
 
         /// Properties
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            return ReasonCodeValue.byteCount + properties.mqttByteCount
+        }
     }
 }

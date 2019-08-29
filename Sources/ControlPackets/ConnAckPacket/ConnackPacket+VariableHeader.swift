@@ -9,7 +9,7 @@
 extension ConnAckPacket: VariableHeaderPacket {
 
     /// CONNACK Variable Header
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         /// Session Present Flag
         ///
@@ -26,5 +26,9 @@ extension ConnAckPacket: VariableHeaderPacket {
 
         /// Properties
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            return UInt8.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
+        }
     }
 }

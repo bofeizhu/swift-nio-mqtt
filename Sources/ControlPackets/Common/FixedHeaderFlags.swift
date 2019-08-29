@@ -66,3 +66,7 @@ enum FixedHeaderFlags {
         }
     }
 }
+
+// MARK: - Equatable
+
+extension FixedHeaderFlags: Equatable {}

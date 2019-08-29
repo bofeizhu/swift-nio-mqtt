@@ -9,7 +9,7 @@
 extension PublishPacket: VariableHeaderPacket {
 
     /// PUBLISH Variable Header
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         /// Topic Name
         let topicName: String
@@ -19,5 +19,9 @@ extension PublishPacket: VariableHeaderPacket {
 
         /// Properties
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            return topicName.mqttByteCount + UInt16.byteCount + properties.mqttByteCount
+        }
     }
 }

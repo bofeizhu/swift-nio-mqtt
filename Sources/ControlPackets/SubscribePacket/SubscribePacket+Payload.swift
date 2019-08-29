@@ -11,7 +11,7 @@ import struct Foundation.Data
 extension SubscribePacket: PayloadPacket {
 
     /// SUBSCRIBE Packet Payload
-    struct Payload {
+    struct Payload: MQTTByteRepresentable {
 
         /// Topic Filter List
         ///
@@ -19,6 +19,13 @@ extension SubscribePacket: PayloadPacket {
         /// - Important: The Payload MUST contain at least one Topic Filter and Subscription Options pair.
         ///     A SUBSCRIBE packet with no Payload is a Protocol Error. 
         let topicFilters: [TopicFilter]
+
+        /// MQTT Byte Count
+        ///
+        /// - Complexity: O(*n*)
+        var mqttByteCount: Int {
+            return topicFilters.reduce(0) { $0 + $1.mqttByteCount }
+        }
     }
 
     /// Topic Filter
@@ -26,17 +33,22 @@ extension SubscribePacket: PayloadPacket {
     /// Topic Filters indicating the Topics to which the Client wants to subscribe.
     /// The Topic Filters MUST be a UTF-8 Encoded String.
     /// Each Topic Filter is followed by a Subscription Options byte.
-    struct TopicFilter {
+    struct TopicFilter: MQTTByteRepresentable {
 
         /// Topic
         let topic: String
 
         /// Options
         let options: Options
+
+        var mqttByteCount: Int {
+            return topic.mqttByteCount + UInt8.byteCount
+        }
     }
 
     /// Subscription Options
-    struct Options {
+    struct Options: RawRepresentable {
+        typealias RawValue = UInt8
 
         /// Maximum QoS
         let qos: QoS
@@ -58,13 +70,44 @@ extension SubscribePacket: PayloadPacket {
 
         /// Retain Handling
         let retainHandling: RetainHandling
+
+        var rawValue: UInt8 {
+
+            let qosValue = qos.rawValue
+            let noLocalValue: UInt8 = noLocal ? 1 : 0
+            let retainAsPublishedValue: UInt8 = retainAsPublished ? 1 : 0
+            let retainHandlingValue = retainHandling.rawValue
+
+            return qosValue &
+                (noLocalValue << 2) &
+                (retainAsPublishedValue << 3) &
+                (retainHandlingValue << 4)
+        }
+
+        init?(rawValue: UInt8) {
+
+            let qosValue = rawValue & 0b11
+            guard let qos = QoS(rawValue: qosValue) else {
+                return nil
+            }
+            self.qos = qos
+
+            noLocal = ((rawValue >> 2) & 1) == 1
+            retainAsPublished = ((rawValue >> 3) & 1) == 1
+
+            let retainHandlingValue = rawValue >> 4
+            guard let retainHandling = RetainHandling(rawValue: retainHandlingValue) else {
+                return nil
+            }
+            self.retainHandling = retainHandling
+        }
     }
 
     /// Retain Handling
     enum RetainHandling: UInt8 {
 
         /// Send retained messages at the time of the subscribe
-        case level0
+        case level0 = 0
 
         /// Send retained messages at subscribe only if the subscription does not currently exist
         case level1

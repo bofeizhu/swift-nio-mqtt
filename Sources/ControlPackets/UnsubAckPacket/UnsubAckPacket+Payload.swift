@@ -8,7 +8,7 @@
 
 extension UnsubAckPacket: PayloadPacket {
 
-    struct Payload {
+    struct Payload: MQTTByteRepresentable {
 
         /// Reason Codes
         ///
@@ -17,5 +17,9 @@ extension UnsubAckPacket: PayloadPacket {
         /// - Important: The order of Reason Codes in the UNSUBACK packet **MUST** match
         ///     the order of Topic Filters in the UNSUBSCRIBE packet
         let reasonCodes: [ReasonCode]
+
+        var mqttByteCount: Int {
+            return reasonCodes.count
+        }
     }
 }

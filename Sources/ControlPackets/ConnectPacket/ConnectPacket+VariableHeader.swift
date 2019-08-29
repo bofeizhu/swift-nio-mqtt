@@ -9,7 +9,7 @@
 extension ConnectPacket: VariableHeaderPacket {
 
     /// CONNECT Variable Header
-    struct VariableHeader: HasProperties {
+    struct VariableHeader: HasProperties, MQTTByteRepresentable {
 
         /// MQTT Protocol Name
         let protocolName = "MQTT"
@@ -25,6 +25,14 @@ extension ConnectPacket: VariableHeaderPacket {
 
         /// Properties
         let properties: PropertyCollection
+
+        var mqttByteCount: Int {
+            return protocolName.mqttByteCount +
+                UInt8.byteCount +
+                UInt8.byteCount +
+                UInt16.byteCount +
+                properties.mqttByteCount
+        }
     }
 
     /// Connect Flags

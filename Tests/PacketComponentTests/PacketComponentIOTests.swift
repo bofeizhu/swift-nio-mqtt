@@ -1,5 +1,5 @@
 //
-//  PacketComponentsTests.swift
+//  PacketComponentIOTests.swift
 //  NIOMQTTTests
 //
 //  Created by Bofei Zhu on 8/21/19.
@@ -14,7 +14,15 @@ import NIO
 
 // swiftlint:disable force_try
 
-class PacketComponentsTests: ByteBufferTestCase {
+class PacketComponentIOTests: ByteBufferTestCase {
+
+    // MARK: Fixed Header
+
+    func testMakeFixedHeader() {
+        let fixedHeader = FixedHeader.makeReservedFixHeader(of: .connect, withRemainingLength: 0)
+        XCTAssertEqual(fixedHeader.type, ControlPacketType.connect)
+        XCTAssertEqual(fixedHeader.flags, FixedHeaderFlags.reserved(value: 0))
+    }
 
     // MARK: Reason Code
 
