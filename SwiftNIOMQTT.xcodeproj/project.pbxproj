@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0505CF1F231732DE00577414 /* ByteBuffer+SubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */; };
 		0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBD822B8658E00500255 /* FixedHeader.swift */; };
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
 		0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDE22B9743500500255 /* ConnectPacket.swift */; };
@@ -107,6 +108,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+SubscribePacket.swift"; sourceTree = "<group>"; };
 		0533EBD822B8658E00500255 /* FixedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeader.swift; sourceTree = "<group>"; };
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
 		0533EBDE22B9743500500255 /* ConnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectPacket.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		829C82B922EE6F2F0026F421 /* SubscribePacket */ = {
 			isa = PBXGroup;
 			children = (
+				0505CF1E231732DE00577414 /* ByteBuffer+SubscribePacket.swift */,
 				829C82BA22EE6F480026F421 /* SubscribePacket.swift */,
 				05F52192230B6CB3005CE1BF /* SubscribePacket+Payload.swift */,
 				05F52193230B6CB3005CE1BF /* SubscribePacket+VariableHeader.swift */,
@@ -801,6 +804,7 @@
 				05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */,
 				05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */,
 				822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */,
+				0505CF1F231732DE00577414 /* ByteBuffer+SubscribePacket.swift in Sources */,
 				82E52B80230DE03900D58DE2 /* ByteBuffer+UnsubAckPacket.swift in Sources */,
 				05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */,
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,

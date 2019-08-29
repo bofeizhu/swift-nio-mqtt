@@ -47,7 +47,8 @@ extension SubscribePacket: PayloadPacket {
     }
 
     /// Subscription Options
-    struct Options {
+    struct Options: RawRepresentable {
+        typealias RawValue = UInt8
 
         /// Maximum QoS
         let qos: QoS
@@ -69,13 +70,44 @@ extension SubscribePacket: PayloadPacket {
 
         /// Retain Handling
         let retainHandling: RetainHandling
+
+        var rawValue: UInt8 {
+
+            let qosValue = qos.rawValue
+            let noLocalValue: UInt8 = noLocal ? 1 : 0
+            let retainAsPublishedValue: UInt8 = retainAsPublished ? 1 : 0
+            let retainHandlingValue = retainHandling.rawValue
+
+            return qosValue &
+                (noLocalValue << 2) &
+                (retainAsPublishedValue << 3) &
+                (retainHandlingValue << 4)
+        }
+
+        init?(rawValue: UInt8) {
+
+            let qosValue = rawValue & 0b11
+            guard let qos = QoS(rawValue: qosValue) else {
+                return nil
+            }
+            self.qos = qos
+
+            noLocal = ((rawValue >> 2) & 1) == 1
+            retainAsPublished = ((rawValue >> 3) & 1) == 1
+
+            let retainHandlingValue = rawValue >> 4
+            guard let retainHandling = RetainHandling(rawValue: retainHandlingValue) else {
+                return nil
+            }
+            self.retainHandling = retainHandling
+        }
     }
 
     /// Retain Handling
     enum RetainHandling: UInt8 {
 
         /// Send retained messages at the time of the subscribe
-        case level0
+        case level0 = 0
 
         /// Send retained messages at subscribe only if the subscription does not currently exist
         case level1
