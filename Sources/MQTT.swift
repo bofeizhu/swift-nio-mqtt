@@ -8,7 +8,6 @@
 
 import Network
 import NIO
-import NIOTLS
 import NIOTransportServices
 
 public final class MQTT {
@@ -34,9 +33,18 @@ public final class MQTT {
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
             .tlsOptions(NWProtocolTLS.Options())
-//            .channelInitializer { channel -> EventLoopFuture<Void> in
-//                
-//            }
+            .channelInitializer { channel -> EventLoopFuture<Void> in
+
+                let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
+                let controlPacketDecoder = ByteToMessageHandler(ControlPacketDecoder())
+
+                let handlers: [ChannelHandler] = [
+                    controlPacketEncoder,
+                    controlPacketDecoder
+                ]
+
+                return channel.pipeline.addHandlers(handlers)
+            }
 
         let connection = bootstrap.connect(host: host, port: port)
 
