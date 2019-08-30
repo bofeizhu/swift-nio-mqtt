@@ -1,0 +1,11 @@
+${PODS_ROOT}/Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample-frameworks.sh
+${BUILT_PRODUCTS_DIR}/CNIOAtomics/CNIOAtomics.framework
+${BUILT_PRODUCTS_DIR}/CNIODarwin/CNIODarwin.framework
+${BUILT_PRODUCTS_DIR}/CNIOLinux/CNIOLinux.framework
+${BUILT_PRODUCTS_DIR}/CNIOSHA1/CNIOSHA1.framework
+${BUILT_PRODUCTS_DIR}/SwiftNIO/NIO.framework
+${BUILT_PRODUCTS_DIR}/SwiftNIOConcurrencyHelpers/NIOConcurrencyHelpers.framework
+${BUILT_PRODUCTS_DIR}/SwiftNIOFoundationCompat/NIOFoundationCompat.framework
+${BUILT_PRODUCTS_DIR}/SwiftNIOMQTT/NIOMQTT.framework
+${BUILT_PRODUCTS_DIR}/SwiftNIOTLS/NIOTLS.framework
+${BUILT_PRODUCTS_DIR}/SwiftNIOTransportServices/NIOTransportServices.framework

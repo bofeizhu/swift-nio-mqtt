@@ -1,0 +1,6 @@
+framework module NIOMQTT {
+  umbrella header "SwiftNIOMQTT-umbrella.h"
+
+  export *
+  module * { export * }
+}

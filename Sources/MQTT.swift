@@ -29,12 +29,14 @@ public final class MQTT {
 
     public func connect() {
 
+        let connAckPromise: EventLoopPromise<Void> = group.next().makePromise()
+
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
             .tlsOptions(NWProtocolTLS.Options())
-            .channelInitializer { channel -> EventLoopFuture<Void> in
-                
-            }
+//            .channelInitializer { channel -> EventLoopFuture<Void> in
+//                
+//            }
 
         let connection = bootstrap.connect(host: host, port: port)
 

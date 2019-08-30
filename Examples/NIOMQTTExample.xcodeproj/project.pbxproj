@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0505CF3323199CCA00577414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF3223199CCA00577414 /* AppDelegate.swift */; };
+		0505CF3523199CCA00577414 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF3423199CCA00577414 /* SceneDelegate.swift */; };
+		0505CF3723199CCA00577414 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF3623199CCA00577414 /* ContentView.swift */; };
+		0505CF3923199CCB00577414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3823199CCB00577414 /* Assets.xcassets */; };
+		0505CF3C23199CCB00577414 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3B23199CCB00577414 /* Preview Assets.xcassets */; };
+		0505CF3F23199CCB00577414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3D23199CCB00577414 /* LaunchScreen.storyboard */; };
+		A7A32FB803055706D81345B9 /* Pods_NIOMQTTExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250EAF68F8E9B2AAD0717763 /* Pods_NIOMQTTExample.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0505CF2F23199CCA00577414 /* NIOMQTTExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NIOMQTTExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0505CF3223199CCA00577414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0505CF3423199CCA00577414 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0505CF3623199CCA00577414 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0505CF3823199CCB00577414 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0505CF3B23199CCB00577414 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0505CF3E23199CCB00577414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0505CF4023199CCB00577414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		250EAF68F8E9B2AAD0717763 /* Pods_NIOMQTTExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTTExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F2B7E7C97D5F0E31190608B /* Pods-NIOMQTTExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTExample.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample.release.xcconfig"; sourceTree = "<group>"; };
+		B8E250FD07548D4C43E05FC0 /* Pods-NIOMQTTExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTExample.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0505CF2C23199CCA00577414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7A32FB803055706D81345B9 /* Pods_NIOMQTTExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0505CF2623199CCA00577414 = {
+			isa = PBXGroup;
+			children = (
+				0505CF3123199CCA00577414 /* Sources */,
+				0505CF3023199CCA00577414 /* Products */,
+				666B89115E3723817675791A /* Pods */,
+				804921FDABF57CCCD3B70878 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0505CF3023199CCA00577414 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0505CF2F23199CCA00577414 /* NIOMQTTExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0505CF3123199CCA00577414 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0505CF4023199CCB00577414 /* Info.plist */,
+				0505CF3223199CCA00577414 /* AppDelegate.swift */,
+				0505CF3623199CCA00577414 /* ContentView.swift */,
+				0505CF3423199CCA00577414 /* SceneDelegate.swift */,
+				0505CF3823199CCB00577414 /* Assets.xcassets */,
+				0505CF3D23199CCB00577414 /* LaunchScreen.storyboard */,
+				0505CF3A23199CCB00577414 /* Preview Content */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0505CF3A23199CCB00577414 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0505CF3B23199CCB00577414 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		666B89115E3723817675791A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B8E250FD07548D4C43E05FC0 /* Pods-NIOMQTTExample.debug.xcconfig */,
+				5F2B7E7C97D5F0E31190608B /* Pods-NIOMQTTExample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		804921FDABF57CCCD3B70878 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				250EAF68F8E9B2AAD0717763 /* Pods_NIOMQTTExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0505CF2E23199CCA00577414 /* NIOMQTTExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0505CF4323199CCB00577414 /* Build configuration list for PBXNativeTarget "NIOMQTTExample" */;
+			buildPhases = (
+				7364E04B94508B29DC20AC18 /* [CP] Check Pods Manifest.lock */,
+				0505CF2B23199CCA00577414 /* Sources */,
+				0505CF2C23199CCA00577414 /* Frameworks */,
+				0505CF2D23199CCA00577414 /* Resources */,
+				E45BEA5620C13B94F1253F20 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NIOMQTTExample;
+			productName = NIOMQTTExample;
+			productReference = 0505CF2F23199CCA00577414 /* NIOMQTTExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0505CF2723199CCA00577414 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "HealthTap Inc.";
+				TargetAttributes = {
+					0505CF2E23199CCA00577414 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = 0505CF2A23199CCA00577414 /* Build configuration list for PBXProject "NIOMQTTExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0505CF2623199CCA00577414;
+			productRefGroup = 0505CF3023199CCA00577414 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0505CF2E23199CCA00577414 /* NIOMQTTExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0505CF2D23199CCA00577414 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0505CF3F23199CCB00577414 /* LaunchScreen.storyboard in Resources */,
+				0505CF3C23199CCB00577414 /* Preview Assets.xcassets in Resources */,
+				0505CF3923199CCB00577414 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7364E04B94508B29DC20AC18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NIOMQTTExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E45BEA5620C13B94F1253F20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0505CF2B23199CCA00577414 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0505CF3323199CCA00577414 /* AppDelegate.swift in Sources */,
+				0505CF3523199CCA00577414 /* SceneDelegate.swift in Sources */,
+				0505CF3723199CCA00577414 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0505CF3D23199CCB00577414 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0505CF3E23199CCB00577414 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0505CF4123199CCB00577414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0505CF4223199CCB00577414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0505CF4423199CCB00577414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8E250FD07548D4C43E05FC0 /* Pods-NIOMQTTExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthtap.NIOMQTTExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0505CF4523199CCB00577414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2B7E7C97D5F0E31190608B /* Pods-NIOMQTTExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthtap.NIOMQTTExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0505CF2A23199CCA00577414 /* Build configuration list for PBXProject "NIOMQTTExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0505CF4123199CCB00577414 /* Debug */,
+				0505CF4223199CCB00577414 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0505CF4323199CCB00577414 /* Build configuration list for PBXNativeTarget "NIOMQTTExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0505CF4423199CCB00577414 /* Debug */,
+				0505CF4523199CCB00577414 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0505CF2723199CCA00577414 /* Project object */;
+}
