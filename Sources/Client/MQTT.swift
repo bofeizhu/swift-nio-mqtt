@@ -50,7 +50,11 @@ public final class MQTT {
                 return channel.pipeline.addHandlers(handlers)
             }
 
-        return bootstrap.connect(host: host, port: port).flatMap { $0.closeFuture }
+        let connection = bootstrap.connect(host: host, port: port).flatMap { $0.closeFuture }
+
+        connection.cascadeFailure(to: connAckPromise)
+
+        return connAckPromise.futureResult
     }
 
     private func makeConnectPacket() -> ConnectPacket {
@@ -59,7 +63,11 @@ public final class MQTT {
             connectFlags: ConnectPacket.ConnectFlags(rawValue: 0)!,
             keepAlive: 10,
             properties: PropertyCollection())
-        let payload = ConnectPacket.Payload(clientId: "healthtap_test", willMessage: nil, username: nil, password: nil)
+        let payload = ConnectPacket.Payload(
+            clientId: "HealthTap",
+            willMessage: nil,
+            username: nil,
+            password: nil)
 
         return ConnectPacket(variableHeader: variableHeader, payload: payload)
     }

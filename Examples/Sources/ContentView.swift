@@ -12,11 +12,17 @@ import NIOMQTT
 struct ContentView: View {
     var body: some View {
         Text("Hello World")
-            .onAppear() {
-                let client = MQTT(host: "mqtt.fluux.io", port: 1883)
-                client.connect().whenSuccess { _ in
-                    print("Disconnected!")
+            .onAppear {
+                let client = MQTT(host: "test.mosquitto.org", port: 1883)
+                client.connect().whenFailure { error in
+                    print(error)
                 }
             }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

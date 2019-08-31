@@ -78,9 +78,9 @@ extension SubscribePacket: PayloadPacket {
             let retainAsPublishedValue: UInt8 = retainAsPublished ? 1 : 0
             let retainHandlingValue = retainHandling.rawValue
 
-            return qosValue &
-                (noLocalValue << 2) &
-                (retainAsPublishedValue << 3) &
+            return qosValue |
+                (noLocalValue << 2) |
+                (retainAsPublishedValue << 3) |
                 (retainHandlingValue << 4)
         }
 
