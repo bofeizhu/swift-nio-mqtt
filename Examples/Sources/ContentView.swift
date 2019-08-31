@@ -12,6 +12,11 @@ import NIOMQTT
 struct ContentView: View {
     var body: some View {
         Text("Hello World")
-            //.onAppear() {}
+            .onAppear() {
+                let client = MQTT(host: "mqtt.fluux.io", port: 1883)
+                client.connect().whenSuccess { _ in
+                    print("Disconnected!")
+                }
+            }
     }
 }

@@ -22,17 +22,23 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
 
     func channelActive(context: ChannelHandlerContext) {
 
+        print("Active!")
+
         // Send CONNECT packet
         context.writeAndFlush(wrapOutboundOut(.connect(packet: connectPacket)), promise: nil)
     }
 
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
 
+        print("Back")
+
         let packet = unwrapInboundIn(data)
 
         switch packet {
 
         case let .connAck(connAckPacket):
+
+            print("CONNACK Recieved!")
 
             let reasonCode = connAckPacket.variableHeader.connectReasonCode
             if reasonCode == .success {

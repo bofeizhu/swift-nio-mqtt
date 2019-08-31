@@ -26,26 +26,41 @@ public final class MQTT {
         self.port = port
     }
 
-    public func connect() {
+    public func connect() -> EventLoopFuture<Void> {
 
-        // let connAckPromise: EventLoopPromise<Void> = group.next().makePromise()
+        let connectPacket = makeConnectPacket()
+        let connAckPromise: EventLoopPromise<Void> = group.next().makePromise()
 
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
-            .tlsOptions(NWProtocolTLS.Options())
+            // .tlsOptions(NWProtocolTLS.Options()) disable TLS for now
             .channelInitializer { channel -> EventLoopFuture<Void> in
 
                 let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
                 let controlPacketDecoder = ByteToMessageHandler(ControlPacketDecoder())
 
+                let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
+
                 let handlers: [ChannelHandler] = [
                     controlPacketEncoder,
                     controlPacketDecoder,
+                    connectHandler,
                 ]
 
                 return channel.pipeline.addHandlers(handlers)
             }
 
-        let _ = bootstrap.connect(host: host, port: port)
+        return bootstrap.connect(host: host, port: port).flatMap { $0.closeFuture }
+    }
+
+    private func makeConnectPacket() -> ConnectPacket {
+
+        let variableHeader = ConnectPacket.VariableHeader(
+            connectFlags: ConnectPacket.ConnectFlags(rawValue: 0)!,
+            keepAlive: 10,
+            properties: PropertyCollection())
+        let payload = ConnectPacket.Payload(clientId: "healthtap_test", willMessage: nil, username: nil, password: nil)
+
+        return ConnectPacket(variableHeader: variableHeader, payload: payload)
     }
 }
