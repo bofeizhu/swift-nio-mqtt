@@ -41,9 +41,12 @@ public final class MQTT {
 
                 let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
 
+                let loggingHandler = LoggingHandler()
+
                 let handlers: [ChannelHandler] = [
                     controlPacketEncoder,
                     controlPacketDecoder,
+                    loggingHandler,
                     connectHandler,
                 ]
 
