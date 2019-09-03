@@ -1,4 +1,5 @@
 ignore:
-  - "Examples"  # ignore Examples
-  - "Tests"     # ignore Tests
-  - "Pods"      # ignore Pods
+  - "Tests"
+  - "Pods"
+  - "Examples"
+  - "Examples/Pods"
