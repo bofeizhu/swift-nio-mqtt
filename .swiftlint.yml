@@ -1,15 +1,18 @@
 disabled_rules: # rule identifiers to exclude from running
   - todo
   - nesting
+  - trailing_comma
 opt_in_rules: # some rules are only opt-in
   - empty_count
 included: # paths to include during linting. `--path` is ignored if present.
   - Sources
   - Tests
+  - Examples/Sources
   - Dangerfile.swift
   - Package.swift
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
+  - Examples/Pods
 analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
   - explicit_self
 

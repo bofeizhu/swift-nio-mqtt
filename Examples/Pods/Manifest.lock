@@ -1,0 +1,59 @@
+PODS:
+  - CNIOAtomics (2.7.0)
+  - CNIODarwin (2.7.0)
+  - CNIOLinux (2.7.0)
+  - CNIOSHA1 (2.7.0)
+  - SwiftNIO (2.7.0):
+    - CNIOAtomics (= 2.7.0)
+    - CNIODarwin (= 2.7.0)
+    - CNIOLinux (= 2.7.0)
+    - CNIOSHA1 (= 2.7.0)
+    - SwiftNIOConcurrencyHelpers (= 2.7.0)
+  - SwiftNIOConcurrencyHelpers (2.7.0):
+    - CNIOAtomics (= 2.7.0)
+  - SwiftNIOFoundationCompat (2.7.0):
+    - SwiftNIO (= 2.7.0)
+  - SwiftNIOMQTT (0.0.1):
+    - SwiftNIOTransportServices (~> 1.0)
+  - SwiftNIOTLS (2.7.0):
+    - SwiftNIO (= 2.7.0)
+  - SwiftNIOTransportServices (1.1.1):
+    - SwiftNIO (~> 2.0)
+    - SwiftNIOConcurrencyHelpers (~> 2.0)
+    - SwiftNIOFoundationCompat (~> 2.0)
+    - SwiftNIOTLS (~> 2.0)
+
+DEPENDENCIES:
+  - SwiftNIOMQTT (from `../SwiftNIOMQTT.podspec`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CNIOAtomics
+    - CNIODarwin
+    - CNIOLinux
+    - CNIOSHA1
+    - SwiftNIO
+    - SwiftNIOConcurrencyHelpers
+    - SwiftNIOFoundationCompat
+    - SwiftNIOTLS
+    - SwiftNIOTransportServices
+
+EXTERNAL SOURCES:
+  SwiftNIOMQTT:
+    :path: "../SwiftNIOMQTT.podspec"
+
+SPEC CHECKSUMS:
+  CNIOAtomics: 22341aaeaaf7129e89eebbccfd69d08ad8877b9f
+  CNIODarwin: 1ea25f41ab02d28363b3d34a2f0a39a746427e74
+  CNIOLinux: 33a28c60794e3c7b5a94e7306bfb80bb9ac6ac07
+  CNIOSHA1: dc27be120a2b9ac456f5fd479518f049c342367e
+  SwiftNIO: 34dd40f533f1b6764f2f4d5c2271efb5f6253d7e
+  SwiftNIOConcurrencyHelpers: 513e837bee60e27febc4273fb79eb84d2d138831
+  SwiftNIOFoundationCompat: cbdb90fff409a31ccea707e65e93d8d3c59d23d7
+  SwiftNIOMQTT: e63af3ca88cf4eacf4570add6bde98a88d253036
+  SwiftNIOTLS: dfe2def1ade50c34da124a19de06c97b42dcc5e0
+  SwiftNIOTransportServices: b2d2b1512dff1e132bee779cfd7d579440fcdea7
+
+PODFILE CHECKSUM: 3cf2ffdbc78b78f40c32493420bfae7505d9ce23
+
+COCOAPODS: 1.7.5

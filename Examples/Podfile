@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+# https://www.ralfebert.de/ios/blog/cocoapods-clean-input-output-files/
+install! 'cocoapods', :disable_input_output_paths => true
+
+target 'NIOMQTTExample' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for NIOMQTTExample
+  pod 'SwiftNIOMQTT', :path => '../SwiftNIOMQTT.podspec'
+
+end
