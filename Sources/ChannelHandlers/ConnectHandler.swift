@@ -34,9 +34,16 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
 
         case let .connAck(connAckPacket):
 
-            let reasonCode = connAckPacket.variableHeader.connectReasonCode
+            let variableHeader = connAckPacket.variableHeader
+            let reasonCode = variableHeader.connectReasonCode
+
             if reasonCode == .success {
-                connectAcknowledged(context: context).cascade(to: connAckPromise)
+
+                let properties = variableHeader.properties
+                connectAcknowledged(
+                    context: context,
+                    properties: properties
+                ).cascade(to: connAckPromise)
             } else {
                 // TODO: Handle connect acknowledgement errors
             }
@@ -48,10 +55,25 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
         }
     }
 
-    private func connectAcknowledged(context: ChannelHandlerContext) -> EventLoopFuture<Void> {
+    private func connectAcknowledged(
+        context: ChannelHandlerContext,
+        properties: PropertyCollection
+    ) -> EventLoopFuture<Void> {
+
+        var keepAlive = connectPacket.variableHeader.keepAlive
+
+        if let serverKeepAlive = properties.serverKeepAlive {
+            keepAlive = serverKeepAlive
+        }
+
+        var handlers: [ChannelHandler] = []
+
+        if keepAlive > 0 {
+            handlers.append(KeepAliveHandler(keepAlive: keepAlive))
+        }
 
         // TODO: Add Sub/Pub handlers
-        return context.channel.pipeline.addHandlers([])
+        return context.channel.pipeline.addHandlers(handlers)
             .flatMap {
                 return context.pipeline.removeHandler(self)
             }

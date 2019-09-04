@@ -19,6 +19,7 @@
 		0533EBE322B987C900500255 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBE222B987C900500255 /* Property.swift */; };
 		0533EBE522BC18E400500255 /* PingReqPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBE422BC18E400500255 /* PingReqPacket.swift */; };
 		0533EBE722BC3E8B00500255 /* PingRespPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBE622BC3E8B00500255 /* PingRespPacket.swift */; };
+		055790B9232038F000D4C5DB /* KeepAliveHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055790B8232038F000D4C5DB /* KeepAliveHandler.swift */; };
 		056A221022B832C2000500C1 /* ByteBuffer+DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */; };
 		056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221122B841D5000500C1 /* MQTTErrors.swift */; };
 		056A221422B85226000500C1 /* StringPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056A221322B85226000500C1 /* StringPair.swift */; };
@@ -125,6 +126,7 @@
 		0533EBE222B987C900500255 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		0533EBE422BC18E400500255 /* PingReqPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingReqPacket.swift; sourceTree = "<group>"; };
 		0533EBE622BC3E8B00500255 /* PingRespPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingRespPacket.swift; sourceTree = "<group>"; };
+		055790B8232038F000D4C5DB /* KeepAliveHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAliveHandler.swift; sourceTree = "<group>"; };
 		056A220F22B832C2000500C1 /* ByteBuffer+DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+DataTypes.swift"; sourceTree = "<group>"; };
 		056A221122B841D5000500C1 /* MQTTErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTErrors.swift; sourceTree = "<group>"; };
 		056A221322B85226000500C1 /* StringPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringPair.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				0507C37F2319BF5D000ACDA1 /* ConnectHandler.swift */,
 				82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */,
 				0505CF2223184C9600577414 /* ControlPacketEncoder.swift */,
+				055790B8232038F000D4C5DB /* KeepAliveHandler.swift */,
 				82A7BDD6231CE72500F61345 /* LoggingHandler.swift */,
 			);
 			path = ChannelHandlers;
@@ -834,6 +837,7 @@
 				05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */,
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,
 				82E52B7C230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift in Sources */,
+				055790B9232038F000D4C5DB /* KeepAliveHandler.swift in Sources */,
 				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
 				82E52B72230C797200D58DE2 /* AuthPacket.swift in Sources */,
 				826C9D792305629E00C7BAF9 /* ByteBuffer+ControlPacket.swift in Sources */,
