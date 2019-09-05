@@ -27,6 +27,7 @@ extension ByteBuffer {
         var packetIdentifier: UInt16?
 
         switch fixedHeader.flags {
+
         case let .publish(_, qos, _):
             if qos != .level0 {
                 guard let identifier: UInt16 = readInteger() else {
@@ -34,6 +35,7 @@ extension ByteBuffer {
                 }
                 packetIdentifier = identifier
             }
+
         default:
             throw MQTTCodingError.malformedPacket
         }
@@ -110,10 +112,13 @@ extension ByteBuffer {
     private mutating func write(_ payload: PublishPacket.Payload) -> Int {
 
         switch payload {
+
         case let .binary(data):
             return writeBytes(data)
+
         case let .utf8(string):
             return writeString(string)
+            
         case .empty:
             return 0
         }

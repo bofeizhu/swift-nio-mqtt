@@ -33,10 +33,12 @@ struct PublishPacket: ControlPacketProtocol {
     init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: Payload) {
 
         switch fixedHeader.flags {
+
         case let .publish(dup, qos, retain):
             self.dup = dup
             self.qos = qos
             self.retain = retain
+            
         default:
             return nil
         }

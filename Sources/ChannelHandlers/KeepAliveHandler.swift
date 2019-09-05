@@ -19,7 +19,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
 
     private let keepAlive: TimeAmount
     private let throttleInterval: TimeAmount
-    private var pingRequestTask: (deadline: NIODeadline, scheduled: Scheduled<Void>)?
+    private var pingRequestTask: (deadline: NIODeadline, task: Scheduled<Void>)?
     private var pingResponseTimeoutTask: Scheduled<Void>?
 
     // TODO: Make timeout configurable
@@ -42,8 +42,8 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         let packet = unwrapInboundIn(data)
 
         switch packet {
+            
         case .pingResp:
-
             guard let task = pingResponseTimeoutTask else {
                 break
             }
@@ -52,19 +52,17 @@ final class KeepAliveHandler: ChannelDuplexHandler {
             task.cancel()
 
         default:
-
-            // TODO: Unhandled packet
-            break
+            context.fireChannelRead(data)
         }
     }
 
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
 
         // New packet is being sent; cancel PINGREQ and reschedule
-        if let (deadline, scheduled) = pingRequestTask,
+        if let (deadline, task) = pingRequestTask,
            deadline + throttleInterval < NIODeadline.now() {
 
-            scheduled.cancel()
+            task.cancel()
             pingRequestTask = schedulePingReq(context: context)
         }
 
@@ -75,16 +73,16 @@ final class KeepAliveHandler: ChannelDuplexHandler {
 
         let deadline: NIODeadline = .now() + keepAlive
 
-        let scheduled = context.channel.eventLoop.scheduleTask(deadline: deadline) { [weak self] in
+        let task = context.channel.eventLoop.scheduleTask(deadline: deadline) { [weak self] in
 
             guard let strongSelf = self else {
                 return
             }
 
-            let promise: EventLoopPromise<Void> = context.channel.eventLoop.makePromise()
+            let writePromise: EventLoopPromise<Void> = context.channel.eventLoop.makePromise()
 
             // TODO: Handle failure state
-            promise.futureResult.whenSuccess { _ in
+            writePromise.futureResult.whenSuccess { _ in
 
                 // Schedule PINGRESP timeout task
                 strongSelf.pingResponseTimeoutTask = strongSelf.schedulePingRespTimeout(context: context)
@@ -95,14 +93,16 @@ final class KeepAliveHandler: ChannelDuplexHandler {
 
             let packet = PingReqPacket()
             let data = strongSelf.wrapOutboundOut(.pingReq(packet: packet))
-            context.writeAndFlush(data, promise: promise)
+            context.writeAndFlush(data, promise: writePromise)
         }
 
-        return (deadline, scheduled)
+        return (deadline, task)
     }
 
     private func schedulePingRespTimeout(context: ChannelHandlerContext) -> Scheduled<Void> {
+
         return context.channel.eventLoop.scheduleTask(in: pingResponseTimeout) { [weak self] in
+
             guard let _ = self else {
                 return
             }

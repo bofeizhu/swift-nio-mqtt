@@ -31,14 +31,12 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
         let packet = unwrapInboundIn(data)
 
         switch packet {
-
+            
         case let .connAck(connAckPacket):
-
             let variableHeader = connAckPacket.variableHeader
             let reasonCode = variableHeader.connectReasonCode
 
             if reasonCode == .success {
-
                 let properties = variableHeader.properties
                 connectAcknowledged(
                     context: context,
@@ -49,7 +47,6 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
             }
 
         default:
-
             // Handle error
             break
         }
