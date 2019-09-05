@@ -42,7 +42,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         let packet = unwrapInboundIn(data)
 
         switch packet {
-            
+
         case .pingResp:
             guard let task = pingResponseTimeoutTask else {
                 break
@@ -108,7 +108,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
             }
 
             // TODO: Close connection
-            print("Canceled")
+            print("Closed")
         }
     }
 }

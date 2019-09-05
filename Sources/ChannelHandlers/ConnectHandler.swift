@@ -31,7 +31,7 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
         let packet = unwrapInboundIn(data)
 
         switch packet {
-            
+
         case let .connAck(connAckPacket):
             let variableHeader = connAckPacket.variableHeader
             let reasonCode = variableHeader.connectReasonCode
@@ -65,6 +65,7 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
 
         var handlers: [ChannelHandler] = []
 
+        // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
         if keepAlive > 0 {
             handlers.append(KeepAliveHandler(keepAlive: keepAlive))
         }

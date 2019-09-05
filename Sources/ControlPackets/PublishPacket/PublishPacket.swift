@@ -38,7 +38,7 @@ struct PublishPacket: ControlPacketProtocol {
             self.dup = dup
             self.qos = qos
             self.retain = retain
-            
+
         default:
             return nil
         }

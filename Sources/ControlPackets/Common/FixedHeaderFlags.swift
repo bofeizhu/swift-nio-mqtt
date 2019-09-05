@@ -46,7 +46,7 @@ enum FixedHeaderFlags {
 
     static func reservedFlagsValue(of type: ControlPacketType) -> UInt8 {
         switch type {
-            
+
         case .connect,
              .connAck,
              .pubAck,

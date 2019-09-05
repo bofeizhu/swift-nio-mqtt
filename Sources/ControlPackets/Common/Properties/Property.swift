@@ -114,7 +114,7 @@ extension Property: MQTTByteRepresentable {
         var count = 1
 
         switch self {
-            
+
         case .payloadFormatIndicator:
             count += UInt8.byteCount
 

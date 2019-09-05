@@ -118,7 +118,7 @@ extension ByteBuffer {
 
         case let .utf8(string):
             return writeString(string)
-            
+
         case .empty:
             return 0
         }
