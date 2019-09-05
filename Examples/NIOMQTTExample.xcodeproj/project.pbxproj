@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0505CF2F23199CCA00577414 /* NIOMQTTExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NIOMQTTExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0505CF2F23199CCA00577414 /* MQTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0505CF3223199CCA00577414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0505CF3423199CCA00577414 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0505CF3623199CCA00577414 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		0505CF3023199CCA00577414 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0505CF2F23199CCA00577414 /* NIOMQTTExample.app */,
+				0505CF2F23199CCA00577414 /* MQTT.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			);
 			name = NIOMQTTExample;
 			productName = NIOMQTTExample;
-			productReference = 0505CF2F23199CCA00577414 /* NIOMQTTExample.app */;
+			productReference = 0505CF2F23199CCA00577414 /* MQTT.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -361,7 +361,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthtap.NIOMQTTExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MQTT;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -383,7 +383,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthtap.NIOMQTTExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MQTT;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
