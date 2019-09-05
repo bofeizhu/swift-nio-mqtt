@@ -6,7 +6,6 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-import Foundation
 import NIO
 
 /// Keep Alive Handler
@@ -61,7 +60,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
 
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
 
-        // New packet being sent, cancel PINGREQ and reschedule
+        // New packet is being sent; cancel PINGREQ and reschedule
         if let (deadline, scheduled) = pingRequestTask,
            deadline + throttleInterval < NIODeadline.now() {
 
@@ -72,9 +71,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         context.write(data, promise: promise)
     }
 
-    private func schedulePingReq(
-        context: ChannelHandlerContext
-    ) -> (NIODeadline, Scheduled<Void>) {
+    private func schedulePingReq(context: ChannelHandlerContext) -> (NIODeadline, Scheduled<Void>) {
 
         let deadline: NIODeadline = .now() + keepAlive
 
