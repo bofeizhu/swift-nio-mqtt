@@ -31,12 +31,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         switch packet {
 
         case .pingResp:
-            guard let task = pingResponseTimeoutTask else {
-                break
-            }
-
-            // Received PINGRESP, cancel timeout task
-            task.cancel()
+            pingResponseTimeoutTask?.cancel()
 
         default:
             context.fireChannelRead(data)
@@ -65,10 +60,6 @@ final class KeepAliveHandler: ChannelDuplexHandler {
     private func schedulePingRespTimeout(context: ChannelHandlerContext) -> Scheduled<Void> {
 
         return context.channel.eventLoop.scheduleTask(in: pingResponseTimeout) { [weak self] in
-
-            guard let _ = self else {
-                return
-            }
 
             // TODO: Close connection
             print("Closed")
