@@ -57,7 +57,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
 
     private func schedulePingRespTimeout(context: ChannelHandlerContext) -> Scheduled<Void> {
 
-        return context.channel.eventLoop.scheduleTask(in: pingResponseTimeout) { [weak self] in
+        return context.channel.eventLoop.scheduleTask(in: pingResponseTimeout) {
 
             // TODO: Close connection
             print("Closed")
