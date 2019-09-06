@@ -9,8 +9,6 @@
 import NIO
 
 /// Keep Alive Handler
-///
-/// - Note: We throttle rescheduling PINGREQ if the last schedule is less than half the keep alive interval away.
 final class KeepAliveHandler: ChannelDuplexHandler {
     typealias InboundIn = ControlPacket
     typealias InboundOut = ControlPacket
