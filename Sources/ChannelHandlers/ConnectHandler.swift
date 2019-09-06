@@ -67,7 +67,9 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
 
         // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
         if keepAlive > 0 {
-            handlers.append(KeepAliveHandler(keepAlive: keepAlive))
+            let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
+            handlers.append(IdleStateHandler(writeTimeout: timeout))
+            handlers.append(KeepAliveHandler())
         }
 
         // TODO: Add Sub/Pub handlers
