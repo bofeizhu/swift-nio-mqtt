@@ -69,6 +69,7 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
         if keepAlive > 0 {
             let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
             handlers.append(IdleStateHandler(writeTimeout: timeout))
+            handlers.append(SessionHandler())
             handlers.append(KeepAliveHandler())
         }
 

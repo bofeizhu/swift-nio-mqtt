@@ -31,9 +31,14 @@ public final class MQTT {
         let connectPacket = makeConnectPacket()
         let connAckPromise: EventLoopPromise<Void> = group.next().makePromise()
 
+        let options = NWProtocolTLS.Options()
+
+        // Disable peer authentication for now
+        sec_protocol_options_set_peer_authentication_required(options.securityProtocolOptions, false)
+
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
-            // .tlsOptions(NWProtocolTLS.Options()) disable TLS for now
+            .tlsOptions(options)
             .channelInitializer { channel -> EventLoopFuture<Void> in
 
                 let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
@@ -63,9 +68,10 @@ public final class MQTT {
     private func makeConnectPacket() -> ConnectPacket {
 
         let variableHeader = ConnectPacket.VariableHeader(
-            connectFlags: ConnectPacket.ConnectFlags(rawValue: 0)!,
-            keepAlive: 10,
+            connectFlags: ConnectPacket.ConnectFlags(rawValue: 2)!,
+            keepAlive: 30,
             properties: PropertyCollection())
+
         let payload = ConnectPacket.Payload(
             clientId: "HealthTap",
             willMessage: nil,

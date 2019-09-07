@@ -36,6 +36,10 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         }
     }
 
+    func channelInactive(context: ChannelHandlerContext) {
+        // TODO: Handle channel inactive
+    }
+
     func userInboundEventTriggered(context: ChannelHandlerContext, event: Any) {
 
         if let idleEvent = event as? IdleStateHandler.IdleStateEvent, idleEvent == .write {
@@ -58,9 +62,7 @@ final class KeepAliveHandler: ChannelDuplexHandler {
     private func schedulePingRespTimeout(context: ChannelHandlerContext) -> Scheduled<Void> {
 
         return context.channel.eventLoop.scheduleTask(in: pingResponseTimeout) {
-
-            // TODO: Close connection
-            print("Closed")
+            context.channel.close(mode: .all, promise: nil)
         }
     }
 }
