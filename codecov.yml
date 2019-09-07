@@ -2,4 +2,3 @@ ignore:
   - "Tests"
   - "Pods"
   - "Examples"
-  - "Examples/Pods"
