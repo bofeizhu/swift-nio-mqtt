@@ -21,7 +21,6 @@ struct ContentView: View {
     }
 }
 
-// swiftlint:disable:next type_name
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
