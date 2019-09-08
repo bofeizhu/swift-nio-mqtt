@@ -1,0 +1,12 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+    
+    steps:
+    - name: Danger Swift
+      uses: danger/swift@2.0.1
