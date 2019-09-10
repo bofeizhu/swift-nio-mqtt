@@ -7,6 +7,7 @@
 //
 
 import Network
+import Dispatch
 import NIO
 import NIOTransportServices
 
@@ -32,14 +33,11 @@ public final class MQTT {
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
         let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
 
-        let options = NWProtocolTLS.Options()
-
-        // Disable peer authentication for now
-        sec_protocol_options_set_peer_authentication_required(options.securityProtocolOptions, false)
+        let tlsOptions = makeTLSOptions()
 
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
-            .tlsOptions(options)
+            .tlsOptions(tlsOptions)
             .channelInitializer { channel -> EventLoopFuture<Void> in
 
                 let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
@@ -101,5 +99,15 @@ public final class MQTT {
             password: nil)
 
         return ConnectPacket(variableHeader: variableHeader, payload: payload)
+    }
+
+    private func makeTLSOptions() -> NWProtocolTLS.Options {
+
+        let options = NWProtocolTLS.Options()
+
+        // Disable peer authentication for now
+        sec_protocol_options_set_peer_authentication_required(options.securityProtocolOptions, false)
+
+        return options
     }
 }
