@@ -13,9 +13,12 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
     typealias OutboundOut = ControlPacket
 
     private let connectPacket: ConnectPacket
-    private let connAckPromise: EventLoopPromise<Void>
+    private let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)>
 
-    init(connectPacket: ConnectPacket, connAckPromise: EventLoopPromise<Void>) {
+    init(
+        connectPacket: ConnectPacket,
+        connAckPromise: EventLoopPromise<(Channel, PropertyCollection)>
+    ) {
         self.connectPacket = connectPacket
         self.connAckPromise = connAckPromise
     }
@@ -38,10 +41,7 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
 
             if reasonCode == .success {
                 let properties = variableHeader.properties
-                connectAcknowledged(
-                    context: context,
-                    properties: properties
-                ).cascade(to: connAckPromise)
+                connAckPromise.succeed((context.channel, properties))
             } else {
                 // TODO: Handle connect acknowledgement errors
             }
@@ -50,33 +50,5 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
             // Handle error
             break
         }
-    }
-
-    private func connectAcknowledged(
-        context: ChannelHandlerContext,
-        properties: PropertyCollection
-    ) -> EventLoopFuture<Void> {
-
-        var keepAlive = connectPacket.variableHeader.keepAlive
-
-        if let serverKeepAlive = properties.serverKeepAlive {
-            keepAlive = serverKeepAlive
-        }
-
-        var handlers: [ChannelHandler] = []
-
-        // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
-        if keepAlive > 0 {
-            let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
-            handlers.append(IdleStateHandler(writeTimeout: timeout))
-            handlers.append(SessionHandler())
-            handlers.append(KeepAliveHandler())
-        }
-
-        // TODO: Add Sub/Pub handlers
-        return context.channel.pipeline.addHandlers(handlers)
-            .flatMap {
-                return context.pipeline.removeHandler(self)
-            }
     }
 }

@@ -102,10 +102,10 @@ extension ByteBuffer {
             }
             return .utf8(stirng: string)
         } else {
-            guard let data = readBytes(length: length) else {
+            guard let data = readData(length: length) else {
                 return nil
             }
-            return .binary(data: Data(data))
+            return .binary(data: data)
         }
     }
 

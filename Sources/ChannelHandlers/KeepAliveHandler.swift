@@ -36,10 +36,6 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         }
     }
 
-    func channelInactive(context: ChannelHandlerContext) {
-        // TODO: Handle channel inactive
-    }
-
     func userInboundEventTriggered(context: ChannelHandlerContext, event: Any) {
 
         if let idleEvent = event as? IdleStateHandler.IdleStateEvent, idleEvent == .write {

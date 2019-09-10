@@ -29,7 +29,8 @@ public final class MQTT {
     public func connect() -> EventLoopFuture<Void> {
 
         let connectPacket = makeConnectPacket()
-        let connAckPromise: EventLoopPromise<Void> = group.next().makePromise()
+        let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
+        let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
 
         let options = NWProtocolTLS.Options()
 
@@ -44,8 +45,6 @@ public final class MQTT {
                 let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
                 let controlPacketDecoder = ByteToMessageHandler(ControlPacketDecoder())
 
-                let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
-
                 let loggingHandler = LoggingHandler()
 
                 let handlers: [ChannelHandler] = [
@@ -58,11 +57,34 @@ public final class MQTT {
                 return channel.pipeline.addHandlers(handlers)
             }
 
-        let connection = bootstrap.connect(host: host, port: port).flatMap { $0.closeFuture }
+        let connection = bootstrap.connect(host: host, port: port)
 
         connection.cascadeFailure(to: connAckPromise)
 
-        return connAckPromise.futureResult
+        return connAckPromise.futureResult.flatMap { (channel, properties) -> EventLoopFuture<Void> in
+            var keepAlive = connectPacket.variableHeader.keepAlive
+
+            if let serverKeepAlive = properties.serverKeepAlive {
+                keepAlive = serverKeepAlive
+            }
+
+            var handlers: [ChannelHandler] = []
+
+            // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
+            if keepAlive > 0 {
+                let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
+                handlers.append(IdleStateHandler(writeTimeout: timeout))
+                handlers.append(SessionHandler())
+                handlers.append(KeepAliveHandler())
+            } else {
+                handlers.append(SessionHandler())
+            }
+
+            return channel.pipeline.addHandlers(handlers)
+                .flatMap {
+                    return channel.pipeline.removeHandler(connectHandler)
+                }
+        }
     }
 
     private func makeConnectPacket() -> ConnectPacket {
