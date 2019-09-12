@@ -15,7 +15,6 @@ enum FixedHeaderFlags {
 
     init?(type: ControlPacketType, value: UInt8) {
         switch type {
-
         case .publish:
             let qosValue = (value >> 1) & 0b11
             guard let qos = QoS(rawValue: qosValue) else {
@@ -32,7 +31,6 @@ enum FixedHeaderFlags {
 
     var value: UInt8 {
         switch self {
-
         case let .reserved(flags):
             return flags
 
@@ -46,7 +44,6 @@ enum FixedHeaderFlags {
 
     static func reservedFlagsValue(of type: ControlPacketType) -> UInt8 {
         switch type {
-
         case .connect,
              .connAck,
              .pubAck,

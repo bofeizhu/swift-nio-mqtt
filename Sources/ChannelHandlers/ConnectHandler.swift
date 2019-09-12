@@ -34,7 +34,6 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
         let packet = unwrapInboundIn(data)
 
         switch packet {
-
         case let .connAck(connAckPacket):
             let variableHeader = connAckPacket.variableHeader
             let reasonCode = variableHeader.connectReasonCode
