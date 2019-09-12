@@ -13,9 +13,9 @@ struct ContentView: View {
     var body: some View {
         Text("Hello World")
             .onAppear {
-                let client = MQTT(host: "test.mosquitto.org", port: 8883)
+                let client = MQTT(host: "test.mosquitto.org", port: 1883)
                 client.connect().whenSuccess {
-                    print("CONNECTED")
+                    client.publish(topic: "healthtap", message: "Hello World!")
                 }
             }
     }

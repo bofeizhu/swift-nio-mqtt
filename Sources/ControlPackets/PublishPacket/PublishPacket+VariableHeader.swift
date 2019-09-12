@@ -21,7 +21,9 @@ extension PublishPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return topicName.mqttByteCount + UInt16.byteCount + properties.mqttByteCount
+            let packetIdentifierByteCount = packetIdentifier == nil ? 0 : UInt16.byteCount
+            
+            return topicName.mqttByteCount + packetIdentifierByteCount + properties.mqttByteCount
         }
     }
 }

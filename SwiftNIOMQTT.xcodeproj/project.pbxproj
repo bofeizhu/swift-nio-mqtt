@@ -33,6 +33,8 @@
 		057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C32304D3660064E71D /* ByteBuffer+PubRecPacket.swift */; };
 		057C30C62304D37D0064E71D /* ByteBuffer+PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C52304D37D0064E71D /* ByteBuffer+PubRelPacket.swift */; };
 		057C30C82304D3910064E71D /* ByteBuffer+PubCompPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C30C72304D3910064E71D /* ByteBuffer+PubCompPacket.swift */; };
+		058629FC23282E0E00669BD0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058629FB23282E0E00669BD0 /* Session.swift */; };
+		058629FE23282E3A00669BD0 /* Session+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058629FD23282E3A00669BD0 /* Session+Action.swift */; };
 		05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A290242301416C0046E952 /* ByteBuffer+Property.swift */; };
 		05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149D22B2EDCF001D33A3 /* VInt.swift */; };
 		05F1981022E63463006E3E37 /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1980F22E63463006E3E37 /* QoS.swift */; };
@@ -144,6 +146,8 @@
 		057C30C32304D3660064E71D /* ByteBuffer+PubRecPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubRecPacket.swift"; sourceTree = "<group>"; };
 		057C30C52304D37D0064E71D /* ByteBuffer+PubRelPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubRelPacket.swift"; sourceTree = "<group>"; };
 		057C30C72304D3910064E71D /* ByteBuffer+PubCompPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+PubCompPacket.swift"; sourceTree = "<group>"; };
+		058629FB23282E0E00669BD0 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		058629FD23282E3A00669BD0 /* Session+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Action.swift"; sourceTree = "<group>"; };
 		05A290242301416C0046E952 /* ByteBuffer+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+Property.swift"; sourceTree = "<group>"; };
 		05DD149D22B2EDCF001D33A3 /* VInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VInt.swift; sourceTree = "<group>"; };
 		05F1980F22E63463006E3E37 /* QoS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 			children = (
 				0505CF24231852CF00577414 /* MQTT.swift */,
 				0507C3822319EB26000ACDA1 /* MQTT+Configuration.swift */,
+				058629FA23282DD100669BD0 /* Session */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -295,6 +300,15 @@
 				82E52B892310309A00D58DE2 /* PacketComponentTests */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		058629FA23282DD100669BD0 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				058629FB23282E0E00669BD0 /* Session.swift */,
+				058629FD23282E3A00669BD0 /* Session+Action.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		05DD149922B2CF5C001D33A3 /* ControlPackets */ = {
@@ -830,6 +844,7 @@
 				0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */,
 				05F52194230B6CB3005CE1BF /* SubscribePacket+Payload.swift in Sources */,
 				82E52B86230E140B00D58DE2 /* ByteBuffer+ConnectPacket.swift in Sources */,
+				058629FE23282E3A00669BD0 /* Session+Action.swift in Sources */,
 				822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */,
 				05F52186230B5D97005CE1BF /* SubAckPacket+Payload.swift in Sources */,
 				05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */,
@@ -865,6 +880,7 @@
 				82E52B82230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift in Sources */,
 				05F1981F22E6603E006E3E37 /* ConnAckPacket.swift in Sources */,
 				0505CF212317517C00577414 /* ByteBuffer+UnsubscribePacket.swift in Sources */,
+				058629FC23282E0E00669BD0 /* Session.swift in Sources */,
 				82A7BDD7231CE72500F61345 /* LoggingHandler.swift in Sources */,
 				822A21A622E5221C00FC348C /* HasProperties.swift in Sources */,
 				05F1981822E645C1006E3E37 /* ConnectPacket+ReasonCode.swift in Sources */,

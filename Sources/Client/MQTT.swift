@@ -13,14 +13,12 @@ import NIOTransportServices
 
 public final class MQTT {
 
-    public var onConnect: (() -> Void)?
-
     private let group: NIOTSEventLoopGroup
     private let host: String
     private let port: Int
+    private var channel: Channel?
 
     public init(host: String, port: Int) {
-
         group = NIOTSEventLoopGroup()
 
         self.host = host
@@ -28,7 +26,6 @@ public final class MQTT {
     }
 
     public func connect() -> EventLoopFuture<Void> {
-
         let connectPacket = makeConnectPacket()
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
         let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
@@ -37,8 +34,9 @@ public final class MQTT {
 
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
-            .tlsOptions(tlsOptions)
+            //.tlsOptions(tlsOptions)
             .channelInitializer { channel -> EventLoopFuture<Void> in
+                self.channel = channel
 
                 let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
                 let controlPacketDecoder = ByteToMessageHandler(ControlPacketDecoder())
@@ -72,8 +70,8 @@ public final class MQTT {
             if keepAlive > 0 {
                 let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
                 handlers.append(IdleStateHandler(writeTimeout: timeout))
-                handlers.append(SessionHandler())
                 handlers.append(KeepAliveHandler())
+                handlers.append(SessionHandler())
             } else {
                 handlers.append(SessionHandler())
             }
@@ -85,8 +83,14 @@ public final class MQTT {
         }
     }
 
-    private func makeConnectPacket() -> ConnectPacket {
+    @discardableResult
+    public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
+        //let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
+        let action: Session.Action = .publish(topic: topic, payload: .empty)
+        return channel?.writeAndFlush(action)
+    }
 
+    private func makeConnectPacket() -> ConnectPacket {
         let variableHeader = ConnectPacket.VariableHeader(
             connectFlags: ConnectPacket.ConnectFlags(rawValue: 2)!,
             keepAlive: 30,
@@ -102,7 +106,6 @@ public final class MQTT {
     }
 
     private func makeTLSOptions() -> NWProtocolTLS.Options {
-
         let options = NWProtocolTLS.Options()
 
         // Disable peer authentication for now

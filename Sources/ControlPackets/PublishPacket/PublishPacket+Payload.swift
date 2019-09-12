@@ -40,5 +40,18 @@ extension PublishPacket: PayloadPacket {
                return 0
            }
         }
+
+        var formatIndicator: Property {
+            switch self {
+            case .binary:
+                return .payloadFormatIndicator(false)
+
+            case .utf8:
+                return .payloadFormatIndicator(true)
+
+            case .empty:
+                return .payloadFormatIndicator(false)
+            }
+        }
     }
 }

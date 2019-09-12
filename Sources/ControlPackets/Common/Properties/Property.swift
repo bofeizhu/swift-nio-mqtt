@@ -18,6 +18,10 @@ import struct Foundation.Data
 enum Property {
 
     /// Payload Format Indicator
+    ///
+    /// `false` Indicates that the Payload is unspecified bytes,
+    /// which is equivalent to not sending a Payload Format Indicator.
+    /// `true`  Indicates that the Payload is UTF-8 Encoded Character Data.
     case payloadFormatIndicator(Bool)
 
     /// Message Expiry Interval
