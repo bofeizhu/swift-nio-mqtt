@@ -26,6 +26,18 @@ struct FixedHeader {
     /// the Fixed Header plus the Remaining Length.
     let remainingLength: VInt
 
+    init(type: ControlPacketType, flags: FixedHeaderFlags, remainingLength: Int) {
+        self.type = type
+        self.flags = flags
+        self.remainingLength = VInt(value: UInt(remainingLength))
+    }
+
+    fileprivate init(type: ControlPacketType, flags: FixedHeaderFlags, remainingLength: VInt) {
+        self.type = type
+        self.flags = flags
+        self.remainingLength = remainingLength
+    }
+
     static func makeReservedFixHeader(
         of type: ControlPacketType,
         withRemainingLength remainingLength: Int
@@ -35,7 +47,6 @@ struct FixedHeader {
 
         let flagsValue = FixedHeaderFlags.reservedFlagsValue(of: type)
         let flags = FixedHeaderFlags.reserved(value: flagsValue)
-        let remainingLength = VInt(value: UInt(remainingLength))
 
         return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
     }

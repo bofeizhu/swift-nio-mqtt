@@ -20,4 +20,8 @@ struct PingReqPacket: ControlPacketProtocol {
 
     /// The fixed header for PINGREQ packet
     let fixedHeader: FixedHeader
+
+    init() {
+        fixedHeader = FixedHeader.makeReservedFixHeader(of: .pingReq, withRemainingLength: 0)
+    }
 }

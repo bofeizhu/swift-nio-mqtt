@@ -21,7 +21,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
         let fixedHeader = FixedHeader(
             type: type,
             flags: FixedHeaderFlags(type: type)!,
-            remainingLength: VInt(value: .zero)
+            remainingLength: .zero
         )
 
         XCTAssertEqual(2, try! buffer.write(fixedHeader))
@@ -34,7 +34,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
         let fixedHeader = FixedHeader(
             type: type,
             flags: FixedHeaderFlags(type: type)!,
-            remainingLength: VInt(value: UInt(exactly: VInt.max)!)
+            remainingLength: VInt.max
         )
 
         XCTAssertEqual(5, try! buffer.write(fixedHeader))
@@ -49,7 +49,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
                 qos: .level0,
                 retain: false
             ),
-            remainingLength: VInt(value: .zero)
+            remainingLength: .zero
         )
 
         XCTAssertEqual(2, try! buffer.write(fixedHeader))
@@ -62,7 +62,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
         let inputHeader = FixedHeader(
             type: type,
             flags: FixedHeaderFlags(type: type)!,
-            remainingLength: VInt(value: .zero)
+            remainingLength: .zero
         )
 
         _ = try! buffer.write(inputHeader)

@@ -6,6 +6,8 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
+import NIO
+
 /// A Property consists of an Identifier which defines its usage and data type, followed by a value.
 /// The Identifier is encoded as a Variable Byte Integer.
 ///
@@ -94,4 +96,12 @@ enum PropertyIdentifier: UInt8 {
 
     /// Shared Subscription Available
     case sharedSubscriptionAvailable = 42
+}
+
+extension ByteBuffer {
+
+    @discardableResult
+    mutating func write(_ identifier: PropertyIdentifier) -> Int {
+        return writeByte(identifier.rawValue)
+    }
 }

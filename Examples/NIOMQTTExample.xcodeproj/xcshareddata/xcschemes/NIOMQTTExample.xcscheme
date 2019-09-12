@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0505CF2E23199CCA00577414"
-               BuildableName = "NIOMQTTExample.app"
+               BuildableName = "MQTT.app"
                BlueprintName = "NIOMQTTExample"
                ReferencedContainer = "container:NIOMQTTExample.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0505CF2E23199CCA00577414"
-            BuildableName = "NIOMQTTExample.app"
+            BuildableName = "MQTT.app"
             BlueprintName = "NIOMQTTExample"
             ReferencedContainer = "container:NIOMQTTExample.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0505CF2E23199CCA00577414"
-            BuildableName = "NIOMQTTExample.app"
+            BuildableName = "MQTT.app"
             BlueprintName = "NIOMQTTExample"
             ReferencedContainer = "container:NIOMQTTExample.xcodeproj">
          </BuildableReference>

@@ -14,14 +14,14 @@ struct ContentView: View {
         Text("Hello World")
             .onAppear {
                 let client = MQTT(host: "test.mosquitto.org", port: 1883)
-                client.connect().whenFailure { error in
-                    print(error)
+                client.connect().whenSuccess {
+                    client.publish(topic: "healthtap", message: "Hello World!")
+                    client.subscribe(topic: "healthtap")
                 }
             }
     }
 }
 
-// swiftlint:disable:next type_name
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

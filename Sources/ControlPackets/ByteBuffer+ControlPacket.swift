@@ -92,6 +92,9 @@ extension ByteBuffer {
         case let .unsubscribe(packet):
             return try write(packet)
 
+        case let .pingReq(packet: packet):
+            return try write(packet.fixedHeader)
+
         case let .disconnect(packet):
             return try write(packet)
 
