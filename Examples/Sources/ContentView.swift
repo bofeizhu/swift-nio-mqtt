@@ -16,6 +16,7 @@ struct ContentView: View {
                 let client = MQTT(host: "test.mosquitto.org", port: 1883)
                 client.connect().whenSuccess {
                     client.publish(topic: "healthtap", message: "Hello World!")
+                    client.subscribe(topic: "healthtap")
                 }
             }
     }

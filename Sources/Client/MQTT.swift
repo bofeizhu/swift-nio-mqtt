@@ -90,6 +90,12 @@ public final class MQTT {
         return channel?.writeAndFlush(action)
     }
 
+    @discardableResult
+    public func subscribe(topic: String) -> EventLoopFuture<Void>? {
+        let action: Session.Action = .subscribe(topic: topic)
+        return channel?.writeAndFlush(action)
+    }
+
     private func makeConnectPacket() -> ConnectPacket {
         let variableHeader = ConnectPacket.VariableHeader(
             connectFlags: ConnectPacket.ConnectFlags(rawValue: 2)!,
