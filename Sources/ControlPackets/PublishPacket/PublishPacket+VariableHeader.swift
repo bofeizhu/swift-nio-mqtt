@@ -22,7 +22,7 @@ extension PublishPacket: VariableHeaderPacket {
 
         var mqttByteCount: Int {
             let packetIdentifierByteCount = packetIdentifier == nil ? 0 : UInt16.byteCount
-            
+
             return topicName.mqttByteCount + packetIdentifierByteCount + properties.mqttByteCount
         }
     }

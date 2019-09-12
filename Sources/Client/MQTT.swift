@@ -30,7 +30,8 @@ public final class MQTT {
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
         let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
 
-        let tlsOptions = makeTLSOptions()
+        // Disable TLS for now
+        //let tlsOptions = makeTLSOptions()
 
         let bootstrap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
