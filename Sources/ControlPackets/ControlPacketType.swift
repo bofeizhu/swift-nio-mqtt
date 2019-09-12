@@ -61,17 +61,4 @@ enum ControlPacketType: UInt8 {
 
     /// Authentication exchange
     case auth
-
-    func validate(_ flags: FixedHeaderFlags) -> Bool {
-        switch self {
-        case .publish:
-            return true
-
-        case .reserved:
-            return false
-
-        default:
-            return FixedHeaderFlags.reservedFlagsValue(of: self) == flags.value
-        }
-    }
 }

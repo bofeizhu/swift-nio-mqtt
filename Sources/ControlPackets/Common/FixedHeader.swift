@@ -54,15 +54,15 @@ extension ByteBuffer {
         guard
             let headerByte = getByte(at: index),
             let remainingLength = try getVariableByteInteger(at: index + 1)
-        else { return nil }
+            else { return nil }
 
-        if let type = ControlPacketType(rawValue: headerByte >> 4),
-           let flags = FixedHeaderFlags(type: type, value: headerByte & 0xF),
-           type.validate(flags) {
-            return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
-        } else {
-            throw MQTTCodingError.malformedPacket
-        }
+        guard
+            let type = ControlPacketType(rawValue: headerByte >> 4),
+            FixedHeaderFlags.validate(type: type, value: headerByte & 0xF),
+            let flags = FixedHeaderFlags(type: type)
+            else { throw MQTTCodingError.malformedPacket }
+
+        return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
     }
 
     /// Read a fixed header off this `ByteBuffer`,

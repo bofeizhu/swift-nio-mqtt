@@ -13,7 +13,8 @@ enum FixedHeaderFlags {
 
     case publish(dup: Bool, qos: QoS, retain: Bool)
 
-    init?(type: ControlPacketType, value: UInt8) {
+    init?(type: ControlPacketType) {
+        let value = FixedHeaderFlags.reservedFlagsValue(of: type)
         switch type {
         case .publish:
             let qosValue = (value >> 1) & 0b11
@@ -25,7 +26,7 @@ enum FixedHeaderFlags {
             self = .publish(dup: dup, qos: qos, retain: retain)
 
         default:
-            self = .reserved(value: value)
+            self = .reserved(value: value )
         }
     }
 
@@ -63,6 +64,19 @@ enum FixedHeaderFlags {
         // Reserved & Publish packet doesn't have reserved flags
         case .reserved, .publish:
             return 0
+        }
+    }
+
+    static func validate(type: ControlPacketType, value: UInt8) -> Bool {
+        switch type {
+        case .publish:
+            return true
+
+        case .reserved:
+            return false
+
+        default:
+            return FixedHeaderFlags.reservedFlagsValue(of: type) == value
         }
     }
 }
