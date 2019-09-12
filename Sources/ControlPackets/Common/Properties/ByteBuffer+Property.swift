@@ -86,7 +86,7 @@ extension ByteBuffer {
                  .wildcardSubscriptionAvailable,
                  .subscriptionIdentifierAvailable,
                  .sharedSubscriptionAvailable:
-                // This properties are not supposed to be sent from client.
+                // These properties are not supposed to be sent from client.
                 throw MQTTCodingError.malformedPacket
             }
         }
