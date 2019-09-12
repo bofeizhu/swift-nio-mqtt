@@ -42,7 +42,7 @@ final class SessionHandler: ChannelDuplexHandler {
 
     private func makePublishPacket(topic: String, payload: PublishPacket.Payload) -> PublishPacket {
         var properties = PropertyCollection()
-        // properties.append(payload.formatIndicator)
+        properties.append(payload.formatIndicator)
 
         let variableHeader = PublishPacket.VariableHeader(
             topicName: topic,

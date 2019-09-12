@@ -17,6 +17,8 @@ extension ByteBuffer {
         try writeVariableByteInteger(properties.propertyLength)
 
         for property in properties {
+            write(property.propertyIdentifier)
+
             switch property {
 
             case let .payloadFormatIndicator(indicator):

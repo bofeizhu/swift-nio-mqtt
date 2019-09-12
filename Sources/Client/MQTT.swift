@@ -85,8 +85,7 @@ public final class MQTT {
 
     @discardableResult
     public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
-        //let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
-        let action: Session.Action = .publish(topic: topic, payload: .empty)
+        let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
         return channel?.writeAndFlush(action)
     }
 

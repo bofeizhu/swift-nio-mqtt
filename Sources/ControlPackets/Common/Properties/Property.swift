@@ -101,6 +101,90 @@ enum Property {
 
     /// Shared Subscription Available
     case sharedSubscriptionAvailable(Bool)
+
+    var propertyIdentifier: PropertyIdentifier {
+        switch self {
+        case .payloadFormatIndicator:
+            return .payloadFormatIndicator
+
+        case .messageExpiryInterval:
+            return .messageExpiryInterval
+
+        case .contentType:
+            return .contentType
+
+        case .responseTopic:
+            return .responseTopic
+
+        case .correlationData:
+            return .correlationData
+
+        case .subscriptionIdentifier:
+            return .subscriptionIdentifier
+
+        case .sessionExpiryInterval:
+            return .sessionExpiryInterval
+
+        case .assignedClientIdentifier:
+            return .assignedClientIdentifier
+        case .serverKeepAlive:
+            return .serverKeepAlive
+
+        case .authenticationMethod:
+            return .authenticationMethod
+
+        case .authenticationData:
+            return .authenticationData
+
+        case .requestProblemInformation:
+            return .requestProblemInformation
+
+        case .willDelayInterval:
+            return .willDelayInterval
+
+        case .requestResponseInformation:
+            return .requestResponseInformation
+
+        case .responseInformation:
+            return .responseInformation
+
+        case .serverReference:
+            return .serverReference
+
+        case .reasonString:
+            return .reasonString
+
+        case .receiveMaximum:
+            return .receiveMaximum
+
+        case .topicAliasMaximum:
+            return .topicAliasMaximum
+
+        case .topicAlias:
+            return .topicAlias
+
+        case .maximumQoS:
+            return .maximumQoS
+
+        case .retainAvailable:
+            return .retainAvailable
+
+        case .userProperty:
+            return .userProperty
+
+        case .maximumPacketSize:
+            return .maximumPacketSize
+
+        case .wildcardSubscriptionAvailable:
+            return .wildcardSubscriptionAvailable
+
+        case .subscriptionIdentifierAvailable:
+            return .subscriptionIdentifierAvailable
+
+        case .sharedSubscriptionAvailable:
+            return .sharedSubscriptionAvailable
+        }
+    }
 }
 
 // MARK: - Equatable
