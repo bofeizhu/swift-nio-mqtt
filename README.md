@@ -1,4 +1,4 @@
-### ⚠️👷‍♂️ W.I.P 🚧⚠️
+### ⚠️ 👷‍♂️ W.I.P 🚧 ⚠️
 # SwiftNIO MQTT
 [![Build Status][bitrise-badge]][bitrise-link] [![Codecov][codecov-badge]][codecov-link] [![MIT License][license-badge]](LICENSE)
 
