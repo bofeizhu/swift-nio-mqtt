@@ -64,6 +64,7 @@ enum ControlPacketType: UInt8 {
 
     func validate(_ flags: FixedHeaderFlags) -> Bool {
         switch self {
+
         case .publish:
             return true
 

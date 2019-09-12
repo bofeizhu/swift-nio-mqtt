@@ -49,9 +49,9 @@ extension ByteBuffer {
     mutating func readMQTTBinaryData() -> Data? {
         guard
             let length: UInt16 = readInteger(),
-            let bytes = readBytes(length: Int(length))
+            let data = readData(length: Int(length))
         else { return nil }
-        return Data(bytes)
+        return data
     }
 
     /// Write the binary data into this `ByteBuffer` prefixed with its UInt16 `length`,

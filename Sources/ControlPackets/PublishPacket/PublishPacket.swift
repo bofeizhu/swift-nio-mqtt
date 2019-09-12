@@ -33,15 +33,29 @@ struct PublishPacket: ControlPacketProtocol {
     init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: Payload) {
 
         switch fixedHeader.flags {
+
         case let .publish(dup, qos, retain):
             self.dup = dup
             self.qos = qos
             self.retain = retain
+
         default:
             return nil
         }
 
         self.fixedHeader = fixedHeader
+        self.variableHeader = variableHeader
+        self.payload = payload
+    }
+
+    init(dup: Bool, qos: QoS, retain: Bool, variableHeader: VariableHeader, payload: Payload) {
+        let fixedHeaderFlags = FixedHeaderFlags.publish(dup: dup, qos: qos, retain: retain)
+        let remainingLength = variableHeader.mqttByteCount + payload.mqttByteCount
+
+        fixedHeader = FixedHeader(type: .publish, flags: fixedHeaderFlags, remainingLength: remainingLength)
+        self.dup = dup
+        self.qos = qos
+        self.retain = retain
         self.variableHeader = variableHeader
         self.payload = payload
     }

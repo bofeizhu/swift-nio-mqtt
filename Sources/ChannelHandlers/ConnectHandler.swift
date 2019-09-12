@@ -13,9 +13,12 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
     typealias OutboundOut = ControlPacket
 
     private let connectPacket: ConnectPacket
-    private let connAckPromise: EventLoopPromise<Void>
+    private let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)>
 
-    init(connectPacket: ConnectPacket, connAckPromise: EventLoopPromise<Void>) {
+    init(
+        connectPacket: ConnectPacket,
+        connAckPromise: EventLoopPromise<(Channel, PropertyCollection)>
+    ) {
         self.connectPacket = connectPacket
         self.connAckPromise = connAckPromise
     }
@@ -33,27 +36,19 @@ final class ConnectHandler: ChannelInboundHandler, RemovableChannelHandler {
         switch packet {
 
         case let .connAck(connAckPacket):
+            let variableHeader = connAckPacket.variableHeader
+            let reasonCode = variableHeader.connectReasonCode
 
-            let reasonCode = connAckPacket.variableHeader.connectReasonCode
             if reasonCode == .success {
-                connectAcknowledged(context: context).cascade(to: connAckPromise)
+                let properties = variableHeader.properties
+                connAckPromise.succeed((context.channel, properties))
             } else {
                 // TODO: Handle connect acknowledgement errors
             }
 
         default:
-
             // Handle error
             break
         }
-    }
-
-    private func connectAcknowledged(context: ChannelHandlerContext) -> EventLoopFuture<Void> {
-
-        // TODO: Add Sub/Pub handlers
-        return context.channel.pipeline.addHandlers([])
-            .flatMap {
-                return context.pipeline.removeHandler(self)
-            }
     }
 }

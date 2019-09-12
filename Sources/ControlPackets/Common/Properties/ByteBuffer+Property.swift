@@ -17,6 +17,8 @@ extension ByteBuffer {
         try writeVariableByteInteger(properties.propertyLength)
 
         for property in properties {
+            write(property.propertyIdentifier)
+
             switch property {
 
             case let .payloadFormatIndicator(indicator):
@@ -84,7 +86,7 @@ extension ByteBuffer {
                  .wildcardSubscriptionAvailable,
                  .subscriptionIdentifierAvailable,
                  .sharedSubscriptionAvailable:
-                // This properties are not supposed to be sent from client.
+                // These properties are not supposed to be sent from client.
                 throw MQTTCodingError.malformedPacket
             }
         }
@@ -126,6 +128,7 @@ extension ByteBuffer {
     // swiftlint:disable:next function_body_length
     private mutating func readProperty(of identifier: PropertyIdentifier) throws -> Property {
         switch identifier {
+
         case .payloadFormatIndicator:
             guard let isUTF8Encoded = try readBool() else {
                 throw MQTTCodingError.malformedPacket

@@ -27,6 +27,8 @@ struct PropertyCollection {
 
     var isPayloadUTF8Encoded: Bool = false
 
+    var serverKeepAlive: UInt16?
+
     // MARK: Private
 
     private var byteCount: Int = 0
@@ -41,8 +43,12 @@ struct PropertyCollection {
         byteCount += newProperty.mqttByteCount
 
         switch newProperty {
-        case let .payloadFormatIndicator(isPayloadUTF8Encoded):
-            self.isPayloadUTF8Encoded = isPayloadUTF8Encoded
+
+        case let .payloadFormatIndicator(isUTF8):
+            isPayloadUTF8Encoded = isUTF8
+
+        case let .serverKeepAlive(interval):
+            serverKeepAlive = interval
 
         default:
             break
