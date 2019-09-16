@@ -61,6 +61,7 @@
 		05F5219A230B76D9005CE1BF /* UnsubAckPacket+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F52199230B76D9005CE1BF /* UnsubAckPacket+Payload.swift */; };
 		05F5219C230B76EA005CE1BF /* UnsubAckPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F5219B230B76EA005CE1BF /* UnsubAckPacket+VariableHeader.swift */; };
 		05F5219E230B7768005CE1BF /* UnsubAckPacket+ReasonCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F5219D230B7768005CE1BF /* UnsubAckPacket+ReasonCode.swift */; };
+		4EEACB50233039C900828663 /* FixedHeaderIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEACB4E233039BF00828663 /* FixedHeaderIOTests.swift */; };
 		6BD6D9D699B613EC95C77BD7 /* Pods_NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */; };
 		77C0490D2D3B768A09454CA9 /* Pods_NIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */; };
 		822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */; };
@@ -177,6 +178,7 @@
 		0BD3180A009A1BE7C5BE02B3 /* Pods-SwiftNIOMQTTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTTTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTTTests/Pods-SwiftNIOMQTTTests.release.xcconfig"; sourceTree = "<group>"; };
 		1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		276633216507771EE9D29816 /* Pods-SwiftNIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
+		4EEACB4E233039BF00828663 /* FixedHeaderIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderIOTests.swift; sourceTree = "<group>"; };
 		63A789DCAF03F7B3EF69CE0C /* Pods-SwiftNIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
 		732F5CB566770EA0A313DE9E /* Pods-NIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
 		822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
@@ -447,6 +449,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4EEACB4D233039AA00828663 /* FixedHeaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				4EEACB4E233039BF00828663 /* FixedHeaderIOTests.swift */,
+			);
+			path = FixedHeaderTests;
+			sourceTree = "<group>";
+		};
 		822A219D22E51C2100FC348C /* ConnectPacket */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +591,7 @@
 		82E52B8F2310CDD900D58DE2 /* ControlPacketTests */ = {
 			isa = PBXGroup;
 			children = (
+				4EEACB4D233039AA00828663 /* FixedHeaderTests */,
 				82E52B922311BA4700D58DE2 /* ConnectPacketTests */,
 			);
 			path = ControlPacketTests;
@@ -906,6 +917,7 @@
 				826C9D812308AFBD00C7BAF9 /* DataTypeIOTests.swift in Sources */,
 				82E52B7E230DC5DA00D58DE2 /* PacketComponentIOTests.swift in Sources */,
 				82E52B8E2310589300D58DE2 /* PropertyCollectionTests.swift in Sources */,
+				4EEACB50233039C900828663 /* FixedHeaderIOTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
