@@ -63,6 +63,7 @@
 		4EB20C81233014D7005EE826 /* FixedHeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20C80233014D7005EE826 /* FixedHeaderType.swift */; };
 		4EB20C8323301501005EE826 /* ReservedFixedHeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20C8223301501005EE826 /* ReservedFixedHeaderType.swift */; };
 		4EB20C8523301525005EE826 /* PublishFixedHeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20C8423301525005EE826 /* PublishFixedHeaderType.swift */; };
+		4EB20C8823302328005EE826 /* FixedHeaderIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20C8623302306005EE826 /* FixedHeaderIOTests.swift */; };
 		6BD6D9D699B613EC95C77BD7 /* Pods_NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */; };
 		77C0490D2D3B768A09454CA9 /* Pods_NIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */; };
 		822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */; };
@@ -180,6 +181,7 @@
 		4EB20C80233014D7005EE826 /* FixedHeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderType.swift; sourceTree = "<group>"; };
 		4EB20C8223301501005EE826 /* ReservedFixedHeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedFixedHeaderType.swift; sourceTree = "<group>"; };
 		4EB20C8423301525005EE826 /* PublishFixedHeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishFixedHeaderType.swift; sourceTree = "<group>"; };
+		4EB20C8623302306005EE826 /* FixedHeaderIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderIOTests.swift; sourceTree = "<group>"; };
 		63A789DCAF03F7B3EF69CE0C /* Pods-SwiftNIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
 		732F5CB566770EA0A313DE9E /* Pods-NIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
 		822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
@@ -450,6 +452,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4EB20C8923302BAB005EE826 /* FixedHeaderTest */ = {
+			isa = PBXGroup;
+			children = (
+				4EB20C8623302306005EE826 /* FixedHeaderIOTests.swift */,
+			);
+			path = FixedHeaderTest;
+			sourceTree = "<group>";
+		};
 		822A219D22E51C2100FC348C /* ConnectPacket */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +594,7 @@
 		82E52B8F2310CDD900D58DE2 /* ControlPacketTests */ = {
 			isa = PBXGroup;
 			children = (
+				4EB20C8923302BAB005EE826 /* FixedHeaderTest */,
 				82E52B922311BA4700D58DE2 /* ConnectPacketTests */,
 			);
 			path = ControlPacketTests;
@@ -910,6 +921,7 @@
 				826C9D812308AFBD00C7BAF9 /* DataTypeIOTests.swift in Sources */,
 				82E52B7E230DC5DA00D58DE2 /* PacketComponentIOTests.swift in Sources */,
 				82E52B8E2310589300D58DE2 /* PropertyCollectionTests.swift in Sources */,
+				4EB20C8823302328005EE826 /* FixedHeaderIOTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
