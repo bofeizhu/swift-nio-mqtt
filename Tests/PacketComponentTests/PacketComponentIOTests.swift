@@ -19,9 +19,10 @@ class PacketComponentIOTests: ByteBufferTestCase {
     // MARK: Fixed Header
 
     func testMakeFixedHeader() {
-        let fixedHeader = FixedHeader.makeReservedFixHeader(of: .connect, withRemainingLength: 0)
-        XCTAssertEqual(fixedHeader.type, ControlPacketType.connect)
-        XCTAssertEqual(fixedHeader.flags, FixedHeaderFlags.reserved(value: 0))
+        let fixedHeader = FixedHeader(reservedType: .connect, remainingLength: 0)
+//        let fixedHeader = FixedHeader.makeReservedFixHeader(of: .connect, withRemainingLength: 0)
+        XCTAssertEqual(fixedHeader.reservedType, ReservedFixedHeader.connect)
+        XCTAssertEqual(fixedHeader.reservedType?.reserveRawValue, 0)
     }
 
     // MARK: Reason Code

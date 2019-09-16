@@ -31,17 +31,22 @@ struct PublishPacket: ControlPacketProtocol {
     let payload: Payload
 
     init?(fixedHeader: FixedHeader, variableHeader: VariableHeader, payload: Payload) {
+        guard let publishType = fixedHeader.type as? PublishFixedHeader else { return nil }
 
-        switch fixedHeader.flags {
-
-        case let .publish(dup, qos, retain):
-            self.dup = dup
-            self.qos = qos
-            self.retain = retain
-
-        default:
-            return nil
-        }
+        self.dup = publishType.dup
+        self.qos = publishType.qos
+        self.retain = publishType.retain
+        
+//        switch fixedHeader.flags {
+//
+//        case let .publish(dup, qos, retain):
+//            self.dup = dup
+//            self.qos = qos
+//            self.retain = retain
+//
+//        default:
+//            return nil
+//        }
 
         self.fixedHeader = fixedHeader
         self.variableHeader = variableHeader
@@ -49,10 +54,11 @@ struct PublishPacket: ControlPacketProtocol {
     }
 
     init(dup: Bool, qos: QoS, retain: Bool, variableHeader: VariableHeader, payload: Payload) {
-        let fixedHeaderFlags = FixedHeaderFlags.publish(dup: dup, qos: qos, retain: retain)
+//        let fixedHeaderFlags = FixedHeaderFlags.publish(dup: dup, qos: qos, retain: retain)
         let remainingLength = variableHeader.mqttByteCount + payload.mqttByteCount
 
-        fixedHeader = FixedHeader(type: .publish, flags: fixedHeaderFlags, remainingLength: remainingLength)
+        self.fixedHeader = FixedHeader(type: PublishFixedHeader(dup: dup, qos: qos, retain: retain), remainingLength: remainingLength)
+//        fixedHeader = FixedHeader(type: .publish, flags: fixedHeaderFlags, remainingLength: remainingLength)
         self.dup = dup
         self.qos = qos
         self.retain = retain

@@ -26,19 +26,26 @@ extension ByteBuffer {
 
         var packetIdentifier: UInt16?
 
-        switch fixedHeader.flags {
+        guard let publishType = fixedHeader.type as? PublishFixedHeader else { throw MQTTCodingError.malformedPacket }
 
-        case let .publish(_, qos, _):
-            if qos != .level0 {
-                guard let identifier: UInt16 = readInteger() else {
-                    throw MQTTCodingError.malformedPacket
-                }
-                packetIdentifier = identifier
-            }
-
-        default:
-            throw MQTTCodingError.malformedPacket
+        if publishType.qos != .level0 {
+            guard let identifier: UInt16 = readInteger() else { throw MQTTCodingError.malformedPacket }
+            packetIdentifier = identifier
         }
+//
+//        switch fixedHeader.flags {
+//
+//        case let .publish(_, qos, _):
+//            if qos != .level0 {
+//                guard let identifier: UInt16 = readInteger() else {
+//                    throw MQTTCodingError.malformedPacket
+//                }
+//                packetIdentifier = identifier
+//            }
+//
+//        default:
+//            throw MQTTCodingError.malformedPacket
+//        }
 
         variableHeaderLength += (packetIdentifier == nil) ? 0 : 2
 
