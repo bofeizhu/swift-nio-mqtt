@@ -35,8 +35,9 @@ final class SessionHandler: ChannelDuplexHandler {
             let packet = makeSubscribePacket(topic: topic)
             context.writeAndFlush(wrapOutboundOut(.subscribe(packet: packet)), promise: promise)
 
-        case .unsubscribe:
-            break
+        case let .unsubscribe(topic):
+            let packet = makeUnsubscribePacket(topic: topic)
+            context.writeAndFlush(wrapOutboundOut(.unsubscribe(packet: packet)), promise: promise)
         }
     }
 
@@ -58,12 +59,27 @@ final class SessionHandler: ChannelDuplexHandler {
     }
 
     private func makeSubscribePacket(topic: String) -> SubscribePacket {
-        let variableHeader = SubscribePacket.VariableHeader(packetIdentifier: 1, properties: PropertyCollection())
+        let packetIdentifier = session.nextPacketIdentifier()
+        let variableHeader = SubscribePacket.VariableHeader(
+            packetIdentifier: packetIdentifier,
+            properties: PropertyCollection())
+
         let topicFilter = SubscribePacket.TopicFilter(
             topic: topic,
             options: SubscribePacket.Options(rawValue: 0)!)
+
         let payload = SubscribePacket.Payload(topicFilters: [topicFilter])
         let packet = SubscribePacket(variableHeader: variableHeader, payload: payload)
         return packet
+    }
+
+    private func makeUnsubscribePacket(topic: String) -> UnsubscribePacket {
+        let packetIdentifier = session.nextPacketIdentifier()
+        let variableHeader = UnsubscribePacket.VariableHeader(
+            packetIdentifier: packetIdentifier,
+            properties: PropertyCollection())
+
+        let payload = UnsubscribePacket.Payload(topicFilters: [topic])
+        return UnsubscribePacket(variableHeader: variableHeader, payload: payload)
     }
 }
