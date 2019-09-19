@@ -16,22 +16,22 @@ import NIO
 class FixedHeaderIOTests: ByteBufferTestCase {
 
     func testFixedHeaderMinByteCount() {
-        let fixedHeader = FixedHeader.makeReservedFixHeader(of: .connect, withRemainingLength: .zero)
+        let fixedHeader = FixedHeader(type: .connect, remainingLength: 0)
         XCTAssertEqual(2, try! buffer.write(fixedHeader))
         XCTAssertEqual(2, buffer.readableBytes)
     }
 
     func testFixedHeaderMaxByteCount() {
-        let fixedHeader = FixedHeader.makeReservedFixHeader(of: .connect, withRemainingLength: VInt.max)
+        let fixedHeader = FixedHeader(type: .connect, remainingLength: VInt.max)
         XCTAssertEqual(5, try! buffer.write(fixedHeader))
         XCTAssertEqual(5, buffer.readableBytes)
     }
 
     func testWrite() {
-        let fixedHeader = FixedHeader.makeReservedFixHeader(of: .unsubscribe, withRemainingLength: .zero)
+        let fixedHeader = FixedHeader(type: .unsubscribe, remainingLength: .zero)
         let expectedByte: UInt8 = 0b10100010
 
-        _ = try! buffer.write(fixedHeader)
+        try! buffer.write(fixedHeader)
 
         XCTAssertEqual(buffer.readByte(), expectedByte)
     }
@@ -44,7 +44,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
         )
 
         let expectedByte: UInt8 = 0b110011 // DUP: false, QoS: 1, Retain: true
-        _ = try! buffer.write(fixedHeader)
+        try! buffer.write(fixedHeader)
 
         XCTAssertEqual(buffer.readByte(), expectedByte)
     }
