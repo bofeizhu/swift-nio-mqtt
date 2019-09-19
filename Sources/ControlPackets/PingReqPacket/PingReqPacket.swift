@@ -22,6 +22,6 @@ struct PingReqPacket: ControlPacketProtocol {
     let fixedHeader: FixedHeader
 
     init() {
-        fixedHeader = FixedHeader.makeReservedFixHeader(of: .pingReq, withRemainingLength: 0)
+        fixedHeader = FixedHeader(type: .pingReq, remainingLength: 0)
     }
 }

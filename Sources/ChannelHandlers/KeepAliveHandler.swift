@@ -27,7 +27,6 @@ final class KeepAliveHandler: ChannelDuplexHandler {
         let packet = unwrapInboundIn(data)
 
         switch packet {
-
         case .pingResp:
             pingResponseTimeoutTask?.cancel()
 

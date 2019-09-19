@@ -43,7 +43,6 @@ struct PropertyCollection {
         byteCount += newProperty.mqttByteCount
 
         switch newProperty {
-
         case let .payloadFormatIndicator(isUTF8):
             isPayloadUTF8Encoded = isUTF8
 

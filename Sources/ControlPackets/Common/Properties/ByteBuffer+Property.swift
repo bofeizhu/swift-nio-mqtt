@@ -20,7 +20,6 @@ extension ByteBuffer {
             write(property.propertyIdentifier)
 
             switch property {
-
             case let .payloadFormatIndicator(indicator):
                 write(indicator)
 
@@ -128,7 +127,6 @@ extension ByteBuffer {
     // swiftlint:disable:next function_body_length
     private mutating func readProperty(of identifier: PropertyIdentifier) throws -> Property {
         switch identifier {
-
         case .payloadFormatIndicator:
             guard let isUTF8Encoded = try readBool() else {
                 throw MQTTCodingError.malformedPacket

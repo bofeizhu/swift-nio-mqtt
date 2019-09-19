@@ -26,9 +26,15 @@ struct FixedHeader {
     /// the Fixed Header plus the Remaining Length.
     let remainingLength: VInt
 
-    init(type: ControlPacketType, flags: FixedHeaderFlags, remainingLength: Int) {
+    init(type: ControlPacketType, flags: FixedHeaderFlags? = nil, remainingLength: Int) {
         self.type = type
-        self.flags = flags
+
+        if let flags = flags {
+            self.flags = flags
+        } else {
+            self.flags = FixedHeaderFlags.makeDefaultFixedHeaderFlags(for: type)
+        }
+
         self.remainingLength = VInt(value: UInt(remainingLength))
     }
 
@@ -36,19 +42,6 @@ struct FixedHeader {
         self.type = type
         self.flags = flags
         self.remainingLength = remainingLength
-    }
-
-    static func makeReservedFixHeader(
-        of type: ControlPacketType,
-        withRemainingLength remainingLength: Int
-    ) -> FixedHeader {
-
-        assert(type != .publish, "Publish Packet doesn't have reserved flags.")
-
-        let flagsValue = FixedHeaderFlags.reservedFlagsValue(of: type)
-        let flags = FixedHeaderFlags.reserved(value: flagsValue)
-
-        return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
     }
 }
 
@@ -67,9 +60,11 @@ extension ByteBuffer {
             let remainingLength = try getVariableByteInteger(at: index + 1)
         else { return nil }
 
-        if let type = ControlPacketType(rawValue: headerByte >> 4),
-           let flags = FixedHeaderFlags(type: type, value: headerByte & 0xF),
-           type.validate(flags) {
+        let controlPacketTypeValue = headerByte >> 4
+        let fixedHeaderFlagsValue = headerByte & 0xF
+
+        if let type = ControlPacketType(rawValue: controlPacketTypeValue),
+           let flags = FixedHeaderFlags.makeFixedHeaderFlags(for: type, value: fixedHeaderFlagsValue) {
             return FixedHeader(type: type, flags: flags, remainingLength: remainingLength)
         } else {
             throw MQTTCodingError.malformedPacket
@@ -94,6 +89,7 @@ extension ByteBuffer {
     /// - Parameter fixedHeader: The fixed header to write.
     /// - Returns: The number of bytes written.
     /// - Throws: A MQTT coding error when fixed header is malformed.
+    @discardableResult
     mutating func write(_ fixedHeader: FixedHeader) throws -> Int {
         let byte = (fixedHeader.type.rawValue << 4) | fixedHeader.flags.value
         var bytesWritten = writeByte(byte)
@@ -101,3 +97,7 @@ extension ByteBuffer {
         return bytesWritten
     }
 }
+
+// MARK: - Equatable
+
+extension FixedHeader: Equatable {}

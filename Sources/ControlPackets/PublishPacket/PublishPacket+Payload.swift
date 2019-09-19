@@ -29,7 +29,6 @@ extension PublishPacket: PayloadPacket {
         var mqttByteCount: Int {
 
            switch self {
-
            case let .binary(data):
                return data.count
 

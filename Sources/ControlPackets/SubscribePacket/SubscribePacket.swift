@@ -27,7 +27,7 @@ struct SubscribePacket: ControlPacketProtocol {
 
     init(variableHeader: VariableHeader, payload: Payload) {
         let remainingLength = variableHeader.mqttByteCount + payload.mqttByteCount
-        fixedHeader = FixedHeader.makeReservedFixHeader(of: .subscribe, withRemainingLength: remainingLength)
+        fixedHeader = FixedHeader(type: .subscribe, remainingLength: remainingLength)
 
         self.variableHeader = variableHeader
         self.payload = payload
