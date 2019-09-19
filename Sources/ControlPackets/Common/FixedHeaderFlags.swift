@@ -79,6 +79,11 @@ enum FixedHeaderFlags {
             return (bit3 << 3) | (bit12 << 1) | bit0
         }
     }
+}
+
+// MARK: - Factory Methods
+
+extension FixedHeaderFlags {
 
     static func makeFixedHeaderFlags(for type: ControlPacketType, value: UInt8) -> FixedHeaderFlags? {
         guard validateFixedHeaderFlags(type: type, value: value) else {
