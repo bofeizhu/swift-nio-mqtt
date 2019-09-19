@@ -23,6 +23,6 @@ struct UnsubscribePacket: ControlPacketProtocol {
         self.payload = payload
 
         let remainingLength = variableHeader.mqttByteCount + payload.mqttByteCount
-        fixedHeader = FixedHeader.makeReservedFixHeader(of: .unsubscribe, withRemainingLength: remainingLength)
+        fixedHeader = FixedHeader(type: .unsubscribe, remainingLength: remainingLength)
     }
 }

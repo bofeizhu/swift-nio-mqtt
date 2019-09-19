@@ -10,9 +10,12 @@ import NIOConcurrencyHelpers
 
 final class Session {
 
-    var packetIdentifier = Atomic<UInt16>(value: 0)
+    var packetIdentifier = Atomic<UInt16>(value: 1)
 
     func nextPacketIdentifier() -> UInt16 {
+        if packetIdentifier.compareAndExchange(expected: UInt16.max, desired: 1) {
+            return UInt16.max
+        }
         return packetIdentifier.add(1)
     }
 }

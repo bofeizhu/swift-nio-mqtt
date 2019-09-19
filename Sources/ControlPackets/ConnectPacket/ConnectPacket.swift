@@ -26,11 +26,8 @@ struct ConnectPacket: ControlPacketProtocol {
     let payload: Payload
 
     init(variableHeader: VariableHeader, payload: Payload) {
-
         let remainingLength = variableHeader.mqttByteCount + payload.mqttByteCount
-        fixedHeader = FixedHeader.makeReservedFixHeader(
-            of: .connect,
-            withRemainingLength: remainingLength)
+        fixedHeader = FixedHeader(type: .connect, remainingLength: remainingLength)
 
         self.variableHeader = variableHeader
         self.payload = payload

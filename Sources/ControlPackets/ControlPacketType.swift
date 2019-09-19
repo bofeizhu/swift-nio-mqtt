@@ -14,11 +14,8 @@
 /// [MQTT Control Packet types](http://docs.oasis-open.org/mqtt/mqtt/v5.0/csprd01/mqtt-v5.0-csprd01.html#_Toc489530053)
 enum ControlPacketType: UInt8 {
 
-    /// Reserved
-    case reserved = 0
-
     /// Connection request
-    case connect
+    case connect = 1
 
     /// Connect acknowledgment
     case connAck
@@ -61,17 +58,4 @@ enum ControlPacketType: UInt8 {
 
     /// Authentication exchange
     case auth
-
-    func validate(_ flags: FixedHeaderFlags) -> Bool {
-        switch self {
-        case .publish:
-            return true
-
-        case .reserved:
-            return false
-
-        default:
-            return FixedHeaderFlags.reservedFlagsValue(of: self) == flags.value
-        }
-    }
 }
