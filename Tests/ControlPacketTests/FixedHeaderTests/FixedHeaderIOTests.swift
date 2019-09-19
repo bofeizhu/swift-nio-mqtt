@@ -12,20 +12,7 @@ import NIO
 @testable import NIOMQTT
 
 // swiftlint:disable force_try
-
 class FixedHeaderIOTests: ByteBufferTestCase {
-
-    func testFixedHeaderMinByteCount() {
-        let fixedHeader = FixedHeader(type: .connect, remainingLength: 0)
-        XCTAssertEqual(2, try! buffer.write(fixedHeader))
-        XCTAssertEqual(2, buffer.readableBytes)
-    }
-
-    func testFixedHeaderMaxByteCount() {
-        let fixedHeader = FixedHeader(type: .connect, remainingLength: VInt.max)
-        XCTAssertEqual(5, try! buffer.write(fixedHeader))
-        XCTAssertEqual(5, buffer.readableBytes)
-    }
 
     func testWrite() {
         let fixedHeader = FixedHeader(type: .unsubscribe, remainingLength: .zero)
