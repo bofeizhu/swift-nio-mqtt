@@ -97,3 +97,7 @@ extension ByteBuffer {
         return bytesWritten
     }
 }
+
+// MARK: - Equatable
+
+extension FixedHeader: Equatable {}
