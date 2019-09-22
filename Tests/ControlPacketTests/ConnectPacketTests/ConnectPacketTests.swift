@@ -13,7 +13,6 @@ import XCTest
 class ConnectPacketTests: XCTestCase {
 
     func testVariableHeaderByteCount() {
-
         let connectFlags = ConnectPacket.ConnectFlags(rawValue: 0)!
         let properties = PropertyCollection()
 
@@ -26,7 +25,6 @@ class ConnectPacketTests: XCTestCase {
     }
 
     func testPayloadByteCount() {
-
         let bytes: [UInt8] = [0, 0]
 
         let willMessage = ConnectPacket.WillMessage(

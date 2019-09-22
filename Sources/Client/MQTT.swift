@@ -13,10 +13,16 @@ import NIOTransportServices
 
 public final class MQTT {
 
+    public var onText: ((String, String) -> Void)?
+    public var onData: ((String, Data) -> Void)?
+
     private let group: NIOTSEventLoopGroup
     private let host: String
     private let port: Int
     private var channel: Channel?
+
+    /// Where the callback is executed. It defaults to the main UI thread queue.
+    private let callbackQueue: DispatchQueue = DispatchQueue.main
 
     public init(host: String, port: Int) {
         group = NIOTSEventLoopGroup()
@@ -65,19 +71,38 @@ public final class MQTT {
                 keepAlive = serverKeepAlive
             }
 
-            var handlers: [ChannelHandler] = []
+            var channelHandlers: [ChannelHandler] = []
+
+            let publishHandler: PublishHandler = { [weak self] (topic, payload) in
+                guard let self = self else {
+                    return
+                }
+
+                self.callbackQueue.async {
+                    switch payload {
+                    case let .utf8(text):
+                        self.onText?(topic, text)
+
+                    case let .binary(data):
+                        self.onData?(topic, data)
+
+                    case .empty:
+                        break
+                    }
+                }
+            }
 
             // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
             if keepAlive > 0 {
                 let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
-                handlers.append(IdleStateHandler(writeTimeout: timeout))
-                handlers.append(KeepAliveHandler())
-                handlers.append(SessionHandler())
+                channelHandlers.append(IdleStateHandler(writeTimeout: timeout))
+                channelHandlers.append(KeepAliveHandler())
+                channelHandlers.append(SessionHandler(publishHandler: publishHandler))
             } else {
-                handlers.append(SessionHandler())
+                channelHandlers.append(SessionHandler(publishHandler: publishHandler))
             }
 
-            return channel.pipeline.addHandlers(handlers)
+            return channel.pipeline.addHandlers(channelHandlers)
                 .flatMap {
                     return channel.pipeline.removeHandler(connectHandler)
                 }

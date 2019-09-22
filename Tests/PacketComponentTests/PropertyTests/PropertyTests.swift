@@ -13,7 +13,6 @@ import XCTest
 class PropertyTests: XCTestCase {
 
     func testBooleanTypePropertyByteCount() {
-
         let boolPropertyByteCount = 2
 
         var property: Property = .payloadFormatIndicator(true)
@@ -39,7 +38,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testFourByteIntegerTypePropertyByteCount() {
-
         let fourByteInteger: UInt32 = 42
         let fourByteIntegerPropertyByteCount = 5
 
@@ -57,7 +55,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testUTF8EncodedStringTypePropertyByteCount() {
-
         let string = "abcde"
         let utf8EncodedStringPropertyByteCount = 8 // 1 + 2 + 5
 
@@ -84,7 +81,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testBinaryDataTypePropertyByteCount() {
-
         let bytes: [UInt8] = [1, 1, 1]
         let data = Data(bytes)
         let binaryDataTypePropertByteCount = 6 // 1 + 2 + 3
@@ -97,7 +93,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testVariableByteIntegerTypePropertyByteCount() {
-
         let variableByteInteger = VInt(value: 42424242)
         let variableByteIntegerPropertyByteCount = 1 + variableByteInteger.mqttByteCount
 
@@ -106,7 +101,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testTwoByteIntegerTypePropertyByteCount() {
-
         let twoByteInteger: UInt16 = 42
         let twoByteIntegerPropertyByteCount = 3
 
@@ -124,7 +118,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testQoSTypePropertyByteCount() {
-
         let qos = QoS.level2
         let qosPropertyByteCount = 2
 
@@ -133,7 +126,6 @@ class PropertyTests: XCTestCase {
     }
 
     func testStringPairTypePropertyByteCount() {
-
         let pair = StringPair(name: "foo", value: "bar")
         let stringPairTypePropertyByteCount = 11
 

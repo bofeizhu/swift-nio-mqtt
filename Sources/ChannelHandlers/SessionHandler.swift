@@ -8,6 +8,8 @@
 
 import NIO
 
+typealias PublishHandler = (String, PublishPacket.Payload) -> Void
+
 final class SessionHandler: ChannelDuplexHandler {
     typealias InboundIn = ControlPacket
     typealias InboundOut = ControlPacket
@@ -15,9 +17,28 @@ final class SessionHandler: ChannelDuplexHandler {
     typealias OutboundOut = ControlPacket
 
     private let session: Session
+    private let publishHandler: PublishHandler
 
-    init(session: Session = Session()) {
+    init(
+        session: Session = Session(),
+        publishHandler: @escaping PublishHandler
+    ) {
         self.session = session
+        self.publishHandler = publishHandler
+    }
+
+    func channelRead(context: ChannelHandlerContext, data: NIOAny) {
+        let packet = unwrapInboundIn(data)
+
+        switch packet {
+        case let .publish(publishPacket):
+            let topic = publishPacket.variableHeader.topicName
+            let payload = publishPacket.payload
+            publishHandler(topic, payload)
+
+        default:
+            context.fireChannelRead(data)
+        }
     }
 
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
