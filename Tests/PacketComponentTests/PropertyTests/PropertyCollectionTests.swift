@@ -21,7 +21,6 @@ class PropertyCollectionTests: XCTestCase {
     }
 
     func testAppend() {
-
         let property: Property = .maximumPacketSize(16)
         properties.append(property)
 
@@ -32,7 +31,6 @@ class PropertyCollectionTests: XCTestCase {
     }
 
     func testAppendPayloadFormatIndicator() {
-
         let property: Property = .payloadFormatIndicator(true)
         properties.append(property)
 
@@ -40,7 +38,6 @@ class PropertyCollectionTests: XCTestCase {
     }
 
     func testPropertyLength() {
-
         XCTAssertEqual(properties.propertyLength, VInt(value: 0))
         XCTAssertEqual(properties.mqttByteCount, 1)
 

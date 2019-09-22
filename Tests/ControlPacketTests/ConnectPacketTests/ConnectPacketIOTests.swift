@@ -16,7 +16,6 @@ import NIO
 class ConnectPacketIOTests: ByteBufferTestCase {
 
     func testWriteConnectPacket() {
-
         let connectFlags = ConnectPacket.ConnectFlags(rawValue: 0)!
         let variableHeader = ConnectPacket.VariableHeader(
             connectFlags: connectFlags,
