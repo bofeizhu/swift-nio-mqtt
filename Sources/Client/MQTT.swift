@@ -21,7 +21,7 @@ public final class MQTT {
     private let port: Int
     private var channel: Channel?
 
-    /// Where the callback is executed. It defaults to the main UI thread queue.
+    /// Where the callback is executed. It defaults to the main queue.
     private let callbackQueue: DispatchQueue = DispatchQueue.main
 
     public init(host: String, port: Int) {
