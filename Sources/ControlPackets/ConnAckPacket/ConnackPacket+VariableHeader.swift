@@ -28,7 +28,7 @@ extension ConnAckPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return UInt8.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
+            UInt8.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
         }
     }
 }

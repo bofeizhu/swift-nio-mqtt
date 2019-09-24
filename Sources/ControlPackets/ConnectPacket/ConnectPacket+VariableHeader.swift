@@ -27,7 +27,7 @@ extension ConnectPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return protocolName.mqttByteCount +
+            protocolName.mqttByteCount +
                 UInt8.byteCount +
                 UInt8.byteCount +
                 UInt16.byteCount +

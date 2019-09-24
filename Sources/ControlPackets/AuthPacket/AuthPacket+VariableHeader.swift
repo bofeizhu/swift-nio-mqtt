@@ -17,7 +17,7 @@ extension AuthPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return ReasonCodeValue.byteCount + properties.mqttByteCount
+            ReasonCodeValue.byteCount + properties.mqttByteCount
         }
     }
 }
