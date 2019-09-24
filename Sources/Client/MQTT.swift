@@ -34,12 +34,35 @@ public final class MQTT {
     public func connect() -> EventLoopFuture<Void> {
         let connectPacket = makeConnectPacket()
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
-        let connectHandler = ConnectHandler(connectPacket: connectPacket, connAckPromise: connAckPromise)
+        let publishHandler: PublishHandler = { [weak self] (topic, payload) in
+            guard let self = self else {
+                return
+            }
+
+            self.callbackQueue.async {
+                switch payload {
+                case let .utf8(text):
+                    self.onText?(topic, text)
+
+                case let .binary(data):
+                    self.onData?(topic, data)
+
+                case .empty:
+                    break
+                }
+            }
+        }
+
+        let mqttChannelHandler = MQTTChannelHandler(
+            connectPacket: connectPacket,
+            connAckPromise: connAckPromise,
+            publishHandler: publishHandler)
 
         // Disable TLS for now
         //let tlsOptions = makeTLSOptions()
 
         let bootstrap = NIOTSConnectionBootstrap(group: group)
+            .channelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
             //.tlsOptions(tlsOptions)
             .channelInitializer { channel -> EventLoopFuture<Void> in
@@ -54,7 +77,7 @@ public final class MQTT {
                     controlPacketEncoder,
                     controlPacketDecoder,
                     loggingHandler,
-                    connectHandler,
+                    mqttChannelHandler,
                 ]
 
                 return channel.pipeline.addHandlers(handlers)
@@ -71,41 +94,16 @@ public final class MQTT {
                 keepAlive = serverKeepAlive
             }
 
-            var channelHandlers: [ChannelHandler] = []
-
-            let publishHandler: PublishHandler = { [weak self] (topic, payload) in
-                guard let self = self else {
-                    return
-                }
-
-                self.callbackQueue.async {
-                    switch payload {
-                    case let .utf8(text):
-                        self.onText?(topic, text)
-
-                    case let .binary(data):
-                        self.onData?(topic, data)
-
-                    case .empty:
-                        break
-                    }
-                }
-            }
-
             // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
             if keepAlive > 0 {
+                var channelHandlers: [ChannelHandler] = []
                 let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
                 channelHandlers.append(IdleStateHandler(writeTimeout: timeout))
                 channelHandlers.append(KeepAliveHandler())
-                channelHandlers.append(SessionHandler(publishHandler: publishHandler))
-            } else {
-                channelHandlers.append(SessionHandler(publishHandler: publishHandler))
+                return channel.pipeline.addHandlers(channelHandlers, position: .before(mqttChannelHandler))
             }
 
-            return channel.pipeline.addHandlers(channelHandlers)
-                .flatMap {
-                    return channel.pipeline.removeHandler(connectHandler)
-                }
+            return channel.pipeline.eventLoop.makeSucceededFuture(())
         }
     }
 

@@ -11,9 +11,8 @@
 		0505CF212317517C00577414 /* ByteBuffer+UnsubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */; };
 		0505CF2323184C9600577414 /* ControlPacketEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF2223184C9600577414 /* ControlPacketEncoder.swift */; };
 		0505CF25231852CF00577414 /* MQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF24231852CF00577414 /* MQTT.swift */; };
-		0507C3802319BF5D000ACDA1 /* ConnectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507C37F2319BF5D000ACDA1 /* ConnectHandler.swift */; };
 		0507C3832319EB26000ACDA1 /* MQTT+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507C3822319EB26000ACDA1 /* MQTT+Configuration.swift */; };
-		051324242322F6BF006DA885 /* SessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051324232322F6BF006DA885 /* SessionHandler.swift */; };
+		051324242322F6BF006DA885 /* MQTTChannelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051324232322F6BF006DA885 /* MQTTChannelHandler.swift */; };
 		0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBD822B8658E00500255 /* FixedHeader.swift */; };
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
 		0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDE22B9743500500255 /* ConnectPacket.swift */; };
@@ -122,9 +121,8 @@
 		0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+UnsubscribePacket.swift"; sourceTree = "<group>"; };
 		0505CF2223184C9600577414 /* ControlPacketEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacketEncoder.swift; sourceTree = "<group>"; };
 		0505CF24231852CF00577414 /* MQTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTT.swift; sourceTree = "<group>"; };
-		0507C37F2319BF5D000ACDA1 /* ConnectHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectHandler.swift; sourceTree = "<group>"; };
 		0507C3822319EB26000ACDA1 /* MQTT+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MQTT+Configuration.swift"; sourceTree = "<group>"; };
-		051324232322F6BF006DA885 /* SessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHandler.swift; sourceTree = "<group>"; };
+		051324232322F6BF006DA885 /* MQTTChannelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTChannelHandler.swift; sourceTree = "<group>"; };
 		0533EBD822B8658E00500255 /* FixedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeader.swift; sourceTree = "<group>"; };
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
 		0533EBDE22B9743500500255 /* ConnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectPacket.swift; sourceTree = "<group>"; };
@@ -538,12 +536,11 @@
 		82DEEC3622FE1805002577DC /* ChannelHandlers */ = {
 			isa = PBXGroup;
 			children = (
-				0507C37F2319BF5D000ACDA1 /* ConnectHandler.swift */,
 				82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */,
 				0505CF2223184C9600577414 /* ControlPacketEncoder.swift */,
 				055790B8232038F000D4C5DB /* KeepAliveHandler.swift */,
 				82A7BDD6231CE72500F61345 /* LoggingHandler.swift */,
-				051324232322F6BF006DA885 /* SessionHandler.swift */,
+				051324232322F6BF006DA885 /* MQTTChannelHandler.swift */,
 			);
 			path = ChannelHandlers;
 			sourceTree = "<group>";
@@ -866,7 +863,7 @@
 				05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */,
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,
 				82E52B7C230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift in Sources */,
-				051324242322F6BF006DA885 /* SessionHandler.swift in Sources */,
+				051324242322F6BF006DA885 /* MQTTChannelHandler.swift in Sources */,
 				055790B9232038F000D4C5DB /* KeepAliveHandler.swift in Sources */,
 				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
 				82E52B72230C797200D58DE2 /* AuthPacket.swift in Sources */,
@@ -885,7 +882,6 @@
 				0505CF2323184C9600577414 /* ControlPacketEncoder.swift in Sources */,
 				829C82BB22EE6F4A0026F421 /* SubscribePacket.swift in Sources */,
 				82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */,
-				0507C3802319BF5D000ACDA1 /* ConnectHandler.swift in Sources */,
 				05F5218D230B6ACF005CE1BF /* UnsubscribePacket.swift in Sources */,
 				057C30C42304D3660064E71D /* ByteBuffer+PubRecPacket.swift in Sources */,
 				82E52B82230DE18F00D58DE2 /* ByteBuffer+DisconnectPacket.swift in Sources */,
