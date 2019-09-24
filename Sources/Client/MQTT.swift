@@ -95,15 +95,16 @@ public final class MQTT {
             }
 
             // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
-            if keepAlive > 0 {
-                var channelHandlers: [ChannelHandler] = []
-                let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
-                channelHandlers.append(IdleStateHandler(writeTimeout: timeout))
-                channelHandlers.append(KeepAliveHandler())
-                return channel.pipeline.addHandlers(channelHandlers, position: .before(mqttChannelHandler))
+            guard keepAlive > 0 else {
+                return channel.pipeline.eventLoop.makeSucceededFuture(())
             }
 
-            return channel.pipeline.eventLoop.makeSucceededFuture(())
+            let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
+            let channelHandlers: [ChannelHandler] = [
+                IdleStateHandler(writeTimeout: timeout),
+                KeepAliveHandler()
+            ]
+            return channel.pipeline.addHandlers(channelHandlers, position: .before(mqttChannelHandler))
         }
     }
 
