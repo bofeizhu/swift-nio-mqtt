@@ -11,7 +11,6 @@ import NIO
 extension ByteBuffer {
 
     mutating func readAuthPacket(with fixedHeader: FixedHeader) throws -> AuthPacket {
-
         let reasonCode: AuthPacket.ReasonCode = try readReasonCode()
         let properties = try readProperties()
 
@@ -23,7 +22,6 @@ extension ByteBuffer {
     }
 
     mutating func write(_ packet: AuthPacket) throws -> Int {
-
         var byteWritten = try write(packet.fixedHeader)
 
         let variableHeader = packet.variableHeader

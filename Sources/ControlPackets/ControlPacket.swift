@@ -7,7 +7,6 @@
 //
 
 enum ControlPacket {
-
     /// Connection request
     case connect(packet: ConnectPacket)
 

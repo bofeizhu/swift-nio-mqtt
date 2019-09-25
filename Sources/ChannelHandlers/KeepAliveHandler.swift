@@ -23,7 +23,6 @@ final class KeepAliveHandler: ChannelDuplexHandler {
     init() {}
 
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
-
         let packet = unwrapInboundIn(data)
 
         switch packet {
@@ -36,7 +35,6 @@ final class KeepAliveHandler: ChannelDuplexHandler {
     }
 
     func userInboundEventTriggered(context: ChannelHandlerContext, event: Any) {
-
         if let idleEvent = event as? IdleStateHandler.IdleStateEvent, idleEvent == .write {
             let writePromise: EventLoopPromise<Void> = context.channel.eventLoop.makePromise()
             writePromise.futureResult.whenComplete { _ in
@@ -55,7 +53,6 @@ final class KeepAliveHandler: ChannelDuplexHandler {
     }
 
     private func schedulePingRespTimeout(context: ChannelHandlerContext) -> Scheduled<Void> {
-
         return context.channel.eventLoop.scheduleTask(in: pingResponseTimeout) {
             context.channel.close(mode: .all, promise: nil)
         }

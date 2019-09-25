@@ -11,7 +11,6 @@ import NIO
 extension ByteBuffer {
 
     mutating func readConnAckPacket(with fixedHeader: FixedHeader) throws -> ConnAckPacket {
-
         guard let sessionPresentFlag = try readBool() else {
             throw MQTTCodingError.malformedPacket
         }

@@ -15,7 +15,6 @@
 ///     The Server MUST process a second CONNECT packet sent from a Client as a Protocol Error
 ///     and close the Network Connection
 struct ConnectPacket: ControlPacketProtocol {
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 
@@ -27,8 +26,8 @@ struct ConnectPacket: ControlPacketProtocol {
 
     init(variableHeader: VariableHeader, payload: Payload) {
         let remainingLength = variableHeader.mqttByteCount + payload.mqttByteCount
-        fixedHeader = FixedHeader(type: .connect, remainingLength: remainingLength)
 
+        fixedHeader = FixedHeader(type: .connect, remainingLength: remainingLength)
         self.variableHeader = variableHeader
         self.payload = payload
     }

@@ -11,7 +11,7 @@
 		0505CF212317517C00577414 /* ByteBuffer+UnsubscribePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */; };
 		0505CF2323184C9600577414 /* ControlPacketEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF2223184C9600577414 /* ControlPacketEncoder.swift */; };
 		0505CF25231852CF00577414 /* MQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505CF24231852CF00577414 /* MQTT.swift */; };
-		0507C3832319EB26000ACDA1 /* MQTT+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507C3822319EB26000ACDA1 /* MQTT+Configuration.swift */; };
+		0507C3832319EB26000ACDA1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507C3822319EB26000ACDA1 /* Configuration.swift */; };
 		051324242322F6BF006DA885 /* MQTTChannelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051324232322F6BF006DA885 /* MQTTChannelHandler.swift */; };
 		0533EBD922B8658E00500255 /* FixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBD822B8658E00500255 /* FixedHeader.swift */; };
 		0533EBDD22B9707000500255 /* PublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533EBDC22B9707000500255 /* PublishPacket.swift */; };
@@ -121,7 +121,7 @@
 		0505CF202317517C00577414 /* ByteBuffer+UnsubscribePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+UnsubscribePacket.swift"; sourceTree = "<group>"; };
 		0505CF2223184C9600577414 /* ControlPacketEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPacketEncoder.swift; sourceTree = "<group>"; };
 		0505CF24231852CF00577414 /* MQTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTT.swift; sourceTree = "<group>"; };
-		0507C3822319EB26000ACDA1 /* MQTT+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MQTT+Configuration.swift"; sourceTree = "<group>"; };
+		0507C3822319EB26000ACDA1 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		051324232322F6BF006DA885 /* MQTTChannelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTChannelHandler.swift; sourceTree = "<group>"; };
 		0533EBD822B8658E00500255 /* FixedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeader.swift; sourceTree = "<group>"; };
 		0533EBDC22B9707000500255 /* PublishPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPacket.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				0505CF24231852CF00577414 /* MQTT.swift */,
-				0507C3822319EB26000ACDA1 /* MQTT+Configuration.swift */,
+				0507C3822319EB26000ACDA1 /* Configuration.swift */,
 				058629FA23282DD100669BD0 /* Session */,
 			);
 			path = Client;
@@ -839,7 +839,7 @@
 				057C30BE2304C2BB0064E71D /* ByteBuffer+ConnAckPacket.swift in Sources */,
 				82E52B6B230C4C0F00D58DE2 /* DisconnectPacket.swift in Sources */,
 				0533EBE322B987C900500255 /* Property.swift in Sources */,
-				0507C3832319EB26000ACDA1 /* MQTT+Configuration.swift in Sources */,
+				0507C3832319EB26000ACDA1 /* Configuration.swift in Sources */,
 				0533EBDF22B9743500500255 /* ConnectPacket.swift in Sources */,
 				82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */,
 				056A221222B841D5000500C1 /* MQTTErrors.swift in Sources */,

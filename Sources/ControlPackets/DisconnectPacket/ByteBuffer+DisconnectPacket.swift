@@ -11,7 +11,6 @@ import NIO
 extension ByteBuffer {
 
     mutating func readDisconnectPacket(with fixedHeader: FixedHeader) throws -> DisconnectPacket {
-
         let reasonCode: DisconnectPacket.ReasonCode = try readReasonCode()
         let properties = try readProperties()
 
@@ -23,7 +22,6 @@ extension ByteBuffer {
     }
 
     mutating func write(_ packet: DisconnectPacket) throws -> Int {
-
         var byteWritten = try write(packet.fixedHeader)
 
         let variableHeader = packet.variableHeader

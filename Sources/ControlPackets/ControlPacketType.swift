@@ -13,7 +13,6 @@
 /// Represented as a 4-bit unsigned value, the values are listed in
 /// [MQTT Control Packet types](http://docs.oasis-open.org/mqtt/mqtt/v5.0/csprd01/mqtt-v5.0-csprd01.html#_Toc489530053)
 enum ControlPacketType: UInt8 {
-
     /// Connection request
     case connect = 1
 

@@ -7,10 +7,8 @@
 //
 
 extension AuthPacket {
-
-    /// SUBACK Reason Code
+    /// Auth Packet Reason Code
     enum ReasonCode: ReasonCodeValue {
-
         /// Success
         ///
         /// Authentication is successful

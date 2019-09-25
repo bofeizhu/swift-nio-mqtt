@@ -7,9 +7,8 @@
 //
 
 extension DisconnectPacket: VariableHeaderPacket {
-
+    /// DISCONNECT packet Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Reason Code
         let reasonCode: ReasonCode
 

@@ -8,7 +8,6 @@
 
 /// AUTH Packet – Authentication exchange
 struct AuthPacket: ControlPacketProtocol {
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 

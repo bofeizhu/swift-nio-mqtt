@@ -34,7 +34,6 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
     }
 
     func channelActive(context: ChannelHandlerContext) {
-
            // Send CONNECT packet
            context.writeAndFlush(wrapOutboundOut(.connect(packet: connectPacket)), promise: nil)
        }
@@ -64,9 +63,7 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
     }
 
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
-
         // TODO: Cache promises
-
         let action = unwrapOutboundIn(data)
 
         switch action {

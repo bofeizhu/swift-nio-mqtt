@@ -7,10 +7,8 @@
 //
 
 extension PubAckPacket: VariableHeaderPacket {
-
     /// PUBACK Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Packet Identifier
         let packetIdentifier: UInt16
 

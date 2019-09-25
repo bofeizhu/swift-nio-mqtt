@@ -7,10 +7,8 @@
 //
 
 extension ConnAckPacket: VariableHeaderPacket {
-
     /// CONNACK Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Session Present Flag
         ///
         /// The Session Present flag informs the Client whether the Server is using Session State

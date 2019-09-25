@@ -10,7 +10,6 @@
 ///
 /// The CONNACK packet is the packet sent by the Server in response to a CONNECT packet received from a Client.
 struct ConnAckPacket: ControlPacketProtocol {
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 

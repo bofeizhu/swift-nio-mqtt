@@ -11,7 +11,6 @@
 /// The PUBCOMP packet is the response to a PUBREL packet.
 /// It is the fourth and final packet of the QoS 2 protocol exchange.
 struct PubCompPacket: ControlPacketProtocol {
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 

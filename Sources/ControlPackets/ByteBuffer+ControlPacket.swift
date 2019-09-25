@@ -11,7 +11,6 @@ import NIO
 extension ByteBuffer {
 
     mutating func readControlPacket(with fixedHeader: FixedHeader) throws -> ControlPacket {
-
         switch fixedHeader.type {
         case .connAck:
             let packet = try readConnAckPacket(with: fixedHeader)
@@ -64,7 +63,6 @@ extension ByteBuffer {
 
     @discardableResult
     mutating func write(_ controlPacket: ControlPacket) throws -> Int {
-
         switch controlPacket {
         case let .connect(packet):
             return try write(packet)

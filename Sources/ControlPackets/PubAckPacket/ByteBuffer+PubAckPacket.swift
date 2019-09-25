@@ -11,7 +11,6 @@ import NIO
 extension ByteBuffer {
 
     mutating func readPubAckPacket(with fixedHeader: FixedHeader) throws -> PubAckPacket {
-
         let packetIdentifier = try readPacketIdentifier()
         let reasonCode: PubAckPacket.ReasonCode = try readReasonCode()
         let properties = try readProperties()
@@ -25,7 +24,6 @@ extension ByteBuffer {
     }
 
     mutating func write(_ packet: PubAckPacket) throws -> Int {
-
         var byteWritten = try write(packet.fixedHeader)
 
         let variableHeader = packet.variableHeader

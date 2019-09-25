@@ -10,7 +10,6 @@
 ///
 /// Level of assurance for delivery of an Application Message.
 public enum QoS: UInt8 {
-
     /// At most once delivery
     case level0 = 0
 

@@ -10,7 +10,6 @@
 ///
 /// A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 struct PubAckPacket: ControlPacketProtocol {
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 

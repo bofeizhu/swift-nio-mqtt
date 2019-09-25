@@ -7,10 +7,8 @@
 //
 
 extension PubCompPacket: VariableHeaderPacket {
-
     /// PUBCOMP Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Packet Identifier
         let packetIdentifier: UInt16
 

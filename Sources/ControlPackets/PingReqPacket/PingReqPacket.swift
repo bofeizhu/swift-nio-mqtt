@@ -17,7 +17,6 @@
 ///     * Request that the Server responds to confirm that it is alive.
 ///     * Exercise the network to indicate that the Network Connection is active.
 struct PingReqPacket: ControlPacketProtocol {
-
     /// The fixed header for PINGREQ packet
     let fixedHeader: FixedHeader
 

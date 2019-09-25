@@ -7,9 +7,8 @@
 //
 
 extension AuthPacket: VariableHeaderPacket {
-
+    /// AUTH Packet Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Reason Code
         let reasonCode: ReasonCode
 

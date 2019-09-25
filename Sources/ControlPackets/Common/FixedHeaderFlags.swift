@@ -8,7 +8,6 @@
 
 /// The last four bits in the Fixed Header contain flags specific to each MQTT Control Packet type.
 enum FixedHeaderFlags {
-
     /// Connection request
     case connect
 
