@@ -46,7 +46,7 @@ public final class ConnectivityStateMonitor {
     public weak var delegate: ConnectivityStateDelegate?
 
     private let lock = Lock()
-    private var state: ConnectivityState = .idle
+    private var currentState: ConnectivityState = .idle
     private var userInitiatedShutdown = false
 
     /// Creates a new connectivity state monitor.
@@ -57,8 +57,8 @@ public final class ConnectivityStateMonitor {
     }
 
     /// The current state of connectivity.
-    public internal(set) var currentState: ConnectivityState {
-        get { lock.withLock { state } }
+    public internal(set) var state: ConnectivityState {
+        get { lock.withLock { currentState } }
 
         set { lock.withLockVoid { setNewState(to: newValue) } }
     }
@@ -71,7 +71,7 @@ public final class ConnectivityStateMonitor {
     /// Whether we can attempt a reconnection, that is the user has not initiated a shutdown and we
     /// are in the `.ready` state.
     var canAttemptReconnect: Bool {
-        lock.withLock { !userInitiatedShutdown && state == .ready }
+        lock.withLock { !userInitiatedShutdown && currentState == .ready }
     }
 
     /// Initiates a user shutdown.
@@ -93,10 +93,10 @@ public final class ConnectivityStateMonitor {
             return
         }
 
-        let oldValue = state
-        if oldValue != newState {
-            state = newState
-            delegate?.connectivityStateDidChange(from: oldValue, to: newState)
+        let oldState = currentState
+        if oldState != newState {
+            currentState = newState
+            delegate?.connectivityStateDidChange(from: oldState, to: newState)
         }
     }
 }

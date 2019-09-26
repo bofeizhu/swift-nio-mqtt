@@ -16,6 +16,9 @@ public final class MQTT {
     public var onText: ((String, String) -> Void)?
     public var onData: ((String, Data) -> Void)?
 
+    /// A monitor for the connectivity state.
+    public let connectivity: ConnectivityStateMonitor
+
     private let group: NIOTSEventLoopGroup
     private let host: String
     private let port: Int
@@ -29,9 +32,45 @@ public final class MQTT {
 
         self.host = host
         self.port = port
+
+        // TODO: Add delegate
+        connectivity = ConnectivityStateMonitor(delegate: nil)
     }
 
-    public func connect() -> EventLoopFuture<Void> {
+    public func connect() {
+
+    }
+
+    @discardableResult
+    public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
+        let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
+        return channel?.writeAndFlush(action)
+    }
+
+    @discardableResult
+    public func subscribe(topic: String) -> EventLoopFuture<Void>? {
+        let action: Session.Action = .subscribe(topic: topic)
+        return channel?.writeAndFlush(action)
+    }
+
+    @discardableResult
+    public func unsubscribe(topic: String) -> EventLoopFuture<Void>? {
+        let action: Session.Action = .unsubscribe(topic: topic)
+        return channel?.writeAndFlush(action)
+    }
+}
+
+// MARK: - Channel Creation
+
+extension MQTT {
+
+    private func makeChannel() -> EventLoopFuture<Channel> {
+        guard connectivity.state == .idle || connectivity.state == .transientFailure else {
+            return group.next().makeFailedFuture(MQTTStatus.internalError)
+        }
+
+        connectivity.state = .connecting
+
         let connectPacket = makeConnectPacket()
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
         let publishHandler: PublishHandler = { [weak self] (topic, payload) in
@@ -58,36 +97,14 @@ public final class MQTT {
             connAckPromise: connAckPromise,
             publishHandler: publishHandler)
 
-        // Disable TLS for now
-        //let tlsOptions = makeTLSOptions()
-
-        let bootstrap = NIOTSConnectionBootstrap(group: group)
-            .channelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
-            .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
-            //.tlsOptions(tlsOptions)
-            .channelInitializer { channel -> EventLoopFuture<Void> in
-                self.channel = channel
-
-                let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
-                let controlPacketDecoder = ByteToMessageHandler(ControlPacketDecoder())
-
-                let loggingHandler = LoggingHandler()
-
-                let handlers: [ChannelHandler] = [
-                    controlPacketEncoder,
-                    controlPacketDecoder,
-                    loggingHandler,
-                    mqttChannelHandler,
-                ]
-
-                return channel.pipeline.addHandlers(handlers)
-            }
+        let bootstrap = MQTT.makeBootstrap(group: group, mqttChannelHandler: mqttChannelHandler)
 
         let connection = bootstrap.connect(host: host, port: port)
-
         connection.cascadeFailure(to: connAckPromise)
 
-        return connAckPromise.futureResult.flatMap { (channel, properties) -> EventLoopFuture<Void> in
+        return connAckPromise.futureResult.flatMap { (channel, properties) -> EventLoopFuture<Channel> in
+            self.connectivity.state = .ready
+
             var keepAlive = connectPacket.variableHeader.keepAlive
 
             if let serverKeepAlive = properties.serverKeepAlive {
@@ -96,7 +113,7 @@ public final class MQTT {
 
             // If Keep Alive is 0 the Client is not obliged to send MQTT Control Packets on any particular schedule.
             guard keepAlive > 0 else {
-                return channel.pipeline.eventLoop.makeSucceededFuture(())
+                return channel.pipeline.eventLoop.makeSucceededFuture(channel)
             }
 
             let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
@@ -104,26 +121,47 @@ public final class MQTT {
                 IdleStateHandler(writeTimeout: timeout),
                 KeepAliveHandler()
             ]
-            return channel.pipeline.addHandlers(channelHandlers, position: .before(mqttChannelHandler))
+            return channel.pipeline
+                .addHandlers(channelHandlers, position: .before(mqttChannelHandler))
+                .map { channel }
         }
     }
 
-    @discardableResult
-    public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
-        let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
-        return channel?.writeAndFlush(action)
+    // TODO: Return a `ClientBootstrapProtocol` instead
+    private static func makeBootstrap(
+        group: EventLoopGroup,
+        mqttChannelHandler: MQTTChannelHandler
+    ) -> NIOTSConnectionBootstrap {
+
+        // Disable TLS for now
+        //let tlsOptions = makeTLSOptions()
+
+        return NIOTSConnectionBootstrap(group: group)
+            .channelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
+            .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
+            //.tlsOptions(tlsOptions)
+            .channelInitializer { channel in
+                initializeChannel(channel, mqttChannelHandler: mqttChannelHandler)
+            }
     }
 
-    @discardableResult
-    public func subscribe(topic: String) -> EventLoopFuture<Void>? {
-        let action: Session.Action = .subscribe(topic: topic)
-        return channel?.writeAndFlush(action)
-    }
+    private static func initializeChannel(
+        _ channel: Channel,
+        mqttChannelHandler: MQTTChannelHandler
+    ) -> EventLoopFuture<Void> {
+        let controlPacketEncoder = MessageToByteHandler(ControlPacketEncoder())
+        let controlPacketDecoder = ByteToMessageHandler(ControlPacketDecoder())
 
-    @discardableResult
-    public func unsubscribe(topic: String) -> EventLoopFuture<Void>? {
-        let action: Session.Action = .unsubscribe(topic: topic)
-        return channel?.writeAndFlush(action)
+        let loggingHandler = LoggingHandler()
+
+        let handlers: [ChannelHandler] = [
+            controlPacketEncoder,
+            controlPacketDecoder,
+            loggingHandler,
+            mqttChannelHandler,
+        ]
+
+        return channel.pipeline.addHandlers(handlers)
     }
 
     private func makeConnectPacket() -> ConnectPacket {
@@ -149,12 +187,4 @@ public final class MQTT {
 
         return options
     }
-}
-
-// MARK: - Channel Creation
-
-extension MQTT {
-//    private func willSetChannel(to channel: EventLoopFuture<Channel>) {
-//        
-//    }
 }

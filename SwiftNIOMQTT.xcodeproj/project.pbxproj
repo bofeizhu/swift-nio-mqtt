@@ -35,6 +35,7 @@
 		058629FC23282E0E00669BD0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058629FB23282E0E00669BD0 /* Session.swift */; };
 		058629FE23282E3A00669BD0 /* Session+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058629FD23282E3A00669BD0 /* Session+Action.swift */; };
 		059448BA233D3F97001C90B1 /* ConnectivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059448B9233D3F97001C90B1 /* ConnectivityState.swift */; };
+		059448BC233D6884001C90B1 /* MQTTStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059448BB233D6884001C90B1 /* MQTTStatus.swift */; };
 		05A290252301416C0046E952 /* ByteBuffer+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A290242301416C0046E952 /* ByteBuffer+Property.swift */; };
 		05DD149E22B2EDCF001D33A3 /* VInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD149D22B2EDCF001D33A3 /* VInt.swift */; };
 		05F1981022E63463006E3E37 /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1980F22E63463006E3E37 /* QoS.swift */; };
@@ -149,6 +150,7 @@
 		058629FB23282E0E00669BD0 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		058629FD23282E3A00669BD0 /* Session+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Action.swift"; sourceTree = "<group>"; };
 		059448B9233D3F97001C90B1 /* ConnectivityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityState.swift; sourceTree = "<group>"; };
+		059448BB233D6884001C90B1 /* MQTTStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTStatus.swift; sourceTree = "<group>"; };
 		05A290242301416C0046E952 /* ByteBuffer+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+Property.swift"; sourceTree = "<group>"; };
 		05DD149D22B2EDCF001D33A3 /* VInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VInt.swift; sourceTree = "<group>"; };
 		05F1980F22E63463006E3E37 /* QoS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				0507C3822319EB26000ACDA1 /* Configuration.swift */,
 				059448B9233D3F97001C90B1 /* ConnectivityState.swift */,
 				0505CF24231852CF00577414 /* MQTT.swift */,
+				059448BB233D6884001C90B1 /* MQTTStatus.swift */,
 				058629FA23282DD100669BD0 /* Session */,
 			);
 			path = Client;
@@ -877,6 +880,7 @@
 				82A71E45230A6EE90084EDC6 /* UInt+Additions.swift in Sources */,
 				05F52188230B5DA6005CE1BF /* SubAckPacket+VariableHeader.swift in Sources */,
 				826C9D7D2307B1B000C7BAF9 /* PropertyCollection.swift in Sources */,
+				059448BC233D6884001C90B1 /* MQTTStatus.swift in Sources */,
 				82E52B76230C7A3D00D58DE2 /* AuthPacket+ReasonCode.swift in Sources */,
 				05F5219C230B76EA005CE1BF /* UnsubAckPacket+VariableHeader.swift in Sources */,
 				056A221422B85226000500C1 /* StringPair.swift in Sources */,
