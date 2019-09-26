@@ -150,3 +150,11 @@ public final class MQTT {
         return options
     }
 }
+
+// MARK: - Channel Creation
+
+extension MQTT {
+//    private func willSetChannel(to channel: EventLoopFuture<Channel>) {
+//        
+//    }
+}

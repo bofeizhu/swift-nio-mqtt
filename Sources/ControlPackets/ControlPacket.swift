@@ -7,55 +7,55 @@
 //
 
 enum ControlPacket {
-    /// Connection request
+    /// Connection request.
     case connect(packet: ConnectPacket)
 
-    /// Connect acknowledgment
+    /// Connect acknowledgment.
     case connAck(packet: ConnAckPacket)
 
-    /// Publish message
+    /// Publish message.
     case publish(packet: PublishPacket)
 
-    /// Publish acknowledgment (QoS 1)
+    /// Publish acknowledgment (QoS 1).
     case pubAck(packet: PubAckPacket)
 
-    /// Publish received (QoS 2 delivery part 1)
+    /// Publish received (QoS 2 delivery part 1).
     case pubRec(packet: PubRecPacket)
 
-    /// Publish release (QoS 2 delivery part 2)
+    /// Publish release (QoS 2 delivery part 2).
     case pubRel(packet: PubRelPacket)
 
-    /// Publish complete (QoS 2 delivery part 3)
+    /// Publish complete (QoS 2 delivery part 3).
     case pubComp(packet: PubCompPacket)
 
-    /// Subscribe request
+    /// Subscribe request.
     case subscribe(packet: SubscribePacket)
 
-    /// Subscribe acknowledgment
+    /// Subscribe acknowledgment.
     case subAck(packet: SubAckPacket)
 
-    /// Unsubscribe request
+    /// Unsubscribe request.
     case unsubscribe(packet: UnsubscribePacket)
 
-    /// Unsubscribe acknowledgment
+    /// Unsubscribe acknowledgment.
     case unsubAck(packet: UnsubAckPacket)
 
-    /// PING request
+    /// PING request.
     case pingReq(packet: PingReqPacket)
 
-    /// PING response
+    /// PING response.
     case pingResp(packet: PingRespPacket)
 
-    /// Disconnect notification
+    /// Disconnect notification.
     case disconnect(packet: DisconnectPacket)
 
-    /// Authentication exchange
+    /// Authentication exchange.
     case auth(packet: AuthPacket)
 }
 
 // MARK: - MQTT Control Packet Typealias
 
-/// Reason Code Value
+/// Reason Code Value.
 ///
 /// A Reason Code is a one byte unsigned value that indicates the result of an operation.
 /// Reason Codes less than 0x80 indicate successful completion of an operation.
