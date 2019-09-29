@@ -32,7 +32,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
         fixedHeader = try! buffer.readFixedHeader()!
         expectedFixedHeader = FixedHeader(
             type: .publish,
-            flags: .publish(dup: false, qos: .level1, retain: true),
+            flags: .publish(dup: false, qos: .atLeastOnce, retain: true),
             remainingLength: .zero)
         XCTAssertEqual(fixedHeader, expectedFixedHeader)
 
@@ -124,7 +124,7 @@ class FixedHeaderIOTests: ByteBufferTestCase {
 
         fixedHeader = FixedHeader(
             type: .publish,
-            flags: .publish(dup: false, qos: .level1, retain: true),
+            flags: .publish(dup: false, qos: .atLeastOnce, retain: true),
             remainingLength: .zero)
         expectedByte = 0b00110011 // DUP: false, QoS: 1, Retain: true
         try! buffer.write(fixedHeader)

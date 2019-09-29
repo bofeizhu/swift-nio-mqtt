@@ -26,13 +26,17 @@ struct MessageView: View {
                 }
              }.navigationBarTitle(Text("Messages"))
         }.onAppear {
+
             self.client.onData = { (_, data) in
                 let text = String(decoding: data, as: UTF8.self)
                 self.addMessage(text: text)
             }
-            self.client.connect().whenSuccess {
+
+            self.client.onConnect = {
                 self.client.subscribe(topic: "healthtap")
             }
+
+            self.client.connect()
         }
     }
 

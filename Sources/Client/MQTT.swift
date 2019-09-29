@@ -13,6 +13,8 @@ import NIOTransportServices
 
 public final class MQTT {
 
+    public var onConnect: (() -> Void)?
+    public var onDisconnect: ((Error?) -> Void)?
     public var onText: ((String, String) -> Void)?
     public var onData: ((String, Data) -> Void)?
 
@@ -22,7 +24,7 @@ public final class MQTT {
     private let group: NIOTSEventLoopGroup
     private let host: String
     private let port: Int
-    private var channel: Channel?
+    private var channel: EventLoopFuture<Channel>?
 
     /// Where the callback is executed. It defaults to the main queue.
     private let callbackQueue: DispatchQueue = DispatchQueue.main
@@ -32,31 +34,37 @@ public final class MQTT {
 
         self.host = host
         self.port = port
+        connectivity = ConnectivityStateMonitor()
 
-        // TODO: Add delegate
-        connectivity = ConnectivityStateMonitor(delegate: nil)
+        connectivity.delegate = self
     }
 
     public func connect() {
-
+        channel = makeChannel()
     }
 
     @discardableResult
     public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
         let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
-        return channel?.writeAndFlush(action)
+        return channel?.flatMap { channel in
+            channel.writeAndFlush(action)
+        }
     }
 
     @discardableResult
     public func subscribe(topic: String) -> EventLoopFuture<Void>? {
         let action: Session.Action = .subscribe(topic: topic)
-        return channel?.writeAndFlush(action)
+        return channel?.flatMap { channel in
+            channel.writeAndFlush(action)
+        }
     }
 
     @discardableResult
     public func unsubscribe(topic: String) -> EventLoopFuture<Void>? {
         let action: Session.Action = .unsubscribe(topic: topic)
-        return channel?.writeAndFlush(action)
+        return channel?.flatMap { channel in
+            channel.writeAndFlush(action)
+        }
     }
 }
 
@@ -186,5 +194,18 @@ extension MQTT {
         sec_protocol_options_set_peer_authentication_required(options.securityProtocolOptions, false)
 
         return options
+    }
+}
+
+// MARK: - Connectivity State Delegate
+
+extension MQTT: ConnectivityStateDelegate {
+    func connectivityStateDidChange(from oldState: ConnectivityState, to newState: ConnectivityState) {
+        switch newState {
+        case .ready:
+            onConnect?()
+        default:
+            break
+        }
     }
 }

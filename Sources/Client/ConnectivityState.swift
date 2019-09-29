@@ -33,7 +33,7 @@ public enum ConnectivityState {
     case shutdown
 }
 
-public protocol ConnectivityStateDelegate: AnyObject {
+protocol ConnectivityStateDelegate: AnyObject {
     /// Called when a change in `ConnectivityState` has occurred.
     ///
     /// - Parameter oldState: The old connectivity state.
@@ -43,18 +43,14 @@ public protocol ConnectivityStateDelegate: AnyObject {
 
 public final class ConnectivityStateMonitor {
     /// A delegate to call when the connectivity state changes.
-    public weak var delegate: ConnectivityStateDelegate?
+    weak var delegate: ConnectivityStateDelegate?
 
     private let lock = Lock()
     private var currentState: ConnectivityState = .idle
     private var userInitiatedShutdown = false
 
     /// Creates a new connectivity state monitor.
-    ///
-    /// - Parameter delegate: A delegate to call when the connectivity state changes.
-    public init(delegate: ConnectivityStateDelegate?) {
-        self.delegate = delegate
-    }
+    init() {}
 
     /// The current state of connectivity.
     public internal(set) var state: ConnectivityState {

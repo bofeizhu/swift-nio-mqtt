@@ -10,14 +10,14 @@
 ///
 /// Level of assurance for delivery of an Application Message.
 public enum QoS: UInt8 {
-    /// At most once delivery
-    case level0 = 0
+    /// At most once delivery.
+    case atMostOnce = 0
 
-    /// At least once delivery
-    case level1
+    /// At least once delivery.
+    case atLeastOnce
 
-    /// Exactly once delivery
-    case level2
+    /// Exactly once delivery.
+    case exactlyOnce
 }
 
 // MARK: - QoS

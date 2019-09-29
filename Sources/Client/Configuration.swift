@@ -12,7 +12,7 @@ extension MQTT {
         /// The
         public var qos: QoS
 
-        public init(qos: QoS = .level0) {
+        public init(qos: QoS = .atMostOnce) {
             self.qos = qos
         }
     }

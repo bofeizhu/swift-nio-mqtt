@@ -27,7 +27,7 @@ DEPENDENCIES:
   - SwiftNIOMQTT (from `../SwiftNIOMQTT.podspec`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - CNIOAtomics
     - CNIODarwin
     - CNIOLinux
@@ -56,4 +56,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3cf2ffdbc78b78f40c32493420bfae7505d9ce23
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.0

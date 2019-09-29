@@ -146,7 +146,7 @@ extension FixedHeaderFlags {
             return .connAck
 
         case .publish:
-            return .publish(dup: false, qos: .level0, retain: false)
+            return .publish(dup: false, qos: .atMostOnce, retain: false)
 
         case .pubAck:
             return .connAck

@@ -92,7 +92,7 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
 
         return PublishPacket(
             dup: false,
-            qos: .level0,
+            qos: .atMostOnce,
             retain: false,
             variableHeader: variableHeader,
             payload: payload)

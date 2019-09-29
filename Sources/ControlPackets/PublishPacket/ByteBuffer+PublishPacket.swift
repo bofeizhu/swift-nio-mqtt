@@ -28,7 +28,7 @@ extension ByteBuffer {
 
         switch fixedHeader.flags {
         case let .publish(_, qos, _):
-            if qos != .level0 {
+            if qos != .atMostOnce {
                 guard let identifier: UInt16 = readInteger() else {
                     throw MQTTCodingError.malformedPacket
                 }

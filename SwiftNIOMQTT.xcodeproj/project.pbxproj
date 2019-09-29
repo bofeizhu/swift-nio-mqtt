@@ -65,6 +65,7 @@
 		4EEACB50233039C900828663 /* FixedHeaderIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEACB4E233039BF00828663 /* FixedHeaderIOTests.swift */; };
 		6BD6D9D699B613EC95C77BD7 /* Pods_NIOMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AD06D20CAEFF579204A014 /* Pods_NIOMQTT.framework */; };
 		77C0490D2D3B768A09454CA9 /* Pods_NIOMQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFB956395817261FCE7D27A /* Pods_NIOMQTTTests.framework */; };
+		821515DC233FF808007A0955 /* ConnectionBackoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821515DB233FF808007A0955 /* ConnectionBackoff.swift */; };
 		822A21A122E51C6900FC348C /* ConnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */; };
 		822A21A622E5221C00FC348C /* HasProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A522E5221C00FC348C /* HasProperties.swift */; };
 		822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A21A922E5230400FC348C /* PropertyIdentifier.swift */; };
@@ -183,6 +184,7 @@
 		4EEACB4E233039BF00828663 /* FixedHeaderIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderIOTests.swift; sourceTree = "<group>"; };
 		63A789DCAF03F7B3EF69CE0C /* Pods-SwiftNIOMQTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftNIOMQTT.release.xcconfig"; path = "Target Support Files/Pods-SwiftNIOMQTT/Pods-SwiftNIOMQTT.release.xcconfig"; sourceTree = "<group>"; };
 		732F5CB566770EA0A313DE9E /* Pods-NIOMQTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTT.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTT/Pods-NIOMQTT.debug.xcconfig"; sourceTree = "<group>"; };
+		821515DB233FF808007A0955 /* ConnectionBackoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionBackoff.swift; sourceTree = "<group>"; };
 		822A21A022E51C6900FC348C /* ConnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
 		822A21A522E5221C00FC348C /* HasProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasProperties.swift; sourceTree = "<group>"; };
 		822A21A922E5230400FC348C /* PropertyIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyIdentifier.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				0507C3822319EB26000ACDA1 /* Configuration.swift */,
+				821515DB233FF808007A0955 /* ConnectionBackoff.swift */,
 				059448B9233D3F97001C90B1 /* ConnectivityState.swift */,
 				0505CF24231852CF00577414 /* MQTT.swift */,
 				059448BB233D6884001C90B1 /* MQTTStatus.swift */,
@@ -871,6 +874,7 @@
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,
 				82E52B7C230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift in Sources */,
 				051324242322F6BF006DA885 /* MQTTChannelHandler.swift in Sources */,
+				821515DC233FF808007A0955 /* ConnectionBackoff.swift in Sources */,
 				055790B9232038F000D4C5DB /* KeepAliveHandler.swift in Sources */,
 				8284EF9D22ED7BFB0063A72C /* PubRecPacket.swift in Sources */,
 				82E52B72230C797200D58DE2 /* AuthPacket.swift in Sources */,
