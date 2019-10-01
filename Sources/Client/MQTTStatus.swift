@@ -7,5 +7,6 @@
 //
 
 public enum MQTTStatus: Error {
+    case unavailable
     case internalError
 }

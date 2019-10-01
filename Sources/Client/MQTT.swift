@@ -24,16 +24,17 @@ public final class MQTT {
     private let group: NIOTSEventLoopGroup
     private let host: String
     private let port: Int
-    private var channel: EventLoopFuture<Channel>?
+    private var channel: EventLoopFuture<Channel>
 
     /// Where the callback is executed. It defaults to the main queue.
     private let callbackQueue: DispatchQueue = DispatchQueue.main
 
     public init(host: String, port: Int) {
-        group = NIOTSEventLoopGroup()
-
         self.host = host
         self.port = port
+
+        group = NIOTSEventLoopGroup()
+        channel = group.next().makeFailedFuture(MQTTStatus.unavailable)
         connectivity = ConnectivityStateMonitor()
 
         connectivity.delegate = self
@@ -46,7 +47,7 @@ public final class MQTT {
     @discardableResult
     public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
         let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
-        return channel?.flatMap { channel in
+        return channel.flatMap { channel in
             channel.writeAndFlush(action)
         }
     }
@@ -54,7 +55,7 @@ public final class MQTT {
     @discardableResult
     public func subscribe(topic: String) -> EventLoopFuture<Void>? {
         let action: Session.Action = .subscribe(topic: topic)
-        return channel?.flatMap { channel in
+        return channel.flatMap { channel in
             channel.writeAndFlush(action)
         }
     }
@@ -62,7 +63,7 @@ public final class MQTT {
     @discardableResult
     public func unsubscribe(topic: String) -> EventLoopFuture<Void>? {
         let action: Session.Action = .unsubscribe(topic: topic)
-        return channel?.flatMap { channel in
+        return channel.flatMap { channel in
             channel.writeAndFlush(action)
         }
     }
@@ -72,7 +73,43 @@ public final class MQTT {
 
 extension MQTT {
 
-    private func makeChannel() -> EventLoopFuture<Channel> {
+    /// Register a callback on the close future of the given `channel` to replace the channel (if possible).
+    ///
+    /// - Parameter channel: The channel that will be set.
+    private func willSetChannel(to channel: EventLoopFuture<Channel>) {
+        // If we're about to set the channel and the user has initiated a shutdown (i.e. while the new
+        // channel was being created) then it is no longer needed.
+        guard !connectivity.userHasInitiatedShutdown else {
+            channel.whenSuccess { channel in
+                channel.close(mode: .all, promise: nil)
+            }
+            return
+        }
+
+        // If we get a channel and it closes then create a new one, if necessary.
+        channel.flatMap { $0.closeFuture }.whenComplete { result in
+            // TODO: Add result logging
+
+            guard self.connectivity.canAttemptReconnect else {
+              return
+            }
+
+            // Something went wrong, but we'll try to fix it so let's update our state to reflect that.
+            self.connectivity.state = .transientFailure
+            self.channel = self.makeChannel()
+        }
+    }
+
+    /// Register a callback on the given `channel` to update the connectivity state.
+    ///
+    /// - Parameter channel: The channel that was set.
+    private func didSetChannel(to channel: EventLoopFuture<Channel>) {
+        channel.whenFailure { _ in
+            self.connectivity.state = .shutdown
+        }
+    }
+
+    private func makeChannel(backoffIterator: ConnectionBackoffIterator?) -> EventLoopFuture<Channel> {
         guard connectivity.state == .idle || connectivity.state == .transientFailure else {
             return group.next().makeFailedFuture(MQTTStatus.internalError)
         }
