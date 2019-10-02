@@ -14,7 +14,6 @@ final class ControlPacketDecoder: ByteToMessageDecoder {
     private var fixedHeader: FixedHeader?
 
     func decode(context: ChannelHandlerContext, buffer: inout ByteBuffer) throws -> DecodingState {
-
         // Read fixed header
         if fixedHeader == nil {
             fixedHeader = try buffer.readFixedHeader()

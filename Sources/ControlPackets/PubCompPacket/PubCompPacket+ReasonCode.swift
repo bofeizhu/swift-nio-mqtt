@@ -7,10 +7,8 @@
 //
 
 extension PubCompPacket {
-
     /// PUBCOMP Reason Code
     enum ReasonCode: ReasonCodeValue {
-
         /// Success
         ///
         /// Packet Identifier released. Publication of QoS 2 message is complete.

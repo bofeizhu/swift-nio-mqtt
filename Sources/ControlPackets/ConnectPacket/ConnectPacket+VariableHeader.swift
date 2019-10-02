@@ -7,10 +7,8 @@
 //
 
 extension ConnectPacket: VariableHeaderPacket {
-
-    /// CONNECT Variable Header
+    /// CONNECT packet Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// MQTT Protocol Name
         let protocolName = "MQTT"
 
@@ -27,7 +25,7 @@ extension ConnectPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return protocolName.mqttByteCount +
+            protocolName.mqttByteCount +
                 UInt8.byteCount +
                 UInt8.byteCount +
                 UInt16.byteCount +
@@ -57,7 +55,6 @@ extension ConnectPacket: VariableHeaderPacket {
         let userNameFlag: Bool
 
         init?(rawValue: UInt8) {
-
             let qosValue = (rawValue >> 3) & 0b11
 
             // The Server MUST validate that the reserved flag in the CONNECT packet is set to 0

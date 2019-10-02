@@ -16,7 +16,6 @@ import struct Foundation.Data
 ///
 /// The set of Properties is composed of a Property Length followed by the Properties.
 enum Property {
-
     /// Payload Format Indicator
     ///
     /// `false` Indicates that the Payload is unspecified bytes,

@@ -118,7 +118,7 @@ class PropertyTests: XCTestCase {
     }
 
     func testQoSTypePropertyByteCount() {
-        let qos = QoS.level2
+        let qos = QoS.exactlyOnce
         let qosPropertyByteCount = 2
 
         let property: Property = .maximumQoS(qos)

@@ -12,7 +12,6 @@ extension ByteBuffer {
 
     @discardableResult
     mutating func write(_ packet: ConnectPacket) throws -> Int {
-
         var bytesWritten = try write(packet.fixedHeader)
         bytesWritten += try write(packet.variableHeader)
         bytesWritten += try write(packet.payload)
@@ -21,7 +20,6 @@ extension ByteBuffer {
     }
 
     private mutating func write(_ variableHeader: ConnectPacket.VariableHeader) throws -> Int {
-
         var bytesWritten = try writeMQTTString(variableHeader.protocolName)
         bytesWritten += writeByte(variableHeader.protocolVersion)
         bytesWritten += writeByte(variableHeader.connectFlags.rawValue)
@@ -32,7 +30,6 @@ extension ByteBuffer {
     }
 
     private mutating func write(_ payload: ConnectPacket.Payload) throws -> Int {
-
         var bytesWritten = try writeMQTTString(payload.clientId)
 
         if let willMessage = payload.willMessage {

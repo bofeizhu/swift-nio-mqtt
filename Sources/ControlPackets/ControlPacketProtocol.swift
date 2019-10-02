@@ -6,14 +6,14 @@
 //  Copyright © 2019 HealthTap Inc. All rights reserved.
 //
 
-/// MQTT Control Packet Protocol
+/// MQTT Control Packet Protocol.
 ///
 /// The MQTT protocol operates by exchanging a series of MQTT Control Packets in a defined way.
 protocol ControlPacketProtocol {
     var fixedHeader: FixedHeader { get }
 }
 
-/// MQTT Control Packet with Variable Header
+/// MQTT Control Packet with Variable Header.
 ///
 /// Some types of MQTT Control Packet contain a Variable Header component.
 /// It resides between the Fixed Header and the Payload.
@@ -21,16 +21,16 @@ protocol ControlPacketProtocol {
 protocol VariableHeaderPacket: ControlPacketProtocol {
     associatedtype VariableHeader: MQTTByteRepresentable
 
-    /// Variable Header
+    /// Variable Header.
     var variableHeader: VariableHeader { get }
 }
 
-/// MQTT Control Packet with Payload
+/// MQTT Control Packet with Payload.
 ///
 /// Some MQTT Control Packets contain a Payload as the final part of the packet.
 protocol PayloadPacket: ControlPacketProtocol {
     associatedtype Payload: MQTTByteRepresentable
 
-    /// Payload
+    /// Payload.
     var payload: Payload { get }
 }

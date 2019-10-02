@@ -15,7 +15,6 @@
 /// with Reason Code 0x00 (Normal disconnection) and the Connection has a Will Message,
 /// the Will Message is published.
 struct DisconnectPacket: ControlPacketProtocol {
-
     /// Fixed Header
     let fixedHeader: FixedHeader
 

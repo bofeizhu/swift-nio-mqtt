@@ -7,10 +7,8 @@
 //
 
 extension ConnectPacket {
-
     /// CONNECT Reason Code
     enum ReasonCode: ReasonCodeValue {
-
         /// Success
         ///
         /// The Connection is accepted.

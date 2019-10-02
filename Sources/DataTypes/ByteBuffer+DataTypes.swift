@@ -147,7 +147,6 @@ extension ByteBuffer {
     /// - Returns: The number of bytes written (always 1).
     @discardableResult
     mutating func write(_ bool: Bool) -> Int {
-
         if bool {
             return writeByte(1)
         } else {

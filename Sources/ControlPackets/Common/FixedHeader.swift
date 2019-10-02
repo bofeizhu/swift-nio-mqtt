@@ -10,7 +10,6 @@ import NIO
 
 /// MQTT Control Packet Fixed Header
 struct FixedHeader {
-
     /// MQTT Control Packet type
     let type: ControlPacketType
 
@@ -48,7 +47,6 @@ struct FixedHeader {
 // MARK: - ByteBuffer Extension
 
 extension ByteBuffer {
-
     /// Get a fixed header off this `ByteBuffer`. Does not move the reader index.
     ///
     /// - Parameter index: The starting index of the bytes for the integer into the `ByteBuffer`.

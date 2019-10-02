@@ -7,10 +7,8 @@
 //
 
 extension ConnAckPacket: VariableHeaderPacket {
-
     /// CONNACK Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Session Present Flag
         ///
         /// The Session Present flag informs the Client whether the Server is using Session State
@@ -28,7 +26,7 @@ extension ConnAckPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return UInt8.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
+            UInt8.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
         }
     }
 }

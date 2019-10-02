@@ -7,10 +7,8 @@
 //
 
 extension PubAckPacket: VariableHeaderPacket {
-
     /// PUBACK Variable Header
     struct VariableHeader: HasProperties, MQTTByteRepresentable {
-
         /// Packet Identifier
         let packetIdentifier: UInt16
 
@@ -21,7 +19,7 @@ extension PubAckPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return UInt16.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
+            UInt16.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
         }
     }
 }

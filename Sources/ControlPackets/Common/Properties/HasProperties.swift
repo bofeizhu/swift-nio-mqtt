@@ -7,7 +7,6 @@
 //
 
 protocol HasProperties {
-
     /// A sequence of properties
     var properties: PropertyCollection { get }
 

@@ -53,7 +53,7 @@ struct VInt {
     ///
     /// - Parameter firstByte: The first byte of the variable byte integer
     fileprivate init(firstByte: UInt8) {
-        value = UInt(firstByte & VInt.dataMask)
+        value = UInt(firstByte & VInt.valueMask)
         bytes = [firstByte]
         hasFollowing = firstByte & VInt.followingMask != 0
         multiplier = VInt.multiplier
@@ -74,7 +74,7 @@ struct VInt {
             self = leading
             return
         }
-        value = leading.value + UInt(nextByte & VInt.dataMask) * leading.multiplier
+        value = leading.value + UInt(nextByte & VInt.valueMask) * leading.multiplier
         bytes = leading.bytes + [nextByte]
         hasFollowing = nextByte & VInt.followingMask != 0
         multiplier = leading.multiplier * VInt.multiplier
@@ -109,8 +109,8 @@ extension VInt {
     /// The maximum number of bytes in VInt.
     static let maxByteCount = 4
 
-    /// The bitmask for the least significant seven bits of a byte which encode the data.
-    static fileprivate let dataMask: UInt8 = 127
+    /// The bitmask for the least significant seven bits of a byte which encode the value.
+    static fileprivate let valueMask: UInt8 = 127
 
     /// The bitmask for the most significant bit which is used to indicate whether there are bytes following.
     static fileprivate let followingMask: UInt8 = 128

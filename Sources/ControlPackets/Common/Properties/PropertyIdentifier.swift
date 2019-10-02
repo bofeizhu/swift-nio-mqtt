@@ -15,7 +15,6 @@ import NIO
 ///     in this version of the specification all of the Property Identifiers are one byte long.
 ///     So we are treating them as `UInt8`.
 enum PropertyIdentifier: UInt8 {
-
     /// Payload Format Indicator
     case payloadFormatIndicator = 1
 

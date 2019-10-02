@@ -13,7 +13,6 @@ extension ByteBuffer {
 
     @discardableResult
     mutating func write(_ properties: PropertyCollection) throws -> Int {
-
         try writeVariableByteInteger(properties.propertyLength)
 
         for property in properties {
@@ -94,9 +93,7 @@ extension ByteBuffer {
     }
 
     mutating func readProperties() throws -> PropertyCollection {
-
         // Get property length in bytes
-
         guard let length = try readVariableByteInteger() else {
             throw MQTTCodingError.malformedPacket
         }

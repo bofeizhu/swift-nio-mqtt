@@ -11,7 +11,6 @@
 /// A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet.
 /// It indicates that the Server is alive.
 struct PingRespPacket: ControlPacketProtocol {
-
     /// The fixed header for PINGRESP packet
     let fixedHeader: FixedHeader
 }

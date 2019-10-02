@@ -22,7 +22,7 @@ extension UnsubscribePacket: PayloadPacket {
         ///
         /// - Complexity: O(*n*)
         var mqttByteCount: Int {
-            return topicFilters.reduce(0) { $0 + $1.mqttByteCount }
+            topicFilters.reduce(0) { $0 + $1.mqttByteCount }
         }
     }
 }

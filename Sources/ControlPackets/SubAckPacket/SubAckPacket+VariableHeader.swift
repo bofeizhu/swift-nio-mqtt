@@ -18,7 +18,7 @@ extension SubAckPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            return UInt16.byteCount + properties.mqttByteCount
+            UInt16.byteCount + properties.mqttByteCount
         }
     }
 }

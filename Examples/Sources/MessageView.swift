@@ -16,7 +16,10 @@ struct Message: Identifiable {
 
 struct MessageView: View {
     @State var messages: [Message] = [Message(id: 0, text: "Hello!")]
-    let client = MQTT(host: "test.mosquitto.org", port: 1883)
+    let client: MQTT = {
+        let configuration = MQTT.Configuration(host: "test.mosquitto.org", port: 1883)
+        return MQTT(configuration: configuration)
+    }()
 
     var body: some View {
         NavigationView {
@@ -26,13 +29,17 @@ struct MessageView: View {
                 }
              }.navigationBarTitle(Text("Messages"))
         }.onAppear {
+
             self.client.onData = { (_, data) in
                 let text = String(decoding: data, as: UTF8.self)
                 self.addMessage(text: text)
             }
-            self.client.connect().whenSuccess {
+
+            self.client.onConnect = {
                 self.client.subscribe(topic: "healthtap")
             }
+
+            self.client.connect()
         }
     }
 

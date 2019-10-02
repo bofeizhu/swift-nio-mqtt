@@ -7,10 +7,8 @@
 //
 
 extension PubAckPacket {
-
     /// PUBACK Reason Code
     enum ReasonCode: ReasonCodeValue {
-
         /// Success
         ///
         /// The message is accepted. Publication of the QoS 1 message proceeds.

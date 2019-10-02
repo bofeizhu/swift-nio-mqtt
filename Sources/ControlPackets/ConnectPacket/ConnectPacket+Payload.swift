@@ -9,8 +9,7 @@
 import struct Foundation.Data
 
 extension ConnectPacket: PayloadPacket {
-
-    /// CONNECT Packet Payload
+    /// CONNECT packet Payload
     struct Payload: MQTTByteRepresentable {
 
         /// Client Identifier (ClientID)
@@ -57,7 +56,7 @@ extension ConnectPacket: PayloadPacket {
         let payload: Data
 
         var mqttByteCount: Int {
-            return properties.mqttByteCount + topic.mqttByteCount + payload.mqttByteCount
+            properties.mqttByteCount + topic.mqttByteCount + payload.mqttByteCount
         }
     }
 }

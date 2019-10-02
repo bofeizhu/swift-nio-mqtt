@@ -9,9 +9,7 @@
 import NIO
 
 extension ByteBuffer {
-
     mutating func readPacketIdentifier() throws -> UInt16 {
-
         guard let packetIdentifier: UInt16 = readInteger() else {
 
             // FIXME: Should throw an internal error.
@@ -23,7 +21,6 @@ extension ByteBuffer {
     }
 
     mutating func readReasonCode<T: RawRepresentable>() throws -> T where T.RawValue == ReasonCodeValue {
-
         guard
             let byte = readByte(),
             let reasonCode = T(rawValue: byte)
@@ -36,7 +33,6 @@ extension ByteBuffer {
 
     mutating func readReasonCodeList<T: RawRepresentable>(length: Int) throws -> [T]
     where T.RawValue == ReasonCodeValue {
-
         guard let bytes = readBytes(length: length) else {
             throw MQTTCodingError.malformedPacket
         }

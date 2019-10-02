@@ -7,10 +7,8 @@
 //
 
 extension DisconnectPacket {
-
     /// DISCONNECT Reason Code
     enum ReasonCode: ReasonCodeValue {
-
         /// Normal disconnection
         ///
         /// Close the connection normally. Do not send the Will Message.

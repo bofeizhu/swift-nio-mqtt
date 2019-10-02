@@ -8,7 +8,6 @@
 
 /// The last four bits in the Fixed Header contain flags specific to each MQTT Control Packet type.
 enum FixedHeaderFlags {
-
     /// Connection request
     case connect
 
@@ -147,7 +146,7 @@ extension FixedHeaderFlags {
             return .connAck
 
         case .publish:
-            return .publish(dup: false, qos: .level0, retain: false)
+            return .publish(dup: false, qos: .atMostOnce, retain: false)
 
         case .pubAck:
             return .connAck

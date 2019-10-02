@@ -25,7 +25,7 @@ DEPENDENCIES:
   - SwiftNIOTransportServices (~> 1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - CNIOAtomics
     - CNIODarwin
     - CNIOLinux
@@ -49,4 +49,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 69f3c5d2950806b8f6dcb381d9181374ba706ba3
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.1
