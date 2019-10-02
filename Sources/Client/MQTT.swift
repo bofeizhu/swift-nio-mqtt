@@ -21,17 +21,25 @@ public final class MQTT {
     /// A monitor for the connectivity state.
     public let connectivity: ConnectivityStateMonitor
 
+    /// The configuration for this client.
+    let configuration: Configuration
+
     private let group: NIOTSEventLoopGroup
-    private let host: String
-    private let port: Int
-    private var channel: EventLoopFuture<Channel>
+    private var channel: EventLoopFuture<Channel> {
+        willSet {
+            willSetChannel(to: newValue)
+        }
+        didSet {
+            didSetChannel(to: self.channel)
+        }
+    }
 
     /// Where the callback is executed. It defaults to the main queue.
     private let callbackQueue: DispatchQueue = DispatchQueue.main
 
-    public init(host: String, port: Int) {
-        self.host = host
-        self.port = port
+    /// Creates a new connection from the given configuration.
+    public init(configuration: Configuration) {
+        self.configuration = configuration
 
         group = NIOTSEventLoopGroup()
         channel = group.next().makeFailedFuture(MQTTStatus.unavailable)
@@ -41,7 +49,8 @@ public final class MQTT {
     }
 
     public func connect() {
-        channel = makeChannel()
+        channel = makeChannel(
+            backoffIterator: configuration.connectionBackoff?.makeIterator())
     }
 
     @discardableResult
@@ -87,16 +96,16 @@ extension MQTT {
         }
 
         // If we get a channel and it closes then create a new one, if necessary.
-        channel.flatMap { $0.closeFuture }.whenComplete { result in
+        channel.flatMap { $0.closeFuture }.whenComplete { _ in
             // TODO: Add result logging
-
             guard self.connectivity.canAttemptReconnect else {
               return
             }
 
             // Something went wrong, but we'll try to fix it so let's update our state to reflect that.
             self.connectivity.state = .transientFailure
-            self.channel = self.makeChannel()
+            self.channel = self.makeChannel(
+                backoffIterator: self.configuration.connectionBackoff?.makeIterator())
         }
     }
 
@@ -109,12 +118,15 @@ extension MQTT {
         }
     }
 
-    private func makeChannel(backoffIterator: ConnectionBackoffIterator?) -> EventLoopFuture<Channel> {
+    private func makeChannel(
+        backoffIterator: ConnectionBackoffIterator?
+    ) -> EventLoopFuture<Channel> {
         guard connectivity.state == .idle || connectivity.state == .transientFailure else {
             return group.next().makeFailedFuture(MQTTStatus.internalError)
         }
 
         connectivity.state = .connecting
+        let timeoutAndBackoff = backoffIterator?.next()
 
         let connectPacket = makeConnectPacket()
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
@@ -144,10 +156,10 @@ extension MQTT {
 
         let bootstrap = MQTT.makeBootstrap(group: group, mqttChannelHandler: mqttChannelHandler)
 
-        let connection = bootstrap.connect(host: host, port: port)
+        let connection = bootstrap.connect(host: configuration.host, port: configuration.port)
         connection.cascadeFailure(to: connAckPromise)
 
-        return connAckPromise.futureResult.flatMap { (channel, properties) -> EventLoopFuture<Channel> in
+        let channel = connAckPromise.futureResult.flatMap { (channel, properties) -> EventLoopFuture<Channel> in
             self.connectivity.state = .ready
 
             var keepAlive = connectPacket.variableHeader.keepAlive
@@ -169,6 +181,32 @@ extension MQTT {
             return channel.pipeline
                 .addHandlers(channelHandlers, position: .before(mqttChannelHandler))
                 .map { channel }
+        }
+
+        // If we don't have backoff then we can't retry, just return the `channel` no matter what
+        // state we are in.
+        guard let backoff = timeoutAndBackoff?.backoff else {
+          return channel
+        }
+
+        // If our connection attempt was unsuccessful, schedule another attempt in some time.
+        return channel.flatMapError { _ in
+            // TODO: Log error
+
+            // We will try to connect again: the failure is transient.
+            self.connectivity.state = .transientFailure
+            return self.scheduleReconnectAttempt(in: backoff, backoffIterator: backoffIterator)
+        }
+    }
+
+    private func scheduleReconnectAttempt(
+        in timeout: TimeInterval,
+        backoffIterator: ConnectionBackoffIterator?
+    ) -> EventLoopFuture<Channel> {
+        return group.next().scheduleTask(in: .seconds(timeInterval: timeout)) {
+            self.makeChannel(backoffIterator: backoffIterator)
+        }.futureResult.flatMap { channel in
+            channel
         }
     }
 
@@ -244,5 +282,16 @@ extension MQTT: ConnectivityStateDelegate {
         default:
             break
         }
+    }
+}
+
+// MARK: - Helpers
+
+fileprivate extension TimeAmount {
+    /// Creates a new `TimeAmount` from the given time interval in seconds.
+    ///
+    /// - Parameter timeInterval: The amount of time in seconds
+    static func seconds(timeInterval: TimeInterval) -> TimeAmount {
+        return .nanoseconds(Int64(timeInterval * 1_000_000_000))
     }
 }

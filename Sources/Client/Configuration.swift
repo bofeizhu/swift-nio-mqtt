@@ -9,11 +9,36 @@
 extension MQTT {
     /// The configuration for a connection.
     public struct Configuration {
-        /// The
+        /// The host to connect to.
+        public var host: String
+
+        /// The port to connect to.
+        public var port: Int
+
+        /// The QoS level for delivery of Application Messages.
         public var qos: QoS
 
-        public init(qos: QoS = .atMostOnce) {
+        /// The connection backoff configuration.
+        ///
+        /// - Note: If no connection retrying is required then this should be `nil`.
+        public var connectionBackoff: ConnectionBackoff?
+
+        /// Create a `Configuration` with some pre-defined defaults.
+        ///
+        /// - Parameter host: The host to connect to.
+        /// - Parameter port: The port to connect to.
+        /// - Parameter qos: The QoS level for delivery of Application Messages.
+        /// - Parameter connectionBackoff: The connection backoff configuration to use.
+        public init(
+            host: String,
+            port: Int,
+            qos: QoS = .atMostOnce,
+            connectionBackoff: ConnectionBackoff? = ConnectionBackoff()
+        ) {
+            self.host = host
+            self.port = port
             self.qos = qos
+            self.connectionBackoff = connectionBackoff
         }
     }
 }
