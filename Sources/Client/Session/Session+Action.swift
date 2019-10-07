@@ -7,7 +7,7 @@
 //
 
 extension Session {
-
+    /// Session related actions.
     enum Action {
         case publish(topic: String, payload: PublishPacket.Payload)
         case subscribe(topic: String)

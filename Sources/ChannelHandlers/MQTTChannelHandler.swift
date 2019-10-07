@@ -65,61 +65,8 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
         // TODO: Cache promises
         let action = unwrapOutboundIn(data)
+        let packet = session.makeControlPacket(for: action)
 
-        switch action {
-        case let .publish(topic, payload):
-            let packet = makePublishPacket(topic: topic, payload: payload)
-            context.writeAndFlush(wrapOutboundOut(.publish(packet: packet)), promise: promise)
-
-        case let .subscribe(topic):
-            let packet = makeSubscribePacket(topic: topic)
-            context.writeAndFlush(wrapOutboundOut(.subscribe(packet: packet)), promise: promise)
-
-        case let .unsubscribe(topic):
-            let packet = makeUnsubscribePacket(topic: topic)
-            context.writeAndFlush(wrapOutboundOut(.unsubscribe(packet: packet)), promise: promise)
-        }
-    }
-
-    private func makePublishPacket(topic: String, payload: PublishPacket.Payload) -> PublishPacket {
-        var properties = PropertyCollection()
-        properties.append(payload.formatIndicator)
-
-        let variableHeader = PublishPacket.VariableHeader(
-            topicName: topic,
-            packetIdentifier: nil,
-            properties: properties)
-
-        return PublishPacket(
-            dup: false,
-            qos: .atMostOnce,
-            retain: false,
-            variableHeader: variableHeader,
-            payload: payload)
-    }
-
-    private func makeSubscribePacket(topic: String) -> SubscribePacket {
-        let packetIdentifier = session.nextPacketIdentifier()
-        let variableHeader = SubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let topicFilter = SubscribePacket.TopicFilter(
-            topic: topic,
-            options: SubscribePacket.Options(rawValue: 0)!)
-
-        let payload = SubscribePacket.Payload(topicFilters: [topicFilter])
-        let packet = SubscribePacket(variableHeader: variableHeader, payload: payload)
-        return packet
-    }
-
-    private func makeUnsubscribePacket(topic: String) -> UnsubscribePacket {
-        let packetIdentifier = session.nextPacketIdentifier()
-        let variableHeader = UnsubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let payload = UnsubscribePacket.Payload(topicFilters: [topic])
-        return UnsubscribePacket(variableHeader: variableHeader, payload: payload)
+        context.writeAndFlush(wrapOutboundOut(packet), promise: promise)
     }
 }
