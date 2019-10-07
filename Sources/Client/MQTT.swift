@@ -33,6 +33,7 @@ public final class MQTT {
             didSetChannel(to: self.channel)
         }
     }
+    private var session: Session
 
     /// Where the callback is executed. It defaults to the main queue.
     private let callbackQueue: DispatchQueue = DispatchQueue.main
@@ -44,6 +45,7 @@ public final class MQTT {
         group = NIOTSEventLoopGroup()
         channel = group.next().makeFailedFuture(MQTTStatus.unavailable)
         connectivity = ConnectivityStateMonitor()
+        session = Session(qos: configuration.qos)
 
         connectivity.delegate = self
     }
@@ -150,6 +152,7 @@ extension MQTT {
         }
 
         let mqttChannelHandler = MQTTChannelHandler(
+            session: session,
             connectPacket: connectPacket,
             connAckPromise: connAckPromise,
             publishHandler: publishHandler)

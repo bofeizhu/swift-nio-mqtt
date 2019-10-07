@@ -16,7 +16,7 @@ struct PublishPacket: ControlPacketProtocol {
     let fixedHeader: FixedHeader
 
     /// DUP Flag
-    let dup: Bool
+    var dup: Bool
 
     /// QoS Flag
     let qos: QoS

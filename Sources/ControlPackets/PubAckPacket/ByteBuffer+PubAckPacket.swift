@@ -12,6 +12,7 @@ extension ByteBuffer {
 
     mutating func readPubAckPacket(with fixedHeader: FixedHeader) throws -> PubAckPacket {
         let packetIdentifier = try readPacketIdentifier()
+        // If the Remaining Length is 2, then there is no Reason Code and the value of 0x00 (Success) is used.
         let reasonCode: PubAckPacket.ReasonCode = try readReasonCode()
         let properties = try readProperties()
 

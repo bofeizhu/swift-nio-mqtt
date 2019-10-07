@@ -39,11 +39,11 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
        }
 
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
-        let packet = unwrapInboundIn(data)
+        let controlPacket = unwrapInboundIn(data)
 
-        switch packet {
-        case let .connAck(connAckPacket):
-            let variableHeader = connAckPacket.variableHeader
+        switch controlPacket {
+        case let .connAck(packet):
+            let variableHeader = packet.variableHeader
             let reasonCode = variableHeader.connectReasonCode
 
             if reasonCode == .success {
@@ -52,10 +52,14 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
             } else {
                 // TODO: Handle connect acknowledgement errors
             }
-        case let .publish(publishPacket):
-            let topic = publishPacket.variableHeader.topicName
-            let payload = publishPacket.payload
+
+        case let .publish(packet):
+            let topic = packet.variableHeader.topicName
+            let payload = packet.payload
             publishHandler(topic, payload)
+
+        case let .pubAck(packet):
+            session.acknowledgeQoS1(with: packet)
 
         default:
             context.fireChannelRead(data)

@@ -15,13 +15,15 @@ final class Session {
     private var nextPacketIdentifier: UInt16 {
         if packetIdentifier == UInt16.max {
             packetIdentifier = 1
+        } else {
+            packetIdentifier += 1
         }
         return packetIdentifier
     }
 
     private var unacknowledgedPublishPackets: CircularBuffer<PublishPacket> = CircularBuffer()
 
-    private var packetIdentifier: UInt16 = 1
+    private var packetIdentifier: UInt16 = 0
 
     init(qos: QoS = .atMostOnce) {
         self.qos = qos
@@ -43,10 +45,16 @@ final class Session {
         }
     }
 
+    // TODO: make this function throws
+    func acknowledgeQoS1(with pubAckPacket: PubAckPacket) {
+        guard unacknowledgedPublishPackets.popFirst() != nil else {
+            return
+        }
+    }
+
     private func makePublishPackets(
         topic: String,
-        payload: PublishPacket.Payload,
-        dup: Bool = false
+        payload: PublishPacket.Payload
     ) -> PublishPacket {
         var properties = PropertyCollection()
         properties.append(payload.formatIndicator)
@@ -59,13 +67,15 @@ final class Session {
             properties: properties)
 
         let packet = PublishPacket(
-            dup: dup,
+            dup: false,
             qos: qos,
             retain: false,
             variableHeader: variableHeader,
             payload: payload)
 
-        unacknowledgedPublishPackets.append(packet)
+        if qos.rawValue > 0 {
+            unacknowledgedPublishPackets.append(packet)
+        }
 
         return packet
     }

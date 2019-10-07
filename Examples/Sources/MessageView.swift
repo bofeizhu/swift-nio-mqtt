@@ -17,7 +17,7 @@ struct Message: Identifiable {
 struct MessageView: View {
     @State var messages: [Message] = [Message(id: 0, text: "Hello!")]
     let client: MQTT = {
-        let configuration = MQTT.Configuration(host: "test.mosquitto.org", port: 1883)
+        let configuration = MQTT.Configuration(host: "test.mosquitto.org", port: 1883, qos: .atLeastOnce)
         return MQTT(configuration: configuration)
     }()
 
@@ -37,6 +37,7 @@ struct MessageView: View {
 
             self.client.onConnect = {
                 self.client.subscribe(topic: "healthtap")
+                self.client.publish(topic: "healthtap", message: "Hello~")
             }
 
             self.client.connect()
