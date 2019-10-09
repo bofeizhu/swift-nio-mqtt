@@ -21,7 +21,7 @@ final class Session {
         return packetIdentifier
     }
 
-    private var unacknowledgedPublishPackets: CircularBuffer<PublishPacket> = CircularBuffer()
+    private var publishBuffer: CircularBuffer<(PublishPacket, EventLoopPromise<Void>?)> = CircularBuffer()
 
     private var packetIdentifier: UInt16 = 0
 
@@ -29,10 +29,14 @@ final class Session {
         self.qos = qos
     }
 
-    func makeControlPacket(for action: Action) -> ControlPacket {
+    func makeControlPacket(for action: Action, promise: EventLoopPromise<Void>?) -> ControlPacket {
         switch action {
         case let .publish(topic, payload):
             let packet = makePublishPackets(topic: topic, payload: payload)
+
+            if qos.rawValue > 0 {
+                publishBuffer.append((packet, promise))
+            }
             return .publish(packet: packet)
 
         case let .subscribe(topic):
@@ -46,10 +50,12 @@ final class Session {
     }
 
     // TODO: make this function throws
-    func acknowledgeQoS1(with pubAckPacket: PubAckPacket) {
-        guard unacknowledgedPublishPackets.popFirst() != nil else {
+    func acknowledge(with pubAckPacket: PubAckPacket) throws {
+        guard let (publishPacket, promise) = publishBuffer.popFirst() else {
             return
         }
+
+        promise?.succeed(())
     }
 
     private func makePublishPackets(
@@ -72,10 +78,6 @@ final class Session {
             retain: false,
             variableHeader: variableHeader,
             payload: payload)
-
-        if qos.rawValue > 0 {
-            unacknowledgedPublishPackets.append(packet)
-        }
 
         return packet
     }

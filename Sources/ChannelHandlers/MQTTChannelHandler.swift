@@ -59,7 +59,7 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
             publishHandler(topic, payload)
 
         case let .pubAck(packet):
-            session.acknowledgeQoS1(with: packet)
+            session.acknowledge(with: packet)
 
         default:
             context.fireChannelRead(data)
@@ -67,10 +67,8 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
     }
 
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
-        // TODO: Cache promises
         let action = unwrapOutboundIn(data)
-        let packet = session.makeControlPacket(for: action)
-
-        context.writeAndFlush(wrapOutboundOut(packet), promise: promise)
+        let packet = session.makeControlPacket(for: action, promise: promise)
+        context.writeAndFlush(wrapOutboundOut(packet), promise: nil)
     }
 }

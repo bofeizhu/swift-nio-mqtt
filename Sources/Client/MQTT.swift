@@ -12,7 +12,6 @@ import NIO
 import NIOTransportServices
 
 public final class MQTT {
-
     public var onConnect: (() -> Void)?
     public var onDisconnect: ((Error?) -> Void)?
     public var onText: ((String, String) -> Void)?
@@ -83,7 +82,6 @@ public final class MQTT {
 // MARK: - Channel Creation
 
 extension MQTT {
-
     /// Register a callback on the close future of the given `channel` to replace the channel (if possible).
     ///
     /// - Parameter channel: The channel that will be set.
