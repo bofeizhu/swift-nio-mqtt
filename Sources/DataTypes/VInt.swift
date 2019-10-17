@@ -102,7 +102,6 @@ extension VInt: Equatable {
 // MARK: - Constants
 
 extension VInt {
-
     /// The maximum representable integer in VInt.
     static let max = 268435455
 
@@ -122,7 +121,6 @@ extension VInt {
 // MARK: - ByteBuffer extensions
 
 extension ByteBuffer {
-
     /// Get variable byte integer at `index` from this `ByteBuffer`. Does not move the reader index.
     /// The selected bytes must be readable or else `nil` will be returned.
     ///

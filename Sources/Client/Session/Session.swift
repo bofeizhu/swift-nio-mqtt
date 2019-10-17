@@ -49,10 +49,12 @@ final class Session {
         }
     }
 
-    // TODO: make this function throws
     func acknowledge(with pubAckPacket: PubAckPacket) throws {
-        guard let (publishPacket, promise) = publishBuffer.popFirst() else {
-            return
+        guard
+            let (publishPacket, promise) = publishBuffer.popFirst(),
+            publishPacket.variableHeader.packetIdentifier == pubAckPacket.variableHeader.packetIdentifier
+        else {
+            throw MQTTError(type: .protocolError, message: "PUBACK packet out of order.")
         }
 
         promise?.succeed(())

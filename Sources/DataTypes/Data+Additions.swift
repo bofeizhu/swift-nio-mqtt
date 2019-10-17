@@ -9,7 +9,6 @@
 import struct Foundation.Data
 
 extension Data: MQTTByteRepresentable {
-
     /// Byte count for MQTT binary data, including the Two Byte Integer length field
     ///
     /// In MQTT, Binary Data is represented by a Two Byte Integer length which indicates the number of data bytes,

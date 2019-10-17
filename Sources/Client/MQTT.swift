@@ -42,7 +42,7 @@ public final class MQTT {
         self.configuration = configuration
 
         group = NIOTSEventLoopGroup()
-        channel = group.next().makeFailedFuture(MQTTStatus.unavailable)
+        channel = group.next().makeFailedFuture(MQTTError.unavailable)
         connectivity = ConnectivityStateMonitor()
         session = Session(qos: configuration.qos)
 
@@ -122,7 +122,7 @@ extension MQTT {
         backoffIterator: ConnectionBackoffIterator?
     ) -> EventLoopFuture<Channel> {
         guard connectivity.state == .idle || connectivity.state == .transientFailure else {
-            return group.next().makeFailedFuture(MQTTStatus.internalError)
+            return group.next().makeFailedFuture(MQTTError.internalError)
         }
 
         connectivity.state = .connecting
