@@ -21,7 +21,7 @@ final class Session {
         return packetIdentifier
     }
 
-    private var publishBuffer: CircularBuffer<(PublishPacket, EventLoopPromise<Void>?)> = CircularBuffer()
+    private var publishStore: Store<(PublishPacket, EventLoopPromise<Void>?)> = Store()
 
     private var packetIdentifier: UInt16 = 0
 
@@ -34,8 +34,8 @@ final class Session {
         case let .publish(topic, payload):
             let packet = makePublishPackets(topic: topic, payload: payload)
 
-            if qos.rawValue > 0 {
-                publishBuffer.append((packet, promise))
+            if let identifier = packet.variableHeader.packetIdentifier {
+                publishStore.append((packet, promise), withIdentifier: identifier)
             }
             return .publish(packet: packet)
 
@@ -50,11 +50,11 @@ final class Session {
     }
 
     func acknowledge(with pubAckPacket: PubAckPacket) throws {
+        let identifier = pubAckPacket.variableHeader.packetIdentifier
         guard
-            let (publishPacket, promise) = publishBuffer.popFirst(),
-            publishPacket.variableHeader.packetIdentifier == pubAckPacket.variableHeader.packetIdentifier
+            let (_, promise) = publishStore.removeElement(forIdentifier: identifier)
         else {
-            throw MQTTError(type: .protocolError, message: "PUBACK packet out of order.")
+            throw MQTTError(type: .malformedPacket, message: "PUBACK packet identifier does not exist.")
         }
 
         promise?.succeed(())

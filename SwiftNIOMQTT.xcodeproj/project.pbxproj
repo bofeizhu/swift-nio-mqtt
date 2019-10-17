@@ -89,6 +89,7 @@
 		82A7BDD7231CE72500F61345 /* LoggingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7BDD6231CE72500F61345 /* LoggingHandler.swift */; };
 		82ADF74822EE519200FB3D92 /* PubRelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADF74722EE519200FB3D92 /* PubRelPacket.swift */; };
 		82B600A122E133E400E1FF7B /* ByteBufferTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8275557722E0F3620056D3B9 /* ByteBufferTestCase.swift */; };
+		82DD1C46235835C8006C8DC8 /* Session+Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DD1C45235835C8006C8DC8 /* Session+Store.swift */; };
 		82DEEC3C22FE2E9F002577DC /* ControlPacketDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */; };
 		82E52B6B230C4C0F00D58DE2 /* DisconnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */; };
 		82E52B6D230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */; };
@@ -208,6 +209,7 @@
 		82A71E44230A6EE90084EDC6 /* UInt+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt+Additions.swift"; sourceTree = "<group>"; };
 		82A7BDD6231CE72500F61345 /* LoggingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingHandler.swift; sourceTree = "<group>"; };
 		82ADF74722EE519200FB3D92 /* PubRelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubRelPacket.swift; sourceTree = "<group>"; };
+		82DD1C45235835C8006C8DC8 /* Session+Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Store.swift"; sourceTree = "<group>"; };
 		82DEEC3B22FE2E9F002577DC /* ControlPacketDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPacketDecoder.swift; sourceTree = "<group>"; };
 		82E52B6A230C4C0F00D58DE2 /* DisconnectPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectPacket.swift; sourceTree = "<group>"; };
 		82E52B6C230C4E4D00D58DE2 /* DisconnectPacket+VariableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisconnectPacket+VariableHeader.swift"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			children = (
 				058629FB23282E0E00669BD0 /* Session.swift */,
 				058629FD23282E3A00669BD0 /* Session+Action.swift */,
+				82DD1C45235835C8006C8DC8 /* Session+Store.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				822A21AA22E5230400FC348C /* PropertyIdentifier.swift in Sources */,
 				0505CF1F231732DE00577414 /* ByteBuffer+SubscribePacket.swift in Sources */,
 				82E52B80230DE03900D58DE2 /* ByteBuffer+UnsubAckPacket.swift in Sources */,
+				82DD1C46235835C8006C8DC8 /* Session+Store.swift in Sources */,
 				05F1981622E640C7006E3E37 /* PublishPacket+VariableHeader.swift in Sources */,
 				829C82B622EE68D70026F421 /* PubCompPacket.swift in Sources */,
 				82E52B7C230CEC3900D58DE2 /* ByteBuffer+PacketComponents.swift in Sources */,
