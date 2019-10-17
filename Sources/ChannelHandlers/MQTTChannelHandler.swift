@@ -59,7 +59,11 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
             publishHandler(topic, payload)
 
         case let .pubAck(packet):
-            session.acknowledge(with: packet)
+            do {
+                try session.acknowledge(with: packet)
+            } catch {
+                context.fireErrorCaught(error)
+            }
 
         default:
             context.fireChannelRead(data)

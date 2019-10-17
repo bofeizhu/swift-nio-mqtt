@@ -51,9 +51,7 @@ final class Session {
 
     func acknowledge(with pubAckPacket: PubAckPacket) throws {
         let identifier = pubAckPacket.variableHeader.packetIdentifier
-        guard
-            let (_, promise) = publishStore.removeElement(forIdentifier: identifier)
-        else {
+        guard let (_, promise) = publishStore.removeElement(forIdentifier: identifier) else {
             throw MQTTError(type: .malformedPacket, message: "PUBACK packet identifier does not exist.")
         }
 

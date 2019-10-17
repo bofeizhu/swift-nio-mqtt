@@ -13,7 +13,7 @@ extension Session {
         typealias Identifier = UInt16
 
         var startIndex: Int { orders.startIndex }
-        
+
         var endIndex: Int { orders.endIndex }
 
         private var orders: [Identifier] = []
