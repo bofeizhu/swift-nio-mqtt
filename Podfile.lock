@@ -1,21 +1,21 @@
 PODS:
-  - CNIOAtomics (2.7.0)
-  - CNIODarwin (2.7.0)
-  - CNIOLinux (2.7.0)
-  - CNIOSHA1 (2.7.0)
-  - SwiftNIO (2.7.0):
-    - CNIOAtomics (= 2.7.0)
-    - CNIODarwin (= 2.7.0)
-    - CNIOLinux (= 2.7.0)
-    - CNIOSHA1 (= 2.7.0)
-    - SwiftNIOConcurrencyHelpers (= 2.7.0)
-  - SwiftNIOConcurrencyHelpers (2.7.0):
-    - CNIOAtomics (= 2.7.0)
-  - SwiftNIOFoundationCompat (2.7.0):
-    - SwiftNIO (= 2.7.0)
-  - SwiftNIOTLS (2.7.0):
-    - SwiftNIO (= 2.7.0)
-  - SwiftNIOTransportServices (1.1.1):
+  - CNIOAtomics (2.9.0)
+  - CNIODarwin (2.9.0)
+  - CNIOLinux (2.9.0)
+  - CNIOSHA1 (2.9.0)
+  - SwiftNIO (2.9.0):
+    - CNIOAtomics (= 2.9.0)
+    - CNIODarwin (= 2.9.0)
+    - CNIOLinux (= 2.9.0)
+    - CNIOSHA1 (= 2.9.0)
+    - SwiftNIOConcurrencyHelpers (= 2.9.0)
+  - SwiftNIOConcurrencyHelpers (2.9.0):
+    - CNIOAtomics (= 2.9.0)
+  - SwiftNIOFoundationCompat (2.9.0):
+    - SwiftNIO (= 2.9.0)
+  - SwiftNIOTLS (2.9.0):
+    - SwiftNIO (= 2.9.0)
+  - SwiftNIOTransportServices (1.2.0):
     - SwiftNIO (~> 2.0)
     - SwiftNIOConcurrencyHelpers (~> 2.0)
     - SwiftNIOFoundationCompat (~> 2.0)
@@ -37,15 +37,15 @@ SPEC REPOS:
     - SwiftNIOTransportServices
 
 SPEC CHECKSUMS:
-  CNIOAtomics: 22341aaeaaf7129e89eebbccfd69d08ad8877b9f
-  CNIODarwin: 1ea25f41ab02d28363b3d34a2f0a39a746427e74
-  CNIOLinux: 33a28c60794e3c7b5a94e7306bfb80bb9ac6ac07
-  CNIOSHA1: dc27be120a2b9ac456f5fd479518f049c342367e
-  SwiftNIO: 34dd40f533f1b6764f2f4d5c2271efb5f6253d7e
-  SwiftNIOConcurrencyHelpers: 513e837bee60e27febc4273fb79eb84d2d138831
-  SwiftNIOFoundationCompat: cbdb90fff409a31ccea707e65e93d8d3c59d23d7
-  SwiftNIOTLS: dfe2def1ade50c34da124a19de06c97b42dcc5e0
-  SwiftNIOTransportServices: b2d2b1512dff1e132bee779cfd7d579440fcdea7
+  CNIOAtomics: 4802160b2255f43193c7ab936997c63cafd574d8
+  CNIODarwin: dfafd4d2e337671aedb512dd5de339b0f324e2f1
+  CNIOLinux: 287ed318589a4fe1854febb0c4e2e81484ec679d
+  CNIOSHA1: a7ca955f1d9404ed051b1c06ec0ab00fdff7e8cf
+  SwiftNIO: 26c894626b5257824dfbab76efdf10c23803c1e6
+  SwiftNIOConcurrencyHelpers: 0e8fffc1e2a086ba68f8265de62d23f5105e7a00
+  SwiftNIOFoundationCompat: 137b1e061574d75da65366f4d9f5eed282a609da
+  SwiftNIOTLS: bf4f84bdb35b91d93ccc9bdc574b658993eb4b57
+  SwiftNIOTransportServices: 49b863dd9d8583be5cdd798013818378579a7d31
 
 PODFILE CHECKSUM: 69f3c5d2950806b8f6dcb381d9181374ba706ba3
 
