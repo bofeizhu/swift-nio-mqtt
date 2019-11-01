@@ -74,7 +74,6 @@ extension ConnectPacket: VariableHeaderPacket {
             self.passwordFlag = passwordFlag
             self.userNameFlag = userNameFlag
 
-
             var rawValue: UInt8 = 0
             rawValue |= (cleanStart ? 1 : 0) << 1
             rawValue |= (willFlag ? 1 : 0) << 2
