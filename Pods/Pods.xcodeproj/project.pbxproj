@@ -413,27 +413,27 @@
 		3C696D71E72623217C4F357B11B6C413 /* CNIOLinux.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CNIOLinux.modulemap; sourceTree = "<group>"; };
 		3E92C5D922A19B6215F6B8C2456409C4 /* SwiftNIOFoundationCompat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftNIOFoundationCompat.xcconfig; sourceTree = "<group>"; };
 		411599E25D0ACB6E6EB85EA64480F3A0 /* SocketChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketChannel.swift; path = Sources/NIO/SocketChannel.swift; sourceTree = "<group>"; };
-		411C40E632684D9EA012743491D4351D /* Pods_NIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NIOMQTTTests.framework; path = "Pods-NIOMQTTTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		411C40E632684D9EA012743491D4351D /* Pods_NIOMQTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4197A1464C788E4E9F9131ED6953D62E /* CNIOLinux.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNIOLinux.xcconfig; sourceTree = "<group>"; };
-		42E23A3C1C5D8CE37484B124E180BAA0 /* NIOTransportServices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NIOTransportServices.framework; path = SwiftNIOTransportServices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42E23A3C1C5D8CE37484B124E180BAA0 /* NIOTransportServices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NIOTransportServices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435B1EB954B4E77DA098D5635CE27EC8 /* Codec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Codec.swift; path = Sources/NIO/Codec.swift; sourceTree = "<group>"; };
-		43BCA78D557ACEB23EEA495EE0402530 /* NIOTLS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NIOTLS.framework; path = SwiftNIOTLS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BCA78D557ACEB23EEA495EE0402530 /* NIOTLS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NIOTLS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4544F6626C41A7A1E3E92105A7A638D9 /* Thread.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Thread.swift; path = Sources/NIO/Thread.swift; sourceTree = "<group>"; };
 		45F9B595D3C0FDB141332A39B59732B0 /* ByteBuffer-int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ByteBuffer-int.swift"; path = "Sources/NIO/ByteBuffer-int.swift"; sourceTree = "<group>"; };
 		46A9955354591BA8FDE90FAC3C1ECFAE /* Pods-NIOMQTT.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NIOMQTT.modulemap"; sourceTree = "<group>"; };
-		4CECE1D3F082EE1C5AF7E5E93BAEDF74 /* CNIODarwin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNIODarwin.framework; path = CNIODarwin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CECE1D3F082EE1C5AF7E5E93BAEDF74 /* CNIODarwin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNIODarwin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DAA94FE563260EB91454D82FFB2B14B /* SwiftNIOConcurrencyHelpers-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftNIOConcurrencyHelpers-prefix.pch"; sourceTree = "<group>"; };
 		4DC31BE5D3152ECF4386ED68218BEF1B /* IO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IO.swift; path = Sources/NIO/IO.swift; sourceTree = "<group>"; };
 		4E7566360A316EDA71CDEE03DA78A4C5 /* Selector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Selector.swift; path = Sources/NIO/Selector.swift; sourceTree = "<group>"; };
 		4E822529187138725C64ED2CFC2F27FD /* Pods-NIOMQTT-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NIOMQTT-umbrella.h"; sourceTree = "<group>"; };
 		4F8D5059F82642E5734B83F751B20505 /* CNIOSHA1-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CNIOSHA1-Info.plist"; sourceTree = "<group>"; };
-		526815BF9F152323C3B4E4839E01BB19 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NIOMQTT.framework; path = "Pods-NIOMQTT.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		526815BF9F152323C3B4E4839E01BB19 /* Pods_NIOMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53A2E3B8EA1E9D64F07373438BE7FCC9 /* SNIHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SNIHandler.swift; path = Sources/NIOTLS/SNIHandler.swift; sourceTree = "<group>"; };
 		55806085C17B738534D40C4EFBFC95E1 /* SwiftNIOFoundationCompat-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftNIOFoundationCompat-dummy.m"; sourceTree = "<group>"; };
 		58F343A5339B823C512C51CC9E0B57E7 /* CNIOSHA1-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNIOSHA1-prefix.pch"; sourceTree = "<group>"; };
-		5C06E0AB3DD0680E44A74F888B550538 /* shim.c */ = {isa = PBXFileReference; includeInIndex = 1; name = shim.c; path = Sources/CNIODarwin/shim.c; sourceTree = "<group>"; };
+		5C06E0AB3DD0680E44A74F888B550538 /* shim.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = shim.c; path = Sources/CNIODarwin/shim.c; sourceTree = "<group>"; };
 		5D9A23506E2C95A24E30D690A4D5A67D /* LinuxCPUSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinuxCPUSet.swift; path = Sources/NIO/LinuxCPUSet.swift; sourceTree = "<group>"; };
-		5E982D315A4CB75E8F15068B30779C7C /* NIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NIO.framework; path = SwiftNIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E982D315A4CB75E8F15068B30779C7C /* NIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F21E1AA0E5858FCB7D2D80A6ECD62D6 /* SwiftNIOTLS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftNIOTLS.modulemap; sourceTree = "<group>"; };
 		5FBD2971151FF0F09F4BE13C0F1FBBBA /* RecvByteBufferAllocator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecvByteBufferAllocator.swift; path = Sources/NIO/RecvByteBufferAllocator.swift; sourceTree = "<group>"; };
 		6074FA25D98C2602F6D3CD1E3E3AAB8E /* Pods-NIOMQTT-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NIOMQTT-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -441,12 +441,12 @@
 		63B8A5F454F5879932548E864C76BBE8 /* CNIOAtomics-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNIOAtomics-umbrella.h"; sourceTree = "<group>"; };
 		6507421D4100A76B30FFE56D2E90B73A /* CircularBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularBuffer.swift; path = Sources/NIO/CircularBuffer.swift; sourceTree = "<group>"; };
 		66B769C54017A932223FC788BEB6AC6C /* SwiftNIOTLS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftNIOTLS-umbrella.h"; sourceTree = "<group>"; };
-		673CA60B9FF9D56D5AEAFAD4E2D7B368 /* NIOConcurrencyHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NIOConcurrencyHelpers.framework; path = SwiftNIOConcurrencyHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		673CA60B9FF9D56D5AEAFAD4E2D7B368 /* NIOConcurrencyHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NIOConcurrencyHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6771BD6BFFF15E4AC34324FBE9E2FA50 /* Pods-NIOMQTTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NIOMQTTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		687D917827D2F2785D670F2485860C99 /* BaseStreamSocketChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseStreamSocketChannel.swift; path = Sources/NIO/BaseStreamSocketChannel.swift; sourceTree = "<group>"; };
-		6D040D1A67C3DBE3C11EB6FBC61B8141 /* NIOFoundationCompat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NIOFoundationCompat.framework; path = SwiftNIOFoundationCompat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D040D1A67C3DBE3C11EB6FBC61B8141 /* NIOFoundationCompat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NIOFoundationCompat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EFD2CC55F96C4C0AD543EFC079FD5CB /* ChannelOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChannelOption.swift; path = Sources/NIO/ChannelOption.swift; sourceTree = "<group>"; };
-		6F1C5C1A1C8F9473CEF780C63705F78A /* CNIOLinux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNIOLinux.framework; path = CNIOLinux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1C5C1A1C8F9473CEF780C63705F78A /* CNIOLinux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNIOLinux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FDD810FE6FD05B399098D4C82CEADF9 /* PipeChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PipeChannel.swift; path = Sources/NIO/PipeChannel.swift; sourceTree = "<group>"; };
 		701D3157B5269D71ADFAFFA69FEA359B /* TLSEvents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TLSEvents.swift; path = Sources/NIOTLS/TLSEvents.swift; sourceTree = "<group>"; };
 		70B5557AB72590043128853A1ACCE587 /* FileHandle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileHandle.swift; path = Sources/NIO/FileHandle.swift; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 		77E23F7013771E1DC56E9C5FDADAC03D /* ChannelHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChannelHandler.swift; path = Sources/NIO/ChannelHandler.swift; sourceTree = "<group>"; };
 		7878BD02D3B07F5FDAC0CFBD33116738 /* FileRegion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileRegion.swift; path = Sources/NIO/FileRegion.swift; sourceTree = "<group>"; };
 		78AF941F7B1F3E650CA261C4598426B6 /* SwiftNIOTransportServices.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftNIOTransportServices.xcconfig; sourceTree = "<group>"; };
-		7943F1C3C61E821E58965350301E758A /* shim.c */ = {isa = PBXFileReference; includeInIndex = 1; name = shim.c; path = Sources/CNIOLinux/shim.c; sourceTree = "<group>"; };
+		7943F1C3C61E821E58965350301E758A /* shim.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = shim.c; path = Sources/CNIOLinux/shim.c; sourceTree = "<group>"; };
 		7AF8FE58F6BEEDA4AB62F01AF9675BC1 /* NIOTSConnectionChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NIOTSConnectionChannel.swift; path = Sources/NIOTransportServices/NIOTSConnectionChannel.swift; sourceTree = "<group>"; };
 		7B1D72EB7C8797F02B0918707659DDD4 /* NIOTSListenerChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NIOTSListenerChannel.swift; path = Sources/NIOTransportServices/NIOTSListenerChannel.swift; sourceTree = "<group>"; };
 		7B9AB7D6F1C21C318A28288221427621 /* SwiftNIOFoundationCompat.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftNIOFoundationCompat.modulemap; sourceTree = "<group>"; };
@@ -478,7 +478,7 @@
 		94A2777F259FCB478F0A98DB2516D5F4 /* SwiftNIOFoundationCompat-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftNIOFoundationCompat-prefix.pch"; sourceTree = "<group>"; };
 		98CD6D24911FF77589C3E518741937C1 /* Pods-NIOMQTTTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NIOMQTTTests-umbrella.h"; sourceTree = "<group>"; };
 		9D36403871D9FAEE24887FE18571926E /* atomics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = atomics.swift; path = Sources/NIOConcurrencyHelpers/atomics.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0BCF1AF1D59931F53DA8D369074045C /* ByteBuffer-aux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ByteBuffer-aux.swift"; path = "Sources/NIO/ByteBuffer-aux.swift"; sourceTree = "<group>"; };
 		A41B5AD1C997E3DE29E53B918A24C43E /* ChannelInvoker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChannelInvoker.swift; path = Sources/NIO/ChannelInvoker.swift; sourceTree = "<group>"; };
 		A6A8B9B4735516AD96F7E9BA94FDACB1 /* SwiftNIOConcurrencyHelpers-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftNIOConcurrencyHelpers-Info.plist"; sourceTree = "<group>"; };
@@ -489,12 +489,12 @@
 		AA9715A56DB542C9900C9610D1731D56 /* DeadChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeadChannel.swift; path = Sources/NIO/DeadChannel.swift; sourceTree = "<group>"; };
 		AC2BD16EC5CE54565AC7E9184B86B18C /* NIOTSConnectionBootstrap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NIOTSConnectionBootstrap.swift; path = Sources/NIOTransportServices/NIOTSConnectionBootstrap.swift; sourceTree = "<group>"; };
 		AC336362BC6792F9CD1AF7B600329040 /* IOData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IOData.swift; path = Sources/NIO/IOData.swift; sourceTree = "<group>"; };
-		AE6148869293AB1CC0E6272C74F28517 /* c-atomics.c */ = {isa = PBXFileReference; includeInIndex = 1; name = "c-atomics.c"; path = "Sources/CNIOAtomics/src/c-atomics.c"; sourceTree = "<group>"; };
+		AE6148869293AB1CC0E6272C74F28517 /* c-atomics.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = "c-atomics.c"; path = "Sources/CNIOAtomics/src/c-atomics.c"; sourceTree = "<group>"; };
 		AED6610B4CDA529BC07CC942263B72E6 /* PendingWritesManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PendingWritesManager.swift; path = Sources/NIO/PendingWritesManager.swift; sourceTree = "<group>"; };
 		B076088EE2A3430AD96FF52B3293EA23 /* SocketAddresses.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketAddresses.swift; path = Sources/NIO/SocketAddresses.swift; sourceTree = "<group>"; };
 		B0B587CA63B22B3F34E8C281E00751D2 /* CNIOAtomics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNIOAtomics.xcconfig; sourceTree = "<group>"; };
 		B3FB9F35D2D6C441711D52886CA3912C /* CNIOAtomics-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNIOAtomics-prefix.pch"; sourceTree = "<group>"; };
-		B7F4755B386144CE5A64B92DD50D2D57 /* CNIOSHA1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNIOSHA1.framework; path = CNIOSHA1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7F4755B386144CE5A64B92DD50D2D57 /* CNIOSHA1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNIOSHA1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4B28C169D15DC8134617D2A9A5BF69 /* CNIOSHA1.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CNIOSHA1.modulemap; sourceTree = "<group>"; };
 		BE5F67D7243689472029C7F043FB9A0E /* CNIODarwin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNIODarwin-umbrella.h"; sourceTree = "<group>"; };
 		BF398103FD4AD506450644859BD3B92E /* SwiftNIOFoundationCompat-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftNIOFoundationCompat-Info.plist"; sourceTree = "<group>"; };
@@ -513,7 +513,7 @@
 		D346200072119AFE9D378E02A17A7A3F /* SwiftNIO-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftNIO-dummy.m"; sourceTree = "<group>"; };
 		D54474366A561B9C569D503D545723B7 /* SwiftNIOConcurrencyHelpers.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftNIOConcurrencyHelpers.xcconfig; sourceTree = "<group>"; };
 		D7B5961904F3036F6F780CD679B06049 /* ByteBuffer-core.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ByteBuffer-core.swift"; path = "Sources/NIO/ByteBuffer-core.swift"; sourceTree = "<group>"; };
-		D91FC01385D3680BAE48C7A1E23CB088 /* CNIOAtomics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNIOAtomics.framework; path = CNIOAtomics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D91FC01385D3680BAE48C7A1E23CB088 /* CNIOAtomics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNIOAtomics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA291A05FBD77D481916E7D83C7E6B9E /* SwiftNIOTransportServices-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftNIOTransportServices-umbrella.h"; sourceTree = "<group>"; };
 		DB103A36F605642CB26D952EFABC2B0A /* CNIOSHA1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CNIOSHA1.h; path = Sources/CNIOSHA1/include/CNIOSHA1.h; sourceTree = "<group>"; };
 		DB490FBFD4DA060865C4F10B25D0453C /* SocketAddress+NWEndpoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SocketAddress+NWEndpoint.swift"; path = "Sources/NIOTransportServices/SocketAddress+NWEndpoint.swift"; sourceTree = "<group>"; };
@@ -523,10 +523,10 @@
 		DF89053A5CDD2DE2CF71A575ECAABE73 /* Channel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Channel.swift; path = Sources/NIO/Channel.swift; sourceTree = "<group>"; };
 		E1C06EDBCEDC4A7E7C88507FC193F037 /* EventLoop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventLoop.swift; path = Sources/NIO/EventLoop.swift; sourceTree = "<group>"; };
 		E772A50C6357D934F173E888163D371C /* NIOTSListenerBootstrap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NIOTSListenerBootstrap.swift; path = Sources/NIOTransportServices/NIOTSListenerBootstrap.swift; sourceTree = "<group>"; };
-		E78632437D471B1E3F7048B469951A3B /* ifaddrs-android.c */ = {isa = PBXFileReference; includeInIndex = 1; name = "ifaddrs-android.c"; path = "Sources/CNIOLinux/ifaddrs-android.c"; sourceTree = "<group>"; };
+		E78632437D471B1E3F7048B469951A3B /* ifaddrs-android.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = "ifaddrs-android.c"; path = "Sources/CNIOLinux/ifaddrs-android.c"; sourceTree = "<group>"; };
 		EA7DBEABE9C2ABE72EFAF12B7FE18A45 /* ChannelHandlers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChannelHandlers.swift; path = Sources/NIO/ChannelHandlers.swift; sourceTree = "<group>"; };
 		EAA2E2FA8182E0A9AFF79C84041A292B /* CNIOLinux.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CNIOLinux.h; path = Sources/CNIOLinux/include/CNIOLinux.h; sourceTree = "<group>"; };
-		ED2FDC5614A5BFF3848E9E3C5FFBD415 /* c_nio_sha1.c */ = {isa = PBXFileReference; includeInIndex = 1; name = c_nio_sha1.c; path = Sources/CNIOSHA1/c_nio_sha1.c; sourceTree = "<group>"; };
+		ED2FDC5614A5BFF3848E9E3C5FFBD415 /* c_nio_sha1.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = c_nio_sha1.c; path = Sources/CNIOSHA1/c_nio_sha1.c; sourceTree = "<group>"; };
 		EDC798D070A6D582EB3B49525EE1B6D7 /* ifaddrs-android.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ifaddrs-android.h"; path = "Sources/CNIOLinux/include/ifaddrs-android.h"; sourceTree = "<group>"; };
 		EE5F1201E4187C9B79133AFFC7F624FB /* Pods-NIOMQTTTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NIOMQTTTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		F78212A988E8FE07041BE99A162B6FEE /* NIOTSEventLoopGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NIOTSEventLoopGroup.swift; path = Sources/NIOTransportServices/NIOTSEventLoopGroup.swift; sourceTree = "<group>"; };
@@ -661,7 +661,6 @@
 				115BDCEE23FDB526876D8270822BB38A /* TCPOptions+SocketChannelOption.swift */,
 				62DF25D9AC08E3A353C523865BB75595 /* Support Files */,
 			);
-			name = SwiftNIOTransportServices;
 			path = SwiftNIOTransportServices;
 			sourceTree = "<group>";
 		};
@@ -674,7 +673,6 @@
 				7943F1C3C61E821E58965350301E758A /* shim.c */,
 				EB9E0265B8BCB8B92F62729BB8A4934D /* Support Files */,
 			);
-			name = CNIOLinux;
 			path = CNIOLinux;
 			sourceTree = "<group>";
 		};
@@ -743,7 +741,6 @@
 				701D3157B5269D71ADFAFFA69FEA359B /* TLSEvents.swift */,
 				B6A4A3DC429359DCE82E3D95E7C06680 /* Support Files */,
 			);
-			name = SwiftNIOTLS;
 			path = SwiftNIOTLS;
 			sourceTree = "<group>";
 		};
@@ -821,7 +818,6 @@
 				5C06E0AB3DD0680E44A74F888B550538 /* shim.c */,
 				514DB357E91BF6C53506EA36CD7B10AC /* Support Files */,
 			);
-			name = CNIODarwin;
 			path = CNIODarwin;
 			sourceTree = "<group>";
 		};
@@ -861,7 +857,6 @@
 				0965BD98414B20367D64BC714635321D /* cpp_magic.h */,
 				FAF281A96F341026607B123CE8A184F6 /* Support Files */,
 			);
-			name = CNIOAtomics;
 			path = CNIOAtomics;
 			sourceTree = "<group>";
 		};
@@ -915,7 +910,6 @@
 				70C1D854CD5ADC7B3FF98107DC5697A2 /* Codable+ByteBuffer.swift */,
 				8571338AD2E94D039F4047B3F46D2D67 /* Support Files */,
 			);
-			name = SwiftNIOFoundationCompat;
 			path = SwiftNIOFoundationCompat;
 			sourceTree = "<group>";
 		};
@@ -926,7 +920,6 @@
 				DB103A36F605642CB26D952EFABC2B0A /* CNIOSHA1.h */,
 				E13F805A20F5B7E1752B52E20D8AF816 /* Support Files */,
 			);
-			name = CNIOSHA1;
 			path = CNIOSHA1;
 			sourceTree = "<group>";
 		};
@@ -1022,7 +1015,6 @@
 				C41964167955286CF6F982CF9D1E5DE8 /* Utilities.swift */,
 				777A1CFD17F88ED50E05C14ED0A0D7B6 /* Support Files */,
 			);
-			name = SwiftNIO;
 			path = SwiftNIO;
 			sourceTree = "<group>";
 		};
@@ -1033,7 +1025,6 @@
 				08E0912A179AF49689551002ADCC1CC0 /* lock.swift */,
 				C72E74BA9FCC26DF3A4A91E42F7E5E4D /* Support Files */,
 			);
-			name = SwiftNIOConcurrencyHelpers;
 			path = SwiftNIOConcurrencyHelpers;
 			sourceTree = "<group>";
 		};
@@ -1394,6 +1385,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = C4865A8E07A3FFB6F0CC60D62F9C57AA /* Products */;

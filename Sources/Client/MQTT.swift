@@ -174,7 +174,7 @@ extension MQTT {
                 return channel.pipeline.eventLoop.makeSucceededFuture(channel)
             }
 
-            let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
+            let timeout: TimeAmount = .seconds(Int64(keepAlive))
             let channelHandlers: [ChannelHandler] = [
                 IdleStateHandler(writeTimeout: timeout),
                 KeepAliveHandler()
