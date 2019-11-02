@@ -249,18 +249,11 @@ extension MQTT {
     }
 
     private func makeConnectPacket() -> ConnectPacket {
-        let variableHeader = ConnectPacket.VariableHeader(
-            connectFlags: ConnectPacket.ConnectFlags(rawValue: 2)!,
-            keepAlive: 30,
-            properties: PropertyCollection())
+        let builder = ConnectPacketBuilder(clientId: "HealthTap")
 
-        let payload = ConnectPacket.Payload(
-            clientId: "HealthTap",
-            willMessage: nil,
-            username: nil,
-            password: nil)
-
-        return ConnectPacket(variableHeader: variableHeader, payload: payload)
+        return builder
+            .keepAlive(30)
+            .build()
     }
 
     private func makeTLSOptions() -> NWProtocolTLS.Options {
