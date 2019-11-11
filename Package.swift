@@ -1,19 +1,30 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
+
 import PackageDescription
 
 let package = Package(
-    name: "NIOMQTT",
+    name: "SwiftNIOMQTT",
+    platforms: [
+        .iOS(.v12),
+        .macOS(.v10_14),
+        .tvOS(.v12),
+        .watchOS(.v6),
+    ],
+    products: [
+        .library(
+            name: "SwiftNIOMQTT",
+            targets: ["NIOMQTT"]),
+    ],
     dependencies: [
-      .package(url: "https://github.com/danger/swift.git", from: "1.0.0")
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.0.0"),
+        .package(url: "https://github.com/apple/swift-nio-transport-services.git", from: "1.2.1"),
     ],
     targets: [
-        // This is just an arbitrary Swift file in our app, that has
-        // no dependencies outside of Foundation, the dependencies section
-        // ensures that the library for Danger gets build also.
         .target(
             name: "NIOMQTT",
-            dependencies: ["Danger"],
-            path: "Danger",
-            sources: ["Foundation.swift"])
+            dependencies: ["NIO", "NIOTransportServices"]),
+        .testTarget(
+            name: "NIOMQTTTests",
+            dependencies: ["NIOMQTT"]),
     ]
 )
