@@ -39,11 +39,11 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
        }
 
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
-        let packet = unwrapInboundIn(data)
+        let controlPacket = unwrapInboundIn(data)
 
-        switch packet {
-        case let .connAck(connAckPacket):
-            let variableHeader = connAckPacket.variableHeader
+        switch controlPacket {
+        case let .connAck(packet):
+            let variableHeader = packet.variableHeader
             let reasonCode = variableHeader.connectReasonCode
 
             if reasonCode == .success {
@@ -52,10 +52,18 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
             } else {
                 // TODO: Handle connect acknowledgement errors
             }
-        case let .publish(publishPacket):
-            let topic = publishPacket.variableHeader.topicName
-            let payload = publishPacket.payload
+
+        case let .publish(packet):
+            let topic = packet.variableHeader.topicName
+            let payload = packet.payload
             publishHandler(topic, payload)
+
+        case let .pubAck(packet):
+            do {
+                try session.acknowledge(with: packet)
+            } catch {
+                context.fireErrorCaught(error)
+            }
 
         default:
             context.fireChannelRead(data)
@@ -63,63 +71,8 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
     }
 
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
-        // TODO: Cache promises
         let action = unwrapOutboundIn(data)
-
-        switch action {
-        case let .publish(topic, payload):
-            let packet = makePublishPacket(topic: topic, payload: payload)
-            context.writeAndFlush(wrapOutboundOut(.publish(packet: packet)), promise: promise)
-
-        case let .subscribe(topic):
-            let packet = makeSubscribePacket(topic: topic)
-            context.writeAndFlush(wrapOutboundOut(.subscribe(packet: packet)), promise: promise)
-
-        case let .unsubscribe(topic):
-            let packet = makeUnsubscribePacket(topic: topic)
-            context.writeAndFlush(wrapOutboundOut(.unsubscribe(packet: packet)), promise: promise)
-        }
-    }
-
-    private func makePublishPacket(topic: String, payload: PublishPacket.Payload) -> PublishPacket {
-        var properties = PropertyCollection()
-        properties.append(payload.formatIndicator)
-
-        let variableHeader = PublishPacket.VariableHeader(
-            topicName: topic,
-            packetIdentifier: nil,
-            properties: properties)
-
-        return PublishPacket(
-            dup: false,
-            qos: .atMostOnce,
-            retain: false,
-            variableHeader: variableHeader,
-            payload: payload)
-    }
-
-    private func makeSubscribePacket(topic: String) -> SubscribePacket {
-        let packetIdentifier = session.nextPacketIdentifier()
-        let variableHeader = SubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let topicFilter = SubscribePacket.TopicFilter(
-            topic: topic,
-            options: SubscribePacket.Options(rawValue: 0)!)
-
-        let payload = SubscribePacket.Payload(topicFilters: [topicFilter])
-        let packet = SubscribePacket(variableHeader: variableHeader, payload: payload)
-        return packet
-    }
-
-    private func makeUnsubscribePacket(topic: String) -> UnsubscribePacket {
-        let packetIdentifier = session.nextPacketIdentifier()
-        let variableHeader = UnsubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let payload = UnsubscribePacket.Payload(topicFilters: [topic])
-        return UnsubscribePacket(variableHeader: variableHeader, payload: payload)
+        let packet = session.makeControlPacket(for: action, promise: promise)
+        context.writeAndFlush(wrapOutboundOut(packet), promise: nil)
     }
 }

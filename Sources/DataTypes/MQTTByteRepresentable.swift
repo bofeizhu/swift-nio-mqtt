@@ -8,7 +8,6 @@
 
 /// A type that can be converted to and from raw bytes in MQTT.
 protocol MQTTByteRepresentable {
-
     /// The number of bytes in the object.
     var mqttByteCount: Int { get }
 }

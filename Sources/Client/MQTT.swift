@@ -12,7 +12,6 @@ import NIO
 import NIOTransportServices
 
 public final class MQTT {
-
     public var onConnect: (() -> Void)?
     public var onDisconnect: ((Error?) -> Void)?
     public var onText: ((String, String) -> Void)?
@@ -33,6 +32,7 @@ public final class MQTT {
             didSetChannel(to: self.channel)
         }
     }
+    private var session: Session
 
     /// Where the callback is executed. It defaults to the main queue.
     private let callbackQueue: DispatchQueue = DispatchQueue.main
@@ -42,8 +42,9 @@ public final class MQTT {
         self.configuration = configuration
 
         group = NIOTSEventLoopGroup()
-        channel = group.next().makeFailedFuture(MQTTStatus.unavailable)
+        channel = group.next().makeFailedFuture(MQTTError.unavailable)
         connectivity = ConnectivityStateMonitor()
+        session = Session(qos: configuration.qos)
 
         connectivity.delegate = self
     }
@@ -81,7 +82,6 @@ public final class MQTT {
 // MARK: - Channel Creation
 
 extension MQTT {
-
     /// Register a callback on the close future of the given `channel` to replace the channel (if possible).
     ///
     /// - Parameter channel: The channel that will be set.
@@ -122,7 +122,7 @@ extension MQTT {
         backoffIterator: ConnectionBackoffIterator?
     ) -> EventLoopFuture<Channel> {
         guard connectivity.state == .idle || connectivity.state == .transientFailure else {
-            return group.next().makeFailedFuture(MQTTStatus.internalError)
+            return group.next().makeFailedFuture(MQTTError.internalError)
         }
 
         connectivity.state = .connecting
@@ -150,6 +150,7 @@ extension MQTT {
         }
 
         let mqttChannelHandler = MQTTChannelHandler(
+            session: session,
             connectPacket: connectPacket,
             connAckPromise: connAckPromise,
             publishHandler: publishHandler)
@@ -173,7 +174,7 @@ extension MQTT {
                 return channel.pipeline.eventLoop.makeSucceededFuture(channel)
             }
 
-            let timeout: TimeAmount = .seconds(TimeAmount.Value(keepAlive))
+            let timeout: TimeAmount = .seconds(Int64(keepAlive))
             let channelHandlers: [ChannelHandler] = [
                 IdleStateHandler(writeTimeout: timeout),
                 KeepAliveHandler()
@@ -248,18 +249,11 @@ extension MQTT {
     }
 
     private func makeConnectPacket() -> ConnectPacket {
-        let variableHeader = ConnectPacket.VariableHeader(
-            connectFlags: ConnectPacket.ConnectFlags(rawValue: 2)!,
-            keepAlive: 30,
-            properties: PropertyCollection())
+        let builder = ConnectPacketBuilder(clientId: "HealthTap")
 
-        let payload = ConnectPacket.Payload(
-            clientId: "HealthTap",
-            willMessage: nil,
-            username: nil,
-            password: nil)
-
-        return ConnectPacket(variableHeader: variableHeader, payload: payload)
+        return builder
+            .keepAlive(30)
+            .build()
     }
 
     private func makeTLSOptions() -> NWProtocolTLS.Options {
