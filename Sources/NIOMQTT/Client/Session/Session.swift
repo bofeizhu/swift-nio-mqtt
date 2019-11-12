@@ -56,6 +56,7 @@ final class Session {
             switch qos {
             case .atLeastOnce:
                 fatalError()
+
             default:
                 // TODO: Add QoS level 2.
                 return nil
