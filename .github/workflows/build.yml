@@ -15,7 +15,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build
-      run: swift build -v
+
+    - name: Generate xcodeproj
+      run: swift package generate-xcodeproj 
+    
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild test -scheme swift-nio-mqtt-Package -destination name="iPhone 11" -enableCodeCoverage YES -derivedDataPath .build/derivedData
+      
+    - name: Upload code coverage
+      run: bash <(curl -s https://codecov.io/bash) -J '^NIOMQTT$' -D .build/derivedData -t $CODECOV_TOKEN
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
