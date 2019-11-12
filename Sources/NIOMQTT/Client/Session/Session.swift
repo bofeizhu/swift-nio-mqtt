@@ -49,6 +49,23 @@ final class Session {
         }
     }
 
+    func acknowledge(_ publishPacket: PublishPacket) throws -> ControlPacket? {
+        let fixedHeader = publishPacket.fixedHeader
+        switch fixedHeader.flags {
+        case let .publish(_, qos, _):
+            switch qos {
+            case .atLeastOnce:
+                fatalError()
+            default:
+                // TODO: Add QoS level 2.
+                return nil
+            }
+        default:
+            // Wrong fixed header.
+            throw MQTTCodingError.malformedPacket
+        }
+    }
+
     func acknowledge(with pubAckPacket: PubAckPacket) throws {
         let identifier = pubAckPacket.variableHeader.packetIdentifier
         guard let (_, promise) = publishStore.removeElement(forIdentifier: identifier) else {
