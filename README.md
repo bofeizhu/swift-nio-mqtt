@@ -1,13 +1,12 @@
 ### ⚠️ 👷‍♂️ W.I.P 🚧 ⚠️
 # SwiftNIO MQTT
-[![Build Status][bitrise-badge]][bitrise-link] [![Codecov][codecov-badge]][codecov-link] [![MIT License][license-badge]](LICENSE)
+![Build Status]([github-badge]) [![Codecov][codecov-badge]][codecov-link] [![MIT License][license-badge]](LICENSE)
 
 SwiftNIO MQTT is a [SwiftNIO](https://github.com/apple/swift-nio) based MQTT v5.0 client.
 
 [version-badge]:  https://img.shields.io/pypi/v/thefuck.svg?label=version
 [version-link]:   https://pypi.python.org/pypi/thefuck/
-[bitrise-badge]:  https://app.bitrise.io/app/cbb2637b037350d3/status.svg?token=jqawekziLEbJYDIElyvCmw&branch=master
-[bitrise-link]:   https://app.bitrise.io/app/cbb2637b037350d3
+[github-badge]:   https://github.com/bofeizhu/swift-nio-mqtt/workflows/unit-test/badge.svg?branch=master
 [codecov-badge]:  https://codecov.io/gh/HealthTap/swift-nio-mqtt/branch/master/graph/badge.svg?token=bXtDTLLYRP
 [codecov-link]:   https://codecov.io/gh/HealthTap/swift-nio-mqtt
 [license-badge]:  https://img.shields.io/badge/license-MIT-007EC7.svg
