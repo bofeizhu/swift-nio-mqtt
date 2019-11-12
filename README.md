@@ -6,7 +6,7 @@ SwiftNIO MQTT is a [SwiftNIO](https://github.com/apple/swift-nio) based MQTT v5.
 
 [version-badge]:  https://img.shields.io/pypi/v/thefuck.svg?label=version
 [version-link]:   https://pypi.python.org/pypi/thefuck/
-[github-badge]:   https://github.com/bofeizhu/swift-nio-mqtt/workflows/unit-test/badge.svg?branch=master
+[github-badge]:   https://github.com/bofeizhu/swift-nio-mqtt/workflows/Unit%20Test/badge.svg?branch=master
 [codecov-badge]:  https://codecov.io/gh/HealthTap/swift-nio-mqtt/branch/master/graph/badge.svg?token=bXtDTLLYRP
 [codecov-link]:   https://codecov.io/gh/HealthTap/swift-nio-mqtt
 [license-badge]:  https://img.shields.io/badge/license-MIT-007EC7.svg
