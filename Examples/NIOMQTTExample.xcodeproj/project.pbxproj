@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,9 @@
 		0505CF3923199CCB00577414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3823199CCB00577414 /* Assets.xcassets */; };
 		0505CF3C23199CCB00577414 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3B23199CCB00577414 /* Preview Assets.xcassets */; };
 		0505CF3F23199CCB00577414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3D23199CCB00577414 /* LaunchScreen.storyboard */; };
-		A7A32FB803055706D81345B9 /* Pods_NIOMQTTExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250EAF68F8E9B2AAD0717763 /* Pods_NIOMQTTExample.framework */; };
+		825F8577237A505300CCB0E4 /* NIOMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = 825F8576237A505300CCB0E4 /* NIOMQTT */; };
+		826B6B68237A4C7900002569 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 826B6B67237A4C7900002569 /* NIO */; };
+		826B6B6C237A4D3600002569 /* NIOTransportServices in Frameworks */ = {isa = PBXBuildFile; productRef = 826B6B6B237A4D3600002569 /* NIOTransportServices */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +27,7 @@
 		0505CF3B23199CCB00577414 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0505CF3E23199CCB00577414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0505CF4023199CCB00577414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		250EAF68F8E9B2AAD0717763 /* Pods_NIOMQTTExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NIOMQTTExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F2B7E7C97D5F0E31190608B /* Pods-NIOMQTTExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTExample.release.xcconfig"; path = "Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample.release.xcconfig"; sourceTree = "<group>"; };
-		B8E250FD07548D4C43E05FC0 /* Pods-NIOMQTTExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIOMQTTExample.debug.xcconfig"; path = "Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample.debug.xcconfig"; sourceTree = "<group>"; };
+		826B6B69237A4C9600002569 /* swift-nio-mqtt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "swift-nio-mqtt"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7A32FB803055706D81345B9 /* Pods_NIOMQTTExample.framework in Frameworks */,
+				825F8577237A505300CCB0E4 /* NIOMQTT in Frameworks */,
+				826B6B68237A4C7900002569 /* NIO in Frameworks */,
+				826B6B6C237A4D3600002569 /* NIOTransportServices in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,8 +49,8 @@
 			children = (
 				0505CF3123199CCA00577414 /* Sources */,
 				0505CF3023199CCA00577414 /* Products */,
-				666B89115E3723817675791A /* Pods */,
-				804921FDABF57CCCD3B70878 /* Frameworks */,
+				826B6B69237A4C9600002569 /* swift-nio-mqtt */,
+				825F8573237A4F3400CCB0E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,19 +84,9 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		666B89115E3723817675791A /* Pods */ = {
+		825F8573237A4F3400CCB0E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B8E250FD07548D4C43E05FC0 /* Pods-NIOMQTTExample.debug.xcconfig */,
-				5F2B7E7C97D5F0E31190608B /* Pods-NIOMQTTExample.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		804921FDABF57CCCD3B70878 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				250EAF68F8E9B2AAD0717763 /* Pods_NIOMQTTExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,17 +98,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0505CF4323199CCB00577414 /* Build configuration list for PBXNativeTarget "NIOMQTTExample" */;
 			buildPhases = (
-				7364E04B94508B29DC20AC18 /* [CP] Check Pods Manifest.lock */,
 				0505CF2B23199CCA00577414 /* Sources */,
 				0505CF2C23199CCA00577414 /* Frameworks */,
 				0505CF2D23199CCA00577414 /* Resources */,
-				E45BEA5620C13B94F1253F20 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NIOMQTTExample;
+			packageProductDependencies = (
+				826B6B67237A4C7900002569 /* NIO */,
+				826B6B6B237A4D3600002569 /* NIOTransportServices */,
+				825F8576237A505300CCB0E4 /* NIOMQTT */,
+			);
 			productName = NIOMQTTExample;
 			productReference = 0505CF2F23199CCA00577414 /* MQTT.app */;
 			productType = "com.apple.product-type.application";
@@ -145,6 +140,10 @@
 				Base,
 			);
 			mainGroup = 0505CF2623199CCA00577414;
+			packageReferences = (
+				826B6B66237A4C7900002569 /* XCRemoteSwiftPackageReference "swift-nio" */,
+				826B6B6A237A4D3600002569 /* XCRemoteSwiftPackageReference "swift-nio-transport-services" */,
+			);
 			productRefGroup = 0505CF3023199CCA00577414 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,46 +165,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		7364E04B94508B29DC20AC18 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NIOMQTTExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E45BEA5620C13B94F1253F20 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NIOMQTTExample/Pods-NIOMQTTExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0505CF2B23199CCA00577414 /* Sources */ = {
@@ -348,7 +307,6 @@
 		};
 		0505CF4423199CCB00577414 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8E250FD07548D4C43E05FC0 /* Pods-NIOMQTTExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -370,7 +328,6 @@
 		};
 		0505CF4523199CCB00577414 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F2B7E7C97D5F0E31190608B /* Pods-NIOMQTTExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -412,6 +369,42 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		826B6B66237A4C7900002569 /* XCRemoteSwiftPackageReference "swift-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+		826B6B6A237A4D3600002569 /* XCRemoteSwiftPackageReference "swift-nio-transport-services" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio-transport-services.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		825F8576237A505300CCB0E4 /* NIOMQTT */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NIOMQTT;
+		};
+		826B6B67237A4C7900002569 /* NIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 826B6B66237A4C7900002569 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIO;
+		};
+		826B6B6B237A4D3600002569 /* NIOTransportServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 826B6B6A237A4D3600002569 /* XCRemoteSwiftPackageReference "swift-nio-transport-services" */;
+			productName = NIOTransportServices;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0505CF2723199CCA00577414 /* Project object */;
 }

@@ -1,6 +1,0 @@
-framework module Pods_NIOMQTTExample {
-  umbrella header "Pods-NIOMQTTExample-umbrella.h"
-
-  export *
-  module * { export * }
-}

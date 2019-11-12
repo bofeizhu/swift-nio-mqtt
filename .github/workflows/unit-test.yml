@@ -5,11 +5,11 @@ on:
     branches:
       - master
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
-  unit_test:
+  test:
 
     runs-on: macOS-latest
 
