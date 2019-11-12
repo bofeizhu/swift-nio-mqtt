@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "swift-nio",
+        "repositoryURL": "https://github.com/apple/swift-nio.git",
+        "state": {
+          "branch": null,
+          "revision": "bc661cbb771328e09faa65432628e9ff6fd333d5",
+          "version": "2.10.0"
+        }
+      },
+      {
+        "package": "swift-nio-transport-services",
+        "repositoryURL": "https://github.com/apple/swift-nio-transport-services.git",
+        "state": {
+          "branch": null,
+          "revision": "80b11dc13261e0e52f75ea3a0b2e04f24e925019",
+          "version": "1.2.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

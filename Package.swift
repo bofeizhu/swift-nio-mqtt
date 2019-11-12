@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftNIOMQTT",
+    name: "swift-nio-mqtt",
     platforms: [
         .iOS(.v12),
         .macOS(.v10_14),
@@ -12,7 +12,7 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "SwiftNIOMQTT",
+            name: "NIOMQTT",
             targets: ["NIOMQTT"]),
     ],
     dependencies: [

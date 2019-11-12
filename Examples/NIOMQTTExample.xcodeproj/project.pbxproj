@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		0505CF3923199CCB00577414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3823199CCB00577414 /* Assets.xcassets */; };
 		0505CF3C23199CCB00577414 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3B23199CCB00577414 /* Preview Assets.xcassets */; };
 		0505CF3F23199CCB00577414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3D23199CCB00577414 /* LaunchScreen.storyboard */; };
+		825F8577237A505300CCB0E4 /* NIOMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = 825F8576237A505300CCB0E4 /* NIOMQTT */; };
+		826B6B68237A4C7900002569 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 826B6B67237A4C7900002569 /* NIO */; };
+		826B6B6C237A4D3600002569 /* NIOTransportServices in Frameworks */ = {isa = PBXBuildFile; productRef = 826B6B6B237A4D3600002569 /* NIOTransportServices */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,7 @@
 		0505CF3B23199CCB00577414 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0505CF3E23199CCB00577414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0505CF4023199CCB00577414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826B6B69237A4C9600002569 /* swift-nio-mqtt */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "swift-nio-mqtt"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				825F8577237A505300CCB0E4 /* NIOMQTT in Frameworks */,
+				826B6B68237A4C7900002569 /* NIO in Frameworks */,
+				826B6B6C237A4D3600002569 /* NIOTransportServices in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +49,8 @@
 			children = (
 				0505CF3123199CCA00577414 /* Sources */,
 				0505CF3023199CCA00577414 /* Products */,
-				666B89115E3723817675791A /* Pods */,
+				826B6B69237A4C9600002569 /* swift-nio-mqtt */,
+				825F8573237A4F3400CCB0E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,11 +84,11 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		666B89115E3723817675791A /* Pods */ = {
+		825F8573237A4F3400CCB0E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +107,11 @@
 			dependencies = (
 			);
 			name = NIOMQTTExample;
+			packageProductDependencies = (
+				826B6B67237A4C7900002569 /* NIO */,
+				826B6B6B237A4D3600002569 /* NIOTransportServices */,
+				825F8576237A505300CCB0E4 /* NIOMQTT */,
+			);
 			productName = NIOMQTTExample;
 			productReference = 0505CF2F23199CCA00577414 /* MQTT.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +140,10 @@
 				Base,
 			);
 			mainGroup = 0505CF2623199CCA00577414;
+			packageReferences = (
+				826B6B66237A4C7900002569 /* XCRemoteSwiftPackageReference "swift-nio" */,
+				826B6B6A237A4D3600002569 /* XCRemoteSwiftPackageReference "swift-nio-transport-services" */,
+			);
 			productRefGroup = 0505CF3023199CCA00577414 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -352,6 +369,42 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		826B6B66237A4C7900002569 /* XCRemoteSwiftPackageReference "swift-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+		826B6B6A237A4D3600002569 /* XCRemoteSwiftPackageReference "swift-nio-transport-services" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio-transport-services.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		825F8576237A505300CCB0E4 /* NIOMQTT */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NIOMQTT;
+		};
+		826B6B67237A4C7900002569 /* NIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 826B6B66237A4C7900002569 /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIO;
+		};
+		826B6B6B237A4D3600002569 /* NIOTransportServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 826B6B6A237A4D3600002569 /* XCRemoteSwiftPackageReference "swift-nio-transport-services" */;
+			productName = NIOTransportServices;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0505CF2723199CCA00577414 /* Project object */;
 }
