@@ -10,7 +10,7 @@ SwiftNIO MQTT is a [SwiftNIO](https://github.com/apple/swift-nio) based MQTT v5.
 [build-link]:     https://github.com/bofeizhu/swift-nio-mqtt/actions?query=branch%3Amaster
 [codecov-badge]:  https://codecov.io/gh/bofeizhu/swift-nio-mqtt/branch/master/graph/badge.svg
 [codecov-link]:   https://codecov.io/gh/bofeizhu/swift-nio-mqtt
-[license-badge]:  https://img.shields.io/badge/license-MIT-007EC7.svg
+[license-badge]:  https://img.shields.io/badge/license-Apache_2.0-007EC7.svg
 
 ## Supported Platforms
 
