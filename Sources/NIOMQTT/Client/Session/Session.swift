@@ -55,7 +55,11 @@ final class Session {
         case let .publish(_, qos, _):
             switch qos {
             case .atLeastOnce:
-                fatalError()
+                guard let packetIdentifier = publishPacket.variableHeader.packetIdentifier else {
+                     throw MQTTCodingError.malformedPacket
+                }
+                let pubAckPacket = PubAckPacketBuilder(packetIdentifier: packetIdentifier).build()
+                return .pubAck(packet: pubAckPacket)
 
             default:
                 // TODO: Add QoS level 2.
