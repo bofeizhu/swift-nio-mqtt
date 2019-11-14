@@ -57,6 +57,15 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
             let topic = packet.variableHeader.topicName
             let payload = packet.payload
             publishHandler(topic, payload)
+            do {
+                guard let acknowledgePacket = try session.acknowledge(packet) else {
+                    return
+                }
+                context.write(wrapOutboundOut(acknowledgePacket), promise: nil)
+            } catch {
+                context.fireErrorCaught(error)
+            }
+
 
         case let .pubAck(packet):
             do {
