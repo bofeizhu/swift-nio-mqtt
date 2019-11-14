@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 8/21/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 /// A type that can be converted to and from raw bytes in MQTT.

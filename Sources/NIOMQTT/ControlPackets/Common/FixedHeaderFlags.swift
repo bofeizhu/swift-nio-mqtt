@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 8/16/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 /// The last four bits in the Fixed Header contain flags specific to each MQTT Control Packet type.

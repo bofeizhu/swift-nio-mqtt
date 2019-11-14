@@ -3,7 +3,7 @@
 //  NIOMQTTTests
 //
 //  Created by Bofei Zhu on 8/21/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 import struct Foundation.Data

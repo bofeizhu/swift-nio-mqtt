@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 7/27/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 /// PUBREC Packet – Publish received (QoS 2 delivery part 1)
