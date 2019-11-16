@@ -41,7 +41,7 @@ extension ByteBuffer {
         let variableHeader = packet.variableHeader
         byteWritten += writeInteger(variableHeader.packetIdentifier)
 
-        guard variableHeader.properties.count > 0 || variableHeader.reasonCode != .success else {
+        guard !variableHeader.properties.isEmpty || variableHeader.reasonCode != .success else {
             // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
             // there are no Properties.
             return byteWritten

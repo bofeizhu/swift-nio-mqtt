@@ -67,7 +67,6 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
                 context.fireErrorCaught(error)
             }
 
-
         case let .pubAck(packet):
             do {
                 try session.acknowledge(with: packet)
