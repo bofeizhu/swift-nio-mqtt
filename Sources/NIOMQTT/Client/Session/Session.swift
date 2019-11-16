@@ -108,6 +108,7 @@ final class Session {
         let packetIdentifier = nextPacketIdentifier
         let packet = SubscribePacketBuilder(packetIdentifier: packetIdentifier)
             .addSubscription(topic: topic, qos: qos)
+            .build()
         return packet
     }
 
