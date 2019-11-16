@@ -1,4 +1,3 @@
-### ⚠️ 👷‍♂️ W.I.P 🚧 ⚠️
 # NIO MQTT
 [![Build Status][build-badge]][build-link] [![Codecov][codecov-badge]][codecov-link] [![MIT License][license-badge]](LICENSE)
 
