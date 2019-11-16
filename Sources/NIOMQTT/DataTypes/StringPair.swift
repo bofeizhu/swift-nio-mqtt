@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 6/17/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 /// A UTF-8 String Pair consists of two UTF-8 Encoded Strings. This data type is used to hold name-value pairs.

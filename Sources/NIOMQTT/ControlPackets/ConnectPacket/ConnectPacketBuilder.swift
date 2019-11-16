@@ -3,14 +3,14 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 10/29/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 import struct Foundation.Data
 
 final class ConnectPacketBuilder {
 
-    private var clientId: String
+    private let clientId: String
 
     private var cleanStart: Bool = false
 
@@ -61,6 +61,9 @@ final class ConnectPacketBuilder {
         return self
     }
 
+    /// Build CONNECT packet.
+    ///
+    /// - Returns: A CONNECT packet.
     func build() -> ConnectPacket {
         let connectFlags = ConnectPacket.ConnectFlags(
             cleanStart: cleanStart,

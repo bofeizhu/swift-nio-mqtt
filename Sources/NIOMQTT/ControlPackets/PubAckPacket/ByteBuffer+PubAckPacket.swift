@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 8/14/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 import NIO
@@ -40,6 +40,13 @@ extension ByteBuffer {
 
         let variableHeader = packet.variableHeader
         byteWritten += writeInteger(variableHeader.packetIdentifier)
+
+        guard variableHeader.properties.count > 0 || variableHeader.reasonCode != .success else {
+            // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
+            // there are no Properties.
+            return byteWritten
+        }
+
         byteWritten += writeInteger(variableHeader.reasonCode.rawValue)
         byteWritten += try write(variableHeader.properties)
 

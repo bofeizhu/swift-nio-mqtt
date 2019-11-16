@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Elian Imlay-Maire on 9/16/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 import XCTest

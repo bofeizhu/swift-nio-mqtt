@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 9/10/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 import NIO
@@ -49,6 +49,28 @@ final class Session {
         }
     }
 
+    func acknowledge(_ publishPacket: PublishPacket) throws -> ControlPacket? {
+        let fixedHeader = publishPacket.fixedHeader
+        switch fixedHeader.flags {
+        case let .publish(_, qos, _):
+            switch qos {
+            case .atLeastOnce:
+                guard let packetIdentifier = publishPacket.variableHeader.packetIdentifier else {
+                     throw MQTTCodingError.malformedPacket
+                }
+                let pubAckPacket = PubAckPacketBuilder(packetIdentifier: packetIdentifier).build()
+                return .pubAck(packet: pubAckPacket)
+
+            default:
+                // TODO: Add QoS level 2.
+                return nil
+            }
+        default:
+            // Wrong fixed header.
+            throw MQTTCodingError.malformedPacket
+        }
+    }
+
     func acknowledge(with pubAckPacket: PubAckPacket) throws {
         let identifier = pubAckPacket.variableHeader.packetIdentifier
         guard let (_, promise) = publishStore.removeElement(forIdentifier: identifier) else {
@@ -84,16 +106,9 @@ final class Session {
 
     private func makeSubscribePacket(topic: String) -> SubscribePacket {
         let packetIdentifier = nextPacketIdentifier
-        let variableHeader = SubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let topicFilter = SubscribePacket.TopicFilter(
-            topic: topic,
-            options: SubscribePacket.Options(rawValue: 0)!)
-
-        let payload = SubscribePacket.Payload(topicFilters: [topicFilter])
-        let packet = SubscribePacket(variableHeader: variableHeader, payload: payload)
+        let packet = SubscribePacketBuilder(packetIdentifier: packetIdentifier)
+            .addSubscription(topic: topic, qos: qos)
+            .build()
         return packet
     }
 

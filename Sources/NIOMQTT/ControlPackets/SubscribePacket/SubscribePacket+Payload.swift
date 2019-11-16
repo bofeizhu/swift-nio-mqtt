@@ -3,7 +3,7 @@
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 7/21/19.
-//  Copyright © 2019 HealthTap Inc. All rights reserved.
+//  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
 import struct Foundation.Data
@@ -71,17 +71,25 @@ extension SubscribePacket: PayloadPacket {
         /// Retain Handling
         let retainHandling: RetainHandling
 
-        var rawValue: UInt8 {
+        let rawValue: UInt8
 
-            let qosValue = qos.rawValue
-            let noLocalValue: UInt8 = noLocal ? 1 : 0
-            let retainAsPublishedValue: UInt8 = retainAsPublished ? 1 : 0
-            let retainHandlingValue = retainHandling.rawValue
+        init(
+            qos: QoS = .atMostOnce,
+            noLocal: Bool = false,
+            retainAsPublished: Bool = false,
+            retainHandling: RetainHandling = .sendOnSubscription
+        ) {
+            self.qos = qos
+            self.noLocal = noLocal
+            self.retainAsPublished = retainAsPublished
+            self.retainHandling = retainHandling
 
-            return qosValue |
-                (noLocalValue << 2) |
-                (retainAsPublishedValue << 3) |
-                (retainHandlingValue << 4)
+            var rawValue = qos.rawValue
+            rawValue |= (noLocal ? 1 : 0) << 2
+            rawValue |= (retainAsPublished ? 1 : 0) << 3
+            rawValue |= retainHandling.rawValue << 4
+
+            self.rawValue = rawValue
         }
 
         init?(rawValue: UInt8) {
@@ -100,19 +108,21 @@ extension SubscribePacket: PayloadPacket {
                 return nil
             }
             self.retainHandling = retainHandling
+
+            self.rawValue = rawValue
         }
     }
 
     /// Retain Handling
     enum RetainHandling: UInt8 {
 
-        /// Send retained messages at the time of the subscribe
-        case level0 = 0
+        /// Send retained messages at the time of the subscription.
+        case sendOnSubscription = 0
 
-        /// Send retained messages at subscribe only if the subscription does not currently exist
-        case level1
+        /// Send retained messages at subscribe only if the subscription does not currently exist.
+        case sendOnNewSubscriptionOnly
 
-        /// Do not send retained messages at the time of the subscribe
-        case level2
+        /// Do not send retained messages at the time of the subscription.
+        case notSending
     }
 }
