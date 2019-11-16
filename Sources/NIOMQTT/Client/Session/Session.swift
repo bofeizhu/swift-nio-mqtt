@@ -106,16 +106,8 @@ final class Session {
 
     private func makeSubscribePacket(topic: String) -> SubscribePacket {
         let packetIdentifier = nextPacketIdentifier
-        let variableHeader = SubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let topicFilter = SubscribePacket.TopicFilter(
-            topic: topic,
-            options: SubscribePacket.Options(rawValue: 0)!)
-
-        let payload = SubscribePacket.Payload(topicFilters: [topicFilter])
-        let packet = SubscribePacket(variableHeader: variableHeader, payload: payload)
+        let packet = SubscribePacketBuilder(packetIdentifier: packetIdentifier)
+            .addSubscription(topic: topic, qos: qos)
         return packet
     }
 
