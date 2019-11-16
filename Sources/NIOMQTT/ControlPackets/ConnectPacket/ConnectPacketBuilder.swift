@@ -10,7 +10,7 @@ import struct Foundation.Data
 
 final class ConnectPacketBuilder {
 
-    private var clientId: String
+    private let clientId: String
 
     private var cleanStart: Bool = false
 
@@ -61,6 +61,9 @@ final class ConnectPacketBuilder {
         return self
     }
 
+    /// Build CONNECT packet.
+    ///
+    /// - Returns: A CONNECT packet.
     func build() -> ConnectPacket {
         let connectFlags = ConnectPacket.ConnectFlags(
             cleanStart: cleanStart,

@@ -6,11 +6,9 @@
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
-import struct Foundation.Data
-
 final class PubAckPacketBuilder {
 
-    private var packetIdentifier: UInt16
+    private let packetIdentifier: UInt16
 
     private var reasonCode: PubAckPacket.ReasonCode = .success
 
@@ -27,6 +25,9 @@ final class PubAckPacketBuilder {
         return self
     }
 
+    /// Build PUBACK packet.
+    ///
+    /// - Returns: A PUBACK packet.
     func build() -> PubAckPacket {
         let variableHeader = PubAckPacket.VariableHeader(
             packetIdentifier: packetIdentifier,
