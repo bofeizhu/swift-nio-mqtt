@@ -15,6 +15,52 @@ import NIO
 
 class PubAckPacketIOTests: ByteBufferTestCase {
 
+    func testReadWhenReasonCodeIsSuccessAndPacketHasNoProperty() {
+        let fixedHeader = FixedHeader(type: .pubAck, remainingLength: 2)
+        let packetIdentifier: UInt16 = 23
+
+        buffer.writeInteger(packetIdentifier)
+
+        let packet = try! buffer.readPubAckPacket(with: fixedHeader, remainingLength: 2)
+        XCTAssertEqual(packet.variableHeader.packetIdentifier, 23)
+        XCTAssertEqual(packet.variableHeader.reasonCode, .success)
+        XCTAssertTrue(packet.variableHeader.properties.isEmpty)
+    }
+
+    func testReadWhenReasonCodeIsNotSuccessAndPacketHasNoProperty() {
+        let fixedHeader = FixedHeader(type: .pubAck, remainingLength: 3)
+        let packetIdentifier: UInt16 = 23
+
+        buffer.writeInteger(packetIdentifier)
+        buffer.writeByte(PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+
+        let packet = try! buffer.readPubAckPacket(with: fixedHeader, remainingLength: 3)
+        XCTAssertEqual(packet.variableHeader.packetIdentifier, 23)
+        XCTAssertEqual(packet.variableHeader.reasonCode, .implementationSpecificError)
+        XCTAssertTrue(packet.variableHeader.properties.isEmpty)
+
+        XCTAssertEqual(buffer.readableBytes, 0)
+    }
+
+    func testReadWhenPacketHasProperties() {
+        var properties = PropertyCollection()
+        properties.append(.payloadFormatIndicator(true))
+
+        let fixedHeader = FixedHeader(type: .pubAck, remainingLength: 6)
+        let packetIdentifier: UInt16 = 23
+
+        buffer.writeInteger(packetIdentifier)
+        buffer.writeByte(PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+        try! buffer.write(properties)
+
+        let packet = try! buffer.readPubAckPacket(with: fixedHeader, remainingLength: 6)
+        XCTAssertEqual(packet.variableHeader.packetIdentifier, 23)
+        XCTAssertEqual(packet.variableHeader.reasonCode, .implementationSpecificError)
+        XCTAssertEqual(packet.variableHeader.properties.count, 1)
+
+        XCTAssertEqual(buffer.readableBytes, 0)
+    }
+
     func testWriteWhenReasonCodeIsSuccessAndPacketHasNoProperty() {
         let variableHeader = PubAckPacket.VariableHeader(
             packetIdentifier: .zero,
