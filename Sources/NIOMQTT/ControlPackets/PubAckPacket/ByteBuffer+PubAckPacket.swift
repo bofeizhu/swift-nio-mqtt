@@ -10,9 +10,10 @@ import NIO
 
 extension ByteBuffer {
 
-    mutating func readPubAckPacket(with fixedHeader: FixedHeader, remainingLength: UInt) throws -> PubAckPacket {
+    mutating func readPubAckPacket(with fixedHeader: FixedHeader) throws -> PubAckPacket {
         let packetIdentifier = try readPacketIdentifier()
 
+        let remainingLength = fixedHeader.remainingLength.value
         // If the Remaining Length is 2, then there is no Reason Code and the value of 0x00 (Success) is used.
         var reasonCode: PubAckPacket.ReasonCode = .success
 

@@ -1,5 +1,5 @@
 //
-//  PubAckPacketIOTests.swift
+//  PubCompPacketIOTests.swift
 //  NIOMQTTTests
 //
 //  Created by Bofei Zhu on 11/16/19.
@@ -13,30 +13,30 @@ import NIO
 
 // swiftlint:disable force_try
 
-class PubAckPacketIOTests: ByteBufferTestCase {
+class PubCompPacketIOTests: ByteBufferTestCase {
 
     func testReadWhenReasonCodeIsSuccessAndPacketHasNoProperty() {
-        let fixedHeader = FixedHeader(type: .pubAck, remainingLength: 2)
+        let fixedHeader = FixedHeader(type: .pubComp, remainingLength: 2)
         let packetIdentifier: UInt16 = 23
 
         buffer.writeInteger(packetIdentifier)
 
-        let packet = try! buffer.readPubAckPacket(with: fixedHeader)
+        let packet = try! buffer.readPubCompPacket(with: fixedHeader)
         XCTAssertEqual(packet.variableHeader.packetIdentifier, 23)
         XCTAssertEqual(packet.variableHeader.reasonCode, .success)
         XCTAssertTrue(packet.variableHeader.properties.isEmpty)
     }
 
     func testReadWhenReasonCodeIsNotSuccessAndPacketHasNoProperty() {
-        let fixedHeader = FixedHeader(type: .pubAck, remainingLength: 3)
+        let fixedHeader = FixedHeader(type: .pubComp, remainingLength: 3)
         let packetIdentifier: UInt16 = 23
 
         buffer.writeInteger(packetIdentifier)
-        buffer.writeByte(PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+        buffer.writeByte(PubCompPacket.ReasonCode.packetIdentifierNotFound.rawValue)
 
-        let packet = try! buffer.readPubAckPacket(with: fixedHeader)
+        let packet = try! buffer.readPubCompPacket(with: fixedHeader)
         XCTAssertEqual(packet.variableHeader.packetIdentifier, 23)
-        XCTAssertEqual(packet.variableHeader.reasonCode, .implementationSpecificError)
+        XCTAssertEqual(packet.variableHeader.reasonCode, .packetIdentifierNotFound)
         XCTAssertTrue(packet.variableHeader.properties.isEmpty)
 
         XCTAssertEqual(buffer.readableBytes, 0)
@@ -46,36 +46,36 @@ class PubAckPacketIOTests: ByteBufferTestCase {
         var properties = PropertyCollection()
         properties.append(.payloadFormatIndicator(true))
 
-        let fixedHeader = FixedHeader(type: .pubAck, remainingLength: 6)
+        let fixedHeader = FixedHeader(type: .pubComp, remainingLength: 6)
         let packetIdentifier: UInt16 = 23
 
         buffer.writeInteger(packetIdentifier)
-        buffer.writeByte(PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+        buffer.writeByte(PubCompPacket.ReasonCode.packetIdentifierNotFound.rawValue)
         try! buffer.write(properties)
 
-        let packet = try! buffer.readPubAckPacket(with: fixedHeader)
+        let packet = try! buffer.readPubCompPacket(with: fixedHeader)
         XCTAssertEqual(packet.variableHeader.packetIdentifier, 23)
-        XCTAssertEqual(packet.variableHeader.reasonCode, .implementationSpecificError)
+        XCTAssertEqual(packet.variableHeader.reasonCode, .packetIdentifierNotFound)
         XCTAssertEqual(packet.variableHeader.properties.count, 1)
 
         XCTAssertEqual(buffer.readableBytes, 0)
     }
 
     func testWriteWhenReasonCodeIsSuccessAndPacketHasNoProperty() {
-        let variableHeader = PubAckPacket.VariableHeader(
+        let variableHeader = PubCompPacket.VariableHeader(
             packetIdentifier: .zero,
             reasonCode: .success,
             properties: PropertyCollection())
 
-        let packet = PubAckPacket(variableHeader: variableHeader)
+        let packet = PubCompPacket(variableHeader: variableHeader)
         try! buffer.write(packet)
 
         // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
-        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        // there are no Properties. In this case the PubComp has a Remaining Length of 2.
         XCTAssertEqual(buffer.readableBytes, 4)
 
         let fixedHeader = try! buffer.readFixedHeader()!
-        let expectedFixedHeader = FixedHeader(type: .pubAck, remainingLength: 2)
+        let expectedFixedHeader = FixedHeader(type: .pubComp, remainingLength: 2)
 
         XCTAssertEqual(fixedHeader, expectedFixedHeader)
 
@@ -87,20 +87,20 @@ class PubAckPacketIOTests: ByteBufferTestCase {
     }
 
     func testWriteWhenReasonCodeIsNotSuccessAndPacketHasNoProperty() {
-        let variableHeader = PubAckPacket.VariableHeader(
+        let variableHeader = PubCompPacket.VariableHeader(
             packetIdentifier: .zero,
-            reasonCode: .implementationSpecificError,
+            reasonCode: .packetIdentifierNotFound,
             properties: PropertyCollection())
 
-        let packet = PubAckPacket(variableHeader: variableHeader)
+        let packet = PubCompPacket(variableHeader: variableHeader)
         try! buffer.write(packet)
 
         // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
-        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        // there are no Properties. In this case the PubComp has a Remaining Length of 2.
         XCTAssertEqual(buffer.readableBytes, 5)
 
         let fixedHeader = try! buffer.readFixedHeader()!
-        let expectedFixedHeader = FixedHeader(type: .pubAck, remainingLength: 3)
+        let expectedFixedHeader = FixedHeader(type: .pubComp, remainingLength: 3)
 
         XCTAssertEqual(fixedHeader, expectedFixedHeader)
 
@@ -109,7 +109,7 @@ class PubAckPacketIOTests: ByteBufferTestCase {
         XCTAssertEqual(packetIdentifier, .zero)
 
         let reasonCodeByte = buffer.readByte()
-        XCTAssertEqual(reasonCodeByte, PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+        XCTAssertEqual(reasonCodeByte, PubCompPacket.ReasonCode.packetIdentifierNotFound.rawValue)
 
         XCTAssertEqual(buffer.readableBytes, 0)
     }
@@ -118,20 +118,20 @@ class PubAckPacketIOTests: ByteBufferTestCase {
         var properties = PropertyCollection()
         properties.append(.payloadFormatIndicator(true))
 
-        let variableHeader = PubAckPacket.VariableHeader(
+        let variableHeader = PubCompPacket.VariableHeader(
             packetIdentifier: .zero,
-            reasonCode: .implementationSpecificError,
+            reasonCode: .packetIdentifierNotFound,
             properties: properties)
 
-        let packet = PubAckPacket(variableHeader: variableHeader)
+        let packet = PubCompPacket(variableHeader: variableHeader)
         try! buffer.write(packet)
 
         // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
-        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        // there are no Properties. In this case the PubComp has a Remaining Length of 2.
         XCTAssertEqual(buffer.readableBytes, 8)
 
         let fixedHeader = try! buffer.readFixedHeader()!
-        let expectedFixedHeader = FixedHeader(type: .pubAck, remainingLength: 6)
+        let expectedFixedHeader = FixedHeader(type: .pubComp, remainingLength: 6)
 
         XCTAssertEqual(fixedHeader, expectedFixedHeader)
 
@@ -140,7 +140,7 @@ class PubAckPacketIOTests: ByteBufferTestCase {
         XCTAssertEqual(packetIdentifier, .zero)
 
         let reasonCodeByte = buffer.readByte()
-        XCTAssertEqual(reasonCodeByte, PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+        XCTAssertEqual(reasonCodeByte, PubCompPacket.ReasonCode.packetIdentifierNotFound.rawValue)
 
         let _ = try! buffer.readProperties()
 
