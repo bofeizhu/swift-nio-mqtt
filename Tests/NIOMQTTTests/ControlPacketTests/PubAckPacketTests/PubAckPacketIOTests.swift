@@ -15,7 +15,7 @@ import NIO
 
 class PubAckPacketIOTests: ByteBufferTestCase {
 
-    func testWriteConnectPacket() {
+    func testWritePubAckPacket() {
         let connectFlags = ConnectPacket.ConnectFlags(rawValue: 0)!
         let variableHeader = ConnectPacket.VariableHeader(
             connectFlags: connectFlags,

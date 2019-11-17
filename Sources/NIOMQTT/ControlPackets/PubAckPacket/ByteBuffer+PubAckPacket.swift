@@ -32,7 +32,7 @@ extension ByteBuffer {
             reasonCode: reasonCode,
             properties: properties)
 
-        return PubAckPacket(fixedHeader: fixedHeader, variableHeader: variableHeader)
+        return PubAckPacket(variableHeader: variableHeader)
     }
 
     mutating func write(_ packet: PubAckPacket) throws -> Int {

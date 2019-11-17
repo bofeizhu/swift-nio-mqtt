@@ -33,11 +33,21 @@ class PubAckPacketTests: XCTestCase {
     }
 
     func testVariableHeaderByteCountWhenReasonCodeIsNotSuccess() {
-        let variableHeader = PubAckPacket.VariableHeader(
+        var variableHeader = PubAckPacket.VariableHeader(
             packetIdentifier: .zero,
             reasonCode: .implementationSpecificError,
             properties: PropertyCollection())
 
-        XCTAssertEqual(variableHeader.mqttByteCount, 4)
+        // If the Remaining Length is less than 4 there is no Property Length and the value of 0 is used.
+        XCTAssertEqual(variableHeader.mqttByteCount, 3)
+
+        var properties = PropertyCollection()
+        properties.append(.payloadFormatIndicator(true))
+        variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .implementationSpecificError,
+            properties: properties)
+
+        XCTAssertEqual(variableHeader.mqttByteCount, 6)
     }
 }

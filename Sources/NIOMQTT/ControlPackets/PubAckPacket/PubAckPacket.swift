@@ -15,4 +15,9 @@ struct PubAckPacket: ControlPacketProtocol {
 
     /// Variable Header
     let variableHeader: VariableHeader
+
+    init(variableHeader: VariableHeader) {
+        fixedHeader = FixedHeader(type: .pubAck, flags: .pubAck, remainingLength: variableHeader.mqttByteCount)
+        self.variableHeader = variableHeader
+    }
 }
