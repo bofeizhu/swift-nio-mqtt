@@ -35,6 +35,7 @@ extension ByteBuffer {
         return PubAckPacket(variableHeader: variableHeader)
     }
 
+    @discardableResult
     mutating func write(_ packet: PubAckPacket) throws -> Int {
         var byteWritten = try write(packet.fixedHeader)
 

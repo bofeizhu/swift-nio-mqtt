@@ -15,36 +15,89 @@ import NIO
 
 class PubAckPacketIOTests: ByteBufferTestCase {
 
-    func testWritePubAckPacket() {
-        let connectFlags = ConnectPacket.ConnectFlags(rawValue: 0)!
-        let variableHeader = ConnectPacket.VariableHeader(
-            connectFlags: connectFlags,
-            keepAlive: 120,
+    func testWriteWhenReasonCodeIsSuccessAndPacketHasNoProperty() {
+        let variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .success,
             properties: PropertyCollection())
 
-        let bytes: [UInt8] = [0, 0]
+        let packet = PubAckPacket(variableHeader: variableHeader)
+        try! buffer.write(packet)
 
-        let willMessage = ConnectPacket.WillMessage(
-            properties: PropertyCollection(),
-            topic: "abc",
-            payload: Data(bytes))
+        // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
+        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        XCTAssertEqual(buffer.readableBytes, 4)
 
-        let payload = ConnectPacket.Payload(
-            clientId: "abc",
-            willMessage: willMessage,
-            username: "foo",
-            password: Data(bytes))
+        let fixedHeader = try! buffer.readFixedHeader()!
+        let expectedFixedHeader = FixedHeader(type: .pubAck, remainingLength: 2)
 
-        let connectPacket = ConnectPacket(
-            variableHeader: variableHeader,
-            payload: payload)
+        XCTAssertEqual(fixedHeader, expectedFixedHeader)
 
-        try! buffer.write(connectPacket)
+        let packetIdentifier: UInt16 = buffer.readInteger()!
 
-        XCTAssertEqual(
-            buffer.readableBytes,
-            variableHeader.mqttByteCount + payload.mqttByteCount + 2)
+        XCTAssertEqual(packetIdentifier, .zero)
 
-        // TODO: Read stuff
+        XCTAssertEqual(buffer.readableBytes, 0)
+    }
+
+    func testWriteWhenReasonCodeIsNotSuccessAndPacketHasNoProperty() {
+        let variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .implementationSpecificError,
+            properties: PropertyCollection())
+
+        let packet = PubAckPacket(variableHeader: variableHeader)
+        try! buffer.write(packet)
+
+        // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
+        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        XCTAssertEqual(buffer.readableBytes, 5)
+
+        let fixedHeader = try! buffer.readFixedHeader()!
+        let expectedFixedHeader = FixedHeader(type: .pubAck, remainingLength: 3)
+
+        XCTAssertEqual(fixedHeader, expectedFixedHeader)
+
+        let packetIdentifier: UInt16 = buffer.readInteger()!
+
+        XCTAssertEqual(packetIdentifier, .zero)
+
+        let reasonCodeByte = buffer.readByte()
+        XCTAssertEqual(reasonCodeByte, PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+
+        XCTAssertEqual(buffer.readableBytes, 0)
+    }
+
+    func testWriteWhenPacketHasProperties() {
+        var properties = PropertyCollection()
+        properties.append(.payloadFormatIndicator(true))
+
+        let variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .implementationSpecificError,
+            properties: properties)
+
+        let packet = PubAckPacket(variableHeader: variableHeader)
+        try! buffer.write(packet)
+
+        // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
+        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        XCTAssertEqual(buffer.readableBytes, 8)
+
+        let fixedHeader = try! buffer.readFixedHeader()!
+        let expectedFixedHeader = FixedHeader(type: .pubAck, remainingLength: 6)
+
+        XCTAssertEqual(fixedHeader, expectedFixedHeader)
+
+        let packetIdentifier: UInt16 = buffer.readInteger()!
+
+        XCTAssertEqual(packetIdentifier, .zero)
+
+        let reasonCodeByte = buffer.readByte()
+        XCTAssertEqual(reasonCodeByte, PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
+
+        let _ = try! buffer.readProperties()
+
+        XCTAssertEqual(buffer.readableBytes, 0)
     }
 }
