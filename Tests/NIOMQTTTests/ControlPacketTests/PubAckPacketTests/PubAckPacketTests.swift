@@ -12,42 +12,32 @@ import XCTest
 
 class PubAckPacketTests: XCTestCase {
 
-    func testVariableHeaderByteCount() {
-        let connectFlags = ConnectPacket.ConnectFlags(rawValue: 0)!
-        let properties = PropertyCollection()
+    func testVariableHeaderByteCountWhenReasonCodeIsSuccess() {
+        var variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .success,
+            properties: PropertyCollection())
 
-        let variableHeader = ConnectPacket.VariableHeader(
-            connectFlags: connectFlags,
-            keepAlive: 120,
+        // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
+        // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+        XCTAssertEqual(variableHeader.mqttByteCount, 2)
+
+        var properties = PropertyCollection()
+        properties.append(.payloadFormatIndicator(true))
+        variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .success,
             properties: properties)
 
-        XCTAssertEqual(variableHeader.mqttByteCount, 11)
+        XCTAssertEqual(variableHeader.mqttByteCount, 6)
     }
 
-    func testPayloadByteCount() {
-        let bytes: [UInt8] = [0, 0]
+    func testVariableHeaderByteCountWhenReasonCodeIsNotSuccess() {
+        let variableHeader = PubAckPacket.VariableHeader(
+            packetIdentifier: .zero,
+            reasonCode: .implementationSpecificError,
+            properties: PropertyCollection())
 
-        let willMessage = ConnectPacket.WillMessage(
-            properties: PropertyCollection(),
-            topic: "abc",
-            payload: Data(bytes))
-
-        XCTAssertEqual(willMessage.mqttByteCount, 10)
-
-        var payload = ConnectPacket.Payload(
-            clientId: "abc",
-            willMessage: nil,
-            username: nil,
-            password: nil)
-
-        XCTAssertEqual(payload.mqttByteCount, 5)
-
-        payload = ConnectPacket.Payload(
-            clientId: "abc",
-            willMessage: willMessage,
-            username: "foo",
-            password: Data(bytes))
-
-        XCTAssertEqual(payload.mqttByteCount, 24)
+        XCTAssertEqual(variableHeader.mqttByteCount, 4)
     }
 }
