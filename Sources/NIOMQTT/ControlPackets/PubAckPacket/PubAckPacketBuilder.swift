@@ -34,8 +34,6 @@ final class PubAckPacketBuilder {
             reasonCode: reasonCode,
             properties: properties)
 
-        let fixedHeader = FixedHeader(type: .pubAck, flags: .pubAck, remainingLength: variableHeader.mqttByteCount)
-
-        return PubAckPacket(fixedHeader: fixedHeader, variableHeader: variableHeader)
+        return PubAckPacket(variableHeader: variableHeader)
     }
 }

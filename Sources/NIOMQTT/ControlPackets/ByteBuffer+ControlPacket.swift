@@ -21,7 +21,7 @@ extension ByteBuffer {
             return .publish(packet: packet)
 
         case .pubAck:
-            let packet = try readPubAckPacket(with: fixedHeader, remainingLength: fixedHeader.remainingLength.value)
+            let packet = try readPubAckPacket(with: fixedHeader)
             return .pubAck(packet: packet)
 
         case .pubRec:

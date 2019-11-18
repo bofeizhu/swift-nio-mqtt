@@ -62,11 +62,10 @@ final class MQTTChannelHandler: ChannelDuplexHandler {
                     return
                 }
 
-                context.write(wrapOutboundOut(acknowledgePacket), promise: nil)
+                context.writeAndFlush(wrapOutboundOut(acknowledgePacket), promise: nil)
             } catch {
                 context.fireErrorCaught(error)
             }
-
 
         case let .pubAck(packet):
             do {

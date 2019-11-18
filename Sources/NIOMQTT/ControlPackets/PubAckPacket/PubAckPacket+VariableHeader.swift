@@ -19,10 +19,15 @@ extension PubAckPacket: VariableHeaderPacket {
         let properties: PropertyCollection
 
         var mqttByteCount: Int {
-            guard properties.count > 0 || reasonCode != .success else {
-                // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
-                // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
-                return 2
+            guard !properties.isEmpty else {
+                if reasonCode == .success {
+                    // The Reason Code and Property Length can be omitted if the Reason Code is 0x00 (Success) and
+                    // there are no Properties. In this case the PUBACK has a Remaining Length of 2.
+                    return 2
+                } else {
+                    // If the Remaining Length is less than 4 there is no Property Length and the value of 0 is used.
+                    return 3
+                }
             }
             return UInt16.byteCount + ReasonCodeValue.byteCount + properties.mqttByteCount
         }

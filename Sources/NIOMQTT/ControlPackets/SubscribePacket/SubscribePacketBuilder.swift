@@ -39,4 +39,3 @@ final class SubscribePacketBuilder {
         return SubscribePacket(variableHeader: variableHeader, payload: payload)
     }
 }
-

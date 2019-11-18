@@ -16,4 +16,9 @@ struct PubRelPacket: ControlPacketProtocol {
 
     /// Variable Header
     let variableHeader: VariableHeader
+
+    init(variableHeader: VariableHeader) {
+        fixedHeader = FixedHeader(type: .pubRel, flags: .pubRel, remainingLength: variableHeader.mqttByteCount)
+        self.variableHeader = variableHeader
+    }
 }
