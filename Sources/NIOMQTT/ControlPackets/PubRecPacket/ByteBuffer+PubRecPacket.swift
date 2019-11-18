@@ -11,7 +11,6 @@ import NIO
 extension ByteBuffer {
 
     mutating func readPubRecPacket(with fixedHeader: FixedHeader) throws -> PubRecPacket {
-
         let packetIdentifier = try readPacketIdentifier()
 
         let remainingLength = fixedHeader.remainingLength.value
@@ -40,7 +39,6 @@ extension ByteBuffer {
 
     @discardableResult
     mutating func write(_ packet: PubRecPacket) throws -> Int {
-
         var byteWritten = try write(packet.fixedHeader)
 
         let variableHeader = packet.variableHeader
