@@ -142,7 +142,7 @@ class PubAckPacketIOTests: ByteBufferTestCase {
         let reasonCodeByte = buffer.readByte()
         XCTAssertEqual(reasonCodeByte, PubAckPacket.ReasonCode.implementationSpecificError.rawValue)
 
-        let _ = try! buffer.readProperties()
+        _ = try! buffer.readProperties()
 
         XCTAssertEqual(buffer.readableBytes, 0)
     }

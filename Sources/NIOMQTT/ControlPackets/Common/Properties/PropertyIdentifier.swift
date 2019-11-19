@@ -98,7 +98,6 @@ enum PropertyIdentifier: UInt8 {
 }
 
 extension ByteBuffer {
-
     @discardableResult
     mutating func write(_ identifier: PropertyIdentifier) -> Int {
         return writeByte(identifier.rawValue)

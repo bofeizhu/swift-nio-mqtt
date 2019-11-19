@@ -1,5 +1,5 @@
 //
-//  ByteBuffer+Property.swift
+//  ByteBuffer+PropertyCollection.swift
 //  NIOMQTT
 //
 //  Created by Bofei Zhu on 8/11/19.
@@ -40,6 +40,12 @@ extension ByteBuffer {
             case let .sessionExpiryInterval(interval):
                 writeInteger(interval)
 
+            case let .assignedClientIdentifier(identifier):
+                try writeMQTTString(identifier)
+
+            case let .serverKeepAlive(keepAlive):
+                writeInteger(keepAlive)
+
             case let .authenticationMethod(method):
                 try writeMQTTString(method)
 
@@ -54,6 +60,9 @@ extension ByteBuffer {
 
             case let .requestResponseInformation(indicator):
                 write(indicator)
+
+            case let .responseInformation(information):
+                 try writeMQTTString(information)
 
             case let .serverReference(reference):
                 try writeMQTTString(reference)
@@ -70,22 +79,26 @@ extension ByteBuffer {
             case let .topicAlias(alias):
                 writeInteger(alias)
 
+            case let .maximumQoS(qos):
+                writeByte(qos.rawValue)
+
+            case let .retainAvailable(indicator):
+                write(indicator)
+
             case let .userProperty(userProperty):
                 try write(userProperty)
 
             case let .maximumPacketSize(size):
                 writeInteger(size)
 
-            case .assignedClientIdentifier,
-                 .serverKeepAlive,
-                 .responseInformation,
-                 .maximumQoS,
-                 .retainAvailable,
-                 .wildcardSubscriptionAvailable,
-                 .subscriptionIdentifierAvailable,
-                 .sharedSubscriptionAvailable:
-                // These properties are not supposed to be sent from client.
-                throw MQTTCodingError.malformedPacket
+            case let .wildcardSubscriptionAvailable(indicator):
+                write(indicator)
+
+            case let .subscriptionIdentifierAvailable(indicator):
+                write(indicator)
+
+            case let .sharedSubscriptionAvailable(indicator):
+                write(indicator)
             }
         }
 
@@ -111,7 +124,6 @@ extension ByteBuffer {
             else {
                 throw MQTTCodingError.malformedPacket
             }
-            remainingLength -= 1
 
             let property = try readProperty(of: identifier)
             properties.append(property)
@@ -190,9 +202,23 @@ extension ByteBuffer {
             }
             return .authenticationData(data)
 
-        case .requestProblemInformation, .willDelayInterval, .requestResponseInformation:
-            // Only client to server, no need to decode
-            throw MQTTCodingError.malformedPacket
+        case .requestProblemInformation:
+            guard let indicator = try readBool() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return .requestProblemInformation(indicator)
+
+        case .willDelayInterval:
+            guard let interval: UInt32 = readInteger() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return .willDelayInterval(interval)
+
+        case .requestResponseInformation:
+            guard let indicator = try readBool() else {
+                throw MQTTCodingError.malformedPacket
+            }
+            return .requestResponseInformation(indicator)
 
         case .responseInformation:
             guard let information = readMQTTString() else {
