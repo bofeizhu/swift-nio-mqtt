@@ -27,15 +27,30 @@ class PropertyCollectionIOTests: ByteBufferTestCase {
         propertiesWritten.append(.subscriptionIdentifier(VInt(value: 1)))
         propertiesWritten.append(.sessionExpiryInterval(30))
         propertiesWritten.append(.assignedClientIdentifier("id"))
-//        propertiesWritten.append(.serverKeepAlive(30))
+        propertiesWritten.append(.serverKeepAlive(30))
+        propertiesWritten.append(.authenticationMethod("method"))
+        propertiesWritten.append(.authenticationData("auth".data(using: .utf8)!))
+        propertiesWritten.append(.requestProblemInformation(false))
+        propertiesWritten.append(.willDelayInterval(1000))
+        propertiesWritten.append(.requestResponseInformation(true))
+        propertiesWritten.append(.responseInformation("information"))
+        propertiesWritten.append(.serverReference("reference"))
+        propertiesWritten.append(.reasonString("reason"))
+        propertiesWritten.append(.receiveMaximum(99))
+        propertiesWritten.append(.topicAliasMaximum(999))
+        propertiesWritten.append(.topicAlias(23))
+        propertiesWritten.append(.maximumQoS(.exactlyOnce))
+        propertiesWritten.append(.retainAvailable(false))
+        propertiesWritten.append(.userProperty(StringPair(name: "name", value: "value")))
+        propertiesWritten.append(.maximumPacketSize(9999))
+        propertiesWritten.append(.wildcardSubscriptionAvailable(false))
+        propertiesWritten.append(.subscriptionIdentifierAvailable(true))
+        propertiesWritten.append(.sharedSubscriptionAvailable(true))
 
 
         try! buffer.write(propertiesWritten)
 
         let propertiesRead = try! buffer.readProperties()
-
-        print(propertiesWritten)
-        print(propertiesRead)
 
         XCTAssertEqual(buffer.readableBytes, 0)
 
