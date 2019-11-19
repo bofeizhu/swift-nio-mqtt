@@ -142,7 +142,7 @@ class PubRecPacketIOTests: ByteBufferTestCase {
         let reasonCodeByte = buffer.readByte()
         XCTAssertEqual(reasonCodeByte, PubRecPacket.ReasonCode.topicNameInvalid.rawValue)
 
-        let _ = try! buffer.readProperties()
+        _ = try! buffer.readProperties()
 
         XCTAssertEqual(buffer.readableBytes, 0)
     }

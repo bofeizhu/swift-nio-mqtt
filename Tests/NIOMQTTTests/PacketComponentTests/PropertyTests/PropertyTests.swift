@@ -93,7 +93,7 @@ class PropertyTests: XCTestCase {
     }
 
     func testVariableByteIntegerTypePropertyByteCount() {
-        let variableByteInteger = VInt(value: 42424242)
+        let variableByteInteger = VInt(value: 1)
         let variableByteIntegerPropertyByteCount = 1 + variableByteInteger.mqttByteCount
 
         let property: Property = .subscriptionIdentifier(variableByteInteger)
