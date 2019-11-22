@@ -18,7 +18,7 @@ public struct UnsubscribePacket: ControlPacketProtocol {
     /// Payload
     public let payload: Payload
 
-    public init(variableHeader: VariableHeader, payload: Payload) {
+    init(variableHeader: VariableHeader, payload: Payload) {
         self.variableHeader = variableHeader
         self.payload = payload
 
