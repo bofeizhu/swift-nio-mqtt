@@ -22,7 +22,7 @@ jobs:
     - name: Run tests
       run: set -o pipefail && xcodebuild test -scheme swift-nio-mqtt-Package -destination name="iPhone 11" -enableCodeCoverage YES -derivedDataPath .build/derivedData | xcpretty
 
-    - name: Upload code coverage
-      run: bash <(curl -s https://codecov.io/bash) -J '^NIOMQTT$' -D .build/derivedData -t $CODECOV_TOKEN
+    - name: Upload MQTTCodec code coverage
+      run: bash <(curl -s https://codecov.io/bash) -J '^MQTTCodec$' -D .build/derivedData -t $CODECOV_TOKEN
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
