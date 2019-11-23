@@ -1,6 +1,6 @@
 //
 //  ControlPacketDecoder.swift
-//  NIOMQTT
+//  MQTTCodec
 //
 //  Created by Bofei Zhu on 8/9/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

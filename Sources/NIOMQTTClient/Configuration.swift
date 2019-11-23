@@ -1,6 +1,6 @@
 //
 //  Configuration.swift
-//  NIOMQTT
+//  NIOMQTTClient
 //
 //  Created by Bofei Zhu on 8/30/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

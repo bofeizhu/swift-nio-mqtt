@@ -1,6 +1,6 @@
 //
 //  Session.swift
-//  NIOMQTT
+//  NIOMQTTClient
 //
 //  Created by Bofei Zhu on 9/10/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
@@ -81,45 +81,25 @@ final class Session {
         promise?.succeed(())
     }
 
-    private func makePublishPackets(
-        topic: String,
-        payload: PublishPacket.Payload
-    ) -> PublishPacket {
-        var properties = PropertyCollection()
-        properties.append(payload.formatIndicator)
-
-        let packetIdentifier = qos.rawValue == 0 ? nil : nextPacketIdentifier
-
-        let variableHeader = PublishPacket.VariableHeader(
-            topicName: topic,
-            packetIdentifier: packetIdentifier,
-            properties: properties)
-
-        let packet = PublishPacket(
-            dup: false,
-            qos: qos,
-            retain: false,
-            variableHeader: variableHeader,
-            payload: payload)
-
-        return packet
+    private func makePublishPackets(topic: String, payload: PublishPacket.Payload) -> PublishPacket {
+        let packetIdentifier = qos == .atMostOnce ? nil : nextPacketIdentifier
+        return PublishPacketBuilder(topic: topic, payload: payload)
+            .qos(qos)
+            .packetIdentifier(packetIdentifier)
+            .build()
     }
 
     private func makeSubscribePacket(topic: String) -> SubscribePacket {
         let packetIdentifier = nextPacketIdentifier
-        let packet = SubscribePacketBuilder(packetIdentifier: packetIdentifier)
+        return SubscribePacketBuilder(packetIdentifier: packetIdentifier)
             .addSubscription(topic: topic, qos: qos)
             .build()
-        return packet
     }
 
     private func makeUnsubscribePacket(topic: String) -> UnsubscribePacket {
         let packetIdentifier = nextPacketIdentifier
-        let variableHeader = UnsubscribePacket.VariableHeader(
-            packetIdentifier: packetIdentifier,
-            properties: PropertyCollection())
-
-        let payload = UnsubscribePacket.Payload(topicFilters: [topic])
-        return UnsubscribePacket(variableHeader: variableHeader, payload: payload)
+        return UnsubscribePacketBuilder(packetIdentifier: packetIdentifier)
+            .addUnsubscription(topicFilter: topic)
+            .build()
     }
 }

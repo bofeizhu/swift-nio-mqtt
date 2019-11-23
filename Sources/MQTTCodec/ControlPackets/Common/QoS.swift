@@ -1,6 +1,6 @@
 //
 //  QoS.swift
-//  NIOMQTT
+//  MQTTCodec
 //
 //  Created by Bofei Zhu on 7/22/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

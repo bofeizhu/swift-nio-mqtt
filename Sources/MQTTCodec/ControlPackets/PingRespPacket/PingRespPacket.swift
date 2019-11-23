@@ -1,6 +1,6 @@
 //
 //  PingRespPacket.swift
-//  NIOMQTT
+//  MQTTCodec
 //
 //  Created by Bofei Zhu on 6/20/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

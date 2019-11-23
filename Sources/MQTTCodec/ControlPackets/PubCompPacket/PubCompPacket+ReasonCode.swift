@@ -1,6 +1,6 @@
 //
 //  PubCompPacket+ReasonCode.swift
-//  NIOMQTT
+//  MQTTCodec
 //
 //  Created by Bofei Zhu on 7/28/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

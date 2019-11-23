@@ -1,6 +1,6 @@
 //
 //  KeepAliveHandler.swift
-//  NIOMQTT
+//  NIOMQTTClient
 //
 //  Created by Bofei Zhu on 9/4/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

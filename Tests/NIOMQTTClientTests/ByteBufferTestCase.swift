@@ -10,7 +10,7 @@ import struct Foundation.Data
 import XCTest
 import NIO
 
-@testable import NIOMQTT
+@testable import NIOMQTTClient
 
 class ByteBufferTestCase: XCTestCase {
 

@@ -1,6 +1,6 @@
 //
 //  Session+Store.swift
-//  NIOMQTT
+//  NIOMQTTClient
 //
 //  Created by Bofei Zhu on 10/16/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

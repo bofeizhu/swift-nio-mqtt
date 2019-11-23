@@ -1,6 +1,6 @@
 //
 //  ByteBuffer+PubRelPacket.swift
-//  NIOMQTT
+//  MQTTCodec
 //
 //  Created by Bofei Zhu on 8/14/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

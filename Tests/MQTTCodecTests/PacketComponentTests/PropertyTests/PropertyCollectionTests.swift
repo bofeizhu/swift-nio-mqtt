@@ -1,6 +1,6 @@
 //
 //  PropertyCollectionTests.swift
-//  NIOMQTT
+//  MQTTCodecTests
 //
 //  Created by Bofei Zhu on 8/23/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import NIOMQTT
+@testable import MQTTCodec
 
 final class PropertyCollectionTests: XCTestCase {
 

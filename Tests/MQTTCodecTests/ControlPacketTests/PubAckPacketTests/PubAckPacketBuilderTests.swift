@@ -1,6 +1,6 @@
 //
 //  PubAckPacketBuilderTests.swift
-//  NIOMQTTTests
+//  MQTTCodecTests
 //
 //  Created by Bofei Zhu on 11/16/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
@@ -10,7 +10,7 @@ import XCTest
 import NIO
 import Foundation
 
-@testable import NIOMQTT
+@testable import MQTTCodec
 
 final class PubAckPacketBuilderTests: XCTestCase {
 

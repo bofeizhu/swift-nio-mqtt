@@ -1,6 +1,6 @@
 //
 //  FixedHeaderIOTests.swift
-//  NIOMQTT
+//  MQTTCodecTests
 //
 //  Created by Elian Imlay-Maire on 9/16/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 import NIO
 
-@testable import NIOMQTT
+@testable import MQTTCodec
 
 // swiftlint:disable force_try function_body_length
 final class FixedHeaderIOTests: ByteBufferTestCase {

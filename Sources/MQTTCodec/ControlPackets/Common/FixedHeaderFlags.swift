@@ -1,6 +1,6 @@
 //
 //  FixedHeaderFlags.swift
-//  NIOMQTT
+//  MQTTCodec
 //
 //  Created by Bofei Zhu on 8/16/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  ConnectivityState.swift
-//  NIOMQTT
+//  NIOMQTTClient
 //
 //  Created by Bofei Zhu on 9/26/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.

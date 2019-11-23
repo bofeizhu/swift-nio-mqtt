@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import NIOMQTT
+@testable import MQTTCodec
 
 final class PubAckPacketTests: XCTestCase {
 

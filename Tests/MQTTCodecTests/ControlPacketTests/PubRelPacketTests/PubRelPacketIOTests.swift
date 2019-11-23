@@ -1,6 +1,6 @@
 //
 //  PubRelPacketIOTests.swift
-//  NIOMQTTTests
+//  MQTTCodecTests
 //
 //  Created by Bofei Zhu on 11/16/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 import NIO
 
-@testable import NIOMQTT
+@testable import MQTTCodec
 
 // swiftlint:disable force_try
 

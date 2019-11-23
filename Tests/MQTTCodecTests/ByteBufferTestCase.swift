@@ -1,6 +1,6 @@
 //
 //  ByteBufferTestCase.swift
-//  NIOMQTTTests
+//  MQTTCodecTests
 //
 //  Created by Bofei Zhu on 7/18/19.
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
@@ -10,7 +10,7 @@ import struct Foundation.Data
 import XCTest
 import NIO
 
-@testable import NIOMQTT
+@testable import MQTTCodec
 
 class ByteBufferTestCase: XCTestCase {
 
