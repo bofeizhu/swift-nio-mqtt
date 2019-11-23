@@ -26,3 +26,8 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash) -J '^MQTTCodec$' -D .build/derivedData -t $CODECOV_TOKEN
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Upload NIOMQTTClient code coverage
+      run: bash <(curl -s https://codecov.io/bash) -J '^NIOMQTTClient$' -D .build/derivedData -t $CODECOV_TOKEN
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
