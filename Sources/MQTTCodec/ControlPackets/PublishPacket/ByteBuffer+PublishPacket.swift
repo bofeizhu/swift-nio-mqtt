@@ -99,7 +99,7 @@ extension ByteBuffer {
             guard let string = readString(length: length) else {
                 return nil
             }
-            return .utf8(stirng: string)
+            return .utf8(string: string)
         } else {
             guard let data = readData(length: length) else {
                 return nil

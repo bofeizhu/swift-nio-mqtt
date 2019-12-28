@@ -58,7 +58,7 @@ public final class MQTTClient {
 
     @discardableResult
     public func publish(topic: String, message: String) -> EventLoopFuture<Void>? {
-        let action: Session.Action = .publish(topic: topic, payload: .utf8(stirng: message))
+        let action: Session.Action = .publish(topic: topic, payload: .utf8(string: message))
         return channel.flatMap { channel in
             channel.writeAndFlush(action)
         }
