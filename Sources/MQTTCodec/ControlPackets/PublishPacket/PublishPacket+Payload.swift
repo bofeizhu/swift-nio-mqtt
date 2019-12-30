@@ -21,7 +21,7 @@ extension PublishPacket: PayloadPacket {
         case binary(data: Data)
 
         /// UTF-8 Encoded Character Data
-        case utf8(stirng: String)
+        case utf8(string: String)
 
         /// Zero Length Payload
         case empty
