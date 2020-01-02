@@ -19,6 +19,15 @@ extension MQTTClient {
 
         /// The QoS level for delivery of Application Messages.
         public var qos: QoS
+        
+        /// The client-ID
+        public var clientId: String
+        
+        /// The username
+        public var username: String
+        
+        /// The password of the user
+        public var password: String
 
         /// The connection backoff configuration.
         ///
@@ -40,6 +49,28 @@ extension MQTTClient {
             self.host = host
             self.port = port
             self.qos = qos
+            self.connectionBackoff = connectionBackoff
+            
+            self.clientId = "HealthTap"
+            self.username = ""
+            self.password = ""
+        }
+        
+        public init(
+            host: String,
+            port: Int,
+            qos: QoS = .atMostOnce,
+            clientId: String,
+            username: String,
+            password: String,
+            connectionBackoff: ConnectionBackoff? = ConnectionBackoff()
+        ) {
+            self.host = host
+            self.port = port
+            self.qos = qos
+            self.clientId = clientId
+            self.username = username
+            self.password = password
             self.connectionBackoff = connectionBackoff
         }
     }

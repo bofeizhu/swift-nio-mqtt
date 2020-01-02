@@ -53,6 +53,7 @@ public final class MQTTClient {
 
     public func connect() {
         channel = makeChannel(
+            clientId: configuration.clientId, username: configuration.username, password: configuration.password,
             backoffIterator: configuration.connectionBackoff?.makeIterator())
     }
 
@@ -107,6 +108,7 @@ extension MQTTClient {
             // Something went wrong, but we'll try to fix it so let's update our state to reflect that.
             self.connectivity.state = .transientFailure
             self.channel = self.makeChannel(
+                clientId: self.configuration.clientId, username: self.configuration.username, password: self.configuration.password,
                 backoffIterator: self.configuration.connectionBackoff?.makeIterator())
         }
     }
@@ -121,6 +123,7 @@ extension MQTTClient {
     }
 
     private func makeChannel(
+        clientId: String, username: String, password: String,
         backoffIterator: ConnectionBackoffIterator?
     ) -> EventLoopFuture<Channel> {
         guard connectivity.state == .idle || connectivity.state == .transientFailure else {
@@ -130,7 +133,7 @@ extension MQTTClient {
         connectivity.state = .connecting
         let timeoutAndBackoff = backoffIterator?.next()
 
-        let connectPacket = makeConnectPacket()
+        let connectPacket = makeConnectPacket(clientId: clientId, username: username, password: password)
         let connAckPromise: EventLoopPromise<(Channel, PropertyCollection)> = group.next().makePromise()
         let publishHandler: PublishHandler = { [weak self] (topic, payload) in
             guard let self = self else {
@@ -198,16 +201,18 @@ extension MQTTClient {
 
             // We will try to connect again: the failure is transient.
             self.connectivity.state = .transientFailure
-            return self.scheduleReconnectAttempt(in: backoff, backoffIterator: backoffIterator)
+            return self.scheduleReconnectAttempt(in: backoff, clientId: clientId, username: username, password: password,
+                                                 backoffIterator: backoffIterator)
         }
     }
 
     private func scheduleReconnectAttempt(
-        in timeout: TimeInterval,
+        in timeout: TimeInterval, clientId: String, username: String, password: String,
         backoffIterator: ConnectionBackoffIterator?
     ) -> EventLoopFuture<Channel> {
         return group.next().scheduleTask(in: .seconds(timeInterval: timeout)) {
-            self.makeChannel(backoffIterator: backoffIterator)
+            self.makeChannel(clientId: clientId, username: username, password: password,
+                backoffIterator: backoffIterator)
         }.futureResult.flatMap { channel in
             channel
         }
@@ -249,11 +254,13 @@ extension MQTTClient {
 
         return channel.pipeline.addHandlers(handlers)
     }
-
-    private func makeConnectPacket() -> ConnectPacket {
-        let builder = ConnectPacketBuilder(clientId: "HealthTap")
+    
+    private func makeConnectPacket(clientId: String, username: String, password: String) -> ConnectPacket {
+        let builder = ConnectPacketBuilder(clientId: clientId)
 
         return builder
+            .username(username)
+            .password(password.data(using: .utf8))
             .keepAlive(30)
             .build()
     }

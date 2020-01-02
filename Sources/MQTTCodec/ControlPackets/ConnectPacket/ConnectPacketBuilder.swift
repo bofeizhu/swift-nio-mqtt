@@ -29,6 +29,12 @@ public final class ConnectPacketBuilder {
     public init(clientId: String) {
         self.clientId = clientId
     }
+    
+    public init(clientId: String, username: String, password: String) {
+        self.clientId = clientId
+        self.username = username
+        self.password = password.data(using: .utf8)
+    }
 
     public func cleanStart(_ cleanStart: Bool) -> ConnectPacketBuilder {
         self.cleanStart = cleanStart
