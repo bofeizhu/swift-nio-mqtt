@@ -251,9 +251,11 @@ extension MQTTClient {
     }
 
     private func makeConnectPacket() -> ConnectPacket {
-        let builder = ConnectPacketBuilder(clientId: "HealthTap")
+        let builder = ConnectPacketBuilder(clientId: configuration.clientId)
 
         return builder
+            .username(configuration.username)
+            .password(configuration.password)
             .keepAlive(30)
             .build()
     }
