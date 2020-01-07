@@ -1,12 +1,12 @@
 Pod::Spec.new do |spec|
 
-  spec.name           = "SwiftNIOMQTTClient"
+  spec.name           = "MQTTCodec"
   spec.version        = "0.1.0"
-  spec.summary        = "SwiftNIO-based MQTT v5.0 client."
+  spec.summary        = "SwiftNIO-based MQTT v5.0 codec."
   spec.module_name    = "NIOMQTTClient"
 
   spec.description  = <<-DESC
-  SwiftNIOMQTTClient is a SwiftNIO-based MQTT v5.0 client.
+  MQTTCodec is a SwiftNIO-based MQTT v5.0 codec.
                    DESC
 
   spec.homepage     = "https://github.com/bofeizhu/swift-nio-mqtt"
@@ -21,10 +21,9 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/bofeizhu/swift-nio-mqtt.git", :tag => "#{spec.version}" }
 
-  spec.source_files  = "Sources/NIOMQTTClient/**/*.swift"
+  spec.source_files  = "Sources/MQTTCodec/**/*.swift"
 
-  spec.dependency "SwiftNIOTransportServices", "~> 1.0"
-  spec.dependency "Logging", "~> 1.0"
-  spec.dependency "MQTTCodec", "~> 0.1"
+  spec.dependency "SwiftNIO", "~> 2.0"
+  spec.dependency "SwiftNIOFoundationCompat", "~> 2.0"
 
 end
