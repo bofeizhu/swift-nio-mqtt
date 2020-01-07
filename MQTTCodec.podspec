@@ -1,9 +1,9 @@
 Pod::Spec.new do |spec|
 
   spec.name           = "MQTTCodec"
-  spec.version        = "0.1.0"
+  spec.version        = "0.1.1"
   spec.summary        = "SwiftNIO-based MQTT v5.0 codec."
-  spec.module_name    = "NIOMQTTClient"
+  spec.module_name    = "MQTTCodec"
 
   spec.description  = <<-DESC
   MQTTCodec is a SwiftNIO-based MQTT v5.0 codec.
