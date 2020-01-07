@@ -13,7 +13,7 @@
 		0505CF3923199CCB00577414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3823199CCB00577414 /* Assets.xcassets */; };
 		0505CF3C23199CCB00577414 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3B23199CCB00577414 /* Preview Assets.xcassets */; };
 		0505CF3F23199CCB00577414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0505CF3D23199CCB00577414 /* LaunchScreen.storyboard */; };
-		825F8577237A505300CCB0E4 /* NIOMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = 825F8576237A505300CCB0E4 /* NIOMQTT */; };
+		052C411F23C5404B007B32F5 /* NIOMQTTClient in Frameworks */ = {isa = PBXBuildFile; productRef = 052C411E23C5404B007B32F5 /* NIOMQTTClient */; };
 		826B6B68237A4C7900002569 /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 826B6B67237A4C7900002569 /* NIO */; };
 		826B6B6C237A4D3600002569 /* NIOTransportServices in Frameworks */ = {isa = PBXBuildFile; productRef = 826B6B6B237A4D3600002569 /* NIOTransportServices */; };
 /* End PBXBuildFile section */
@@ -35,9 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				825F8577237A505300CCB0E4 /* NIOMQTT in Frameworks */,
 				826B6B68237A4C7900002569 /* NIO in Frameworks */,
 				826B6B6C237A4D3600002569 /* NIOTransportServices in Frameworks */,
+				052C411F23C5404B007B32F5 /* NIOMQTTClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +110,7 @@
 			packageProductDependencies = (
 				826B6B67237A4C7900002569 /* NIO */,
 				826B6B6B237A4D3600002569 /* NIOTransportServices */,
-				825F8576237A505300CCB0E4 /* NIOMQTT */,
+				052C411E23C5404B007B32F5 /* NIOMQTTClient */,
 			);
 			productName = NIOMQTTExample;
 			productReference = 0505CF2F23199CCA00577414 /* MQTT.app */;
@@ -390,9 +390,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		825F8576237A505300CCB0E4 /* NIOMQTT */ = {
+		052C411E23C5404B007B32F5 /* NIOMQTTClient */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = NIOMQTT;
+			productName = NIOMQTTClient;
 		};
 		826B6B67237A4C7900002569 /* NIO */ = {
 			isa = XCSwiftPackageProductDependency;

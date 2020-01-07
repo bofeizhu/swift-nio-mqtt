@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import NIOMQTT
+import NIOMQTTClient
 
 struct Message: Identifiable {
     let id: Int
@@ -16,9 +16,14 @@ struct Message: Identifiable {
 
 struct MessageView: View {
     @State var messages: [Message] = [Message(id: 0, text: "Hello!")]
-    let client: MQTT = {
-        let configuration = MQTT.Configuration(host: "test.mosquitto.org", port: 1883, qos: .atLeastOnce)
-        return MQTT(configuration: configuration)
+    let client: MQTTClient = {
+        let configuration = MQTTClient.Configuration(
+            host: "test.mosquitto.org",
+            port: 8883,
+            clientId: "niomqtt",
+            qos: .atLeastOnce,
+            tlsEnabled: true)
+        return MQTTClient(configuration: configuration)
     }()
 
     var body: some View {
@@ -36,8 +41,8 @@ struct MessageView: View {
             }
 
             self.client.onConnect = {
-                self.client.subscribe(topic: "healthtap")
-                self.client.publish(topic: "healthtap", message: "Hello~")
+                self.client.subscribe(topic: "niomqtt")
+                self.client.publish(topic: "niomqtt", message: "Hello~")
             }
 
             self.client.connect()
