@@ -157,7 +157,10 @@ extension MQTTClient {
             connAckPromise: connAckPromise,
             publishHandler: publishHandler)
 
-        let bootstrap = MQTTClient.makeBootstrap(group: group, mqttChannelHandler: mqttChannelHandler)
+        let bootstrap = MQTTClient.makeBootstrap(
+            group: group,
+            configuration: configuration,
+            mqttChannelHandler: mqttChannelHandler)
 
         let connection = bootstrap.connect(host: configuration.host, port: configuration.port)
         connection.cascadeFailure(to: connAckPromise)
@@ -216,19 +219,21 @@ extension MQTTClient {
     // TODO: Return a `ClientBootstrapProtocol` instead
     private static func makeBootstrap(
         group: EventLoopGroup,
+        configuration: Configuration,
         mqttChannelHandler: MQTTChannelHandler
     ) -> NIOTSConnectionBootstrap {
-
-        // Disable TLS for now
-        //let tlsOptions = makeTLSOptions()
-
-        return NIOTSConnectionBootstrap(group: group)
+        let bootstap = NIOTSConnectionBootstrap(group: group)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
             .channelOption(ChannelOptions.socket(SocketOptionLevel(IPPROTO_TCP), TCP_NODELAY), value: 1)
-            //.tlsOptions(tlsOptions)
             .channelInitializer { channel in
                 initializeChannel(channel, mqttChannelHandler: mqttChannelHandler)
             }
+
+        if let tlsOptions = configuration.tlsOptions {
+            return bootstap.tlsOptions(tlsOptions)
+        }
+
+        return bootstap
     }
 
     private static func initializeChannel(
@@ -258,15 +263,6 @@ extension MQTTClient {
             .password(configuration.password)
             .keepAlive(30)
             .build()
-    }
-
-    private func makeTLSOptions() -> NWProtocolTLS.Options {
-        let options = NWProtocolTLS.Options()
-
-        // Disable peer authentication for now
-        sec_protocol_options_set_peer_authentication_required(options.securityProtocolOptions, false)
-
-        return options
     }
 }
 

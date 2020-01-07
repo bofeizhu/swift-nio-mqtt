@@ -25,7 +25,8 @@ final class ConfigurationTests: XCTestCase {
             port: port,
             clientId: clientId,
             username: username,
-            password: password
+            password: password,
+            tlsEnabled: true
         )
         XCTAssertEqual(configuration.host, host)
         XCTAssertEqual(configuration.port, port)
@@ -33,5 +34,6 @@ final class ConfigurationTests: XCTestCase {
         XCTAssertEqual(configuration.qos, .atMostOnce)
         XCTAssertEqual(configuration.username, username)
         XCTAssertEqual(configuration.password, password)
+        XCTAssertNotNil(configuration.tlsOptions)
     }
 }
