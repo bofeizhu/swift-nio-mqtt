@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name           = "MQTTCodec"
-  spec.version        = "0.1.1"
+  spec.version        = "0.1.2"
   spec.summary        = "SwiftNIO-based MQTT v5.0 codec."
   spec.module_name    = "MQTTCodec"
 
@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   MQTTCodec is a SwiftNIO-based MQTT v5.0 codec.
                    DESC
 
-  spec.homepage     = "https://github.com/bofeizhu/swift-nio-mqtt"
+  spec.homepage     = "https://github.com/HealthTap/swift-nio-mqtt"
   spec.license      = "Apache License, Version 2.0"
   spec.author       = { "Bofei Zhu" => "zhu.bofei@gmail.com" }
 
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target      = "10.14"
   spec.tvos.deployment_target     = "12.0"
 
-  spec.source       = { :git => "https://github.com/bofeizhu/swift-nio-mqtt.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/HealthTap/swift-nio-mqtt.git", :tag => "#{spec.version}" }
 
   spec.source_files  = "Sources/MQTTCodec/**/*.swift"
 
