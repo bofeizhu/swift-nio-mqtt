@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name           = "MQTTCodec"
-  spec.version        = "0.1.1"
+  spec.version        = "0.1.2"
   spec.summary        = "SwiftNIO-based MQTT v5.0 codec."
   spec.module_name    = "MQTTCodec"
 
