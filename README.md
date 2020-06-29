@@ -15,5 +15,3 @@ NIO MQTT aims to support all of the platforms where Swift is supported. Currentl
 [codecov-badge]:  https://app.codacy.com/project/badge/Coverage/d48cf8c2011f41ac9a996828f9562e78
 [codecov-link]:   https://www.codacy.com/gh/HealthTap/swift-nio-mqtt?utm_source=github.com&utm_medium=referral&utm_content=HealthTap/swift-nio-mqtt&utm_campaign=Badge_Coverage
 [license-badge]:  https://img.shields.io/badge/license-Apache_2.0-007EC7.svg
-# [version-badge]:  https://img.shields.io/pypi/v/thefuck.svg?label=version
-# [version-link]:   https://pypi.python.org/pypi/thefuck/
