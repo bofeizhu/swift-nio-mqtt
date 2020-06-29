@@ -26,10 +26,10 @@ jobs:
       run: gem install slather
 
     - name: Run Slather
-      run: slather coverage -x --output-directory Slather/Report.xml --build-directory .build --scheme swift-nio-mqtt-Package swift-nio-mqtt.xcodeproj
+      run: slather coverage -x --output-directory slather/report.xml --build-directory .build --scheme swift-nio-mqtt-Package --binary-basename MQTTCodec --binary-basename NIOMQTTClient swift-nio-mqtt.xcodeproj
 
     - name: Codacy Coverage Reporter
       uses: codacy/codacy-coverage-reporter-action@master
       with:
         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        coverage-reports: Slather/Report.xml
+        coverage-reports: slather/report.xml
