@@ -3,10 +3,10 @@ name: Build
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       run: swift package generate-xcodeproj
 
     - name: Run tests
-      run: set -o pipefail && xcodebuild test -scheme swift-nio-mqtt-Package -destination name="iPhone 11" -enableCodeCoverage YES -derivedDataPath .build/derivedData | xcpretty
+      run: set -o pipefail && xcodebuild test -scheme swift-nio-mqtt-Package -destination name="iPhone 12" -enableCodeCoverage YES -derivedDataPath .build/derivedData | xcpretty
       
     - name: Install Slather
       run: gem install slather --no-document
@@ -28,7 +28,8 @@ jobs:
     - name: Run Slather
       run: slather coverage -x --output-directory report --build-directory .build --scheme swift-nio-mqtt-Package --binary-basename MQTTCodec --binary-basename NIOMQTTClient swift-nio-mqtt.xcodeproj
 
-    - name: Codacy Coverage Reporter
-      run: bash <(curl -Ls https://coverage.codacy.com/get.sh)
-      env:
-        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+    - name: Upload coverage to Codecov 
+      uses: codecov/codecov-action@v1
+      with:
+        flags: unittests
+
