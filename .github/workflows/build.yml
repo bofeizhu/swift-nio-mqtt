@@ -3,10 +3,10 @@ name: Build
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       run: swift package generate-xcodeproj
 
     - name: Run tests
-      run: set -o pipefail && xcodebuild test -scheme swift-nio-mqtt-Package -destination name="iPhone 11" -enableCodeCoverage YES -derivedDataPath .build/derivedData | xcpretty
+      run: set -o pipefail && xcodebuild test -scheme swift-nio-mqtt-Package -destination name="iPhone 12" -enableCodeCoverage YES -derivedDataPath .build/derivedData | xcpretty
       
     - name: Install Slather
       run: gem install slather --no-document
