@@ -28,7 +28,8 @@ jobs:
     - name: Run Slather
       run: slather coverage -x --output-directory report --build-directory .build --scheme swift-nio-mqtt-Package --binary-basename MQTTCodec --binary-basename NIOMQTTClient swift-nio-mqtt.xcodeproj
 
-    - name: Codacy Coverage Reporter
-      run: bash <(curl -Ls https://coverage.codacy.com/get.sh)
-      env:
-        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+    - name: Upload coverage to Codecov 
+      uses: codecov/codecov-action@v1
+      with:
+        flags: unittests
+
