@@ -6,44 +6,39 @@
 //  Copyright © 2019 Bofei Zhu. All rights reserved.
 //
 
+import Collections
+
 extension Session {
     /// Store for unacknowledged QoS level-1 & QoS level-2 packets.
     struct Store<Element>: Collection {
         typealias Index = Int
         typealias Identifier = UInt16
 
-        var startIndex: Int { orders.startIndex }
+        var startIndex: Int { dictionary.elements.startIndex }
 
-        var endIndex: Int { orders.endIndex }
+        var endIndex: Int { dictionary.elements.endIndex }
 
-        private var orders: [Identifier] = []
-
-        private var dictionary: [Identifier: (Index, Element)] = [:]
+        private var dictionary: OrderedDictionary<Identifier, Element> = [:]
 
         mutating func append(_ element: Element, withIdentifier identifier: Identifier) {
-            dictionary[identifier] = (orders.endIndex, element)
-            orders.append(identifier)
+            dictionary[identifier] = element
         }
 
         @discardableResult
         mutating func removeElement(forIdentifier identifier: Identifier) -> Element? {
-            guard let (index, element) = dictionary[identifier] else {
-                return nil
-            }
-            orders.remove(at: index)
-            return element
+            dictionary.removeValue(forKey: identifier)
         }
 
         subscript(key: UInt16) -> Element? {
-            return dictionary[key]?.1
+            return dictionary[key]
         }
 
         subscript(position: Int) -> Element {
-            return dictionary[orders[position]]!.1
+            return dictionary.elements[position].value
         }
 
         func index(after i: Int) -> Int {
-            return orders.index(after: i)
+            return dictionary.elements.index(after: i)
         }
     }
 }
